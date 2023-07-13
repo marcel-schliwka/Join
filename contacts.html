@@ -1,21 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="./styles/bootstrap.css" />
     <link rel="stylesheet" href="./styles/fonts.css" />
+    <link rel="stylesheet" href="styles/contacts.css">
     <script src="scripts/contacts.js"></script>
     <script src="./scripts/bootstrap.js"></script>
     <title>Contacts</title>
 </head>
+
 <body>
 
-    <div class="contacts-container">
-        <div id="contactsList"></div>
-        <div id="contactsMain"></div>
+    <div class="container row custom-nm">
+
+        <div id="contactsListContainer" class="col-sm-4 overflow-auto">
+            <div id="contactsList" class="custom-m-48">
+            </div>
+        </div>
+
+        <div id="contactsMain" class="col-sm-8 overflow-hidden">
+            <div id="contactsHeader" class="contacts-header">
+                <h1 class="fw-bold display-4 custom-lh-120">Contacts</h1>
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="4" height="63" viewBox="0 0 4 63" fill="none">
+                    <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+
+                <span class="custom-fs-27">Better with a team</span>
+            </div>
+        </div>
+        
     </div>
-    
+
 </body>
+
 </html>
