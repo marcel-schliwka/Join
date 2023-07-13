@@ -11,6 +11,13 @@
     background-color: #2A3647;
 }
 
+.custom-btn-container {
+    margin-top: 904px;
+    margin-bottom: 67px;
+    margin-right: 48px;
+    margin-left: 1000px;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
