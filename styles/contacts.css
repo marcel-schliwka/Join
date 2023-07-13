@@ -1,3 +1,16 @@
+.custom-btn {
+    display: flex;
+    height: 55px;
+    padding: 18px 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: var(--white, #FFF);
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    background-color: #2A3647;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -10,7 +23,6 @@
     background: #2A3647;
 }
 
-
 .contacts-header {
     display: inline-flex;
     justify-content: flex-end;
@@ -18,22 +30,18 @@
     gap: 30px;
 }
 
-.custom-lh-120 {
-    line-height: 120%;
-}
-
 .custom-fs-27 {
     font-size: 27px;
 }
 
-.custom-m-48 {
-    margin: 0px 48px;
+.custom-fs-21 {
+    font-size: 21px;
 }
 
 #contactsList {
     display: inline-flex;
     flex-direction: column;
-    align-items: center;   
+    align-items: center;
 }
 
 #contactsListContainer {
@@ -42,9 +50,5 @@
     flex-shrink: 0;
     background: var(--white, #FFF);
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
-    overflow: auto !important; 
-}
-
-.custom-nm {
-    margin-right: 0;
+    overflow: auto !important;
 }
