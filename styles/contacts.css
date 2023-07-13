@@ -1,0 +1,50 @@
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2A3647;
+}
+
+
+.contacts-header {
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 30px;
+}
+
+.custom-lh-120 {
+    line-height: 120%;
+}
+
+.custom-fs-27 {
+    font-size: 27px;
+}
+
+.custom-m-48 {
+    margin: 0px 48px;
+}
+
+#contactsList {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;   
+}
+
+#contactsListContainer {
+    max-height: 600px;
+    width: 30%;
+    flex-shrink: 0;
+    background: var(--white, #FFF);
+    box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
+    overflow: auto !important; 
+}
+
+.custom-nm {
+    margin-right: 0;
+}
