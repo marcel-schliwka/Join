@@ -82,6 +82,11 @@
 
 }
 
+.overlay-left {
+    background-color: var(--version-2-main-color, #2A3647);
+
+}
+
 .contacts-overlay-right {
     background: #ffffff;
 }

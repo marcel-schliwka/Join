@@ -4,15 +4,19 @@ function openOverlayContact() {
     
     overlay.innerHTML = /*html*/`
         <div class="custom-overlay-card px-46 py-66">
-
+             
            <div class="contacts-overlay-left">
                 <img src="./img/logo.png">
-           </div>
+                </div>
 
            <div class="contacts-overlay-right">
             kontaktformular
-           </div>
+            </div>
 
         </div>
     `;
+}
+
+function closeOverlay() {
+    document.getElementById('overlayContact').classList.add('d-none');
 }
