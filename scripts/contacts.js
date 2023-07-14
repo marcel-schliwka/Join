@@ -1,3 +1,102 @@
+let contacts = [
+    {
+        'name': 'Maximilian Lis',
+        'email': 'lis@fotoka.com',
+        'number': '+4915797298172',
+    },
+    {
+        'name': 'Andreas Loretto',
+        'email': 'andreas.loretto@gmail.com',
+        'number': '+49150192298172',
+    },
+    {
+        'name': 'Maria Rodriguez',
+        'email': 'maria.rodriguez@example.com',
+        'number': '+34678901234',
+    },
+    {
+        'name': 'Léa Dubois',
+        'email': 'lea.dubois@example.com',
+        'number': '+33123456789',
+    },
+    {
+        'name': 'John Smith',
+        'email': 'john.smith@example.com',
+        'number': '+14155552678',
+    },
+    {
+        'name': 'Satoshi Nakamoto',
+        'email': 'satoshi@bitcoin.com',
+        'number': '+81345678901',
+    },
+    {
+        'name': 'Marta Kowalska',
+        'email': 'marta.kowalska@example.com',
+        'number': '+48123456789',
+    },
+    {
+        'name': 'Luis García',
+        'email': 'luis.garcia@example.com',
+        'number': '+34987654321',
+    },
+    {
+        'name': 'Sophie Martin',
+        'email': 'sophie.martin@example.com',
+        'number': '+33123456789',
+    },
+    {
+        'name': 'Muhammad Khan',
+        'email': 'muhammad.khan@example.com',
+        'number': '+92213567890',
+    },
+    {
+        'name': 'Anna Müller',
+        'email': 'anna.mueller@example.com',
+        'number': '+49123456789',
+    },
+    {
+        'name': 'Javier Fernández',
+        'email': 'javier.fernandez@example.com',
+        'number': '+34987654321',
+    },
+    {
+        'name': 'Emma Wilson',
+        'email': 'emma.wilson@example.com',
+        'number': '+441234567890',
+    },
+    {
+        'name': 'Andrei Popescu',
+        'email': 'andrei.popescu@example.com',
+        'number': '+40123456789',
+    },
+    {
+        'name': 'Julia Petrova',
+        'email': 'julia.petrova@example.com',
+        'number': '+79123456789',
+    },
+    {
+        'name': 'Liam Murphy',
+        'email': 'liam.murphy@example.com',
+        'number': '+353123456789',
+    },
+    {
+        'name': 'Hiroshi Tanaka',
+        'email': 'hiroshi.tanaka@example.com',
+        'number': '+819012345678',
+    },
+    {
+        'name': 'Isabella Rossi',
+        'email': 'isabella.rossi@example.com',
+        'number': '+39123456789',
+    },
+    {
+        'name': 'Mohammed Ahmed',
+        'email': 'mohammed.ahmed@example.com',
+        'number': '+201234567890',
+    }
+]
+
+
 function openOverlayContact() {
     let overlay = document.getElementById('overlayContact');
     document.getElementById('overlayContact').classList.remove('d-none');
@@ -16,7 +115,11 @@ function openOverlayContact() {
             </div>
 
            <div class="contacts-overlay-right">
-                <img src="./img/icon_clear.png">
+
+                <div onclick="closeOverlay()">
+                    <img class="click-to-close" src="./img/icon_clear.png">
+                </div>
+            
 
                 <div class="form-section">
 
@@ -25,6 +128,8 @@ function openOverlayContact() {
                     </div>
 
                     <div class="input-container-right">
+
+                        <form id="contactForm">
 
                         <div class="contact-input">
                             <input id="formName" type="text" placeholder="Name">
@@ -40,9 +145,10 @@ function openOverlayContact() {
                             <input id="formPhone" type="number" placeholder="Phone">
                             <img class="contact-input-img" id="inputPhone" src="./img/form_phone.png">
                         </div>
+                        </form>
 
                         <div class="form-button">
-                            <button class="contact-btn custom-lh-120">
+                            <button class="contact-btn custom-lh-120" onclick="closeOverlay()">
                                 <span>Cancel</span>
                                 <img src="./img/icon_clear.png">
                             </button>
@@ -70,4 +176,24 @@ function closeOverlay() {
 
 function doNotClose(event) {
     event.stopPropagation();
+}
+
+function createContact() {
+    let name = document.getElementById('formName').value;
+    let email = document.getElementById('formEmail').value;
+    let phone = document.getElementById('formPhone').value;
+
+    contacts.push({
+        name: name,
+        email: email,
+        number: phone,
+    });
+
+    console.log(contacts);
+
+    resetForm();
+}
+
+function resetForm() {
+    document.getElementById('contactForm').reset();
 }

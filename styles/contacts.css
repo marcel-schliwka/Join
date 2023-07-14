@@ -131,7 +131,9 @@
     outline: none;
 }
 
-
+.click-to-close:hover {
+    cursor: pointer;
+}
 .contact-input {
     position: relative;
     display: flex;
