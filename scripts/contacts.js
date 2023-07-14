@@ -16,7 +16,48 @@ function openOverlayContact() {
             </div>
 
            <div class="contacts-overlay-right">
-            kontaktformular
+                <img src="./img/icon_clear.png">
+
+                <div class="form-section">
+
+                    <div class="input-container-left">
+                        <img width="120px" height="120px" src="./img/icon_newContact.png" class="ms-20">
+                    </div>
+
+                    <div class="input-container-right">
+
+                        <div class="contact-input">
+                            <input id="formName" type="text" placeholder="Name">
+                            <img class="contact-input-img" id="inputName" src="./img/form_name.png">
+                        </div>
+
+                        <div class="contact-input">
+                            <input id="formEmail" type="email" placeholder="Email">
+                            <img class="contact-input-img" id="inputEmail" src="./img/form_email.png">
+                        </div>
+
+                        <div class="contact-input position-relative">
+                            <input id="formPhone" type="number" placeholder="Phone">
+                            <img class="contact-input-img" id="inputPhone" src="./img/form_phone.png">
+                        </div>
+
+                        <div class="form-button">
+                            <button class="contact-btn custom-lh-120">
+                                <span>Cancel</span>
+                                <img src="./img/icon_clear.png">
+                            </button>
+
+                            <button class="custom-btn fw-bold custom-lh-120" onclick="createContact()">
+                                <span>Create contact</span>
+                                <img src="./img/icon_check.png">
+                            </button>
+
+                    </div>
+
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
