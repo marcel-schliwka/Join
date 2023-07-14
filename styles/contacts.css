@@ -58,3 +58,30 @@
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
     overflow: auto !important;
 }
+
+
+/*         //          OVERLAY            //        */
+.pop-up-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(152,255,152, 0.8) !important;
+}
+
+.custom-overlay-card {
+    height: 594px;
+    min-width: 600px;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    flex-shrink: 0;
+}
+
+.contacts-overlay-left {
+    background-color: var(--version-2-main-color, #2A3647);
+
+}
+
+.contacts-overlay-right {
+    background: #ffffff;
+}
