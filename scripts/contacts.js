@@ -96,6 +96,16 @@ let contacts = [
     }
 ]
 
+let alphabet = []
+
+function init() {
+    getInitialsPlusContact();
+}
+
+function renderContacts() {
+    let container = document.getElementById('contactsList');
+
+}
 
 function openOverlayContact() {
     let overlay = document.getElementById('overlayContact');
@@ -189,11 +199,37 @@ function createContact() {
         number: phone,
     });
 
-    console.log(contacts);
-
     resetForm();
 }
 
 function resetForm() {
     document.getElementById('contactForm').reset();
 }
+
+// *** to order contacts in groups by initials. For each contact the following arrow function 
+// is itering through the names and collects the initials in 'initials'. If the map-Object does not have
+// the initials yet, it will be set in the if-condition. then every obj (contact-details) will be
+// set to the right group of initials
+
+function getInitialsPlusContact() {
+    let initialsMap = new Map();
+    contacts.forEach(obj => {
+        let name = obj.name.trim();
+        let initials = name.charAt(0);
+
+        if (!initialsMap.has(initials)) {
+            initialsMap.set(initials, []);
+        }
+
+        initialsMap.get(initials).push(obj);
+    });
+
+
+    initialsMap.forEach((contacts, initials) => {
+        console.log(initials);
+        console.log(contacts);
+    });
+
+    return initialsMap;
+}
+ 

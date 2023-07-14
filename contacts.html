@@ -13,7 +13,7 @@
     <title>Contacts</title>
 </head>
 
-<body onload="renderContacts()">
+<body onload="init()">
 
     <div class="container row me-0">
 
@@ -34,6 +34,10 @@
             </div>
         </div>
     </div>
+
+    <button onclick="getInitialsPlusContact()">
+        kontakte anzueigen
+    </button>
 
     <div id="overlayContact" class="rounded-start" onclick="closeOverlay()">
     </div>
