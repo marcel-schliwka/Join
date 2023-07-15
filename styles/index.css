@@ -1,7 +1,11 @@
 body {
   background-color: #f6f7f8;
+  font-family: Inter;
 }
 
+h1 {
+  font-weight: 700;
+}
 .logo-img {
   position: absolute;
   top: calc(100vh - 50% - 150px);
@@ -35,6 +39,7 @@ body {
 
 .login-box {
   background-color: white;
+  position: relative;
   opacity: 0;
   z-index: 5;
   animation: appearLoginField 1s forwards 1s;
@@ -42,6 +47,7 @@ body {
   align-items: center;
   padding: 32px 0;
   width: 50%;
+  min-height: 500px;
   margin: 10px 100px;
   display: flex;
   flex-direction: column;
@@ -70,7 +76,7 @@ form {
   cursor: text;
   display: flex;
   justify-content: space-between;
-  margin: 32px 0;
+  margin: 16px 0;
   padding: 5px 20px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
@@ -83,6 +89,7 @@ form {
 
 .login-btn-container {
   margin: 20px 0;
+
   display: flex;
   justify-content: space-between;
 }
@@ -105,15 +112,47 @@ form {
 .forgot-link {
   color: #29abe2;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .guest-login-btn {
   border: 1px solid #2a3647;
   background-color: white;
+  font-weight: 700;
   color: #2a3647;
 }
 .checkbox-container {
   margin: 10px 10px;
+}
+
+.reset-password-btn {
+  width: 40%;
+  align-self: center;
+}
+
+.reset-password-input {
+  max-width: 50%;
+  align-self: center;
+}
+
+.arrow-back {
+  object-fit: cover;
+  cursor: pointer;
+  width: 37px;
+  position: absolute;
+  top: 64px;
+  left: 48px;
+}
+
+.signup-btn-container {
+  margin: 29px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.headline-container {
+  display: flex;
+  gap: 50px;
 }
 
 @keyframes logoSlideIn {
