@@ -28,7 +28,7 @@
 
         <div class="add-task-description d-flex flex-column w-422 gap-8">
           <label for="despriction">Description</label>
-          <textarea class="pad-18-21 gap-10 align-items-start align-self-stretch custom-border" required name="" id="add-task-description"
+          <textarea class="pad-18-21 gap-10 align-items-start align-self-stretch custom-border" required name="description" id="add-task-description"
             cols="30" rows="10" placeholder="Enter a Despriction"></textarea>
         </div>
 
@@ -40,9 +40,9 @@
               type="button" id="dropdownMenuButtonCategory" data-bs-toggle="dropdown" aria-expanded="false" >Select task
               category</button>
             <ul class="dropdown-menu w-422" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item d-flex justify-content-between" href="#">New category</a></li>
-              <li><a class="dropdown-item d-flex justify-content-between" href="#">Sales</a></li>
-              <li><a class="dropdown-item d-flex justify-content-between" href="#">Backoffice</a></li>
+              <li><option class="dropdown-item d-flex justify-content-between" href="#">New category</option></li>
+              <li><option class="dropdown-item d-flex justify-content-between" href="#">Sales</option></li>
+              <li><option class="dropdown-item d-flex justify-content-between" href="#">Backoffice</option></li>
             </ul>
           </div>
         </div>
@@ -56,11 +56,11 @@
               Select contacts to assign
             </button>
             <ul class="dropdown-menu w-422" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item d-flex justify-content-between" href="#">You <input type="checkbox"></a></li>
-              <li><a class="dropdown-item d-flex justify-content-between" href="#">Maximilian Vogel <input
-                    type="checkbox"></a></li>
-              <li><a class="dropdown-item d-flex justify-content-between" href="#">Invite new contact<img
-                    src="./img/contacts_black.png"></a></li>
+              <li><option class="dropdown-item d-flex justify-content-between" href="#">You <input type="checkbox"></option></li>
+              <li><aoption class="dropdown-item d-flex justify-content-between" href="#">Maximilian Vogel <input
+                    type="checkbox"></option></li>
+              <li><option class="dropdown-item d-flex justify-content-between" href="#">Invite new contact<img
+                    src="./img/contacts_black.png"></option></li>
             </ul>
           </div>
         </div>
@@ -83,11 +83,11 @@
         <div class="add-task-prio d-flex flex-column w-422">
           <label for="">Prio</label>
           <div class="add-task-prio-btn gap-10 d-flex flex-row w-422">
-            <button class="gap-10 d-flex align-items-center justify-content-center border-shadow">Urgent <img
+            <button id="urgentBtn" class="gap-10 d-flex align-items-center justify-content-center border-shadow">Urgent <img
                 src="./img/prio_urgent_color.png"></button>
-            <button class="gap-10 d-flex align-items-center justify-content-center border-shadow">Medium <img
+            <button id="mediumBtn" class="gap-10 d-flex align-items-center justify-content-center border-shadow">Medium <img
                 src="./img/prio_medium_color.png"></button>
-            <button class="gap-10 d-flex align-items-center justify-content-center border-shadow">Low <img
+            <button id="lowBtn" class="gap-10 d-flex align-items-center justify-content-center border-shadow">Low <img
                 src="./img/prio_low_color.png"></button>
           </div>
         </div>
@@ -103,7 +103,7 @@
         </div>
 
         <div class="add-task-form-btn d-flex align-items-center justify-content-center">
-          <button class="add-task-form-btn-clear d-flex justify-content-center align-items-center gap-10">Clear</button>
+          <button onclick="clearTaskInput()" class="add-task-form-btn-clear d-flex justify-content-center align-items-center gap-10">Clear</button>
           <button type="submit"
             class="add-task-form-btn-create d-flex justify-content-center align-items-center gap-10">Create
             Task</button>
