@@ -1,0 +1,250 @@
+/*Basic Styles*/
+.font61 {
+    color: #000;
+    font-family: Inter;
+    font-size: 61px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.font47 {
+    color: #000;
+    font-family: Inter;
+    font-size: 47px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.font36 {
+    color: #000;
+    font-family: Inter;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%
+}
+
+.font27 {
+    color: #000;
+    font-family: Inter;
+    font-size: 27px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.font20 {
+    color: #000;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.font16 {
+    color: #000;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.font12 {
+    color: #000;
+    font-family: Inter;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.w-422 {
+    width: 422px;
+}
+
+.gap-8 {
+    gap: 8px;
+}
+
+.gap-10 {
+    gap: 10px;
+}
+
+.pad-18-21 {
+    padding: 18px 21px;
+}
+
+.border-shadow {
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+}
+
+.custom-border {
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    background: #FFF;
+}
+
+/*Add Task Style*/
+
+.add-task-right {
+    height: 354px;
+}
+
+.add-task-seperator {
+    margin-left: 59px;
+    margin-right: 59px;
+}
+
+.add-task-left {
+    gap: 14px;
+    margin-bottom: 232px;
+}
+
+.add-task {
+    background-color: #F6F7F8;
+}
+
+.add-task-header {
+    margin-top: 82px;
+    margin-left: 123px;
+    margin-bottom: 41px;
+}
+
+.add-task-form {
+    font-size: 20px;
+    margin-left: 123px;
+}
+
+.add-task-left textarea {
+    height: 119px;
+}
+
+.add-task-title input {
+    height: 50px;
+    padding: 13px 21px;
+}
+
+
+.add-task-prio-btn {
+    width: 418px;
+}
+
+.add-task-prio-btn button {
+    width: 136px;
+    padding: 18px 10px;
+    height: 51px;
+    border-radius: 10px;
+    background: #FFF;
+    border: 0px;
+}
+
+.add-task-prio-btn button:hover {
+    height: 56px;
+    width: 138px;
+    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.30);
+}
+
+.add-task-date {
+    height: 103px;
+}
+
+.add-task-date input {
+    height: 51px;
+    background-image: url(../img/icon_calendar.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 56px 56px;
+    flex-shrink: 0;
+}
+
+.add-trak-subtasks {
+    height: 110px;
+}
+
+.add-task-subtasks-input {
+    height: 51px;
+    background-image: url(../img/icon_cancel.png);
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: right;
+}
+
+.add-task-subtasks-checkbox {
+    gap: 20px;
+}
+
+.checkbox-input {
+    height: 16px;
+    width: 16px;
+}
+
+.dropdown-menu {
+    position: relative !important;
+    z-index: 1000;
+    margin-top: -56px !important;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.add-task-subtasks-checkbox p {
+    height: 19px;
+    font-size: 16px;
+    margin: 0;
+}
+
+.add-task-form-btn {
+    margin-left: 48px;
+    margin-top: 245px;
+    height: 55px;
+    width: 348px;
+    gap: 25px;
+}
+
+.add-task-form-btn-clear {
+    width: 136px;
+    height: 55px;
+    padding: 18px 10px;
+    border-radius: 10px;
+    border: 1px solid #2A3647;
+    font-size: 20px;
+    line-height: 120%;
+}
+
+.add-task-form-btn-clear:hover {
+    border: 1px solid #29ABE2;
+    color: #29ABE2;
+}
+
+.add-task-form-btn-create {
+    height: 55px;
+    padding: 18px 15px;
+    border-radius: 10px;
+    background: #2A3647;
+    color: #FFF;
+    font-size: 21px;
+    line-height: 120%;
+}
+
+.add-task-form-btn-create:hover {
+    background: #29ABE2;
+    border: #29ABE2;
+}
+
+.add-task-category-dropdown {
+    height: 51px;
+}
+
+.add-task-assigned-dropdown {
+    height: 51px;
+    border-radius: 10px;
+    background: #FFF;
+}
+
+.dropdown-menu-open {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}

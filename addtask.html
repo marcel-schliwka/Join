@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Task</title>
+  <link rel="stylesheet" href="./styles/fonts.css">
+  <link rel="stylesheet" href="./styles/bootstrap.css">
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/taskstyle.css">
+  <script src="./scripts/bootstrap.js"></script>
+  <script src="scripts/script.js"></script>
+</head>
+
+<body>
+  <div class="add-task d-flex flex-column border-shadow">
+    <h1 class="add-task-header font61">Add Task</h1>
+
+    <form class="add-task-form d-flex flex-row" onsubmit="addTask(); return false">
+      <div class="add-task-left d-flex flex-column d-inline-flex align-items-start gap-8">
+
+        <div class="add-task-title d-flex flex-column w-422 gap-8">
+          <label for="title">Title</label>
+          <input class="custom-border gap-10 align-self-stretch align-items-center" required id ="add-task-title" type="text"
+            placeholder="Enter a title">
+        </div>
+
+        <div class="add-task-description d-flex flex-column w-422 gap-8">
+          <label for="despriction">Description</label>
+          <textarea class="pad-18-21 gap-10 align-items-start align-self-stretch custom-border" required name="" id="add-task-description"
+            cols="30" rows="10" placeholder="Enter a Despriction"></textarea>
+        </div>
+
+        <div class="add-task-category d-flex flex-column w-422 gap-8">
+          <label for="category">Category</label>
+          <div class="dropdown">
+            <button
+              class="dropdown-toggle add-task-category-dropdown d-flex justify-content-between custom-border w-422 pad-18-21 gap-10 d-flex align-items-center"
+              type="button" id="dropdownMenuButtonCategory" data-bs-toggle="dropdown" aria-expanded="false" >Select task
+              category</button>
+            <ul class="dropdown-menu w-422" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item d-flex justify-content-between" href="#">New category</a></li>
+              <li><a class="dropdown-item d-flex justify-content-between" href="#">Sales</a></li>
+              <li><a class="dropdown-item d-flex justify-content-between" href="#">Backoffice</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="add-task-assigned d-flex flex-column w-422 gap-8">
+          <label for="assigned">Assigned to</label>
+          <div class="dropdown">
+            <button
+              class="btn dropdown-toggle add-task-assigned-dropdown d-flex justify-content-between w-422 d-flex font20 align-items-center pad-18-21 gap-10"
+              type="button" id="dropdownMenuButtonAssigned" data-bs-toggle="dropdown" aria-expanded="false">
+              Select contacts to assign
+            </button>
+            <ul class="dropdown-menu w-422" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item d-flex justify-content-between" href="#">You <input type="checkbox"></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between" href="#">Maximilian Vogel <input
+                    type="checkbox"></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between" href="#">Invite new contact<img
+                    src="./img/contacts_black.png"></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="add-task-seperator">
+        <svg xmlns="http://www.w3.org/2000/svg" width="2" height="553" viewBox="0 0 2 553" fill="none">
+          <path d="M0.999512 1L1 552" stroke="#D1D1D1" stroke-linecap="round" />
+        </svg>
+      </div>
+
+
+      <div class="add-task-right d-flex flex-column align-items-start w-422 g-8">
+        <div class="add-task-date d-flex flex-column w-422 gap-8">
+          <label for="date">Due date</label>
+          <input class="pad-18-21 custom-border" required id="add-task-date" type="text" placeholder="dd/mm/yyyy">
+        </div>
+
+        <div class="add-task-prio d-flex flex-column w-422">
+          <label for="">Prio</label>
+          <div class="add-task-prio-btn gap-10 d-flex flex-row w-422">
+            <button class="gap-10 d-flex align-items-center justify-content-center border-shadow">Urgent <img
+                src="./img/prio_urgent_color.png"></button>
+            <button class="gap-10 d-flex align-items-center justify-content-center border-shadow">Medium <img
+                src="./img/prio_medium_color.png"></button>
+            <button class="gap-10 d-flex align-items-center justify-content-center border-shadow">Low <img
+                src="./img/prio_low_color.png"></button>
+          </div>
+        </div>
+
+        <div class="add-trak-subtasks d-flex flex-column w-422 gap-8">
+          <label for="subtasks">Subtasks</label>
+          <input class="add-task-subtasks-input custom-border border-shadow gap-10 pad-18-21" type="text"
+            placeholder="Add new subtask">
+          <div class="add-task-subtasks-checkbox d-flex align-items-center">
+            <input class="checkbox-input" type="checkbox">
+            <p class="d-flex flex-row">Subtask 1</p>
+          </div>
+        </div>
+
+        <div class="add-task-form-btn d-flex align-items-center justify-content-center">
+          <button class="add-task-form-btn-clear d-flex justify-content-center align-items-center gap-10">Clear</button>
+          <button type="submit"
+            class="add-task-form-btn-create d-flex justify-content-center align-items-center gap-10">Create
+            Task</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>
