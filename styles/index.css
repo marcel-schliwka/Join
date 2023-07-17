@@ -48,7 +48,7 @@ h1 {
   padding: 32px 0;
   width: 50%;
   min-height: 500px;
-  margin: 10px 100px;
+  margin: 10vh 100px;
   display: flex;
   flex-direction: column;
   border-radius: 30px;
@@ -94,6 +94,23 @@ form {
   justify-content: space-between;
 }
 
+.topdown-messages {
+  padding: 10px;
+  background-color: #2a3647;
+  color: white;
+  width: 30%;
+  border-radius: 10px;
+  text-align: center;
+  position: absolute;
+  left: 35%;
+  top: 100px;
+  opacity: 0;
+}
+
+.show-topdown {
+  animation: showTopDownAnimation 3s forwards 1s;
+}
+
 .checkbox-container {
   display: flex;
   gap: 20px;
@@ -102,6 +119,17 @@ form {
   height: 16px;
   width: 16px;
   margin: 0 5px;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url(../img/checkbox.svg);
+  background-size: contain;
+}
+
+.remember-checkbox:checked {
+  background: url(../img/checkbox_checked.svg);
+  background-size: contain;
 }
 
 .remember-me-container {
@@ -175,6 +203,23 @@ form {
 
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes showTopDownAnimation {
+  0% {
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 

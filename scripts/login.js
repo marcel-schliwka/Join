@@ -1,4 +1,5 @@
 //Globals
+let users = [];
 let loginForm = document.getElementById("loginForm");
 
 function templateForgotPassword() {
@@ -85,7 +86,7 @@ function templateLogin() {
 
 function templateSignUp() {
   return `
-    <form onsubmit="return false;" id="loginForm">
+    <form onsubmit="registerUser(); return false;" id="loginForm">
 
     <img onclick="showLogin();" src="./img/arrow-left-line.svg" class="arrow-back" />
     <h1 class="">Sign up</h1>
@@ -99,6 +100,7 @@ function templateSignUp() {
             name="name"
             id="name"
             placeholder="Name"
+            required
         />
         <img
             src="./img/person.svg"
@@ -113,6 +115,7 @@ function templateSignUp() {
         name="email"
         id="email"
         placeholder="Email"
+        required
       />
       <img
         src="./img/mail.svg"
@@ -127,6 +130,7 @@ function templateSignUp() {
         name="password"
         placeholder="Password"
         id="password"
+        required
       />
       <img
         src="./img/lock.svg"
@@ -141,6 +145,7 @@ function templateSignUp() {
         name="confirmPassword"
         placeholder="Confirm Password"
         id="confirmPassword"
+        required
       />
       <img
         src="./img/lock.svg"
@@ -149,7 +154,7 @@ function templateSignUp() {
       />
     </div>
     <div class="signup-btn-container">
-      <button class="signup-btn">Sign up</button>
+      <button id="signupBtn" onclick="registerUser();" class="signup-btn">Sign up</button>
     </div>
   </form>
     `;
@@ -168,4 +173,67 @@ function showLogin() {
 function showSignup() {
   loginForm.innerHTML = "";
   loginForm.innerHTML = templateSignUp();
+}
+
+async function init() {
+  loadUsers();
+}
+
+async function loadUsers() {
+  try {
+    users = JSON.parse(await getItem("users"));
+  } catch (e) {
+    console.error("Loading error:", e);
+  }
+}
+
+function confirmPasswordIsSame(password, confirmedPassword) {
+  if (password == confirmedPassword) {
+    return true;
+  } else {
+    alert("Your passwords are not similar!");
+    return false;
+  }
+}
+async function registerUser() {
+  let signupBtn = document.getElementById("signupBtn");
+  signupBtn.disabled = true;
+  let name = document.getElementById("name");
+  let email = document.getElementById("email");
+  let password = document.getElementById("password");
+  let confirmPassword = document.getElementById("confirmPassword");
+
+  users.push({
+    name: name.value,
+    email: email.value,
+    password: password.value,
+  });
+
+  if (confirmPasswordIsSame(password.value, confirmPassword.value)) {
+    await setItem("users", JSON.stringify(users));
+  }
+
+  resetForm(name);
+  resetForm(email);
+  resetForm(password);
+  resetForm(confirmPassword);
+  signupBtn.disabled = false;
+  showLogin();
+}
+
+function resetForm(input) {
+  input.value = "";
+}
+
+function login() {
+  let email = document.getElementById("email");
+  let password = document.getElementById("password");
+
+  let user = users.find((user) => user.email === email.value);
+
+  if (user && user.password === password.value) {
+    alert("You are logged in!");
+  } else {
+    alert("Your email or password is wrong!");
+  }
 }

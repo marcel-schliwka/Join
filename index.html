@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./styles/bootstrap.css" />
     <script src="./scripts/bootstrap.js"></script>
+    <script src="./scripts/storage.js"></script>
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="/styles/index.css" />
     <title>JOIN</title>
   </head>
-  <body class="">
+  <body onload="init();">
     <nav class="nav p-5">
       <img src="./img/logo.svg" alt="JOIN Logo" class="logo-img" />
       <div class="nav-join-user">
@@ -17,10 +18,12 @@
         <button class="signup-btn" onclick="showSignup();">Sign up</button>
       </div>
     </nav>
-
+    <div class="topdown-messages">
+      <h2>You are now logged in!</h2>
+    </div>
     <main class="main-container">
       <div class="login-box">
-        <form onsubmit="return false;" id="loginForm">
+        <form onsubmit="login(); return false;" id="loginForm">
           <h1 class="">Log in</h1>
           <span class="login-line"></span>
           <div class="input-container">
@@ -30,6 +33,7 @@
               name="email"
               id="email"
               placeholder="Email"
+              required
             />
             <img
               src="./img/mail.svg"
@@ -44,6 +48,7 @@
               name="password"
               placeholder="Password"
               id="password"
+              required
             />
             <img
               src="./img/lock.svg"
