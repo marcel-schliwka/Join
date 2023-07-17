@@ -232,9 +232,17 @@ function getInitialsPlusContact() {
 
 function createInitialsObject(initialsMap) {
     let initialsObject = {};
-    for (let [initials, value] of initialsMap.entries()) {
-        initialsObject[initials] = value;
-    }
-    sortInitials(initialsObject);
-
+    initialsMap.forEach((contactsArray, initials) => {
+        initialsObject[initials] = [...contactsArray];
+    });
+    console.log(initialsObject);
+    // sortInitials(initialsObject);
 }
+
+// function sortInitials(ini) {
+//     for (let i = 0; i < ini.length; i++) {
+//         const letter = ini[i];
+//         letter.sort();
+//         console.log('Hallo:' `$letter`);
+//     }
+// }  
