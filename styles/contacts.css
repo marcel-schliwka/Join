@@ -69,8 +69,14 @@
     background-color: rgba(152, 255, 152, 0.8) !important;
 }
 
-.custom-overlay-card {
+.container-click-to-close {
+    display: flex;
+    justify-content: flex-end;
     width: 100%;
+}
+
+.custom-overlay-card {
+    width: 1212px;
     height: 594px;
     display: flex;
     align-items: center;
@@ -95,7 +101,7 @@
 
 .contacts-overlay-right {
     background: #ffffff;
-    width: 50%;
+    width: 100%;
     background-color: white;
     display: flex;
     justify-content: flex-start;
@@ -134,6 +140,7 @@
 .click-to-close:hover {
     cursor: pointer;
 }
+
 .contact-input {
     position: relative;
     display: flex;
