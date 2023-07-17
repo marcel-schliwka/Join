@@ -96,10 +96,11 @@ let contacts = [
     }
 ]
 
-let alphabet = []
+let initialsContacts = [];
 
 function init() {
     getInitialsPlusContact();
+    renderContacts();
 }
 
 function renderContacts() {
@@ -127,9 +128,9 @@ function openOverlayContact() {
            <div class="contacts-overlay-right">
 
                 <div onclick="closeOverlay()">
-                    <img class="click-to-close" src="./img/icon_clear.png">
-                </div>
-            
+                            <img class="click-to-close" src="./img/icon_clear.png">
+                        </div>
+
 
                 <div class="form-section">
 
@@ -168,7 +169,7 @@ function openOverlayContact() {
                                 <img src="./img/icon_check.png">
                             </button>
 
-                    </div>
+                        </div>
 
                     </div>
 
@@ -200,17 +201,14 @@ function createContact() {
     });
 
     resetForm();
+    closeOverlay()
 }
 
 function resetForm() {
     document.getElementById('contactForm').reset();
 }
 
-// *** to order contacts in groups by initials. For each contact the following arrow function 
-// is itering through the names and collects the initials in 'initials'. If the map-Object does not have
-// the initials yet, it will be set in the if-condition. then every obj (contact-details) will be
-// set to the right group of initials
-
+// *** to order contacts in groups by initials. 
 function getInitialsPlusContact() {
     let initialsMap = new Map();
     contacts.forEach(obj => {
@@ -224,12 +222,7 @@ function getInitialsPlusContact() {
         initialsMap.get(initials).push(obj);
     });
 
-
-    initialsMap.forEach((contacts, initials) => {
-        console.log(initials);
-        console.log(contacts);
-    });
+    console.table(initialsMap);
 
     return initialsMap;
 }
- 
