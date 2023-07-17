@@ -227,9 +227,14 @@ function getInitialsPlusContact() {
         initialsMap.get(initials).push(obj);
     });
 
-    initialsContacts.push(initialsMap);
-    generateContactList(initialsMap);
+    createInitialsObject(initialsMap);
 }
 
-function generateContactList(initialsMap) { 
+function createInitialsObject(initialsMap) {
+    let initialsObject = {};
+    for (let [initials, value] of initialsMap.entries()) {
+        initialsObject[initials] = value;
+    }
+    sortInitials(initialsObject);
+
 }
