@@ -208,7 +208,12 @@ function resetForm() {
     document.getElementById('contactForm').reset();
 }
 
-// *** to order contacts in groups by initials. 
+/**
+ * This function sorts contacts in groups by initials and pushes it into general variable 'initialsContacts'
+ * @param {string?} initialsMap - a map of all contacts initials in groups
+ */
+
+
 function getInitialsPlusContact() {
     let initialsMap = new Map();
     contacts.forEach(obj => {
@@ -222,7 +227,9 @@ function getInitialsPlusContact() {
         initialsMap.get(initials).push(obj);
     });
 
-    console.table(initialsMap);
+    initialsContacts.push(initialsMap);
+    generateContactList(initialsMap);
+}
 
-    return initialsMap;
+function generateContactList(initialsMap) { 
 }
