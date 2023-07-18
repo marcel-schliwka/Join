@@ -112,9 +112,17 @@ function renderInitials() {
 
     for (const [key, value] of contactsSorted.entries()) {
         container.innerHTML += /*html*/`
-        <div id ="containerLetter${key}">
-            ${key}
-            <img src="./img/vectorContacts.png">
+        <div id="containerLetter${key}" >
+            <div class="p-10">
+                <span>
+                    ${key}
+                </span>
+                
+            </div>
+
+            <div>
+                <img src="./img/vectorContacts.png">
+            </div>
         </div>
     `;
         renderContactsInGroup(key, value);
@@ -127,15 +135,24 @@ function renderContactsInGroup(initials, contacts) {
     for (let i = 0; i < initials.length; i++) {
         const initial = initials[i];
         // console.log(initial);
-        let groupContainer = document.getElementById(`containerLetter${initial}`)
+        let groupContainer = document.getElementById(`containerLetter${initial}`);
 
         for (let c = 0; c < contacts.length; c++) {
             const contact = contacts[c];
             let name = contact.name;
-            console.log(name);
-            groupContainer.innerHTML += /*html*/`
-                <p>${name}</p>
-            `
+            let email = contact.email;
+            groupContainer.innerHTML += /*html*/`  
+                <div class="display: flex">
+                    <div class="">
+                        FL
+                    </div>
+
+                    <div>
+                        <h4>${name}</h4>
+                        <p>${email}</p>
+                    </div>
+                </div>
+            `;
         }
         
     }

@@ -1,3 +1,6 @@
+body {
+    overflow: hidden;
+}
 .custom-btn {
     display: flex;
     height: 55px;
@@ -51,14 +54,17 @@
 }
 
 #contactsListContainer {
-    max-height: 600px;
-    width: 30%;
+    max-height: 500px;
+    width: 40%;
     flex-shrink: 0;
     background: var(--white, #FFF);
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
     overflow: auto !important;
 }
 
+#contactsMain {
+    width: 60%;
+}
 
             /*         //          OVERLAY            //        */
 /* GENERAL STYLING */
