@@ -96,16 +96,25 @@ let contacts = [
     }
 ]
 
-let initialsContacts = [];
+let contactsSorted;
 
 function init() {
-    getInitialsPlusContact();
-    renderContacts();
+    renderContactList();
 }
 
-function renderContacts() {
-    let container = document.getElementById('contactsList');
+function renderContactList() {
+    sortInitialsGroup();
+    renderInitials(contactsSorted);
+    console.log('Funktion renderContactList:', contactsSorted);
+}
 
+function renderInitials(contactsSorted) {
+    // console.log(contactsSorted);
+    // let container = document.getElementById('contactsList');
+
+    for (const [key, value] of contactsSorted.entries()) {
+        console.log('renderInitials lauft:', key, value)
+    }
 }
 
 function openOverlayContact() {
@@ -164,7 +173,7 @@ function openOverlayContact() {
                                 <img src="./img/icon_clear.png">
                             </button>
 
-                            <button class="custom-btn fw-bold custom-lh-120" onclick="createContact()">
+                            <button class="custom-btn fw-bold custom-lh-120" onclick="addNewContact()">
                                 <span>Create contact</span>
                                 <img src="./img/icon_check.png">
                             </button>
@@ -189,7 +198,7 @@ function doNotClose(event) {
     event.stopPropagation();
 }
 
-function createContact() {
+function addNewContact() {
     let name = document.getElementById('formName').value;
     let email = document.getElementById('formEmail').value;
     let phone = document.getElementById('formPhone').value;
@@ -212,9 +221,7 @@ function resetForm() {
  * This function sorts contacts in groups by initials and pushes it into general variable 'initialsContacts'
  * @param {string?} initialsMap - a map of all contacts initials in groups
  */
-
-
-function getInitialsPlusContact() {
+function groupInitials() {
     let initialsMap = new Map();
     contacts.forEach(obj => {
         let name = obj.name.trim();
@@ -227,22 +234,27 @@ function getInitialsPlusContact() {
         initialsMap.get(initials).push(obj);
     });
 
-    createInitialsObject(initialsMap);
+    return initialsMap;
 }
 
-function createInitialsObject(initialsMap) {
-    let initialsObject = {};
-    initialsMap.forEach((contactsArray, initials) => {
-        initialsObject[initials] = [...contactsArray];
+function sortInitialsGroup() {
+    let initialsMap = groupInitials();
+    let sortedInitialsMap = new Map([...initialsMap.entries()].sort());
+    let sortedContacts = sortContactsAlphabetically(sortedInitialsMap);
+    contactsSorted = sortedContacts;
+}
+
+function sortContactsAlphabetically(sortedInitialsMap) {
+    sortedInitialsMap.forEach((obj, initials) => {
+        obj.sort((a, b) => {
+            if (a.name < b.name) {
+                return -1;
+            }
+            if (a.name > b.name) {
+                return 1;
+            }
+            return 0;
+        });
     });
-    console.log(initialsObject);
-    // sortInitials(initialsObject);
+    return sortedInitialsMap;
 }
-
-// function sortInitials(ini) {
-//     for (let i = 0; i < ini.length; i++) {
-//         const letter = ini[i];
-//         letter.sort();
-//         console.log('Hallo:' `$letter`);
-//     }
-// }  
