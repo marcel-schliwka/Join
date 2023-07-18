@@ -104,21 +104,38 @@ function init() {
 
 function renderContactList() {
     sortInitialsGroup();
-    renderInitials(contactsSorted);
-    // console.log('Funktion renderContactList:', contactsSorted);
+    renderInitials();
 }
 
-function renderInitials(contactsSorted) {
+function renderInitials() {
     let container = document.getElementById('contactsList');
 
-    for (const [key] of contactsSorted.entries()) {
-        let keys = key;
-        console.log('und jetzte?:', keys);
+    for (const [key, value] of contactsSorted.entries()) {
         container.innerHTML += /*html*/`
-        <div id ="containerLetter${keys}">${keys}</div>
+        <div id ="containerLetter${key}">${key}</div>
     `;
+        renderContactsInGroup(key, value);
     }
-    
+}
+
+function renderContactsInGroup(initials, contacts) {
+    // console.log('renderContactsInGroup ???:', initials, contacts)
+
+    for (let i = 0; i < initials.length; i++) {
+        const initial = initials[i];
+        // console.log(initial);
+        let groupContainer = document.getElementById(`containerLetter${initial}`)
+
+        for (let c = 0; c < contacts.length; c++) {
+            const contact = contacts[c];
+            let name = contact.name;
+            console.log(name);
+            groupContainer.innerHTML += /*html*/`
+                <p>${name}</p>
+            `
+        }
+        
+    }
 }
 
 function openOverlayContact() {
