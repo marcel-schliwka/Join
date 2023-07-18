@@ -112,7 +112,10 @@ function renderInitials() {
 
     for (const [key, value] of contactsSorted.entries()) {
         container.innerHTML += /*html*/`
-        <div id ="containerLetter${key}">${key}</div>
+        <div id ="containerLetter${key}">
+            ${key}
+            <img src="./img/vectorContacts.png">
+        </div>
     `;
         renderContactsInGroup(key, value);
     }
