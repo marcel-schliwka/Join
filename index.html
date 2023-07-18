@@ -3,13 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JOIN</title>
-    <script src="./scripts/bootstrap.js"></script>
     <link rel="stylesheet" href="./styles/bootstrap.css" />
+
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/style.css" />
+    <script src="./scripts/sidebar.js"></script>
+    <script src="./scripts/bootstrap.js"></script>
+    <link rel="stylesheet" href="/styles/index.css" />
+    <title>JOIN</title>
+
   </head>
-  <body>
-    <h1>Test</h1>
+  <body class="">
+    <nav class="nav p-5">
+      <img src="./img/logo.svg" alt="JOIN Logo" class="logo-img" />
+      <div class="nav-join-user">
+        <span>Not a JOIN user?</span>
+        <button class="signup-btn">Sign up</button>
+      </div>
+    </nav>
+
+    <main class="main-container">
+      <div class="login-box">
+        <form onsubmit="return false;">
+          <h1 class="">Log in</h1>
+          <span class="login-line"></span>
+          <div class="input-container">
+            <input
+              class="text-input"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Email"
+            />
+            <img
+              src="./img/mail.svg"
+              alt="Small Mail Symbol"
+              class="input-icons"
+            />
+          </div>
+          <div class="input-container">
+            <input
+              class="text-input"
+              type="password"
+              name="password"
+              placeholder="Password"
+              id="password"
+            />
+            <img
+              src="./img/lock.svg"
+              alt="Small Lock Symbol"
+              class="input-icons"
+            />
+          </div>
+          <div class="checkbox-container">
+            <div class="remember-me-container">
+              <input
+                class="remember-checkbox"
+                type="checkbox"
+                name="remember"
+                id="remember"
+              />
+              <span>Remember me</span>
+            </div>
+            <a href="#" class="forgot-link">Forgot my password</a>
+          </div>
+          <div class="login-btn-container">
+            <button class="signup-btn">Log in</button>
+            <button class="signup-btn guest-login-btn">Guest Log in</button>
+          </div>
+        </form>
+      </div>
+    </main>
   </body>
 </html>
