@@ -105,16 +105,20 @@ function init() {
 function renderContactList() {
     sortInitialsGroup();
     renderInitials(contactsSorted);
-    console.log('Funktion renderContactList:', contactsSorted);
+    // console.log('Funktion renderContactList:', contactsSorted);
 }
 
 function renderInitials(contactsSorted) {
-    // console.log(contactsSorted);
-    // let container = document.getElementById('contactsList');
+    let container = document.getElementById('contactsList');
 
-    for (const [key, value] of contactsSorted.entries()) {
-        console.log('renderInitials lauft:', key, value)
+    for (const [key] of contactsSorted.entries()) {
+        let keys = key;
+        console.log('und jetzte?:', keys);
+        container.innerHTML += /*html*/`
+        <div id ="containerLetter${keys}">${keys}</div>
+    `;
     }
+    
 }
 
 function openOverlayContact() {
