@@ -110,13 +110,13 @@
 
 .add-task-header {
     margin-top: 82px;
-    margin-left: 123px;
+    margin-left: 355px;
     margin-bottom: 41px;
 }
 
 .add-task-form {
     font-size: 20px;
-    margin-left: 123px;
+    margin-left: 355px;
 }
 
 .add-task-left textarea {
@@ -239,12 +239,32 @@
 }
 
 .add-task-assigned-dropdown {
+    width: 422px;
     height: 51px;
+    gap: 10px;
     border-radius: 10px;
     background: #FFF;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .dropdown-menu-open {
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
+}
+
+
+.low-active {
+    background-color: #7AE229 !important;
+    color: white;
+}
+
+.medium-active {
+    background-color: #FFA800 !important;
+    color: white;
+}
+
+.urgent-active {
+    background-color: #FF3D00 !important;
+    color: white;
 }

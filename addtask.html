@@ -10,10 +10,11 @@
   <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="./styles/taskstyle.css">
   <script src="./scripts/bootstrap.js"></script>
-  <script src="scripts/script.js"></script>
+  <script src="./scripts/addtask.js"></script>
 </head>
 
 <body>
+  <div w3-include-html="./templates/sidebar.html"></div>
   <div class="add-task d-flex flex-column border-shadow">
     <h1 class="add-task-header font61">Add Task</h1>
 
@@ -51,13 +52,13 @@
           <label for="assigned">Assigned to</label>
           <div class="dropdown">
             <button
-              class="btn dropdown-toggle add-task-assigned-dropdown d-flex justify-content-between w-422 d-flex font20 align-items-center pad-18-21 gap-10"
+              class="btn dropdown-toggle add-task-assigned-dropdown d-flex justify-content-between w-422 pad-18-21 gap-10 d-flex align-items-center font20"
               type="button" id="dropdownMenuButtonAssigned" data-bs-toggle="dropdown" aria-expanded="false">
               Select contacts to assign
             </button>
             <ul class="dropdown-menu w-422" aria-labelledby="dropdownMenuButton1">
-              <li><option class="dropdown-item d-flex justify-content-between" href="#">You <input type="checkbox"></option></li>
-              <li><aoption class="dropdown-item d-flex justify-content-between" href="#">Maximilian Vogel <input
+              <li><option  class="dropdown-item d-flex justify-content-between" href="#">You <input type="checkbox"></option></li>
+              <li><option class="dropdown-item d-flex justify-content-between" href="#">Maximilian Vogel <input
                     type="checkbox"></option></li>
               <li><option class="dropdown-item d-flex justify-content-between" href="#">Invite new contact<img
                     src="./img/contacts_black.png"></option></li>
@@ -83,11 +84,11 @@
         <div class="add-task-prio d-flex flex-column w-422">
           <label for="">Prio</label>
           <div class="add-task-prio-btn gap-10 d-flex flex-row w-422">
-            <button id="urgentBtn" class="gap-10 d-flex align-items-center justify-content-center border-shadow">Urgent <img
+            <button onclick="addPrio(this, 'urgent')" type="button" id="urgentBtn" class="gap-10 d-flex align-items-center justify-content-center border-shadow">Urgent <img id="urgentImg"
                 src="./img/prio_urgent_color.png"></button>
-            <button id="mediumBtn" class="gap-10 d-flex align-items-center justify-content-center border-shadow">Medium <img
+            <button onclick="addPrio(this, 'medium')" type="button" id="mediumBtn" class="gap-10 d-flex align-items-center justify-content-center border-shadow">Medium <img id="mediumImg"
                 src="./img/prio_medium_color.png"></button>
-            <button id="lowBtn" class="gap-10 d-flex align-items-center justify-content-center border-shadow">Low <img
+            <button onclick="addPrio(this, 'low')" type="button" id="lowBtn" class="gap-10 d-flex align-items-center justify-content-center border-shadow">Low <img id="lowImg"
                 src="./img/prio_low_color.png"></button>
           </div>
         </div>
@@ -103,7 +104,7 @@
         </div>
 
         <div class="add-task-form-btn d-flex align-items-center justify-content-center">
-          <button onclick="clearTaskInput()" class="add-task-form-btn-clear d-flex justify-content-center align-items-center gap-10">Clear</button>
+          <button type="button" onclick="clearTaskInput()" class="add-task-form-btn-clear d-flex justify-content-center align-items-center gap-10">Clear</button>
           <button type="submit"
             class="add-task-form-btn-create d-flex justify-content-center align-items-center gap-10">Create
             Task</button>
