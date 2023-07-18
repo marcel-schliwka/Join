@@ -8,12 +8,15 @@ h1 {
 }
 .logo-img {
   position: absolute;
-  top: calc(100vh - 50% - 150px);
-  left: calc(100vw - 50% - 150px);
+  top: calc(100vh - 50% - 100px);
+  left: calc(100vw - 50% - 100px);
   width: 200px;
   height: 200px;
   z-index: 10;
   animation: logoSlideIn 2s forwards 1s;
+  background-image: url(../img/logo.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 .signup-btn {
   display: flex;
@@ -35,6 +38,17 @@ h1 {
   font-size: 1.25rem;
   display: flex;
   align-items: center;
+  opacity: 0;
+  animation: appearLoginField 1s forwards 1s;
+}
+
+.nav-join-user-mobile {
+  align-items: center;
+  gap: 35px;
+  justify-content: center;
+  display: none;
+  opacity: 0;
+  animation: appearLoginField 1s forwards 1s;
 }
 
 .login-box {
@@ -48,7 +62,7 @@ h1 {
   padding: 32px 0;
   width: 50%;
   min-height: 500px;
-  margin: 10vh 100px;
+  margin: 10vh 100px 0 100px;
   display: flex;
   flex-direction: column;
   border-radius: 30px;
@@ -65,6 +79,8 @@ h1 {
 .main-container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 form {
@@ -117,19 +133,19 @@ form {
 }
 .remember-checkbox {
   height: 16px;
-  width: 16px;
-  margin: 0 5px;
+  width: 17px;
+  margin: 5px 10px;
   cursor: pointer;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   background: url(../img/checkbox.svg);
-  background-size: contain;
+  background-size: cover;
 }
 
 .remember-checkbox:checked {
   background: url(../img/checkbox_checked.svg);
-  background-size: contain;
+  background-size: cover;
 }
 
 .remember-me-container {
@@ -154,12 +170,11 @@ form {
 }
 
 .reset-password-btn {
-  width: 40%;
+  min-width: 50px;
   align-self: center;
 }
 
 .reset-password-input {
-  max-width: 50%;
   align-self: center;
 }
 
@@ -168,8 +183,8 @@ form {
   cursor: pointer;
   width: 37px;
   position: absolute;
-  top: 64px;
-  left: 48px;
+  top: 15px;
+  left: 15px;
 }
 
 .signup-btn-container {
@@ -185,14 +200,37 @@ form {
 
 @keyframes logoSlideIn {
   0% {
-    top: calc(100vh - 50% - 150px);
-    left: calc(100vw - 50% - 150px);
+    top: calc(100vh - 50% - 100px);
+    left: calc(100vw - 50% - 100px);
   }
 
   100% {
     top: 0px;
     left: 10px;
     transform: scale(0.5);
+  }
+}
+
+@keyframes logoSlideInMobile {
+  0% {
+    background-image: url(../img/logo.svg);
+    top: calc(100vh - 50% - 100px);
+    left: calc(100vw - 50% - 100px);
+  }
+
+  100% {
+    background-image: url(../img/logo.svg);
+    top: 0px;
+    left: 10px;
+    transform: scale(0.5);
+  }
+}
+
+@keyframes mobileBackgroundColorChange {
+  0% {
+  }
+  100% {
+    background-color: #f6f7f8;
   }
 }
 
@@ -223,5 +261,36 @@ form {
   }
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 750px) {
+  .login-box {
+    width: 70%;
+    margin: 15vh 20px 50px 20px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  body {
+    background-color: #2a3647;
+    animation: mobileBackgroundColorChange 2s forwards 1s;
+  }
+  .logo-img {
+    background-image: url(../img/logo_white.svg);
+    animation: logoSlideInMobile 2s forwards 1s;
+  }
+  .login-box {
+    width: 90%;
+  }
+  .nav-join-user {
+    display: none;
+  }
+  .login-btn-container {
+    justify-content: space-around;
+  }
+  .nav-join-user-mobile {
+    display: flex;
+    margin-bottom: 100px;
+  }
+  .input-container {
+    margin-right: 20px;
+    margin-left: 20px;
+  }
 }

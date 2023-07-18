@@ -12,14 +12,14 @@
   </head>
   <body onload="init();">
     <nav class="nav p-5">
-      <img src="./img/logo.svg" alt="JOIN Logo" class="logo-img" />
+      <div alt="JOIN Logo" class="logo-img"></div>
       <div class="nav-join-user">
         <span>Not a JOIN user?</span>
         <button class="signup-btn" onclick="showSignup();">Sign up</button>
       </div>
     </nav>
-    <div class="topdown-messages">
-      <h2>You are now logged in!</h2>
+    <div class="topdown-messages" id="topdownMessages">
+      You are now logged in!
     </div>
     <main class="main-container">
       <div class="login-box">
@@ -72,9 +72,19 @@
           </div>
           <div class="login-btn-container">
             <button class="signup-btn">Log in</button>
-            <button class="signup-btn guest-login-btn">Guest Log in</button>
+            <button
+              class="signup-btn guest-login-btn"
+              type="button"
+              onclick="guestLogin();"
+            >
+              Guest Log in
+            </button>
           </div>
         </form>
+      </div>
+      <div class="nav-join-user-mobile">
+        <span>Not a JOIN user?</span>
+        <button class="signup-btn" onclick="showSignup();">Sign up</button>
       </div>
     </main>
 
