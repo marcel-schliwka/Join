@@ -105,20 +105,35 @@ function init() {
 function renderContactList() {
     sortInitialsGroup();
     renderInitials();
+    // getFirstLetters();
 }
 
+function getFirstLetters() {
+    for (const value of contactsSorted.values()) {
+        for (let i = 0; i < value.length; i++) {
+            const fullName = value[i];
+            const firstNameIni = fullName.name.charAt(0).toUpperCase();
+            const lastNameIni = fullName.name.split(' ').pop().charAt(0).toUpperCase();
+            let firstLetters = firstNameIni + lastNameIni;
+            console.log(firstLetters);
+
+        }
+    }
+}
+
+
+
 function renderInitials() {
-    let container = document.getElementById('contactsList');
+    let container = document.getElementById('contactsListContainer');
 
     for (const [key, value] of contactsSorted.entries()) {
         container.innerHTML += /*html*/`
-        <div id="containerLetter${key}" >
-            <div class="p-10">
-                <span>
+        <div id="containerLetter${key}" class="container-letter" >
+            <!-- <div class="p-10"> -->
+                <span class="initial">
                     ${key}
                 </span>
-                
-            </div>
+            <!-- </div> -->
 
             <div>
                 <img src="./img/vectorContacts.png">
@@ -131,7 +146,6 @@ function renderInitials() {
 
 function renderContactsInGroup(initials, contacts) {
     // console.log('renderContactsInGroup ???:', initials, contacts)
-
     for (let i = 0; i < initials.length; i++) {
         const initial = initials[i];
         // console.log(initial);
@@ -142,19 +156,19 @@ function renderContactsInGroup(initials, contacts) {
             let name = contact.name;
             let email = contact.email;
             groupContainer.innerHTML += /*html*/`  
-                <div class="display: flex">
-                    <div class="">
+                <div class="single-contact-card">
+                    <div class="circle">
                         FL
                     </div>
 
-                    <div>
+                    <div class="info">
                         <h4>${name}</h4>
                         <p>${email}</p>
                     </div>
                 </div>
             `;
         }
-        
+
     }
 }
 
@@ -251,7 +265,8 @@ function addNewContact() {
     });
 
     resetForm();
-    closeOverlay()
+    closeOverlay();
+    init();
 }
 
 function resetForm() {
