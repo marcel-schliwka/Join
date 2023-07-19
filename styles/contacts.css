@@ -1,6 +1,7 @@
 body {
     overflow: hidden;
 }
+
 .custom-btn {
     display: flex;
     height: 55px;
@@ -55,18 +56,72 @@ body {
 
 #contactsListContainer {
     max-height: 500px;
-    width: 40%;
+    width: 450px;
     flex-shrink: 0;
     background: var(--white, #FFF);
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
     overflow: auto !important;
 }
 
+.container-letter {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.initial {
+    display: flex;
+    align-items: center;
+    height: 60px;
+    margin-left: 37.5px;
+    font-weight: 400;
+    font-size: 21px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.single-contact-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 360px;
+    border-radius: 10px;
+    padding: 15px 25px 15px 25px;
+    margin: 8px;
+}
+
+.single-contact-card:hover {
+    cursor: pointer;
+    background-color: #2A3647;
+    color: white;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-left: 35px;
+    width: 250px;
+}
+
+.circle {
+    background-color: rosybrown;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px #FFFFFF;
+}
+
 #contactsMain {
     width: 60%;
 }
 
-            /*         //          OVERLAY            //        */
+/*         //          OVERLAY            //        */
 /* GENERAL STYLING */
 .pop-up-overlay {
     display: flex;
