@@ -16,43 +16,97 @@
 </head>
 <body onload="includeHTML()">
     <div w3-include-html="./templates/sidebar.html"></div>
-    <div class=" parentDiv">
-        <div>
-            <div>Summary</div>
-            <div>Everythings a nutshell!</div>
+    <div class="parentDiv flex-column">
+        <div class="pb-3 d-flex align-items-center">
+            <div class="size3Em bold pe-4 border-end border-3 borderColorBlue">Summary</div>
+            <div class="size2Em ps-4">Everythings a nutshell!</div>
         </div>
-        <div>
+        <div class="d-flex childDiv">
     
-            <div>
+            <div class="firstContainer">
     
-                <div>
-                    <div>
-                        <div>5</div>
-                        <div>Tasks in <br> Board</div>
+                <div class="d-flex justify-content-between">
+                    <div class="bgWhite m-3 border py-3 px-5 rounded-5 d-flex flex-column align-items-center text-center">
+                        <div class="size3Em bold">5</div>
+                        <div>
+                            <div class="noWrapWords">Tasks in</div> 
+                            <div>Board</div> 
+                        </div>
                     </div>
-                    <div>
-                        <div>2</div>
-                        <div>Tasks in <br> Progress</div>
+                    <div class="bgWhite m-3 border py-3 px-5 rounded-5 d-flex flex-column align-items-center text-center">
+                        <div class="size3Em bold">2</div>
+                        <div>
+                            <div class="noWrapWords">Tasks in</div> 
+                            <div>Progress</div>
+                        </div>
                     </div>
-                    <div>
-                        <div>2</div>
-                        <div>Awaiting <br> Feedback</div>
+                    <div class="bgWhite m-3 border py-3 px-5 rounded-5 d-flex flex-column align-items-center text-center">
+                        <div class="size3Em bold">2</div>
+                        <div>
+                            <div>Awaiting</div> 
+                            <div>Feedback</div>
+                        </div>
                     </div>
                 </div>
     
-                <div>
-                    zweitens
+                <div class="bgWhite m-3 border py-3 rounded-5 d-flex justify-content-around">
+                    <div class="divSummaryUrgentWidth border-end border-3 d-flex">
+                        <div class="d-flex align-items-center">
+                            <img src="./img/prio_urgent.svg" alt="urgent">
+                        </div>
+                        <div class="d-flex flex-column align-items-center text-center ps-3">
+                            <div class="size3Em bold">
+                                1
+                            </div>
+                            <div>
+                                Urgent
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column justify-content-center">
+                        <div class="bold pb-2">
+                            October 16, 2022
+                        </div>
+                        <div class="size08Em">
+                            Upcoming Deadline
+                        </div>
+                    </div>
                 </div>
     
-                <div>
-                    drittens
+                <div class="d-flex justify-content-between">
+                    <div class="bgWhite border py-3 px-5 rounded-5 d-flex m-3">
+                        <div class="d-flex align-items-center">
+                            <img src="./img/icon_pencil.svg" alt="pencil">
+                        </div>
+                        <div class="d-flex flex-column align-items-center text-center ps-3">
+                            <div class="size3Em bold">
+                                1
+                            </div>
+                            <div class="noWrapWords">
+                                To-do
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bgWhite border py-3 px-5 rounded-5 d-flex m-3">
+                        <div class="d-flex align-items-center">
+                            <img src="./img/icon_ok.svg" alt="ok">
+                        </div>
+                        <div class="d-flex flex-column align-items-center text-center ps-3">
+                            <div class="size3Em bold">
+                                1
+                            </div>
+                            <div>
+                                Done
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
     
-            <div>
-                <div>
-                    Good morning, <br>
-                    Sofia Müller
+            <div class="secondContainer">
+                <div class="ps-4">
+                    <div class="size2Em">Good morning,</div>
+                    <div class="size3Em bold fontColorBlue">Sofia Müller</div>
                 </div>
             </div>
         </div>
