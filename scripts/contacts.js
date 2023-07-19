@@ -103,6 +103,7 @@ function init() {
 }
 
 function renderContactList() {
+    document.getElementById('contactsListContainer').innerHTML = '';
     sortInitialsGroup();
     renderInitials();
 }
@@ -261,8 +262,6 @@ function addNewContact() {
         email: email,
         number: phone,
     });
-
-    document.getElementById('contactsListContainer').innerHTML = '';
 
     resetForm();
     closeOverlay();
