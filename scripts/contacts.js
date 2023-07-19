@@ -115,8 +115,8 @@ function getFirstLetters() {
             const firstNameIni = fullName.name.charAt(0).toUpperCase();
             const lastNameIni = fullName.name.split(' ').pop().charAt(0).toUpperCase();
             let firstLetters = firstNameIni + lastNameIni;
-            console.log(firstLetters);
-
+            fullName['firstLetters'] = firstLetters;
+            // console.log(fullName.firstLetters);
         }
     }
 }
