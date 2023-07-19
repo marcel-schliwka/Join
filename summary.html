@@ -1,117 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FAVICON -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/img/favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/img/favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta
+      name="msapplication-config"
+      content="/img/favicon/browserconfig.xml"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- FAVICON END -->
     <link rel="stylesheet" href="./styles/bootstrap.css" />
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/styleSidebar.css">
-    <link rel="stylesheet" href="./styles/summary.css">
+    <link rel="stylesheet" href="./styles/styleSidebar.css" />
+    <link rel="stylesheet" href="./styles/summary.css" />
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/bootstrap.js"></script>
     <link rel="stylesheet" href="/styles/index.css" />
 
     <title>Summary</title>
-</head>
-<body onload="includeHTML()">
+  </head>
+  <body onload="includeHTML()">
     <div w3-include-html="./templates/sidebar.html"></div>
     <div class="parentDiv flex-column">
-        <div class="pb-3 d-flex align-items-center">
-            <div class="size3Em bold pe-4 border-end border-3 borderColorBlue">Summary</div>
-            <div class="size2Em ps-4">Everythings a nutshell!</div>
+      <div class="pb-3 d-flex align-items-center">
+        <div class="size3Em bold pe-4 border-end border-3 borderColorBlue">
+          Summary
         </div>
-        <div class="d-flex childDiv">
-    
-            <div class="firstContainer">
-    
-                <div class="d-flex justify-content-between">
-                    <div class="bgWhite m-3 border py-3 px-5 rounded-5 d-flex flex-column align-items-center text-center">
-                        <div class="size3Em bold">5</div>
-                        <div>
-                            <div class="noWrapWords">Tasks in</div> 
-                            <div>Board</div> 
-                        </div>
-                    </div>
-                    <div class="bgWhite m-3 border py-3 px-5 rounded-5 d-flex flex-column align-items-center text-center">
-                        <div class="size3Em bold">2</div>
-                        <div>
-                            <div class="noWrapWords">Tasks in</div> 
-                            <div>Progress</div>
-                        </div>
-                    </div>
-                    <div class="bgWhite m-3 border py-3 px-5 rounded-5 d-flex flex-column align-items-center text-center">
-                        <div class="size3Em bold">2</div>
-                        <div>
-                            <div>Awaiting</div> 
-                            <div>Feedback</div>
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="bgWhite m-3 border py-3 rounded-5 d-flex justify-content-around">
-                    <div class="divSummaryUrgentWidth border-end border-3 d-flex">
-                        <div class="d-flex align-items-center">
-                            <img src="./img/prio_urgent.svg" alt="urgent">
-                        </div>
-                        <div class="d-flex flex-column align-items-center text-center ps-3">
-                            <div class="size3Em bold">
-                                1
-                            </div>
-                            <div>
-                                Urgent
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                        <div class="bold pb-2">
-                            October 16, 2022
-                        </div>
-                        <div class="size08Em">
-                            Upcoming Deadline
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="d-flex justify-content-between">
-                    <div class="bgWhite border py-3 px-5 rounded-5 d-flex m-3">
-                        <div class="d-flex align-items-center">
-                            <img src="./img/icon_pencil.svg" alt="pencil">
-                        </div>
-                        <div class="d-flex flex-column align-items-center text-center ps-3">
-                            <div class="size3Em bold">
-                                1
-                            </div>
-                            <div class="noWrapWords">
-                                To-do
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bgWhite border py-3 px-5 rounded-5 d-flex m-3">
-                        <div class="d-flex align-items-center">
-                            <img src="./img/icon_ok.svg" alt="ok">
-                        </div>
-                        <div class="d-flex flex-column align-items-center text-center ps-3">
-                            <div class="size3Em bold">
-                                1
-                            </div>
-                            <div>
-                                Done
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="size2Em ps-4">Everythings a nutshell!</div>
+      </div>
+      <div class="d-flex childDiv">
+        <div class="firstContainer">
+          <div class="d-flex justify-content-between">
+            <div
+              class="bgWhite m-3 border py-3 px-5 rounded-5 d-flex flex-column align-items-center text-center"
+            >
+              <div class="size3Em bold">5</div>
+              <div>
+                <div class="noWrapWords">Tasks in</div>
+                <div>Board</div>
+              </div>
             </div>
-    
-            <div class="secondContainer">
-                <div class="ps-4">
-                    <div class="size2Em">Good morning,</div>
-                    <div class="size3Em bold fontColorBlue">Sofia Müller</div>
-                </div>
+            <div
+              class="bgWhite m-3 border py-3 px-5 rounded-5 d-flex flex-column align-items-center text-center"
+            >
+              <div class="size3Em bold">2</div>
+              <div>
+                <div class="noWrapWords">Tasks in</div>
+                <div>Progress</div>
+              </div>
             </div>
+            <div
+              class="bgWhite m-3 border py-3 px-5 rounded-5 d-flex flex-column align-items-center text-center"
+            >
+              <div class="size3Em bold">2</div>
+              <div>
+                <div>Awaiting</div>
+                <div>Feedback</div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bgWhite m-3 border py-3 rounded-5 d-flex justify-content-around"
+          >
+            <div class="divSummaryUrgentWidth border-end border-3 d-flex">
+              <div class="d-flex align-items-center">
+                <img src="./img/prio_urgent.svg" alt="urgent" />
+              </div>
+              <div
+                class="d-flex flex-column align-items-center text-center ps-3"
+              >
+                <div class="size3Em bold">1</div>
+                <div>Urgent</div>
+              </div>
+            </div>
+            <div class="d-flex flex-column justify-content-center">
+              <div class="bold pb-2">October 16, 2022</div>
+              <div class="size08Em">Upcoming Deadline</div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <div class="bgWhite border py-3 px-5 rounded-5 d-flex m-3">
+              <div class="d-flex align-items-center">
+                <img src="./img/icon_pencil.svg" alt="pencil" />
+              </div>
+              <div
+                class="d-flex flex-column align-items-center text-center ps-3"
+              >
+                <div class="size3Em bold">1</div>
+                <div class="noWrapWords">To-do</div>
+              </div>
+            </div>
+            <div class="bgWhite border py-3 px-5 rounded-5 d-flex m-3">
+              <div class="d-flex align-items-center">
+                <img src="./img/icon_ok.svg" alt="ok" />
+              </div>
+              <div
+                class="d-flex flex-column align-items-center text-center ps-3"
+              >
+                <div class="size3Em bold">1</div>
+                <div>Done</div>
+              </div>
+            </div>
+          </div>
         </div>
 
+        <div class="secondContainer">
+          <div class="ps-4">
+            <div class="size2Em">Good morning,</div>
+            <div class="size3Em bold fontColorBlue">Sofia Müller</div>
+          </div>
+        </div>
+      </div>
     </div>
-    
-</body>
+  </body>
 </html>
