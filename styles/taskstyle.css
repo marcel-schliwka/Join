@@ -88,6 +88,10 @@
     background: #FFF;
 }
 
+.d-none {
+    display: none;
+}
+
 /*Add Task Style*/
 
 .add-task-right {
@@ -106,10 +110,11 @@
 
 .add-task {
     background-color: #F6F7F8;
+    margin-top: -20px;
 }
 
 .add-task-header {
-    margin-top: 82px;
+    margin-top: 59px;
     margin-left: 355px;
     margin-bottom: 41px;
 }
@@ -167,10 +172,6 @@
 
 .add-task-subtasks-input {
     height: 51px;
-    background-image: url(../img/icon_cancel.png);
-    background-repeat: no-repeat;
-    background-size: 24px 24px;
-    background-position: right;
 }
 
 .add-task-subtasks-checkbox {
@@ -268,3 +269,41 @@
     background-color: #FF3D00 !important;
     color: white;
 }
+
+
+.add-task-category input {
+    display: flex;
+    width: 422px;
+    height: 51px;
+    padding: 18px 21px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    background: #FFF;
+}
+
+.add-task-subtasks-input-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dismiss-button,
+  .create-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dismiss-button {
+    left: 4px;
+    margin-left: 342px
+  }
+  
+  .create-button {
+    right: 4px;
+  }

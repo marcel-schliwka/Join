@@ -7,18 +7,19 @@
   <title>Add Task</title>
   <link rel="stylesheet" href="./styles/fonts.css">
   <link rel="stylesheet" href="./styles/bootstrap.css">
-  <link rel="stylesheet" href="./styles/style.css">
   <link rel="stylesheet" href="./styles/taskstyle.css">
+  <link rel="stylesheet" href="./styles/styleSidebar.css">
+  <script src="./scripts/sidebar.js"></script>
   <script src="./scripts/bootstrap.js"></script>
   <script src="./scripts/addtask.js"></script>
 </head>
 
-<body>
+<body onload="includeHTML()">
   <div w3-include-html="./templates/sidebar.html"></div>
   <div class="add-task d-flex flex-column border-shadow">
     <h1 class="add-task-header font61">Add Task</h1>
 
-    <form class="add-task-form d-flex flex-row" onsubmit="addTask(); return false">
+    <form id="add-task-form" class="add-task-form d-flex flex-row" onsubmit="addTask(); return false">
       <div class="add-task-left d-flex flex-column d-inline-flex align-items-start gap-8">
 
         <div class="add-task-title d-flex flex-column w-422 gap-8">
@@ -33,20 +34,36 @@
             cols="30" rows="10" placeholder="Enter a Despriction"></textarea>
         </div>
 
-        <div class="add-task-category d-flex flex-column w-422 gap-8">
+        <div id="visibleSelector" class="add-task-category d-flex flex-column w-422 gap-8">
           <label for="category">Category</label>
-          <div class="dropdown">
-            <button
-              class="dropdown-toggle add-task-category-dropdown d-flex justify-content-between custom-border w-422 pad-18-21 gap-10 d-flex align-items-center"
-              type="button" id="dropdownMenuButtonCategory" data-bs-toggle="dropdown" aria-expanded="false" >Select task
-              category</button>
-            <ul class="dropdown-menu w-422" aria-labelledby="dropdownMenuButton1">
-              <li><option class="dropdown-item d-flex justify-content-between" href="#">New category</option></li>
-              <li><option class="dropdown-item d-flex justify-content-between" href="#">Sales</option></li>
-              <li><option class="dropdown-item d-flex justify-content-between" href="#">Backoffice</option></li>
-            </ul>
-          </div>
+          <select id="form-select" class="form-select add-task-category-dropdown d-flex justify-content-between w-422 gap-10 d-flex align-items-center font20" aria-label="Default select example" onchange="handleCategoryChange(this)">
+            <option class="option" selected>Select task category</option>
+            <option class="option" id="changetoinput" value="1">New category</option>
+            <option class="option" value="2">Sales<img src="./img/pink_circle.png"></option>
+            <option class="option" value="3">Backoffice</option>
+          </select>
         </div>
+
+
+<script>
+  let selections = document.querySelectorAll('.option');
+  let selectMenu = document.getElementById('form-select');
+  let input = document.getElementById('new-category-input');
+
+
+  newNumber = selections.length;
+  console.log(newNumber);
+  
+
+</script>
+
+
+
+
+
+
+
+
 
         <div class="add-task-assigned d-flex flex-column w-422 gap-8">
           <label for="assigned">Assigned to</label>
@@ -95,10 +112,15 @@
 
         <div class="add-trak-subtasks d-flex flex-column w-422 gap-8">
           <label for="subtasks">Subtasks</label>
-          <input class="add-task-subtasks-input custom-border border-shadow gap-10 pad-18-21" type="text"
-            placeholder="Add new subtask">
+          <div class="add-task-subtasks-input-container">
+            <input class="add-task-subtasks-input w-422 border-shadow gap-10 pad-18-21" type="text" placeholder="Add new subtask">
+            <button type="button" class="dismiss-button" onclick="dismissInput()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12.0011 12.0002L12.0018 19.4149M4.58641 12.0008L12.0011 12.0002L4.58641 12.0008ZM19.4159 11.9995L12.0004 11.9995L19.4159 11.9995ZM12.0004 11.9995L12.0005 4.58545L12.0004 11.9995Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg></button>
+            <button type="button" class="create-button" onclick="createInput()"></button>
+          </div>
           <div class="add-task-subtasks-checkbox d-flex align-items-center">
-            <input class="checkbox-input" type="checkbox">
+            <input class="checkbox-input w-422" type="checkbox">
             <p class="d-flex flex-row">Subtask 1</p>
           </div>
         </div>
