@@ -105,7 +105,6 @@ function init() {
 function renderContactList() {
     sortInitialsGroup();
     renderInitials();
-    // getFirstLetters();
 }
 
 function getFirstLetters() {
@@ -116,7 +115,6 @@ function getFirstLetters() {
             const lastNameIni = fullName.name.split(' ').pop().charAt(0).toUpperCase();
             let firstLetters = firstNameIni + lastNameIni;
             fullName['firstLetters'] = firstLetters;
-            // console.log(fullName.firstLetters);
         }
     }
 }
@@ -124,6 +122,7 @@ function getFirstLetters() {
 
 
 function renderInitials() {
+    getFirstLetters();
     let container = document.getElementById('contactsListContainer');
 
     for (const [key, value] of contactsSorted.entries()) {
@@ -145,20 +144,19 @@ function renderInitials() {
 }
 
 function renderContactsInGroup(initials, contacts) {
-    // console.log('renderContactsInGroup ???:', initials, contacts)
     for (let i = 0; i < initials.length; i++) {
         const initial = initials[i];
-        // console.log(initial);
         let groupContainer = document.getElementById(`containerLetter${initial}`);
 
         for (let c = 0; c < contacts.length; c++) {
             const contact = contacts[c];
             let name = contact.name;
             let email = contact.email;
+            let firstLetter = contact.firstLetters;
             groupContainer.innerHTML += /*html*/`  
                 <div class="single-contact-card">
                     <div class="circle">
-                        FL
+                        ${firstLetter}
                     </div>
 
                     <div class="info">
