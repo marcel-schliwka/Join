@@ -262,9 +262,11 @@ function addNewContact() {
         number: phone,
     });
 
+    document.getElementById('contactsListContainer').innerHTML = '';
+
     resetForm();
     closeOverlay();
-    init();
+    renderContactList();
 }
 
 function resetForm() {
@@ -273,7 +275,7 @@ function resetForm() {
 
 /**
  * This function sorts contacts in groups by initials and pushes it into general variable 'initialsContacts'
- * @param {string?} initialsMap - a map of all contacts initials in groups
+ * @param {object} initialsMap - a map of all contacts initials in groups
  */
 function groupInitials() {
     let initialsMap = new Map();
