@@ -41,13 +41,14 @@
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/contacts.css">
     <link rel="stylesheet" href="./styles/styleSidebar.css">
+    <script src="./scripts/sidebar.js"></script>
     <link rel="icon" href="./img/logo_dark.png">
     <title>Contacts</title>
 </head>
 
-<body onload="init()">
+<body onload="init(); includeHTML()">
     <!-- load "sidebar.html into following div-tag" -->
-    <iframe w3-include-html="./templates/sidebar.html"></iframe>
+    <div w3-include-html="./templates/sidebar.html"></div>
 
     <div class="container row me-0">
 

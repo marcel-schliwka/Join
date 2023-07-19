@@ -1,7 +1,67 @@
-
-.w-38 {
-    width: 38px;
+nav {
+    position:absolute;
+    background-color: rgba(42,54,71,255);
+    width: 232px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    color: white;
 }
+
+.sidebar {
+    display: flex;
+}
+
+header {
+    width: 100%;
+    height: 89px;
+    box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 355px;
+    padding-right: 36px;
+    font-size: 20px;
+}
+
+.gap26px {
+    padding-left: 26px;
+}
+
+.logoDiv {
+    padding-bottom: 100px;
+}
+
+.navChild>div {
+    display: flex;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.navChild>div:hover {
+    background-color: rgba(9,25,49,255);
+    cursor: pointer;
+}
+
+.navChild>div img {
+    padding-right: 8px;
+}
+
+.legalNoticeDiv {
+    display: flex;
+    align-items: center;
+}
+
+.legalNoticeDiv img {
+    padding-right: 15px;
+}
+
 .w-38 {
     width: 38px;
 }
