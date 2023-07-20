@@ -172,6 +172,47 @@
           <h6 class="mt-4 mb-2">Phone</h6>
           <a id="dialog__phone" phone href="tel:">01567283716</a>
         </dialog>
+        <dialog open id="dialog__editContact">
+          <div class="dialog__editLeftSide">
+            <img src="./img/logo_white.svg" alt="White Join Logo" />
+            <h2>Edit contact</h2>
+            <span class="dialog__blue-line"></span>
+          </div>
+          <div class="dialog__editRightSide">
+            <img
+              src="./img/close.svg"
+              alt="Close the Dialog Windows"
+              id="dialog__editClose"
+            />
+            <div class="dialog__editRightImg">
+              <img src="./img/test_circle.png" alt="" srcset="" />
+            </div>
+            <form class="dialog__editRightForm" onsubmit="return false;">
+              <input
+                type="text"
+                placeholder="Name"
+                class="dialog__editInput"
+                id="dialog__editNameInput"
+              />
+              <input
+                type="text"
+                placeholder="Email"
+                class="dialog__editInput"
+                id="dialog__editEmailInput"
+              />
+              <input
+                type="text"
+                placeholder="Phone"
+                class="dialog__editInput"
+                id="dialog__editPhoneInput"
+              />
+              <div class="dialog__editRightBtn">
+                <button class="custom-btn-white btn-hover">Delete</button>
+                <button class="custom-btn btn-hover btn-save">Save</button>
+              </div>
+            </form>
+          </div>
+        </dialog>
       </div>
     </div>
 
