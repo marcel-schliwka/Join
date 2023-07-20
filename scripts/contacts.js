@@ -1,3 +1,33 @@
+let pastelColors = {
+    A: 'rgba(255, 209, 220, 1)', // Light Pink
+    B: 'rgba(255, 230, 186, 1)', // Light Peach
+    C: 'rgba(209, 235, 253, 1)', // Light Blue
+    D: 'rgba(255, 204, 153, 1)', // Light Orange
+    E: 'rgba(227, 242, 253, 1)', // Very Light Blue
+    F: 'rgba(224, 213, 255, 1)', // Very Light Purple
+    G: 'rgba(215, 253, 230, 1)', // Light Mint
+    H: 'rgba(251, 228, 228, 1)', // Light Salmon
+    I: 'rgba(252, 242, 221, 1)', // Light Yellow
+    J: 'rgba(239, 224, 245, 1)', // Light Lavender
+    K: 'rgba(231, 255, 233, 1)', // Light Mint Green
+    L: 'rgba(255, 207, 207, 1)', // Light Pink
+    M: 'rgba(255, 227, 208, 1)', // Light Peach
+    N: 'rgba(207, 227, 255, 1)', // Light Blue
+    O: 'rgba(255, 218, 179, 1)', // Light Orange
+    P: 'rgba(207, 240, 255, 1)', // Light Blue
+    Q: 'rgba(254, 223, 240, 1)', // Light Pink
+    R: 'rgba(252, 222, 222, 1)', // Light Salmon
+    S: 'rgba(222, 222, 255, 1)', // Very Light Purple
+    T: 'rgba(248, 218, 218, 1)', // Light Pink
+    U: 'rgba(255, 235, 153, 1)', // Light Yellow
+    V: 'rgba(236, 240, 255, 1)', // Very Light Blue
+    W: 'rgba(219, 249, 244, 1)', // Light Aqua
+    X: 'rgba(255, 242, 242, 1)', // Light Pink
+    Y: 'rgba(255, 240, 219, 1)', // Light Peach
+    Z: 'rgba(255, 224, 224, 1)', // Light Pink
+};
+
+
 let contacts = [
     {
         'name': 'Maximilian Lis',
@@ -116,6 +146,7 @@ function getFirstLetters() {
             const lastNameIni = fullName.name.split(' ').pop().charAt(0).toUpperCase();
             let firstLetters = firstNameIni + lastNameIni;
             fullName['firstLetters'] = firstLetters;
+            fullName['colorInitial'] = lastNameIni;
         }
     }
 }
@@ -128,18 +159,18 @@ function renderInitials() {
 
     for (const [key, value] of contactsSorted.entries()) {
         container.innerHTML += /*html*/`
-        <div id="containerLetter${key}" class="container-letter" >
-            <!-- <div class="p-10"> -->
-                <span class="initial">
-                    ${key}
-                </span>
-            <!-- </div> -->
-
-            <div>
-                <img src="./img/vectorContacts.png">
+            <div id="containerLetter${key}" class="container-letter" >
+                <!-- <div class="p-10"> -->
+                    <span class="initial">
+                        ${key}
+                    </span>
+                <!-- </div> -->
+    
+                <div>
+                    <img src="./img/vectorContacts.png">
+                </div>
             </div>
-        </div>
-    `;
+            `;
         renderContactsInGroup(key, value);
     }
 }
@@ -154,7 +185,7 @@ function renderContactsInGroup(initials, contacts) {
             let name = contact.name;
             let email = contact.email;
             let firstLetter = contact.firstLetters;
-            groupContainer.innerHTML += /*html*/`  
+            groupContainer.innerHTML += /*html*/`
                 <div class="single-contact-card">
                     <div class="circle">
                         ${firstLetter}
@@ -275,7 +306,7 @@ function resetForm() {
 /**
  * This function sorts contacts in groups by initials and pushes it into general variable 'initialsContacts'
  * @param {object} initialsMap - a map of all contacts initials in groups
- */
+                        */
 function groupInitials() {
     let initialsMap = new Map();
     contacts.forEach(obj => {
