@@ -134,8 +134,10 @@ function init() {
 
 function renderContactList() {
     document.getElementById('contactsListContainer').innerHTML = '';
+
     sortInitialsGroup();
     renderInitials();
+    generateCircleColor();
 }
 
 function getFirstLetters() {
@@ -152,20 +154,18 @@ function getFirstLetters() {
 }
 
 
-
+/**
+ *
+ *
+ */
 function renderInitials() {
     getFirstLetters();
     let container = document.getElementById('contactsListContainer');
 
     for (const [key, value] of contactsSorted.entries()) {
         container.innerHTML += /*html*/`
-            <div id="containerLetter${key}" class="container-letter" >
-                <!-- <div class="p-10"> -->
-                    <span class="initial">
+            <div id="containerLetter${key}" class="container-letter initial" >
                         ${key}
-                    </span>
-                <!-- </div> -->
-    
                 <div>
                     <img src="./img/vectorContacts.png">
                 </div>
@@ -175,6 +175,11 @@ function renderInitials() {
     }
 }
 
+/**
+ * 
+ * @param {*} initials 
+ * @param {*} contacts 
+ */
 function renderContactsInGroup(initials, contacts) {
     for (let i = 0; i < initials.length; i++) {
         const initial = initials[i];
@@ -185,9 +190,10 @@ function renderContactsInGroup(initials, contacts) {
             let name = contact.name;
             let email = contact.email;
             let firstLetter = contact.firstLetters;
+            let colorSign = contact.colorInitial;
             groupContainer.innerHTML += /*html*/`
                 <div class="single-contact-card">
-                    <div class="circle">
+                    <div class="circle" id="${colorSign}">
                         ${firstLetter}
                     </div>
 
@@ -198,8 +204,20 @@ function renderContactsInGroup(initials, contacts) {
                 </div>
             `;
         }
-
     }
+}
+
+function generateCircleColor() {
+    Object.keys(pastelColors).forEach(key => {
+        let colorValue = pastelColors[key];
+        let colorSign = key;
+        let elements = document.querySelectorAll('.circle');
+        elements.forEach((element) => {
+            if (element && element.id === colorSign) {
+                element.style.backgroundColor = colorValue;
+            }
+        })
+    })
 }
 
 function openOverlayContact() {
