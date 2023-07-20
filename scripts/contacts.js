@@ -4,6 +4,8 @@ const dialogElements = {
   name: document.getElementById("dialog__name"),
   email: document.getElementById("dialog__email"),
   phone: document.getElementById("dialog__phone"),
+  cardIndex: document.getElementById("dialog__cardIndex"),
+  deleteBtn: document.getElementById("dialog__deleteBtn"),
 };
 
 let pastelColors = {
@@ -203,7 +205,7 @@ function renderContactsInGroup(initials, contacts) {
       let firstLetter = contact.firstLetters;
       let colorSign = contact.colorInitial;
       groupContainer.innerHTML += /*html*/ `
-                <div class="single-contact-card">
+                <div class="single-contact-card" id="card${c}">
                     <div class="circle" id="${colorSign}">
                         ${firstLetter}
                     </div>
@@ -389,13 +391,16 @@ let startEventListener = () => {
     let clickedCard = card;
     card.addEventListener("click", () => openContact(clickedCard));
   });
+  dialogElements.deleteBtn.addEventListener("click", () => deleteContact());
 };
 
 function openContact(card) {
+  const cardId = card.getAttribute("id");
+  dialogElements["fromCard"] = card;
   const infoCardName = card.querySelector(".info__name").innerText;
   let clickedContact = getContact(infoCardName);
   console.log(clickedContact);
-  changeDialogInfo(clickedContact);
+  changeDialogInfo(clickedContact, cardId);
   dialogContact.show();
 }
 
@@ -406,10 +411,23 @@ function getContact(searchedName) {
   return filteredContact[0];
 }
 
+function getContactIndex(searchedName) {
+  return contacts.findIndex((contact) => contact.name === searchedName);
+}
+
 function changeDialogInfo(contact) {
   dialogElements.name.innerText = contact.name;
   dialogElements.email.innerText = contact.email;
   dialogElements.email.href = `mailto:${contact.email}`;
   dialogElements.phone.innerText = contact.number;
   dialogElements.phone.href = `tel:${contact.number}`;
+}
+
+function deleteContact() {
+  dialogElements.fromCard.remove();
+  dialogContact.close();
+  console.log(
+    "Spliced: ",
+    contacts.splice(getContactIndex(dialogElements.name.innerText), 1)
+  );
 }
