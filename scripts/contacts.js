@@ -6,6 +6,15 @@ const dialogElements = {
   phone: document.getElementById("dialog__phone"),
   cardIndex: document.getElementById("dialog__cardIndex"),
   deleteBtn: document.getElementById("dialog__deleteBtn"),
+  editBtn: document.getElementById("dialog__editBtn"),
+};
+
+const editDialogElements = {
+  editDialog: document.getElementById("dialog__editContact"),
+  inputName: document.getElementById("dialog__editNameInput"),
+  inputEmail: document.getElementById("dialog__editEmailInput"),
+  inputPhone: document.getElementById("dialog__editPhoneInput"),
+  closeDialog: document.getElementById("dialog__editClose"),
 };
 
 let pastelColors = {
@@ -392,6 +401,10 @@ let startEventListener = () => {
     card.addEventListener("click", () => openContact(clickedCard));
   });
   dialogElements.deleteBtn.addEventListener("click", () => deleteContact());
+  dialogElements.editBtn.addEventListener("click", () => editContact());
+  editDialogElements.closeDialog.addEventListener("click", () =>
+    closeEditDialog()
+  );
 };
 
 function openContact(card) {
@@ -430,4 +443,17 @@ function deleteContact() {
     "Spliced: ",
     contacts.splice(getContactIndex(dialogElements.name.innerText), 1)
   );
+}
+
+// Edit Contact
+
+function editContact() {
+  editDialogElements.editDialog.classList.add("show-edit-dialog");
+  editDialogElements.inputName.value = dialogElements.name.innerText;
+  editDialogElements.inputEmail.value = dialogElements.email.innerText;
+  editDialogElements.inputPhone.value = dialogElements.phone.innerText;
+}
+
+function closeEditDialog() {
+  editDialogElements.editDialog.classList.remove("show-edit-dialog");
 }
