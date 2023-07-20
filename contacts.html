@@ -2,86 +2,66 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- FAVICON -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/img/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/img/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/img/favicon/favicon-16x16.png"
-    />
-    <link rel="manifest" href="/img/favicon/site.webmanifest" />
-    <link
-      rel="mask-icon"
-      href="/img/favicon/safari-pinned-tab.svg"
-      color="#5bbad5"
-    />
-    <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta
-      name="msapplication-config"
-      content="/img/favicon/browserconfig.xml"
-    />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- FAVICON END -->
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/bootstrap.css" />
-    <link rel="stylesheet" href="./styles/fonts.css" />
-    <link rel="stylesheet" href="./styles/contacts.css">
-    <link rel="stylesheet" href="./styles/styleSidebar.css">
-    <script src="./scripts/sidebar.js"></script>
-    <link rel="icon" href="./img/logo_dark.png">
-    <title>Contacts</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- FAVICON -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/img/favicon/site.webmanifest" />
+  <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+  <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="msapplication-config" content="/img/favicon/browserconfig.xml" />
+  <meta name="theme-color" content="#ffffff" />
+  <!-- FAVICON END -->
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="stylesheet" href="./styles/bootstrap.css" />
+  <link rel="stylesheet" href="./styles/fonts.css" />
+  <link rel="stylesheet" href="./styles/contacts.css">
+  <link rel="stylesheet" href="./styles/styleSidebar.css">
+  <script src="./scripts/sidebar.js"></script>
+  <link rel="icon" href="./img/logo_dark.png">
+  <title>Contacts</title>
 </head>
 
 <body onload="init(); includeHTML()">
-    <!-- load "sidebar.html into following div-tag" -->
-    <div w3-include-html="./templates/sidebar.html"></div>
+  <!-- load "sidebar.html into following div-tag" -->
+  <div w3-include-html="./templates/sidebar.html"></div>
 
-    <div class="container row me-0">
+  <div class="custom-style-contacts">
 
-        <div id="contactsListContainer" class="col-sm-4 overflow-x-hidden overflow-y-auto">
-            <!-- <div id="contactsList" class="mx-48 my-0">
-            </div> -->
-        </div>
-
-        <div id="contactsMain" class="col-sm-8 overflow-hidden">
-            <div id="contactsHeader" class="contacts-header">
-                <h1 class="fw-bold display-4 lh-120">Contacts</h1>
-
-                <svg xmlns="http://www.w3.org/2000/svg" width="4" height="63" viewBox="0 0 4 63" fill="none">
-                    <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
-                </svg>
-
-                <span class="custom-fs-27">Better with a team</span>
-            </div>
-        </div>
+    <div id="contactsListContainer" class="overflow-x-hidden overflow-y-auto">
     </div>
 
-    <div id="overlayContact" class="rounded-start" onclick="closeOverlay()">
-    </div>
+    <div id="contactsMain" class="overflow-hidden">
+      <div id="contactsHeader" class="contacts-header">
+        <h1 class="fw-bold display-4 lh-120">Contacts</h1>
 
-    <div class="custom-btn-container">
-        <button class="fw-bold custom-lh-120 custom-btn" onclick="openOverlayContact()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="4" height="63" viewBox="0 0 4 63" fill="none">
+          <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
+        </svg>
+
+        <span class="custom-fs-27">Better with a team</span>
+        
+        <!-- <div class="custom-btn-container"> -->
+          <button class="fw-bold custom-lh-120 custom-btn pos-btn" onclick="openOverlayContact()">
             <span class="custom-fs-21">New contact</span>
             <img src="./img/icon_add_contact.png" alt="">
-        </button>
+          </button>
+        <!-- </div> -->
+  
+
+      </div>
     </div>
 
-    <script src="./scripts/contacts.js"></script>
-    <script src="./scripts/bootstrap.js"></script>
+  </div>
+
+  <div id="overlayContact" class="rounded-start" onclick="closeOverlay()">
+  </div>
+
+  <script src="./scripts/contacts.js"></script>
+  <script src="./scripts/bootstrap.js"></script>
 </body>
 
 </html>

@@ -15,6 +15,18 @@ body {
     background-color: #2A3647;
 }
 
+.custom-style-contacts {
+    height: 100vh;
+    display: flex;
+    margin-top: -22px;
+    margin-left: 232px;
+    /* height: calc(100vh - 91px);
+    width: calc(100% - 232px); */
+    padding-left: 60px;
+    padding-bottom: 50px;
+    background-color: rgba(246,247,248,255);
+}
+
 .custom-btn-container {
     display: flex;
     justify-content: flex-end;
@@ -55,8 +67,9 @@ body {
 }
 
 #contactsListContainer {
-    max-height: 500px;
+    max-height: 100%;
     width: 450px;
+    padding: 32px;
     flex-shrink: 0;
     background: var(--white, #FFF);
     box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
@@ -119,7 +132,16 @@ body {
 }
 
 #contactsMain {
-    width: 60%;
+    /* position: relative; */
+    padding-left: 4%;
+    padding-top: 80px;
+    width: 100%;
+}
+
+.pos-btn {
+    position: absolute;
+    right: 16px;
+    bottom: 20px;
 }
 
 /*         //          OVERLAY            //        */
