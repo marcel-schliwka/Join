@@ -29,6 +29,15 @@ const createDialogElements = {
   inputPhone: document.getElementById("dialog__createPhoneInput"),
 };
 
+/** 
+ * for generating colors according to initial of lastname
+ * see {@link generateCircleColor()}
+ * @typedef {Object} pastelColors 
+ * @property {string} A..Z - Colors in rgba()
+ * 
+*/
+
+/** @type {pastelColors} */
 let pastelColors = {
   A: "rgba(104, 166, 148, 1)", // Light Pinkconst
   B: 'rgba(166, 145, 104, 1)', // Gold
@@ -47,9 +56,9 @@ let pastelColors = {
   O: 'rgba(166, 123, 104, 1)', // Burnt Orange
   P: 'rgba(104, 161, 166, 1)', // Light Blue
   Q: 'rgba(166, 104, 154, 1)', // Magenta
-  R: 'rgba(255, 166, 104, 1)', // Orange (ersetzt die ursprüngliche Farbe)
+  R: 'rgba(255, 166, 104, 1)', // Orange 
   S: 'rgba(115, 115, 166, 1)', // Dark Purple
-  T: 'rgba(104, 166, 166, 1)', // Türkis (ersetzt die ursprüngliche Farbe)
+  T: 'rgba(104, 166, 166, 1)', // Türkis 
   U: 'rgba(166, 166, 104, 1)', // Yellow
   V: 'rgba(104, 113, 166, 1)', // Dark Blue
   W: 'rgba(104, 160, 166, 1)', // Aqua
@@ -62,6 +71,10 @@ let contacts;
 
 let contactsSorted;
 
+/**
+ * 
+ *
+ */
 async function init() {
   authenticate();
   await loadUserContacts();
@@ -89,6 +102,7 @@ function renderContactList() {
   setItem(`${activeUser}_contacts`, JSON.stringify(contacts));
 }
 
+
 function getFirstLetters() {
   for (const value of contactsSorted.values()) {
     for (let i = 0; i < value.length; i++) {
@@ -114,6 +128,7 @@ function renderInitials() {
   getFirstLetters();
   let container = document.getElementById("contactsListContainer");
 
+  
   for (const [key, value] of contactsSorted.entries()) {
     container.innerHTML += /*html*/ `
             <div id="containerLetter${key}" class="container-letter initial" >
@@ -128,9 +143,10 @@ function renderInitials() {
 }
 
 /**
- *
- * @param {*} initials
- * @param {*} contacts
+ * This function generates HTML as single-contacts-card for contactlist
+ * 
+ * @param {string} initials to find the right container for contact-cards to be rendered in
+ * @param {string} contacts to deliver and generate all contact details 
  */
 function renderContactsInGroup(initials, contacts) {
   for (let i = 0; i < initials.length; i++) {
@@ -159,6 +175,10 @@ function renderContactsInGroup(initials, contacts) {
   }
 }
 
+/**
+ *
+ *
+ */
 function generateCircleColor() {
   Object.keys(pastelColors).forEach((key) => {
     let colorValue = pastelColors[key];
@@ -203,6 +223,11 @@ function sortInitialsGroup() {
   contactsSorted = sortedContacts;
 }
 
+/**
+ * 
+ * @param {*} sortedInitialsMap 
+ * @returns the values of the Map in alphabetical order
+ */
 function sortContactsAlphabetically(sortedInitialsMap) {
   sortedInitialsMap.forEach((obj, initials) => {
     obj.sort((a, b) => {
