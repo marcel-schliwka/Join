@@ -10,50 +10,58 @@
     <link rel="stylesheet" href="../styles/style.css" />
 </head>
 <body> -->
-    <div class="sidebar">
-        <nav>
-            <div class="w-100 d-flex flex-column align-items-center">
-                <div class="logoDiv">
-                    <img src="../img/logoWhite.svg" alt="JOIN">
-                </div>
-
-                <div class="navChild w-100">
-                    <div class="ps-5">
-                        <img src="../img/summary.svg" alt="summary">
-                        <div class="d-flex align-items-center">Summary</div>
-                    </div>
-                    <div class="ps-5">
-                        <img src="../img/board.svg" alt="board">
-                        <div class="d-flex align-items-center">Board</div>
-                    </div>
-                    <div class="ps-5">
-                        <img class="w-38" src="../img/addTask.svg" alt="add task">
-                        <div class="d-flex align-items-center">Add Task</div>
-                    </div>
-                    <div class="ps-5">
-                        <img class="w-38" src="../img/contacts.svg" alt="contacts">
-                        <div class="d-flex align-items-center">Contacts</div>
-                    </div>
-                </div>
+<div class="sidebar">
+    <nav>
+        <div class="w-100 d-flex flex-column align-items-center">
+            <div class="logoDiv">
+                <img src="../img/logoWhite.svg" alt="JOIN">
             </div>
 
-            <div>
-                <div class="legalNoticeDiv">
-                    <img src="../img/info.svg" alt="info">
-                    <div>Legal notice</div>
+            <div class="navChild w-100" id="linkSummary">
+                <div class="ps-5">
+                    <img src="../img/summary.svg" alt="summary">
+                    <div class="d-flex align-items-center">Summary</div>
+                </div>
+                <div class="ps-5" id="linkBoard">
+                    <img src="../img/board.svg" alt="board">
+                    <div class="d-flex align-items-center">Board</div>
+                </div>
+                <div class="ps-5" id="linkTasks">
+                    <img class="w-38" src="../img/addTask.svg" alt="add task">
+                    <div class="d-flex align-items-center">Add Task</div>
+                </div>
+                <div class="ps-5" id="linkContacts">
+                    <img class="w-38" src="../img/contacts.svg" alt="contacts">
+                    <div class="d-flex align-items-center">Contacts</div>
                 </div>
             </div>
-        </nav>
+        </div>
 
-        <header>
-            <div>
-                Kanban Project Management Tool
+        <div>
+            <div class="legalNoticeDiv">
+                <img src="../img/info.svg" alt="info">
+                <div>Legal notice</div>
             </div>
-            <div>
-                <img src="../img/icon_question.png" alt="question">
-                <img class="gap26px" src="../img/SM.png" alt="SM">
-            </div>
-        </header>
-    </div>
+        </div>
+    </nav>
+
+    <header>
+        <div>
+            Kanban Project Management Tool
+        </div>
+        <div>
+            <img src="../img/icon_question.png" alt="question">
+            <img class="gap26px" src="../img/SM.png" alt="SM">
+        </div>
+    </header>
+</div>
+<script>
+    // function test() {
+    //     console.log('hey');
+    // }
+    // async function siteActive() {
+    //     await document.getElementById('linkContacts').classList.add('activeSite');
+    // }
+</script>
 <!-- </body>
 </html> -->

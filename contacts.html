@@ -47,7 +47,7 @@
     <title>Contacts</title>
   </head>
 
-  <body onload="init(); includeHTML()">
+  <body onload="includeHTML(); init()">
     <!-- load "sidebar.html into following div-tag" -->
     <div w3-include-html="./templates/sidebar.html"></div>
 
@@ -121,7 +121,7 @@
           onclick="cancelCreateContact()"
         />
         <div class="dialog__createRightImg">
-          <img src="./img/test_circle.png" alt="" srcset="" />
+          <img src="./img/create_contact_frame.svg" alt="" srcset="" />
         </div>
         <form class="dialog__createRightForm" onsubmit="return false;">
           <input
