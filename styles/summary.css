@@ -1,4 +1,3 @@
-/* allgemein? */
 .parentDiv {
     margin-top: -22px;
     margin-left: 232px;
@@ -8,7 +7,6 @@
     padding-left: 60px;
     padding-bottom: 50px;
     background-color: rgba(246,247,248,255);
-    /* background-color: rgba(0, 0, 0, 0.5); */
 } 
 
 .size3Em {
@@ -28,7 +26,7 @@
 }
 
 .borderColorBlue {
-    border-color: #29ABE2;
+    border-color: #29ABE2 !important;
 }
 
 .fontColorBlue {
@@ -36,12 +34,37 @@
 }
 
 .firstContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 15px;
     /* background-color: rgb(162, 162, 255); */
-    width: 60%;
-    display: flex;
+    /* width: 60%; */
+    /* display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    margin: 60px;
+    justify-content: space-around; */
+    /* margin: 60px; */
+}
+
+.item-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 15px;
+}
+
+.item-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    /* grid-auto-columns: max-content; */
+}
+
+.item-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 15px;
 }
 
 .firstContainer img {
@@ -50,21 +73,20 @@
 
 .secondContainer {
     /* background-color: green; */
-    width: 40%;
+    /* width: 40%; */
     display: flex;
     align-items: center;
 }
 
 .childDiv {
     height: calc(100% - 72px);
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    grid-template-rows: 1fr;
 }
 
 .noWrapWords {
     white-space: nowrap;
-}
-
-.divSummaryUrgentWidth {
-    width: calc(50% - 50px);
 }
 
 .bgWhite {
@@ -76,5 +98,5 @@
     cursor: pointer;
     background-color: rgba(42,54,71,255);
     color: white;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
