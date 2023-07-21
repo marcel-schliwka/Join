@@ -48,6 +48,8 @@
   <body onload="init(); includeHTML()">
     <!-- load "sidebar.html into following div-tag" -->
     <div w3-include-html="./templates/sidebar.html"></div>
+
+    <!-- Edit Contact -->
     <dialog id="dialog__editContact">
       <div class="dialog__editLeftSide">
         <img src="./img/logo_white.svg" alt="White Join Logo" />
@@ -83,8 +85,74 @@
             id="dialog__editPhoneInput"
           />
           <div class="dialog__editRightBtn">
-            <button class="custom-btn-white btn-hover">Delete</button>
-            <button class="custom-btn btn-hover btn-save">Save</button>
+            <button
+              class="custom-btn-white btn-hover"
+              id="dialog__editDeleteBtn"
+            >
+              Delete
+            </button>
+            <button
+              class="custom-btn btn-hover btn-save"
+              id="dialog__editSaveBtn"
+              onclick="saveEditDialog()"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </dialog>
+
+    <!-- Add new Contact -->
+    <dialog id="dialog__createContact">
+      <div class="dialog__createLeftSide">
+        <img src="./img/logo_white.svg" alt="White Join Logo" />
+        <h2>Add contact</h2>
+        <span class="dialog__blue-line"></span>
+        <h4>Tasks are better with a team!</h3>
+      </div>
+      <div class="dialog__createRightSide">
+        <img
+          src="./img/close.svg"
+          alt="Close the Dialog Windows"
+          id="dialog__createClose"
+        />
+        <div class="dialog__createRightImg">
+          <img src="./img/test_circle.png" alt="" srcset="" />
+        </div>
+        <form class="dialog__createRightForm" onsubmit="return false;">
+          <input
+            type="text"
+            placeholder="Name"
+            class="dialog__createInput"
+            id="dialog__createNameInput"
+          />
+          <input
+            type="text"
+            placeholder="Email"
+            class="dialog__createInput"
+            id="dialog__createEmailInput"
+          />
+          <input
+            type="text"
+            placeholder="Phone"
+            class="dialog__createInput"
+            id="dialog__createPhoneInput"
+          />
+          <div class="dialog__createRightBtn">
+            <button
+              class="custom-btn-white btn-hover"
+              id="dialog__createDeleteBtn"
+            >
+              Cancel X
+            </button>
+            <button
+              class="custom-btn btn-hover btn-save"
+              id="dialog__createSaveBtn"
+              onclick=""
+            >
+              Save
+            </button>
           </div>
         </form>
       </div>
@@ -119,7 +187,7 @@
           <!-- <div class="custom-btn-container"> -->
           <button
             class="fw-bold custom-lh-120 custom-btn pos-btn"
-            onclick="openOverlayContact()"
+            onclick="openCreateContact()"
           >
             <span class="custom-fs-21">New contact</span>
             <img src="./img/icon_add_contact.png" alt="" />
