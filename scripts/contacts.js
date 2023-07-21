@@ -1,5 +1,7 @@
 // Global Variables
 const dialogContact = document.getElementById("dialogContact");
+const dialogBackground = document.querySelector('.background-dialog');
+
 const dialogElements = {
   name: document.getElementById("dialog__name"),
   email: document.getElementById("dialog__email"),
@@ -56,108 +58,25 @@ let pastelColors = {
   Z: "rgba(255, 224, 224, 1)", // Light Pink
 };
 
-let contacts = [
-  {
-    name: "Maximilian Lis",
-    email: "lis@fotoka.com",
-    number: "+4915797298172",
-  },
-  {
-    name: "Andreas Loretto",
-    email: "andreas.loretto@gmail.com",
-    number: "+49150192298172",
-  },
-  {
-    name: "Maria Rodriguez",
-    email: "maria.rodriguez@example.com",
-    number: "+34678901234",
-  },
-  {
-    name: "Léa Dubois",
-    email: "lea.dubois@example.com",
-    number: "+33123456789",
-  },
-  {
-    name: "John Smith",
-    email: "john.smith@example.com",
-    number: "+14155552678",
-  },
-  {
-    name: "Satoshi Nakamoto",
-    email: "satoshi@bitcoin.com",
-    number: "+81345678901",
-  },
-  {
-    name: "Marta Kowalska",
-    email: "marta.kowalska@example.com",
-    number: "+48123456789",
-  },
-  {
-    name: "Luis García",
-    email: "luis.garcia@example.com",
-    number: "+34987654321",
-  },
-  {
-    name: "Sophie Martin",
-    email: "sophie.martin@example.com",
-    number: "+33123456789",
-  },
-  {
-    name: "Muhammad Khan",
-    email: "muhammad.khan@example.com",
-    number: "+92213567890",
-  },
-  {
-    name: "Anna Müller",
-    email: "anna.mueller@example.com",
-    number: "+49123456789",
-  },
-  {
-    name: "Javier Fernández",
-    email: "javier.fernandez@example.com",
-    number: "+34987654321",
-  },
-  {
-    name: "Emma Wilson",
-    email: "emma.wilson@example.com",
-    number: "+441234567890",
-  },
-  {
-    name: "Andrei Popescu",
-    email: "andrei.popescu@example.com",
-    number: "+40123456789",
-  },
-  {
-    name: "Julia Petrova",
-    email: "julia.petrova@example.com",
-    number: "+79123456789",
-  },
-  {
-    name: "Liam Murphy",
-    email: "liam.murphy@example.com",
-    number: "+353123456789",
-  },
-  {
-    name: "Hiroshi Tanaka",
-    email: "hiroshi.tanaka@example.com",
-    number: "+819012345678",
-  },
-  {
-    name: "Isabella Rossi",
-    email: "isabella.rossi@example.com",
-    number: "+39123456789",
-  },
-  {
-    name: "Mohammed Ahmed",
-    email: "mohammed.ahmed@example.com",
-    number: "+201234567890",
-  },
-];
+let contacts;
 
 let contactsSorted;
 
-function init() {
+async function init() {
+  authenticate();
+  await loadUserContacts();
   renderContactList();
+}
+
+async function loadUserContacts() {
+  try {
+    contacts = await getItem(`${activeUser}_contacts`);
+
+  } catch (error) {
+    console.log('error');
+    setItem(`${activeUser}_contacts`, '[]');
+    contacts = await getItem(`${activeUser}_contacts`);
+  }
 }
 
 function renderContactList() {
@@ -167,6 +86,7 @@ function renderContactList() {
   renderInitials();
   generateCircleColor();
   startEventListener();
+  setItem(`${activeUser}_contacts`, JSON.stringify(contacts));
 }
 
 function getFirstLetters() {
@@ -255,26 +175,6 @@ function generateCircleColor() {
 function doNotClose(event) {
   event.stopPropagation();
 }
-
-// function addNewContact() {
-//   let name = document.getElementById("formName").value;
-//   let email = document.getElementById("formEmail").value;
-//   let phone = document.getElementById("formPhone").value;
-
-//   contacts.push({
-//     name: name,
-//     email: email,
-//     number: phone,
-//   });
-
-//   resetForm();
-//   closeOverlay();
-//   renderContactList();
-// }
-
-// function resetForm() {
-//   document.getElementById("contactForm").reset();
-// }
 
 /**
  * This function sorts contacts in groups by initials and pushes it into general variable 'initialsContacts'
@@ -372,10 +272,7 @@ function changeDialogInfo(contact) {
 function deleteContact() {
   dialogElements.fromCard.remove();
   dialogContact.close();
-  console.log(
-    "Spliced: ",
-    contacts.splice(getContactIndex(dialogElements.name.innerText), 1)
-  );
+  contacts.splice(getContactIndex(dialogElements.name.innerText), 1);
   renderContactList();
 }
 
@@ -383,6 +280,7 @@ function deleteContact() {
 
 function editContact() {
   editDialogElements.editDialog.classList.add("show-edit-dialog");
+  dialogBackground.classList.remove('d-none');
   editDialogElements.inputName.value = dialogElements.name.innerText;
   editDialogElements.inputEmail.value = dialogElements.email.innerText;
   editDialogElements.inputPhone.value = dialogElements.phone.innerText;
@@ -390,6 +288,7 @@ function editContact() {
 
 function closeEditDialog() {
   editDialogElements.editDialog.classList.remove("show-edit-dialog");
+  dialogBackground.classList.add('d-none');
 }
 
 function saveEditDialog() {
@@ -406,10 +305,12 @@ function saveEditDialog() {
 // Create Contact
 function openCreateContact() {
   createDialogElements.createDialog.classList.add("show-edit-dialog");
+  dialogBackground.classList.remove('d-none');
 }
 
 function cancelCreateContact() {
   createDialogElements.createDialog.classList.remove("show-edit-dialog");
+  dialogBackground.classList.add('d-none');
 }
 
 function addNewContact() {
@@ -418,6 +319,17 @@ function addNewContact() {
     email: createDialogElements.inputEmail.value,
     number: createDialogElements.inputPhone.value,
   });
+  dialogBackground.classList.add('d-none');
   cancelCreateContact();
   renderContactList();
 }
+
+// Close dialog
+
+function closeDialog() {
+  if (editDialogElements.editDialog.classList.contains('show-edit-dialog')) {
+    closeEditDialog();
+  } else if (createDialogElements.createDialog.classList.contains('show-edit-dialog')) {
+    cancelCreateContact();
+  }
+} 

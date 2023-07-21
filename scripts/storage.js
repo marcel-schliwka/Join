@@ -16,7 +16,7 @@ async function getItem(key) {
     .then((res) => {
       // Verbesserter code
       if (res.data) {
-        return res.data.value;
+        return JSON.parse(res.data.value);
       }
       throw `Could not find data with key "${key}".`;
     });

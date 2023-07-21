@@ -17,6 +17,16 @@ body {
   color: black;
 }
 
+.background-dialog {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 12;
+}
+
 .icon-dialog:hover .my-path,
 .icon-dialog:hover {
   cursor: pointer;
