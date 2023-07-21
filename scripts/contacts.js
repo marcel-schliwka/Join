@@ -30,32 +30,32 @@ const createDialogElements = {
 };
 
 let pastelColors = {
-  A: "rgba(255, 209, 220, 1)", // Light Pink
-  B: "rgba(255, 230, 186, 1)", // Light Peach
-  C: "rgba(209, 235, 253, 1)", // Light Blue
-  D: "rgba(255, 204, 153, 1)", // Light Orange
-  E: "rgba(227, 242, 253, 1)", // Very Light Blue
-  F: "rgba(224, 213, 255, 1)", // Very Light Purple
-  G: "rgba(215, 253, 230, 1)", // Light Mint
-  H: "rgba(251, 228, 228, 1)", // Light Salmon
-  I: "rgba(252, 242, 221, 1)", // Light Yellow
-  J: "rgba(239, 224, 245, 1)", // Light Lavender
-  K: "rgba(231, 255, 233, 1)", // Light Mint Green
-  L: "rgba(255, 207, 207, 1)", // Light Pink
-  M: "rgba(255, 227, 208, 1)", // Light Peach
-  N: "rgba(207, 227, 255, 1)", // Light Blue
-  O: "rgba(255, 218, 179, 1)", // Light Orange
-  P: "rgba(207, 240, 255, 1)", // Light Blue
-  Q: "rgba(254, 223, 240, 1)", // Light Pink
-  R: "rgba(252, 222, 222, 1)", // Light Salmon
-  S: "rgba(222, 222, 255, 1)", // Very Light Purple
-  T: "rgba(248, 218, 218, 1)", // Light Pink
-  U: "rgba(255, 235, 153, 1)", // Light Yellow
-  V: "rgba(236, 240, 255, 1)", // Very Light Blue
-  W: "rgba(219, 249, 244, 1)", // Light Aqua
-  X: "rgba(255, 242, 242, 1)", // Light Pink
-  Y: "rgba(255, 240, 219, 1)", // Light Peach
-  Z: "rgba(255, 224, 224, 1)", // Light Pink
+  A: "rgba(104, 166, 148, 1)", // Light Pinkconst
+  B: 'rgba(166, 145, 104, 1)', // Gold
+  C: 'rgba(104, 120, 166, 1)', // Blue
+  D: 'rgba(166, 141, 104, 1)', // Light Brown
+  E: 'rgba(140, 166, 104, 1)', // Olive Green
+  F: 'rgba(140, 104, 166, 1)', // Purple
+  G: 'rgba(130, 166, 104, 1)', // Green
+  H: 'rgba(166, 113, 104, 1)', // Salmon
+  I: 'rgba(166, 158, 104, 1)', // Pale Yellow
+  J: 'rgba(148, 104, 166, 1)', // Lavender
+  K: 'rgba(104, 166, 132, 1)', // Mint Green
+  L: 'rgba(166, 105, 123, 1)', // Reddish Pink
+  M: 'rgba(166, 133, 104, 1)', // Peach
+  N: 'rgba(104, 135, 166, 1)', // Dark Blue
+  O: 'rgba(166, 123, 104, 1)', // Burnt Orange
+  P: 'rgba(104, 161, 166, 1)', // Light Blue
+  Q: 'rgba(166, 104, 154, 1)', // Magenta
+  R: 'rgba(255, 166, 104, 1)', // Orange (ersetzt die ursprüngliche Farbe)
+  S: 'rgba(115, 115, 166, 1)', // Dark Purple
+  T: 'rgba(104, 166, 166, 1)', // Türkis (ersetzt die ursprüngliche Farbe)
+  U: 'rgba(166, 166, 104, 1)', // Yellow
+  V: 'rgba(104, 113, 166, 1)', // Dark Blue
+  W: 'rgba(104, 160, 166, 1)', // Aqua
+  X: 'rgba(166, 115, 115, 1)', // Dark Salmon
+  Y: 'rgba(166, 140, 104, 1)', // Light Brown
+  Z: 'rgba(166, 115, 115, 1)', // Dark Salmon
 };
 
 let contacts;
