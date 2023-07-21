@@ -116,6 +116,7 @@
           src="./img/close.svg"
           alt="Close the Dialog Windows"
           id="dialog__createClose"
+          onclick="cancelCreateContact()"
         />
         <div class="dialog__createRightImg">
           <img src="./img/test_circle.png" alt="" srcset="" />
@@ -143,13 +144,14 @@
             <button
               class="custom-btn-white btn-hover"
               id="dialog__createDeleteBtn"
+              onclick="cancelCreateContact()"
             >
               Cancel X
             </button>
             <button
               class="custom-btn btn-hover btn-save"
               id="dialog__createSaveBtn"
-              onclick=""
+              onclick="addNewContact();"
             >
               Save
             </button>
@@ -197,8 +199,7 @@
 
         <dialog close id="dialogContact">
           <div class="d-flex align-items-center justify-content-around gap-5">
-            <div class="circle-dialog">
-              <img src="./img/test_circle.png" alt="" />
+            <div class="circle dialog__circle">
             </div>
 
             <div>

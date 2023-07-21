@@ -35,6 +35,7 @@ body {
   overflow: hidden;
   border-radius: 30px;
   width: 70%;
+  border: none;
   height: 50%;
   transform: translateX(300%);
 }
@@ -160,6 +161,12 @@ body {
   right: 1em;
 }
 
+.dialog__circle {
+  width: 100px !important;
+  height: 100px !important;
+  font-size: 2.25rem;
+}
+
 .show-edit-dialog {
   animation: showEditDialog 1s ease-in-out forwards;
 }
@@ -171,6 +178,7 @@ body {
 .custom-btn {
   display: flex;
   height: 55px;
+  z-index: 15;
   padding: 18px 15px;
   justify-content: center;
   align-items: center;
@@ -184,6 +192,7 @@ body {
 .custom-style-contacts {
   height: 100vh;
   display: flex;
+
   margin-top: -22px;
   margin-left: 232px;
   /* height: calc(100vh - 91px);

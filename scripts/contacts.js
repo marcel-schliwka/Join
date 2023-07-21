@@ -21,6 +21,10 @@ const editDialogElements = {
 
 const createDialogElements = {
   createDialog: document.getElementById("dialog__createContact"),
+  closeDialog: document.getElementById("dialog__createClose"),
+  inputName: document.getElementById("dialog__createNameInput"),
+  inputEmail: document.getElementById("dialog__createEmailInput"),
+  inputPhone: document.getElementById("dialog__createPhoneInput"),
 };
 
 let pastelColors = {
@@ -154,7 +158,6 @@ let contactsSorted;
 
 function init() {
   renderContactList();
-  startEventListener();
 }
 
 function renderContactList() {
@@ -163,6 +166,7 @@ function renderContactList() {
   sortInitialsGroup();
   renderInitials();
   generateCircleColor();
+  startEventListener();
 }
 
 function getFirstLetters() {
@@ -252,25 +256,25 @@ function doNotClose(event) {
   event.stopPropagation();
 }
 
-function addNewContact() {
-  let name = document.getElementById("formName").value;
-  let email = document.getElementById("formEmail").value;
-  let phone = document.getElementById("formPhone").value;
+// function addNewContact() {
+//   let name = document.getElementById("formName").value;
+//   let email = document.getElementById("formEmail").value;
+//   let phone = document.getElementById("formPhone").value;
 
-  contacts.push({
-    name: name,
-    email: email,
-    number: phone,
-  });
+//   contacts.push({
+//     name: name,
+//     email: email,
+//     number: phone,
+//   });
 
-  resetForm();
-  closeOverlay();
-  renderContactList();
-}
+//   resetForm();
+//   closeOverlay();
+//   renderContactList();
+// }
 
-function resetForm() {
-  document.getElementById("contactForm").reset();
-}
+// function resetForm() {
+//   document.getElementById("contactForm").reset();
+// }
 
 /**
  * This function sorts contacts in groups by initials and pushes it into general variable 'initialsContacts'
@@ -332,6 +336,11 @@ let startEventListener = () => {
 function openContact(card) {
   const cardId = card.getAttribute("id");
   dialogElements["fromCard"] = card;
+  dialogElements["initials"] = card.querySelector(".circle").innerText;
+  dialogElements["circleColor"] = card
+    .querySelector(".circle")
+    .getAttribute("style");
+  dialogElements["profilePic"] = document.querySelector(".dialog__circle");
   const infoCardName = card.querySelector(".info__name").innerText;
   let clickedContact = getContact(infoCardName);
   console.log(clickedContact);
@@ -351,6 +360,8 @@ function getContactIndex(searchedName) {
 }
 
 function changeDialogInfo(contact) {
+  dialogElements.profilePic.innerHTML = dialogElements.initials;
+  dialogElements.profilePic.style = dialogElements.circleColor;
   dialogElements.name.innerText = contact.name;
   dialogElements.email.innerText = contact.email;
   dialogElements.email.href = `mailto:${contact.email}`;
@@ -389,11 +400,24 @@ function saveEditDialog() {
   contacts[index].number = editDialogElements.inputPhone.value;
   renderContactList();
   changeDialogInfo(contacts[index]);
-  startEventListener();
   closeEditDialog();
 }
 
 // Create Contact
 function openCreateContact() {
   createDialogElements.createDialog.classList.add("show-edit-dialog");
+}
+
+function cancelCreateContact() {
+  createDialogElements.createDialog.classList.remove("show-edit-dialog");
+}
+
+function addNewContact() {
+  contacts.push({
+    name: createDialogElements.inputName.value,
+    email: createDialogElements.inputEmail.value,
+    number: createDialogElements.inputPhone.value,
+  });
+  cancelCreateContact();
+  renderContactList();
 }
