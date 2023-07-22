@@ -335,6 +335,11 @@ form textarea {
     align-items: center;
 }
 
+.generated-Btn-Container button {
+    border: none;
+    background: white;
+}
+
 .generated-subtask-container {
     display: flex;
     justify-content: space-between;
@@ -359,6 +364,7 @@ form textarea {
 .category-li-item {
     display: flex;
     align-items: center;
+    gap: 10px;
     
 }
 
@@ -368,4 +374,33 @@ form textarea {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.hiddenInput {
+    padding: 22px 18px;
+    height: 51px;
+    border: none;
+}
+
+.hidden-input-container {
+    margin-top: -65px;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+
+.hidden-input-container:focus {
+    outline: none;
+}
+
+.hidden-input input {
+    outline: none;
+}
+
+.hidden-input input:focus {
+    outline: none;
 }

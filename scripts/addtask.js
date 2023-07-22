@@ -24,6 +24,9 @@ let categorys = [
 
 let assigned = [];
 
+let newSubtasks = [];
+let subtasks = [];
+
 
 let currentCategory;
 
@@ -39,6 +42,7 @@ let tasks = [
   {
     titel: '',
     description: '',
+    status: '',
     category: '',
     categoryColor: '',
     assigned: [],
@@ -68,17 +72,24 @@ function addTask() {
   let description = document.getElementById('description-input').value;
   let date = document.getElementById('task-date').value;
   let prio = currentPrio;
+  let color = document.querySelector('.colorpicker').value;
+
   if (prio == undefined) {
     prio = 'low';
   }
   let assignedTo = assigned;
+  let category = currentCategory;
+  let selectedSubtasks = newSubtasks;
+
 
   console.log('Titel: ', titel);
   console.log('Description: ', description);
   console.log('Date: ', date);
   console.log('Prio: ', prio);
   console.log('Assigned: ', assignedTo);
-  console.log('Subtasks: ', subtasks);
+  console.log('Category: ', category);
+  console.log('Subtasks' , selectedSubtasks);
+  console.log('Color ', color);
 
 }
 
@@ -116,12 +127,11 @@ function changeToInput(containerId, buttonId) {
   let bId = document.getElementById(buttonId);
   cId.innerHTML = '';
   bId.innerHTML = '';
-  console.log(cId.id);
 
   if (cId.id.includes('category-input')) {
     cId.innerHTML += `
     <div>
-      <input onclick="openColorpicker()" id="generatedInput" placeholder="Enter new category" class="ol-none b-none">
+      <input id="generatedInput" placeholder="Enter new category" class="ol-none b-none">
     </div>
     `;
     bId.innerHTML += `
@@ -131,7 +141,7 @@ function changeToInput(containerId, buttonId) {
   <svg xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
   <path d="M1 0V31" stroke="#D1D1D1"/>
   </svg>
-  <button type="button"><img src="./img/check_black_icon.png"></button>
+  <button onclick="addNewCategory()" type="button"><img src="./img/check_black_icon.png"></button>
   </div>`;
     document.querySelector('.colorpicker').click();
 
@@ -168,11 +178,22 @@ function changeToInput(containerId, buttonId) {
 }
 
 
-function openColorpicker() {
-  document.querySelector('.clr-open').style.dispay = 'flex;';
+function addNewCategory() {
+  let input = document.getElementById('generatedInput').value;
+  let color = document.querySelector('.colorpicker').value;
+  if (input == '' || color == undefined) {
+    // Do nothing
+  } else {
+    categorys.push({
+      name: input,
+      color: color
+    }) 
+  }
 
-
+  renderCategorys();
 }
+
+
 
 
 
@@ -236,9 +257,12 @@ function renderCategorys() {
 
 function useCategory(i) {
   let selection = document.querySelector('.category-input');
-  selection.innerText = categorys[i]['name'];
+  selection.innerHTML = `<div>
+  ${categorys[i]['name']} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+  <circle cx="10" cy="10.5" r="9" fill="${categorys[i]['color']}" stroke="white" stroke-width="2" />
+</svg>
+  </div>`;
   currentCategory = selection.innerText;
-  console.log(currentCategory);
 }
 
 
@@ -251,13 +275,13 @@ function clearInput(element) {
 
 
 
+
 function addSubtask() {
   let input = document.getElementById('generatedSubtaskInput').value;
-  console.log(input);
   subtasks.push(input);
-
   renderSubtasks();
 }
+
 
 function renderSubtasks() {
   let content = document.getElementById('subtask-content');
@@ -268,7 +292,7 @@ function renderSubtasks() {
     content.innerHTML += `
     <div class="generated-subtask-container w-422">
     <div id="subtask${i}">${subt}</div>
-    <div onclick="changeSubtaskCheckbox(${i})"><img class="subtaskCheckboxImg" id="subtask-checkbox${i}" src="./img/checkbox.png"></div>
+    <div onclick="changeSubtaskCheckbox(${i})"><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${i}" src="./img/checkbox.png"></div>
     </div>
     `;
   }
@@ -279,26 +303,23 @@ function changeSubtaskCheckbox(i) {
 
   if (checkboxImg.getAttribute('src') === './img/checkbox.png') {
     checkboxImg.src = './img/checkbox_checked.png'
+    checkboxImg.setAttribute('checked', 'true');
   } else {
     checkboxImg.src = './img/checkbox.png'
+    changeCheckbox.setAttribute('checked', 'false')
   }
 }
 
-let subtasks = [];
 
 function getSubtasks() {
-  let selectedSubtasks = document.querySelector('.subtaskCheckboxImg');
+  let test = document.querySelectorAll('.subtaskCheckboxImg');
 
-  for (let i = 0; i < selectedSubtasks.length; i++) {
-    const st = selectedSubtasks[i];
-    const source = st['currentSrc'];
-    if (source.includes('/img/checkbox_checked.png')) {
-      let index = i;
-      subtasks.push(selectedSubtasks[index]);
+  for (let i = 0; i < test.length; i++) {
+    const t = test[i];
+    const ti = t.getAttribute('checked');
+    if (ti == 'true') {
+      newSubtasks.push(t.parentNode.parentNode.firstElementChild.innerText);
     }
   }
+
 }
-
-
-
-
