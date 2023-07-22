@@ -63,3 +63,19 @@ function currentMonth() {
 function currentYear() {
     return date.getFullYear();
 }
+
+function whitePencil() {
+    document.getElementById('pencil').src= "./img/whitePencil.svg";
+}
+
+function darkPencil() {
+    document.getElementById('pencil').src= "./img/icon_pencil.svg";
+}
+
+function whiteOk() {
+    document.getElementById('ok').src= "./img/whiteOk.svg";
+}
+
+function darkOk() {
+    document.getElementById('ok').src= "./img/icon_ok.svg";
+}
