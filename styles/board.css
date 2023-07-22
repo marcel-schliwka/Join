@@ -1,0 +1,31 @@
+.gridContainerChildBoard {
+    /* background-color: red; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 35px;
+}
+
+.paddingRight50Px {
+    padding-right: 50px;
+}
+
+.addTaskBoardBtn {
+    background-color: rgba(42,54,71,255);
+    border-radius: 8px;
+    color: white;
+}
+
+.findTaskBtn {
+    background-color: white;
+    border-radius: 8px;
+}
+
+.inputfindTask {
+    border: none;
+    outline: none;
+}
+
+::placeholder {
+    color: #D1D1D1;
+}
