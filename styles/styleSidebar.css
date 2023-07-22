@@ -12,6 +12,11 @@ nav {
     color: white;
 }
 
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
 .sidebar {
     display: flex;
 }
