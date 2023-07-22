@@ -37,7 +37,7 @@ const createDialogElements = {
  * 
 */
 
-/** @type {pastelColors} */
+/** @type {Object} pastelColors*/
 let pastelColors = {
   A: "rgba(104, 166, 148, 1)", // Light Pinkconst
   B: 'rgba(166, 145, 104, 1)', // Gold
@@ -248,7 +248,7 @@ function groupInitials() {
 function sortInitialsGroup() {
   /* saving sontacts in sorted initials*/
   let initialsMap = groupInitials();
-  /* converting initialsMap into an array of key-values (initials-contacts) */
+  /* converting initialsMap into an array of key-value and sorts the keys alphabetically (initials-contacts) */
   let sortedInitialsMap = new Map([...initialsMap.entries()].sort());
   /* passing sorted array to function to be sorted alphabetically within the keys (initials)*/
   let sortedContacts = sortContactsAlphabetically(sortedInitialsMap);
@@ -322,7 +322,7 @@ function openContact(card) {
   let clickedContact = getContact(infoCardName);
   /* calling changeDialogInfo with the just saved variable and cardID */
   changeDialogInfo(clickedContact, cardId);
-  /* showing the dialogContact-Element which is a global variable */
+  /* showing the dialogContact-Element which is a global variable relating to HTML Element */
   dialogContact.show();
 }
 
@@ -453,6 +453,7 @@ function addNewContact() {
     email: createDialogElements.inputEmail.value,
     number: createDialogElements.inputPhone.value,
   });
+  document.getElementById('createContactForm').reset();
   dialogBackground.classList.add('d-none');
   cancelCreateContact();
   renderContactList();
