@@ -62,6 +62,13 @@
     line-height: 120%;
 }
 
+.ol-none {
+    outline: none;
+}
+
+.b-none {
+    border: none
+}
 
 .w-422 {
     width: 422px;
@@ -289,3 +296,13 @@ form textarea {
     border: none;
 }
 
+.contact-item {
+    padding-right: 22px;
+    display: flex;
+    justify-content: space-between;
+    width: 422px;
+    text-decoration: none;
+    margin-left: -27px;
+    padding-left: 22px;
+    padding-top: 5px;
+}
