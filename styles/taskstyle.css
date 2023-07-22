@@ -263,3 +263,29 @@ form textarea {
     background-color: #7AE229 !important;
     color: white;
 }
+
+
+
+.category-container, .assigned-container {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 422px;
+    border-radius: 10px;
+    border: 1px solid #D1D1D1;
+    background: #FFF;
+    height: 51px;
+    align-items: center;
+    padding: 18px 21px;
+}
+
+.category-button-container button {
+    background: white;
+    border: none;
+}
+
+.assigned-button-container button {
+    background: white;
+    border: none;
+}
+

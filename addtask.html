@@ -24,37 +24,33 @@
 
       <div class="left">
         <label class="font20" for="title">Title</label>
-        <input id="title-input" required class="w-422 h-51 font20 pad-13-21 custom-border" type="text" placeholder="Enter a title">
+        <input id="title-input" required class="w-422 h-51 font20 pad-13-21 custom-border" type="text"
+          placeholder="Enter a title">
 
         <label class="font20" for="description">Description</label>
-        <textarea required class="w-422 font20 pad-18-21 custom-border" name="description" id="description-input" cols="30" rows="10"
-          placeholder="Enter a Description"></textarea>
+        <textarea required class="w-422 font20 pad-18-21 custom-border" name="description" id="description-input"
+          cols="30" rows="10" placeholder="Enter a Description"></textarea>
 
         <label class="font20" for="category">Category</label>
-        <select class="w-422 h-51 font20  custom-border" id="form-select" class="form-select"
-          aria-label="Default select example">
-          <option class="option pad-18-21" selected>Select task category</option>
-          <option class="option pad-18-21">New category</option>
-          <div id="category-content">
-            <option class="option pad-18-21" value="2">Sales<img src="./img/pink_circle.png"></option>
-            <option class="option pad-18-21" value="3">Backoffice</option>
+        <div class="category-container font20">
+          <div class="category-input">
+            <span>Add new Category</span>
           </div>
-        </select>
+          <div class="category-button-container">
+            <button><img src="./img/arrow_down.png"></button>
+          </div>
+        </div>
 
         <label class="font20" for="assigned">Assigned to</label>
-        <div class="dropdown">
-          <button class="dropdown-toggle w-422 h-51 font20 custom-border" type="button" id="dropdownMenuButton1"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            Select contacts to assign
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li class="w-422 font20"><a class="dropdown-item w-422 font20 pad-18-21" href="#">You</a> <a href=""><img
-                  src="./img/checkbox.png"></a></li>
-            <li class="w-422 font20"><a class="dropdown-item w-422 font20 pad-18-21" href="#">Maximilian Vogel</a></li>
-            <li class="w-422 font20"><a class="dropdown-item w-422 font20 pad-18-21" href="#">Invite new contact</a>
-            </li>
-          </ul>
+        <div class="assigned-container font20">
+          <div class="assigned-input">
+            <span>Select contacts to assign</span>
+          </div>
+          <div class="assigned-button-container">
+            <button><img src="./img/arrow_down.png"></button>
+          </div>
         </div>
+
       </div>
       <div class="seperator">
         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="553" viewBox="0 0 2 553" fill="none">
@@ -73,15 +69,16 @@
           <button id="mediumBtn" onclick="getTaskPrio(this, 'medium')"
             class="font20 pad-18-10 medium-btn custom-border shadow prioBtn" type="button">Medium<img id="mediumImg"
               src="./img/prio_medium_color.png"></button>
-          <button id="lowBtn" onclick="getTaskPrio(this, 'low')" class="font20 pad-18-10 low-btn custom-border shadow prioBtn"
-            type="button">Low<img id="lowImg" src="./img/prio_low_color.png"></button>
+          <button id="lowBtn" onclick="getTaskPrio(this, 'low')"
+            class="font20 pad-18-10 low-btn custom-border shadow prioBtn" type="button">Low<img id="lowImg"
+              src="./img/prio_low_color.png"></button>
         </div>
 
 
         <label class="font20" for="subtasks">Subtasks</label>
-          <input class="subtask-input w-422 h-51 custom-border pad-18-21 font20" type="text"
+        <input class="subtask-input w-422 h-51 custom-border pad-18-21 font20" type="text"
           placeholder="Add new subtask">
-        
+
 
 
         <div class="form-btn">

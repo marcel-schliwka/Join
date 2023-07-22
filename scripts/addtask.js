@@ -1,8 +1,4 @@
 
-
-
-
-
 let categorys = [
   {
     name: 'Sales',
