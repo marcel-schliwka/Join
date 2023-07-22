@@ -33,3 +33,11 @@
 .cursorPointer {
     cursor: pointer;
 }
+
+.textWhite {
+    color: white;
+}
+
+.boxShadow {
+    box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
+}

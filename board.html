@@ -40,7 +40,8 @@
     <link rel="stylesheet" href="./styles/style.css" />
     <link rel="stylesheet" href="./styles/styleSidebar.css">
     <link rel="stylesheet" href="./styles/summary.css">
-    <link rel="stylesheet" href="./styles/board.css">  
+    <link rel="stylesheet" href="./styles/board.css"> 
+    <script src="./scripts/board.js"></script> 
     <script src="./scripts/summary.js"></script>
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/bootstrap.js"></script>
@@ -50,7 +51,7 @@
     <title>Board</title>
 
 </head>
-<body onload="includeHTML()">
+<body onload="includeHTML(); initBoard()">
     <div w3-include-html="./templates/sidebar.html"></div>
     <div class="parentDiv paddingRight50Px">
         <div class="d-flex justify-content-between mb-5">
@@ -72,28 +73,28 @@
         <div class="gridContainerChildBoard">
             <div>
                 <div class="d-flex justify-content-between">
-                    <div class="bold">Todo</div>
+                    <div class="bold">To do</div>
                     <div class="cursorPointer"><img src="./img/plusButton.svg" alt="plus"></div>
                 </div>
-                <div>JS-Content</div>
+                <div id="todo"></div>
             </div>
             <div>
                 <div class="d-flex justify-content-between">
                     <div class="bold">In Progress</div>
                     <div class="cursorPointer"><img src="./img/plusButton.svg" alt="plus"></div>
                 </div>
-                <div>JS-Content</div>
+                <div>Content</div>
             </div>
             <div>
                 <div class="d-flex justify-content-between">
                     <div class="bold">Awaiting Feedback</div>
                     <div class="cursorPointer"><img src="./img/plusButton.svg" alt="plus"></div>
                 </div>
-                <div>JS-Content</div>
+                <div>Content</div>
             </div>
             <div>
                 <div class="bold">Done</div>
-                <div>JS-Content</div>
+                <div>Content</div>
             </div>
         </div>
     </div>
