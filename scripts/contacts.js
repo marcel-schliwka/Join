@@ -462,7 +462,8 @@ function addNewContact() {
 
 /**
  * closing edit-dialog-window and create-dialog-window
- *
+ * 
+ * @function
  */
 function closeDialog() {
   if (editDialogElements.editDialog.classList.contains('show-edit-dialog')) {
