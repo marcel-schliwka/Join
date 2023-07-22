@@ -94,6 +94,8 @@
     padding: 18px 10px;
 }
 
+
+
 body {
     background: #F6F7F8;
 }
@@ -273,7 +275,7 @@ form textarea {
 
 
 
-.category-container, .assigned-container {
+.category-container, .assigned-container, .subtasks-container {
     font-size: 20px;
     display: flex;
     justify-content: space-between;
@@ -286,12 +288,21 @@ form textarea {
     padding: 18px 21px;
 }
 
+.subtasks-container input {
+    border: none;
+}
+
 .category-button-container button {
     background: white;
     border: none;
 }
 
 .assigned-button-container button {
+    background: white;
+    border: none;
+}
+
+.subtasks-button-container button {
     background: white;
     border: none;
 }
@@ -305,4 +316,56 @@ form textarea {
     margin-left: -27px;
     padding-left: 22px;
     padding-top: 5px;
+}
+
+
+.colorpicker {
+    border: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.10);
+    font-size: 0px;
+    margin-right: 5px;
+}
+
+.generated-Btn-Container {
+    display: flex;
+    align-items: center;
+}
+
+.generated-subtask-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 22px 10px 22px;
+}
+
+.categorys ul {
+    list-style: none;
+    padding: 0;
+}
+
+.category-generated-list li {
+    height: 51px
+}
+
+.category-generated-list {
+    display: flex;
+    align-items: center;
+
+}
+
+.category-li-item {
+    display: flex;
+    align-items: center;
+    
+}
+
+.category-dropdown-items {
+    height: 51px;
+    padding: 0px 22px 5px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

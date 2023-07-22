@@ -22,60 +22,15 @@ let categorys = [
   }
 ];
 
-
-/** Default configuration **/
-
-Coloris({
-  el: '.coloris',
-  swatches: [
-    '#264653',
-    '#2a9d8f',
-    '#e9c46a',
-    '#f4a261',
-    '#e76f51',
-    '#d62828',
-    '#023e8a',
-    '#0077b6',
-    '#0096c7',
-    '#00b4d8',
-    '#48cae4'
-  ]
-});
-
-/** Instances **/
-
-Coloris.setInstance('.instance1', {
-  theme: 'pill',
-  themeMode: 'dark',
-  formatToggle: true,
-  closeButton: true,
-  clearButton: true,
-  swatches: [
-    '#067bc2',
-    '#84bcda',
-    '#80e377',
-    '#ecc30b',
-    '#f37748',
-    '#d56062'
-  ]
-});
-
-Coloris.setInstance('.instance2', { theme: 'polaroid' });
-
-Coloris.setInstance('.instance3', {
-  theme: 'polaroid',
-  swatchesOnly: true
-});
+let assigned = [];
 
 
-
-
-
-
+let currentCategory;
 
 function init() {
   renderContacts();
   renderCategorys();
+  renderSubtasks();
 }
 
 
@@ -93,7 +48,13 @@ let tasks = [
   }
 ];
 
+document.addEventListener('coloris:pick', event => {
+  document.querySelector('.colorpicker').style.backgroundColor = event.detail.color;
+});
 
+document.addEventListener('coloris:change', event => {
+  document.querySelector('.colorpicker').style.backgroundColor = event.detail.color;
+});
 
 
 
@@ -102,9 +63,23 @@ let tasks = [
 
 
 function addTask() {
-  document.addEventListener('coloris:pick', event => {
-    console.log('New color', event.detail.color);
-  });
+  getSubtasks();
+  let titel = document.getElementById('title-input').value;
+  let description = document.getElementById('description-input').value;
+  let date = document.getElementById('task-date').value;
+  let prio = currentPrio;
+  if (prio == undefined) {
+    prio = 'low';
+  }
+  let assignedTo = assigned;
+
+  console.log('Titel: ', titel);
+  console.log('Description: ', description);
+  console.log('Date: ', date);
+  console.log('Prio: ', prio);
+  console.log('Assigned: ', assignedTo);
+  console.log('Subtasks: ', subtasks);
+
 }
 
 
@@ -127,7 +102,7 @@ function getTaskPrio(button, priority) {
       lowImg.src = './img/prio_low_color.png';
       mediumImg.src = './img/prio_medium_color.png';
       urgentImg.src = './img/prio_urgent_color.png';
-    }    
+    }
   });
   button.classList.add(priority + '-active');
   images[priority].src = `./img/prio_${priority}.png`;
@@ -141,27 +116,63 @@ function changeToInput(containerId, buttonId) {
   let bId = document.getElementById(buttonId);
   cId.innerHTML = '';
   bId.innerHTML = '';
+  console.log(cId.id);
 
-  cId.innerHTML += `
-  <div>
-    <input id="generatedInput" placeholder="Enter new contact" class="ol-none b-none">
-  </div>
-  `;
-
-  bId.innerHTML += `
-  <div>
-  <input class="coloris instance2" type="text" data-coloris>
-  <button onclick="clearInput(this)" type="button"><img src="./img/cancel_icon.png"></button>
+  if (cId.id.includes('category-input')) {
+    cId.innerHTML += `
+    <div>
+      <input onclick="openColorpicker()" id="generatedInput" placeholder="Enter new category" class="ol-none b-none">
+    </div>
+    `;
+    bId.innerHTML += `
+  <div class="generated-Btn-Container">
+  <input class="coloris instance2 colorpicker" type="text" data-coloris>
+  <button onclick="clearInput(this)" type="button"><img  src="./img/cancel_icon.png"></button>
   <svg xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
   <path d="M1 0V31" stroke="#D1D1D1"/>
   </svg>
   <button type="button"><img src="./img/check_black_icon.png"></button>
   </div>`;
+    document.querySelector('.colorpicker').click();
+
+
+  } else if (cId.id.includes('assigned-input')) {
+    bId.innerHTML += `
+    <div class="generated-Btn-Container">
+    <button onclick="clearInput(this)" type="button"><img src="./img/cancel_icon.png"></button>
+    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
+    <path d="M1 0V31" stroke="#D1D1D1"/>
+    </svg>
+    <button type="button"><img src="./img/check_black_icon.png"></button>
+    </div>`;
+    cId.innerHTML += `
+    <div>
+      <input id="generatedInput" placeholder="Enter new contact" class="ol-none b-none">
+    </div>
+    `;
+  } else {
+    bId.innerHTML += `
+    <div class="generated-Btn-Container">
+    <button onclick="clearInput(this)" type="button"><img src="./img/cancel_icon.png"></button>
+    <svg xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
+    <path d="M1 0V31" stroke="#D1D1D1"/>
+    </svg>
+    <button onclick="addSubtask()" type="button"><img src="./img/check_black_icon.png"></button>
+    </div>`;
+    cId.innerHTML += `
+    <div>
+      <input id="generatedSubtaskInput" placeholder="Enter a new subtask" class="ol-none b-none">
+    </div>
+    `;
+  }
 }
 
 
+function openColorpicker() {
+  document.querySelector('.clr-open').style.dispay = 'flex;';
 
 
+}
 
 
 
@@ -190,6 +201,8 @@ function changeCheckbox(i) {
   }
 }
 
+
+
 function getAssignedContacts() {
   let test = document.querySelectorAll('.checkboxImg');
   for (let i = 0; i < test.length; i++) {
@@ -197,7 +210,7 @@ function getAssignedContacts() {
     const source = t['currentSrc'];
     if (source.includes('/img/checkbox_checked.png')) {
       let index = i;
-      console.log(getContacts[index]['name']);
+      assigned.push(getContacts[index]['name']);
     }
   }
 }
@@ -206,21 +219,28 @@ function renderCategorys() {
   let category = document.getElementById('renderCategorys');
   category.innerHTML = '';
   category.innerHTML = `
-  <div>
-  <li onclick="changeToInput('category-input', 'category-button')">Add new category</li>
+  <div class="custom-border w-422 category-generated-list font20">
+  <li class="font20 category-li-item" onclick="changeToInput('category-input', 'category-button')">Add new category</li>
   </div>
   `;
 
   for (let i = 0; i < categorys.length; i++) {
     const cat = categorys[i];
-    category.innerHTML += `<div>
-    <li>${cat['name']} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+    category.innerHTML += `<div class="category-dropdown-items custom-border">
+    <li onclick="useCategory(${i})" class="font20 category-li-item"">${cat['name']} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
     <circle cx="10" cy="10.5" r="9" fill="${cat['color']}" stroke="white" stroke-width="2" />
   </svg></li>
-    
     </div>`;
   }
 }
+
+function useCategory(i) {
+  let selection = document.querySelector('.category-input');
+  selection.innerText = categorys[i]['name'];
+  currentCategory = selection.innerText;
+  console.log(currentCategory);
+}
+
 
 
 function clearInput(element) {
@@ -228,6 +248,56 @@ function clearInput(element) {
   input.value = '';
 }
 
+
+
+
+function addSubtask() {
+  let input = document.getElementById('generatedSubtaskInput').value;
+  console.log(input);
+  subtasks.push(input);
+
+  renderSubtasks();
+}
+
+function renderSubtasks() {
+  let content = document.getElementById('subtask-content');
+  content.innerHTML = '';
+
+  for (let i = 0; i < subtasks.length; i++) {
+    const subt = subtasks[i];
+    content.innerHTML += `
+    <div class="generated-subtask-container w-422">
+    <div id="subtask${i}">${subt}</div>
+    <div onclick="changeSubtaskCheckbox(${i})"><img class="subtaskCheckboxImg" id="subtask-checkbox${i}" src="./img/checkbox.png"></div>
+    </div>
+    `;
+  }
+}
+
+function changeSubtaskCheckbox(i) {
+  let checkboxImg = document.getElementById(`subtask-checkbox${i}`);
+
+  if (checkboxImg.getAttribute('src') === './img/checkbox.png') {
+    checkboxImg.src = './img/checkbox_checked.png'
+  } else {
+    checkboxImg.src = './img/checkbox.png'
+  }
+}
+
+let subtasks = [];
+
+function getSubtasks() {
+  let selectedSubtasks = document.querySelector('.subtaskCheckboxImg');
+
+  for (let i = 0; i < selectedSubtasks.length; i++) {
+    const st = selectedSubtasks[i];
+    const source = st['currentSrc'];
+    if (source.includes('/img/checkbox_checked.png')) {
+      let index = i;
+      subtasks.push(selectedSubtasks[index]);
+    }
+  }
+}
 
 
 
