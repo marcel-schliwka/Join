@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FAVICON -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/img/favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/img/favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta
+      name="msapplication-config"
+      content="/img/favicon/browserconfig.xml"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- FAVICON END -->
+    <link rel="stylesheet" href="./styles/bootstrap.css" />
+    <link rel="stylesheet" href="./styles/fonts.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/styleSidebar.css">
+    <link rel="stylesheet" href="./styles/summary.css">
+    <link rel="stylesheet" href="./styles/board.css"> 
+    <script src="./scripts/board.js"></script> 
+    <script src="./scripts/summary.js"></script>
+    <script src="./scripts/sidebar.js"></script>
+    <script src="./scripts/bootstrap.js"></script>
+
+    <link rel="stylesheet" href="/styles/index.css" />
+
+    <title>Board</title>
+
+</head>
+<body onload="includeHTML(); initBoard()">
+    <div w3-include-html="./templates/sidebar.html"></div>
+    <div class="parentDiv paddingRight50Px">
+        <div class="d-flex justify-content-between mb-5">
+            <div class="size3Em bold">
+                Board
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="border ps-3 py-1 findTaskBtn d-flex justify-content-between align-items-center">
+                    <input placeholder="Find task" class="inputfindTask border-end" type="text">
+                    <div class="d-flex justify-content-center align-items-center px-3 cursorPointer">
+                        <img src="./img/search2.svg" alt="search">
+                    </div>
+                </div>
+                <div class="addTaskBoardBtn bold px-2 py-2 ms-4 cursorPointer">
+                    Add task +
+                </div>
+            </div>
+        </div>
+        <div class="gridContainerChildBoard">
+            <div>
+                <div class="d-flex justify-content-between">
+                    <div class="bold">To do</div>
+                    <div class="cursorPointer"><img src="./img/plusButton.svg" alt="plus"></div>
+                </div>
+                <div id="todo"></div>
+            </div>
+            <div>
+                <div class="d-flex justify-content-between">
+                    <div class="bold">In Progress</div>
+                    <div class="cursorPointer"><img src="./img/plusButton.svg" alt="plus"></div>
+                </div>
+                <div>Content</div>
+            </div>
+            <div>
+                <div class="d-flex justify-content-between">
+                    <div class="bold">Awaiting Feedback</div>
+                    <div class="cursorPointer"><img src="./img/plusButton.svg" alt="plus"></div>
+                </div>
+                <div>Content</div>
+            </div>
+            <div>
+                <div class="bold">Done</div>
+                <div>Content</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
