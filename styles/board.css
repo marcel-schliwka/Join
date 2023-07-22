@@ -41,3 +41,7 @@
 .boxShadow {
     box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
 }
+
+.height40Px {
+    height: 40px;
+}

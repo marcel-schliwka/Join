@@ -4,7 +4,7 @@ let tasks = [
       description: 'description1',
       category: 'category1',
       categoryColor: 'categoryColor1',
-      assigned: ['me', 'you'],
+      assigned: ['SM', 'MV'],
       date: '01.03.22',
       prio: 'urgent',
       subtasks: []
@@ -14,7 +14,7 @@ let tasks = [
         description: 'description2',
         category: 'category2',
         categoryColor: 'categoryColor2',
-        assigned: ['Maria', 'Peter'],
+        assigned: ['AS', 'DE'],
         date: '02.03.22',
         prio: 'urgent',
         subtasks: []
@@ -29,6 +29,12 @@ function renderTasks(){
     document.getElementById('todo').innerHTML = "";
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
+        let priority
+        if (task['prio'] == "urgent") {
+            priority = '<img class="height40Px" src="./img/prioUrgent.svg">';
+        } else {
+            priority = '<img class="height40Px" src=".img/prioMedium.svg">';
+        }
         document.getElementById('todo').innerHTML += /*html*/`
         <div class="boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
@@ -41,8 +47,8 @@ function renderTasks(){
                 ${task['description']}
             </div>
             <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4">
-                <div>${task['assigned']}</div>
-                <div>${task['prio']}</div>
+                <div class="textWhite border rounded-circle p-2" style="background-color:grey">${task['assigned']}</div>
+                <div>${priority}</div>
             </div>
         </div>
         `;
