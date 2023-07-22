@@ -72,8 +72,9 @@ let contacts;
 let contactsSorted;
 
 /**
+ * initialization of authentification - loading UserContacts - rendering ContactList
  * 
- *
+ * @async
  */
 async function init() {
   authenticate();
@@ -81,6 +82,12 @@ async function init() {
   renderContactList();
 }
 
+/**
+ * loading userContacts from remote storage
+ * 
+ * @async 
+ * @returns Object of contactList
+ */
 async function loadUserContacts() {
   try {
     contacts = await getItem(`${activeUser}_contacts`);
@@ -92,6 +99,13 @@ async function loadUserContacts() {
   }
 }
 
+
+/**
+ * rendering contactList in ContactListContainer
+ * 
+ * @function
+ * @returns void
+ */
 function renderContactList() {
   document.getElementById("contactsListContainer").innerHTML = "";
 
@@ -102,7 +116,14 @@ function renderContactList() {
   setItem(`${activeUser}_contacts`, JSON.stringify(contacts));
 }
 
-
+/**
+ * getting first letters of name and surname of contacts + 
+ * creating new object element for them to be available 
+ * 
+ * @function
+ * @property {string} firstLetters - first letters of name + surname 
+ * @property {string} colorInitial - initial of surname
+ */
 function getFirstLetters() {
   for (const value of contactsSorted.values()) {
     for (let i = 0; i < value.length; i++) {
@@ -121,34 +142,38 @@ function getFirstLetters() {
 }
 
 /**
- *
- *
+ * generating HTML with initials  of existing contacts as header to ContactList 
+ * 
+ * @function
  */
 function renderInitials() {
   getFirstLetters();
   let container = document.getElementById("contactsListContainer");
 
-  
+
   for (const [key, value] of contactsSorted.entries()) {
     container.innerHTML += /*html*/ `
             <div id="containerLetter${key}" class="container-letter initial" >
-                        ${key}
+              <div>
+                  ${key}
+              </div>
+                      
                 <div>
                     <img src="./img/vectorContacts.png">
                 </div>
             </div>
             `;
-    renderContactsInGroup(key, value);
+    renderContactsInContainer(key, value);
   }
 }
 
 /**
- * This function generates HTML as single-contacts-card for contactlist
+ * generating HTML as single-contacts-card for contactlist
  * 
- * @param {string} initials to find the right container for contact-cards to be rendered in
+ * @param {string} initials to find the correct container for contact-cards to be rendered in
  * @param {string} contacts to deliver and generate all contact details 
  */
-function renderContactsInGroup(initials, contacts) {
+function renderContactsInContainer(initials, contacts) {
   for (let i = 0; i < initials.length; i++) {
     const initial = initials[i];
     let groupContainer = document.getElementById(`containerLetter${initial}`);
@@ -160,24 +185,25 @@ function renderContactsInGroup(initials, contacts) {
       let firstLetter = contact.firstLetters;
       let colorSign = contact.colorInitial;
       groupContainer.innerHTML += /*html*/ `
-                <div class="single-contact-card" id="card${c}">
-                    <div class="circle" id="${colorSign}">
-                        ${firstLetter}
-                    </div>
+        <div class="single-contact-card" id="card${c}">
+            <div class="circle" id="${colorSign}">
+              ${firstLetter}
+            </div>
 
-                    <div class="info">
-                        <h4 class="info__name">${name}</h4>
-                        <p>${email}</p>
-                    </div>
-                </div>
-            `;
+            <div class="info">
+                <h4 class="info__name">${name}</h4>
+                 <p>${email}</p>
+            </div>
+         </div>
+      `;
     }
   }
 }
 
 /**
- *
- *
+ * generating color of circle in ContactList according to initial of surname
+ * 
+ * @function
  */
 function generateCircleColor() {
   Object.keys(pastelColors).forEach((key) => {
@@ -192,12 +218,8 @@ function generateCircleColor() {
   });
 }
 
-function doNotClose(event) {
-  event.stopPropagation();
-}
-
 /**
- * This function sorts contacts in groups by initials and pushes it into general variable 'initialsContacts'
+ * sorting contacts in groups by initials and pushes it into general variable 'initialsContacts'
  * @param {object} initialsMap - a map of all contacts initials in groups
  */
 function groupInitials() {
@@ -216,16 +238,28 @@ function groupInitials() {
   return initialsMap;
 }
 
+
+/**
+ * sorting a group of contacts based on their names initial
+ * 
+ * @function
+ * @returns updated global object: sortedContacts
+ */
 function sortInitialsGroup() {
+  /* saving sontacts in sorted initials*/
   let initialsMap = groupInitials();
+  /* converting initialsMap into an array of key-values (initials-contacts) */
   let sortedInitialsMap = new Map([...initialsMap.entries()].sort());
+  /* passing sorted array to function to be sorted alphabetically within the keys (initials)*/
   let sortedContacts = sortContactsAlphabetically(sortedInitialsMap);
+  /* assigning sortedContacts to global array: contactsSorted */
   contactsSorted = sortedContacts;
 }
 
 /**
+ * sorting Contacts withing group (key) alphabetically 
  * 
- * @param {*} sortedInitialsMap 
+ * @param {Object} sortedInitialsMap 
  * @returns the values of the Map in alphabetical order
  */
 function sortContactsAlphabetically(sortedInitialsMap) {
@@ -245,21 +279,38 @@ function sortContactsAlphabetically(sortedInitialsMap) {
 
 // Open Contact
 
+/**
+ * setting up event listeners to single-ontact-cards in contactList as well as in the dialog-window and edit-dialog-window
+ * @date 7/22/2023 - 3:04:10 PM
+ */
 let startEventListener = () => {
-  let cards = document.querySelectorAll(".single-contact-card");
+  /* selecting all elements with class of single.contact-card to be saved in variable named cards*/
+  let cards = document.querySelectorAll(".single-contact-card")
+  /* iterating over each contact card */
   cards.forEach((card) => {
+    /* storing the clicked contact in local variable named clickedCard*/ 
     let clickedCard = card;
+    /* calling openContact() when contact card is clicked */
     card.addEventListener("click", () => openContact(clickedCard));
   });
+  /* setting up event listeners for clicks on the specific buttons (delete + edit) */
   dialogElements.deleteBtn.addEventListener("click", () => deleteContact());
   dialogElements.editBtn.addEventListener("click", () => editContact());
+  /* setting up event listener for clicks on the close button of the edit dialog */
   editDialogElements.closeDialog.addEventListener("click", () =>
     closeEditDialog()
   );
 };
 
+/**
+ * opening dialog-window to show contact information
+ *
+ * @param {Object} card 
+ */
 function openContact(card) {
+  /* getting the id of the specific card */
   const cardId = card.getAttribute("id");
+  /* creating new propertes with values from card into dialogElements*/
   dialogElements["fromCard"] = card;
   dialogElements["initials"] = card.querySelector(".circle").innerText;
   dialogElements["circleColor"] = card
@@ -267,9 +318,11 @@ function openContact(card) {
     .getAttribute("style");
   dialogElements["profilePic"] = document.querySelector(".dialog__circle");
   const infoCardName = card.querySelector(".info__name").innerText;
+  /* saving returned value of getContact() in local variable */
   let clickedContact = getContact(infoCardName);
-  console.log(clickedContact);
+  /* calling changeDialogInfo with the just saved variable and cardID */
   changeDialogInfo(clickedContact, cardId);
+  /* showing the dialogContact-Element which is a global variable */
   dialogContact.show();
 }
 
@@ -280,10 +333,23 @@ function getContact(searchedName) {
   return filteredContact[0];
 }
 
+/**
+ * getting index of current contact-card
+ *
+ * @param {string} searchedName
+ * @return {number} 
+ */
 function getContactIndex(searchedName) {
   return contacts.findIndex((contact) => contact.name === searchedName);
 }
 
+
+/**
+ * generating style and rendering HTML for dialog-window with contact information
+ *
+ * @function
+ * @param {Object} contact
+ */
 function changeDialogInfo(contact) {
   dialogElements.profilePic.innerHTML = dialogElements.initials;
   dialogElements.profilePic.style = dialogElements.circleColor;
@@ -294,6 +360,12 @@ function changeDialogInfo(contact) {
   dialogElements.phone.href = `tel:${contact.number}`;
 }
 
+
+/**
+ * deleting contact from contactList and remote storage 
+ * 
+ * @function
+ */
 function deleteContact() {
   dialogElements.fromCard.remove();
   dialogContact.close();
@@ -303,22 +375,41 @@ function deleteContact() {
 
 // Edit Contact
 
+/**
+ * editing contact within edit-dialog-window
+ * 
+ * @function
+ */
 function editContact() {
+  /* adding class and naimation to edit-dialog-window */
   editDialogElements.editDialog.classList.add("show-edit-dialog");
+  /* removes display: none for background to be shown */
   dialogBackground.classList.remove('d-none');
+  /* getting values of input fields and */
   editDialogElements.inputName.value = dialogElements.name.innerText;
   editDialogElements.inputEmail.value = dialogElements.email.innerText;
   editDialogElements.inputPhone.value = dialogElements.phone.innerText;
 }
 
+/**
+ * closing edit-dialog-window
+ * 
+ * @function
+ */
 function closeEditDialog() {
   editDialogElements.editDialog.classList.remove("show-edit-dialog");
   dialogBackground.classList.add('d-none');
 }
 
+/**
+ * saving edited contact
+ * 
+ * @function 
+ */
 function saveEditDialog() {
+  /* creating local variable with index of current contact */
   let index = getContactIndex(dialogElements.name.innerText);
-  console.log(contacts[index].name);
+  /* changing values in contacts array at the index with the values from input field */
   contacts[index].name = editDialogElements.inputName.value;
   contacts[index].email = editDialogElements.inputEmail.value;
   contacts[index].number = editDialogElements.inputPhone.value;
@@ -328,16 +419,34 @@ function saveEditDialog() {
 }
 
 // Create Contact
+/**
+ * opening create-dialog-window
+ * 
+ * @function 
+ */
 function openCreateContact() {
   createDialogElements.createDialog.classList.add("show-edit-dialog");
   dialogBackground.classList.remove('d-none');
 }
 
+/**
+ * cancelling creation of new contact
+ * 
+ * @function 
+ */
 function cancelCreateContact() {
   createDialogElements.createDialog.classList.remove("show-edit-dialog");
   dialogBackground.classList.add('d-none');
 }
 
+
+/**
+ * adding new conact to contactList and to array in remote storage 
+ * closing create-dialog-window 
+ * rendering contactList with new contact
+ * 
+ * @function
+ */
 function addNewContact() {
   contacts.push({
     name: createDialogElements.inputName.value,
@@ -351,6 +460,10 @@ function addNewContact() {
 
 // Close dialog
 
+/**
+ * closing edit-dialog-window and create-dialog-window
+ *
+ */
 function closeDialog() {
   if (editDialogElements.editDialog.classList.contains('show-edit-dialog')) {
     closeEditDialog();
