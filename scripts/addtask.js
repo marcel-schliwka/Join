@@ -1,3 +1,11 @@
+let getContacts = [
+  {
+    name: 'Max Mustermann'
+  },
+  {
+    name: 'Peter Lustig'
+  }
+];
 
 let categorys = [
   {
@@ -14,14 +22,55 @@ let categorys = [
   }
 ];
 
-let getContacts = [
-  {
-    name: 'Max Mustermann'
-  },
-  {
-    name: 'Peter Lustig'
-  }
-]
+
+/** Default configuration **/
+
+Coloris({
+  el: '.coloris',
+  swatches: [
+    '#264653',
+    '#2a9d8f',
+    '#e9c46a',
+    '#f4a261',
+    '#e76f51',
+    '#d62828',
+    '#023e8a',
+    '#0077b6',
+    '#0096c7',
+    '#00b4d8',
+    '#48cae4'
+  ]
+});
+
+/** Instances **/
+
+Coloris.setInstance('.instance1', {
+  theme: 'pill',
+  themeMode: 'dark',
+  formatToggle: true,
+  closeButton: true,
+  clearButton: true,
+  swatches: [
+    '#067bc2',
+    '#84bcda',
+    '#80e377',
+    '#ecc30b',
+    '#f37748',
+    '#d56062'
+  ]
+});
+
+Coloris.setInstance('.instance2', { theme: 'polaroid' });
+
+Coloris.setInstance('.instance3', {
+  theme: 'polaroid',
+  swatchesOnly: true
+});
+
+
+
+
+
 
 
 function init() {
@@ -53,7 +102,9 @@ let tasks = [
 
 
 function addTask() {
-
+  document.addEventListener('coloris:pick', event => {
+    console.log('New color', event.detail.color);
+  });
 }
 
 
@@ -99,6 +150,7 @@ function changeToInput(containerId, buttonId) {
 
   bId.innerHTML += `
   <div>
+  <input class="coloris instance2" type="text" data-coloris>
   <button onclick="clearInput(this)" type="button"><img src="./img/cancel_icon.png"></button>
   <svg xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
   <path d="M1 0V31" stroke="#D1D1D1"/>
@@ -175,6 +227,7 @@ function clearInput(element) {
   let input = element.parentNode.parentNode.parentNode.querySelector('input');
   input.value = '';
 }
+
 
 
 
