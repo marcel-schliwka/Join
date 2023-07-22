@@ -2,6 +2,11 @@
 let users = [];
 let loginForm = document.getElementById("loginForm");
 let loginBox = document.querySelector(".login-box");
+
+/**
+ * Returns the HTML template for the "Forgot Password" section.
+ * @returns {string} The HTML string.
+ */
 function templateForgotPassword() {
   return `
         <img onclick="showLogin();" src="./img/arrow-left-line.svg" class="arrow-back" />
@@ -30,6 +35,10 @@ function templateForgotPassword() {
     `;
 }
 
+/**
+ * Returns the HTML template for the "Login" section.
+ * @returns {string} The HTML string.
+ */
 function templateLogin() {
   return `
   <form onsubmit="login(); return false;" id="loginForm">
@@ -93,6 +102,10 @@ function templateLogin() {
     `;
 }
 
+/**
+ * Returns the HTML template for the "Sign Up" section.
+ * @returns {string} The HTML string.
+ */
 function templateSignUp() {
   return `
     <form onsubmit="registerUser(); return false;" id="loginForm">
@@ -169,27 +182,42 @@ function templateSignUp() {
     `;
 }
 
+/**
+ * Sets the HTML content of the login box to the "Forgot Password" section.
+ */
 function forgotMyPassword() {
   let loginBox = document.querySelector(".login-box");
   loginBox.innerHTML = "";
   loginBox.innerHTML = templateForgotPassword();
 }
 
+/**
+ * Sets the HTML content of the login box to the "Login" section.
+ */
 function showLogin() {
   loginBox.innerHTML = "";
   loginBox.innerHTML = templateLogin();
 }
 
+/**
+ * Sets the HTML content of the login box to the "Sign Up" section.
+ */
 function showSignup() {
   loginBox.innerHTML = "";
   loginBox.innerHTML = templateSignUp();
 }
 
+/**
+ * Initializes the user system by loading users and checking if a user is already logged in.
+ */
 async function init() {
   loadUsers();
   checkIfUserIsLoggedIn();
 }
 
+/**
+ * Loads users from local storage and stores them in the global `users` array.
+ */
 async function loadUsers() {
   try {
     users = JSON.parse(await getItem("users"));
@@ -198,6 +226,12 @@ async function loadUsers() {
   }
 }
 
+/**
+ * Checks if the provided password and the confirmed password are the same.
+ * @param {string} password - The password.
+ * @param {string} confirmedPassword - The confirmed password.
+ * @returns {boolean} True if the passwords are the same, false otherwise.
+ */
 function confirmPasswordIsSame(password, confirmedPassword) {
   if (password == confirmedPassword) {
     return true;
@@ -205,6 +239,10 @@ function confirmPasswordIsSame(password, confirmedPassword) {
     return false;
   }
 }
+
+/**
+ * Registers a new user by storing their details in the global `users` array and local storage.
+ */
 async function registerUser() {
   let signupBtn = document.getElementById("signupBtn");
   signupBtn.disabled = true;
@@ -242,14 +280,27 @@ async function registerUser() {
   showTopDown("You are registered!");
 }
 
+/**
+ * Checks if a user with the provided email exists in the global `users` array.
+ * @param {string} email - The email to check.
+ * @returns {boolean} True if the user exists, false otherwise.
+ */
 function checkIfUserExists(email) {
   return users.some((user) => user.email === email);
 }
 
+/**
+ * Resets the value of the provided form input element.
+ * @param {HTMLInputElement} input - The form input element.
+ */
 function resetForm(input) {
   input.value = "";
 }
 
+/**
+ * Retrieves the values from the login form.
+ * @returns {object} An object with the form input values.
+ */
 function getLoginFormInput() {
   const input = {
     email: document.getElementById("email").value,
@@ -259,6 +310,9 @@ function getLoginFormInput() {
   return input;
 }
 
+/**
+ * Logs in a user if their email and password match an entry in the global `users` array.
+ */
 function login() {
   let formInput = getLoginFormInput();
   let user = users.find((user) => user.email === formInput.email);
@@ -273,10 +327,17 @@ function login() {
   }
 }
 
+/**
+ * Saves the current user to local storage for remembering the user.
+ * @param {object} user - The user to save.
+ */
 function saveRememberMe(user) {
   localStorage.setItem("currentUser", JSON.stringify(user));
 }
 
+/**
+ * Checks if a user is already logged in by looking for a `currentUser` entry in local storage.
+ */
 function checkIfUserIsLoggedIn() {
   let user = JSON.parse(localStorage.getItem("currentUser"));
   if (user === null) {
@@ -286,6 +347,10 @@ function checkIfUserIsLoggedIn() {
   }
 }
 
+/**
+ * Shows a popup message at the top of the screen.
+ * @param {string} message - The message to show.
+ */
 function showTopDown(message) {
   let popup = document.getElementById("topdownMessages");
   popup.innerHTML = message;
@@ -295,10 +360,17 @@ function showTopDown(message) {
   }, 5000);
 }
 
+/**
+ * Sets the `activeUser` in local storage to 'guest' and redirects to the summary page.
+ */
 function guestLogin() {
   window.location.href = `summary.html?name='Guest'`;
 }
 
+/**
+ * Simulates sending a password reset email.
+ * @param {Event} e - The form submission event.
+ */
 function sendPasswordMail(e) {
   e.preventDefault();
   showTopDown("We send you an email!");
