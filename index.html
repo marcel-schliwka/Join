@@ -3,28 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- FAVICON -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/img/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/img/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/img/favicon/site.webmanifest" />
+    <link
+      rel="mask-icon"
+      href="/img/favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
+    <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta
+      name="msapplication-config"
+      content="/img/favicon/browserconfig.xml"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- FAVICON END -->
     <link rel="stylesheet" href="./styles/bootstrap.css" />
-
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/style.css" />
-    
+    <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/bootstrap.js"></script>
+    <script src="./scripts/storage.js"></script>
+    <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="/styles/index.css" />
     <title>JOIN</title>
-
   </head>
-  <body class="">
+  <body onload="init();">
     <nav class="nav p-5">
-      <img src="./img/logo.svg" alt="JOIN Logo" class="logo-img" />
+      <div alt="JOIN Logo" class="logo-img"></div>
       <div class="nav-join-user">
         <span>Not a JOIN user?</span>
-        <button class="signup-btn">Sign up</button>
+        <button class="signup-btn" onclick="showSignup();">Sign up</button>
       </div>
     </nav>
-
+    <div class="topdown-messages" id="topdownMessages">
+      You are now logged in!
+    </div>
     <main class="main-container">
       <div class="login-box">
-        <form onsubmit="return false;">
+        <form onsubmit="login(); return false;" id="loginForm">
           <h1 class="">Log in</h1>
           <span class="login-line"></span>
           <div class="input-container">
@@ -34,6 +68,7 @@
               name="email"
               id="email"
               placeholder="Email"
+              required
             />
             <img
               src="./img/mail.svg"
@@ -48,6 +83,7 @@
               name="password"
               placeholder="Password"
               id="password"
+              required
             />
             <img
               src="./img/lock.svg"
@@ -65,14 +101,28 @@
               />
               <span>Remember me</span>
             </div>
-            <a href="#" class="forgot-link">Forgot my password</a>
+            <a onclick="forgotMyPassword();" class="forgot-link"
+              >Forgot my password</a
+            >
           </div>
           <div class="login-btn-container">
             <button class="signup-btn">Log in</button>
-            <button class="signup-btn guest-login-btn">Guest Log in</button>
+            <button
+              class="signup-btn guest-login-btn"
+              type="button"
+              onclick="guestLogin();"
+            >
+              Guest Log in
+            </button>
           </div>
         </form>
       </div>
+      <div class="nav-join-user-mobile">
+        <span>Not a JOIN user?</span>
+        <button class="signup-btn" onclick="showSignup();">Sign up</button>
+      </div>
     </main>
+
+    <script src="./scripts/login.js"></script>
   </body>
 </html>
