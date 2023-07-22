@@ -29,3 +29,7 @@
 ::placeholder {
     color: #D1D1D1;
 }
+
+.cursorPointer {
+    cursor: pointer;
+}
