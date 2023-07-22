@@ -14,126 +14,91 @@
   <script src="./scripts/addtask.js"></script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); init()">
   <div w3-include-html="./templates/sidebar.html"></div>
-  <div class="add-task d-flex flex-column border-shadow">
-    <h1 class="add-task-header font61">Add Task</h1>
 
-    <form id="add-task-form" class="add-task-form d-flex flex-row" onsubmit="addTask(); return false">
-      <div class="add-task-left d-flex flex-column d-inline-flex align-items-start gap-8">
+  <div class="add-task-section">
+    <h1 class="font61">Add Task</h1>
 
-        <div class="add-task-title d-flex flex-column w-422 gap-8">
-          <label for="title">Title</label>
-          <input class="custom-border gap-10 align-self-stretch align-items-center" required id ="add-task-title" type="text"
-            placeholder="Enter a title">
-        </div>
+    <form onsubmit="addTask(); return false">
 
-        <div class="add-task-description d-flex flex-column w-422 gap-8">
-          <label for="despriction">Description</label>
-          <textarea class="pad-18-21 gap-10 align-items-start align-self-stretch custom-border" required name="description" id="add-task-description"
-            cols="30" rows="10" placeholder="Enter a Despriction"></textarea>
-        </div>
+      <div class="left">
+        <label class="font20" for="title">Title</label>
+        <input id="title-input" required class="w-422 h-51 font20 pad-13-21 custom-border" type="text" placeholder="Enter a title">
 
-        <div id="visibleSelector" class="add-task-category d-flex flex-column w-422 gap-8">
-          <label for="category">Category</label>
-          <select id="form-select" class="form-select add-task-category-dropdown d-flex justify-content-between w-422 gap-10 d-flex align-items-center font20" aria-label="Default select example" onchange="handleCategoryChange(this)">
-            <option class="option" selected>Select task category</option>
-            <option class="option" id="changetoinput" value="1">New category</option>
-            <option class="option" value="2">Sales<img src="./img/pink_circle.png"></option>
-            <option class="option" value="3">Backoffice</option>
-          </select>
-        </div>
+        <label class="font20" for="description">Description</label>
+        <textarea required class="w-422 font20 pad-18-21 custom-border" name="description" id="description-input" cols="30" rows="10"
+          placeholder="Enter a Description"></textarea>
 
-
-<script>
-  let selections = document.querySelectorAll('.option');
-  let selectMenu = document.getElementById('form-select');
-  let input = document.getElementById('new-category-input');
-
-
-  newNumber = selections.length;
-  console.log(newNumber);
-  
-
-</script>
-
-
-
-
-
-
-
-
-
-        <div class="add-task-assigned d-flex flex-column w-422 gap-8">
-          <label for="assigned">Assigned to</label>
-          <div class="dropdown">
-            <button
-              class="btn dropdown-toggle add-task-assigned-dropdown d-flex justify-content-between w-422 pad-18-21 gap-10 d-flex align-items-center font20"
-              type="button" id="dropdownMenuButtonAssigned" data-bs-toggle="dropdown" aria-expanded="false">
-              Select contacts to assign
-            </button>
-            <ul class="dropdown-menu w-422" aria-labelledby="dropdownMenuButton1">
-              <li><option  class="dropdown-item d-flex justify-content-between" href="#">You <input type="checkbox"></option></li>
-              <li><option class="dropdown-item d-flex justify-content-between" href="#">Maximilian Vogel <input
-                    type="checkbox"></option></li>
-              <li><option class="dropdown-item d-flex justify-content-between" href="#">Invite new contact<img
-                    src="./img/contacts_black.png"></option></li>
-            </ul>
+        <label class="font20" for="category">Category</label>
+        <select class="w-422 h-51 font20  custom-border" id="form-select" class="form-select"
+          aria-label="Default select example">
+          <option class="option pad-18-21" selected>Select task category</option>
+          <option class="option pad-18-21">New category</option>
+          <div id="category-content">
+            <option class="option pad-18-21" value="2">Sales<img src="./img/pink_circle.png"></option>
+            <option class="option pad-18-21" value="3">Backoffice</option>
           </div>
+        </select>
+
+        <label class="font20" for="assigned">Assigned to</label>
+        <div class="dropdown">
+          <button class="dropdown-toggle w-422 h-51 font20 custom-border" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Select contacts to assign
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li class="w-422 font20"><a class="dropdown-item w-422 font20 pad-18-21" href="#">You</a> <a href=""><img
+                  src="./img/checkbox.png"></a></li>
+            <li class="w-422 font20"><a class="dropdown-item w-422 font20 pad-18-21" href="#">Maximilian Vogel</a></li>
+            <li class="w-422 font20"><a class="dropdown-item w-422 font20 pad-18-21" href="#">Invite new contact</a>
+            </li>
+          </ul>
         </div>
       </div>
-
-
-      <div class="add-task-seperator">
+      <div class="seperator">
         <svg xmlns="http://www.w3.org/2000/svg" width="2" height="553" viewBox="0 0 2 553" fill="none">
           <path d="M0.999512 1L1 552" stroke="#D1D1D1" stroke-linecap="round" />
         </svg>
       </div>
+      <div class="right">
+        <label required class="font20" for="date">Due date</label>
+        <input class="w-422 h-51 font20 pad-18-21 custom-border" type="date" placeholder="dd/mm/yyyy">
 
-
-      <div class="add-task-right d-flex flex-column align-items-start w-422 g-8">
-        <div class="add-task-date d-flex flex-column w-422 gap-8">
-          <label for="date">Due date</label>
-          <input class="pad-18-21 custom-border" required id="add-task-date" type="text" placeholder="dd/mm/yyyy">
+        <label class="font20" for="prio">Prio</label>
+        <div class="prio-btn">
+          <button id="urgentBtn" onclick="getTaskPrio(this, 'urgent')"
+            class="font20 pad-18-10 urgent-btn custom-border shadow prioBtn" type="button">Urgent<img id="urgentImg"
+              src="./img/prio_urgent_color.png"></button>
+          <button id="mediumBtn" onclick="getTaskPrio(this, 'medium')"
+            class="font20 pad-18-10 medium-btn custom-border shadow prioBtn" type="button">Medium<img id="mediumImg"
+              src="./img/prio_medium_color.png"></button>
+          <button id="lowBtn" onclick="getTaskPrio(this, 'low')" class="font20 pad-18-10 low-btn custom-border shadow prioBtn"
+            type="button">Low<img id="lowImg" src="./img/prio_low_color.png"></button>
         </div>
 
-        <div class="add-task-prio d-flex flex-column w-422">
-          <label for="">Prio</label>
-          <div class="add-task-prio-btn gap-10 d-flex flex-row w-422">
-            <button onclick="addPrio(this, 'urgent')" type="button" id="urgentBtn" class="gap-10 d-flex align-items-center justify-content-center border-shadow">Urgent <img id="urgentImg"
-                src="./img/prio_urgent_color.png"></button>
-            <button onclick="addPrio(this, 'medium')" type="button" id="mediumBtn" class="gap-10 d-flex align-items-center justify-content-center border-shadow">Medium <img id="mediumImg"
-                src="./img/prio_medium_color.png"></button>
-            <button onclick="addPrio(this, 'low')" type="button" id="lowBtn" class="gap-10 d-flex align-items-center justify-content-center border-shadow">Low <img id="lowImg"
-                src="./img/prio_low_color.png"></button>
-          </div>
-        </div>
 
-        <div class="add-trak-subtasks d-flex flex-column w-422 gap-8">
-          <label for="subtasks">Subtasks</label>
-          <div class="add-task-subtasks-input-container">
-            <input class="add-task-subtasks-input w-422 border-shadow gap-10 pad-18-21" type="text" placeholder="Add new subtask">
-            <button type="button" class="dismiss-button" onclick="dismissInput()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path d="M12.0011 12.0002L12.0018 19.4149M4.58641 12.0008L12.0011 12.0002L4.58641 12.0008ZM19.4159 11.9995L12.0004 11.9995L19.4159 11.9995ZM12.0004 11.9995L12.0005 4.58545L12.0004 11.9995Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg></button>
-            <button type="button" class="create-button" onclick="createInput()"></button>
-          </div>
-          <div class="add-task-subtasks-checkbox d-flex align-items-center">
-            <input class="checkbox-input w-422" type="checkbox">
-            <p class="d-flex flex-row">Subtask 1</p>
-          </div>
-        </div>
+        <label class="font20" for="subtasks">Subtasks</label>
+          <input class="subtask-input w-422 h-51 custom-border pad-18-21 font20" type="text"
+          placeholder="Add new subtask">
+        
 
-        <div class="add-task-form-btn d-flex align-items-center justify-content-center">
-          <button type="button" onclick="clearTaskInput()" class="add-task-form-btn-clear d-flex justify-content-center align-items-center gap-10">Clear</button>
-          <button type="submit"
-            class="add-task-form-btn-create d-flex justify-content-center align-items-center gap-10">Create
-            Task</button>
+
+        <div class="form-btn">
+          <button type="reset" class="font20 pad-18-10 clear-btn">Clear <svg xmlns="http://www.w3.org/2000/svg"
+              width="25" height="25" viewBox="0 0 25 25" fill="none">
+              <path id="cancel-icon"
+                d="M12.0174 12.1705L17.2604 17.4135M6.77441 17.4135L12.0174 12.1705L6.77441 17.4135ZM17.2604 6.92749L12.0164 12.1705L17.2604 6.92749ZM12.0164 12.1705L6.77441 6.92749L12.0164 12.1705Z"
+                stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg></button>
+          <button type="submit" class="font20 pad-18-15 create-btn">Create Task <svg xmlns="http://www.w3.org/2000/svg"
+              width="25" height="25" viewBox="0 0 25 25" fill="none">
+              <path d="M4.0166 12.1704L10.0166 18.1704L20.0166 6.17041" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg></button>
         </div>
       </div>
+
     </form>
   </div>
 </body>
-
-</html>

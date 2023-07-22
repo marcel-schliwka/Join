@@ -62,24 +62,33 @@
     line-height: 120%;
 }
 
+
 .w-422 {
     width: 422px;
 }
 
-.gap-8 {
-    gap: 8px;
-}
-
-.gap-10 {
-    gap: 10px;
+.h-51 {
+    height: 51px;
 }
 
 .pad-18-21 {
     padding: 18px 21px;
 }
 
-.border-shadow {
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+.pad-13-21 {
+    padding: 13px 21px;
+}
+
+.pad-18-15 {
+    padding: 18px 15px;
+}
+
+.pad-18-10 {
+    padding: 18px 10px;
+}
+
+body {
+    background: #F6F7F8;
 }
 
 .custom-border {
@@ -88,175 +97,160 @@
     background: #FFF;
 }
 
-.d-none {
-    display: none;
+.prio-btn {
+    display: flex;
+    height: 61px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
-/*Add Task Style*/
-
-.add-task-right {
-    height: 354px;
+.shadow {
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
 }
 
-.add-task-seperator {
+.add-task-section h1 {
+    margin-left: 328px;
+    margin-top: 60px;
+}
+
+.add-task-section form {
+    display: flex;
+}
+
+.left {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-left: 355px;
+}
+
+.add-task-section select {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    z-index: 999;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.seperator {
     margin-left: 59px;
     margin-right: 59px;
 }
 
-.add-task-left {
-    gap: 14px;
-    margin-bottom: 232px;
-}
-
-.add-task {
-    background-color: #F6F7F8;
-    margin-top: -20px;
-}
-
-.add-task-header {
-    margin-top: 59px;
-    margin-left: 355px;
-    margin-bottom: 41px;
-}
-
-.add-task-form {
-    font-size: 20px;
-    margin-left: 355px;
-}
-
-.add-task-left textarea {
+form textarea {
     height: 119px;
 }
 
-.add-task-title input {
-    height: 50px;
-    padding: 13px 21px;
+.dropdown button {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
 }
 
-
-.add-task-prio-btn {
-    width: 418px;
+.dropdown li {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-.add-task-prio-btn button {
+.urgent-btn {
     width: 136px;
-    padding: 18px 10px;
-    height: 51px;
-    border-radius: 10px;
-    background: #FFF;
-    border: 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: flex;
 }
 
-.add-task-prio-btn button:hover {
-    height: 56px;
-    width: 138px;
-    box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.30);
+.medium-btn {
+    width: 126px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: flex;
 }
 
-.add-task-date {
-    height: 103px;
+.low-btn {
+    width: 136px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: flex;
 }
 
-.add-task-date input {
-    height: 51px;
-    background-image: url(../img/icon_calendar.png);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 56px 56px;
-    flex-shrink: 0;
-}
-
-.add-trak-subtasks {
-    height: 110px;
-}
-
-.add-task-subtasks-input {
-    height: 51px;
-}
-
-.add-task-subtasks-checkbox {
-    gap: 20px;
-}
-
-.checkbox-input {
-    height: 16px;
-    width: 16px;
-}
-
-.dropdown-menu {
-    position: relative !important;
-    z-index: 1000;
-    margin-top: -56px !important;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-}
-
-.add-task-subtasks-checkbox p {
-    height: 19px;
-    font-size: 16px;
-    margin: 0;
-}
-
-.add-task-form-btn {
-    margin-left: 48px;
-    margin-top: 245px;
-    height: 55px;
-    width: 348px;
-    gap: 25px;
-}
-
-.add-task-form-btn-clear {
+.clear-btn {
+    display: flex;
     width: 136px;
     height: 55px;
     padding: 18px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
     border-radius: 10px;
+    background-color: white;
     border: 1px solid #2A3647;
-    font-size: 20px;
-    line-height: 120%;
 }
 
-.add-task-form-btn-clear:hover {
-    border: 1px solid #29ABE2;
+.clear-btn:hover {
+    border-color: #29ABE2;
     color: #29ABE2;
 }
 
-.add-task-form-btn-create {
-    height: 55px;
-    padding: 18px 15px;
-    border-radius: 10px;
-    background: #2A3647;
-    color: #FFF;
-    font-size: 21px;
-    line-height: 120%;
+.clear-btn:hover svg path {
+    stroke: #29ABE2;
 }
 
-.add-task-form-btn-create:hover {
-    background: #29ABE2;
+
+.create-btn {
+    display: flex;
+    height: 55px;
+    padding: 18px 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    background: #2A3647;
+    color: white;
+}
+
+.create-btn:hover {
+    background-color: #29ABE2;
     border: #29ABE2;
 }
 
-.add-task-category-dropdown {
-    height: 51px;
+.form-btn {
+    margin-top: 150px;
+    margin-left: 78px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
 }
 
-.add-task-assigned-dropdown {
-    width: 422px;
-    height: 51px;
-    gap: 10px;
-    border-radius: 10px;
-    background: #FFF;
-    font-size: 20px;
-    font-weight: 400;
+.category-btn {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 24px;
 }
 
-.dropdown-menu-open {
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
+.custom-circle {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 24px;
 }
 
-
-.low-active {
-    background-color: #7AE229 !important;
+.urgent-active {
+    background-color: #FF3D00 !important;
     color: white;
 }
 
@@ -265,45 +259,7 @@
     color: white;
 }
 
-.urgent-active {
-    background-color: #FF3D00 !important;
+.low-active {
+    background-color: #7AE229 !important;
     color: white;
 }
-
-
-.add-task-category input {
-    display: flex;
-    width: 422px;
-    height: 51px;
-    padding: 18px 21px;
-    align-items: center;
-    gap: 10px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1;
-    background: #FFF;
-}
-
-.add-task-subtasks-input-container {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dismiss-button,
-  .create-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 6px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .dismiss-button {
-    left: 4px;
-    margin-left: 342px
-  }
-  
-  .create-button {
-    right: 4px;
-  }
