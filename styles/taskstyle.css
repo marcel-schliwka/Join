@@ -474,6 +474,13 @@ li {
 }
 
 
+.category-dropdown-items:hover {
+    background-color: lightgray;
+}
+
+.contact-item-container:hover {
+    background-color: lightgray;
+}
 
 .contacts {
     margin-top: -15px;

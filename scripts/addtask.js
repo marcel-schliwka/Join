@@ -1,3 +1,37 @@
+
+
+
+
+/**
+ * TO-DO
+ * 
+ * Aktuelles Datum bekommen um das als mindestwert zu setzen.
+ * Assigned to Container d-none usw bei eingabe eines neuen Contacts + Aufnahmee des Kontaktes + wieder verschwinden lassen -> umstellung Input
+ * Category-Overflow aktuell verbuggt, wenn nicht in den Developer-Tools unterwegs
+ * Daten von Storage bekommen => Anhand dessen ID für jede To Do vergeben
+ * Dokumentation vervollständigen
+ * Daten auf den Server pushen => Categorie abklären: Entweder löschen ermöglichen oder nur in die Tasks pushen aber nicht in die categorys
+ * responsiveness
+ * 
+ */
+
+
+
+
+
+
+
+
+
+let assigned = [];
+let newSubtasks = [];
+let subtasks = [];
+let currentCategory;
+let currentPrio;
+let tasks = [];
+
+
+
 let getContacts = [
   {
     name: 'Max Mustermann'
@@ -22,11 +56,7 @@ let categorys = [
   }
 ];
 
-let assigned = [];
-let newSubtasks = [];
-let subtasks = [];
-let currentCategory;
-let currentPrio;
+
 
 function init() {
   renderContacts();
@@ -34,20 +64,6 @@ function init() {
   renderSubtasks();
 }
 
-let tasks = [
-  {
-    id: 0,
-    titel: '',
-    description: '',
-    status: '',
-    category: '',
-    categoryColor: '',
-    assigned: [],
-    date: '',
-    prio: '',
-    subtasks: []
-  }
-];
 
 
 
@@ -66,15 +82,19 @@ function addTask() {
   let category = document.querySelector('.category-input').innerText;
   let selectedSubtasks = newSubtasks;
 
-
-  console.log(titel);
-  console.log(description);
-  console.log(date);
-  console.log(color);
-  console.log(prio);
-  console.log(assignedTo);
-  console.log(category);
-  console.log(selectedSubtasks);
+  let newTask = {
+    titel: titel,
+    description: description,
+    status: 'to do',
+    //id: storagetasks.length
+    category: category,
+    categoryColor: color,
+    assigned: assignedTo,
+    date: date,
+    prio: prio,
+    subtasks: selectedSubtasks
+  };
+  tasks.push(newTask);
 }
 
 
@@ -327,7 +347,7 @@ function getSubtasks() {
     const subCb = subtaskCheckboxes[i];
     const subCbValidation = subCb.getAttribute('checked');
     if (subCbValidation == 'true') {
-      newSubtasks.push(subCb.parentNode.parentNode.firstElementChild);
+      newSubtasks.push(subCb.parentNode.parentNode.children[1].innerText);
     }
   }
 }
@@ -399,13 +419,13 @@ function changeCheckbox(i) {
  * 
  */
 function clearAll() {
-  const categoryContainer = document.getElementById('category-container');
+  const categoryContainer = document.getElementById('category-input');
   const categoryBtn = document.getElementById('category-button');
   document.getElementById('urgentBtn').classList.remove('urgent-active');
   document.getElementById('mediumBtn').classList.remove('medium-active');
   document.getElementById('lowBtn').classList.remove('low-active');
-  categoryContainer.innerHTML = generateCategoryInputHTML();
-  categoryBtn.innerHTML = generateCategoryButtonHTML();
+  categoryContainer.innerHTML = generateBasicCategoryInputHTML();
+  categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
   currentPrio;
   subtasks = [];
   newSubtasks = [];
@@ -516,7 +536,7 @@ function generateAssigendButtonHTML() {
 //Generates the User option, when the dropdown menu "Assigned to" (You) gets opend
 function generateUserAssignedHTML() {
   return `
-  <div>
+  <div class="contact-item-container">
     <li class="contact-item">You<a onclick="changeCheckbox(0)"><img class="checkboxImg cursor-p" id="checkboxImg0" src="./img/checkbox.png"></a></li>
   </div>
   `;
@@ -525,7 +545,7 @@ function generateUserAssignedHTML() {
 //Generates new HTML for rendering the aviable contacts + the newly added one
 function renderContactsHTML(contact, i) {
   return `
-    <div>
+    <div class="contact-item-container">
       <li class="contact-item">${contact['name']} <a onclick="changeCheckbox(${i + 1})"><img class="checkboxImg cursor-p" id="checkboxImg${i + 1}" src="./img/checkbox.png"></a></li>
     </div>
     `;
