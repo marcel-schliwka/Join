@@ -45,3 +45,8 @@
 .height40Px {
     height: 40px;
 }
+
+#todo, #inProgress, #awaitingFeedback, #done {
+    border: 2px dashed lightgrey;
+    height: 100%;
+}

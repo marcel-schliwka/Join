@@ -76,25 +76,25 @@
                     <div class="bold">To do</div>
                     <div class="cursorPointer"><img src="./img/plusButton.svg" alt="plus"></div>
                 </div>
-                <div id="todo"></div>
+                <div ondrop="moveTo('in progress')" ondragover="allowDrop(event)" id="todo"></div>
             </div>
             <div>
                 <div class="d-flex justify-content-between">
                     <div class="bold">In Progress</div>
                     <div class="cursorPointer"><img src="./img/plusButton.svg" alt="plus"></div>
                 </div>
-                <div>Content</div>
+                <div ondrop="moveTo('todo')" ondragover="allowDrop(event)" id="inProgress"></div>
             </div>
             <div>
                 <div class="d-flex justify-content-between">
                     <div class="bold">Awaiting Feedback</div>
                     <div class="cursorPointer"><img src="./img/plusButton.svg" alt="plus"></div>
                 </div>
-                <div>Content</div>
+                <div id="awaitingFeedback"></div>
             </div>
             <div>
                 <div class="bold">Done</div>
-                <div>Content</div>
+                <div id="done"></div>
             </div>
         </div>
     </div>
