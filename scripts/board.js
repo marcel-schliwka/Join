@@ -64,9 +64,9 @@ let tasks = [
 const searchInput = document.getElementById('boardInput');
 console.log(searchInput);
 
-searchInput.addEventListener('keyup', (e) => {
-    console.log(e);
-});
+// searchInput.addEventListener('keyup', (e) => {
+//     console.log(e);
+// });
 
 let currentDraggedElement;
 
