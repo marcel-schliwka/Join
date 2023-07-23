@@ -65,6 +65,16 @@ function addTask() {
   let assignedTo = assigned;
   let category = currentCategory;
   let selectedSubtasks = newSubtasks;
+
+
+  console.log(titel);
+  console.log(description);
+  console.log(date);
+  console.log(color);
+  console.log(prio);
+  console.log(assignedTo);
+  console.log(category);
+  console.log(selectedSubtasks);
 }
 
 
@@ -129,20 +139,31 @@ function addNewCategory() {
   let color = document.querySelector('.colorpicker').value;
   let category = document.getElementById('category-input');
   let categoryBtn = document.getElementById('category-button');
+  let hiddenError = document.getElementById('hidden-error');
 
-  if (input !== '' && color !== undefined) {
+  if (input == '' && color == '') {
+    hiddenError.innerText = 'Oops.. something went wrong';
+    hiddenError.classList.remove('d-none');
+  } else if (input == '') {
+    hiddenError.innerText = 'You need to type a new category';
+    hiddenError.classList.remove('d-none');
+  } else if (color == '') {
+    hiddenError.innerText = 'You need to pick a color';
+    hiddenError.classList.remove('d-none');
+  } else {
+    hiddenError.innerText = '';
+    hiddenError.classList.add('d-none');
     categorys.push({
       name: input,
       color: color
     });
     renderCategorys();
+    category.innerHTML = generateBasicCategoryInputHTML();
+    categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
+    let index = categorys.length;
+    category.innerHTML = generateSelectedCategoryHTML(categorys, index - 1);
   }
-  category.innerHTML = generateBasicCategoryInputHTML();
-  categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
-  let index = categorys.length;
-  category.innerHTML = generateSelectedCategoryHTML(categorys, index - 1)
 }
-
 
 
 function toggleCatgoryMenu() {
