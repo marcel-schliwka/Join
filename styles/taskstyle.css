@@ -345,7 +345,7 @@ form textarea {
     border-radius: 50%;
     background-color: rgba(0, 0, 0, 0.10);
     font-size: 0px;
-    margin-right: 5px;
+    margin-right: 8px;
 }
 
 .generated-Btn-Container {
@@ -487,3 +487,48 @@ li {
     border-top-right-radius: 0px;
 }
 
+.color-container button {
+    border-radius: 50% !important;
+    height: 16px !important;
+    width: 16px !important;
+}
+
+.color-container input {
+    background-color: #00000068 !important;
+    border-radius: 50% !important;
+    height: 10px !important;
+    width: 10px !important;
+}
+
+.color-container {
+    display: flex;
+    align-items: center;
+    
+}
+
+.you-own-color {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.btn-seperator {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.cancel-btn {
+    margin: 0;
+    padding: 0;
+}
+
+.check-btn {
+    margin: 0;
+    padding: 0;
+}
+
+.check-btn img {
+    object-fit: contain;
+    height: 21px;
+}
