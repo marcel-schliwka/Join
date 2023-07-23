@@ -296,6 +296,7 @@ function showTopDown(message) {
 }
 
 function guestLogin() {
+  localStorage.setItem('activeUser', 'guest');
   window.location.href = `summary.html?name='Guest'`;
 }
 
