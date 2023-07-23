@@ -49,13 +49,6 @@ let tasks = [
 ];
 
 
-document.addEventListener('coloris:pick', event => {
-  document.querySelector('.colorpicker').style.backgroundColor = event.detail.color;
-});
-
-document.addEventListener('coloris:change', event => {
-  document.querySelector('.colorpicker').style.backgroundColor = event.detail.color;
-});
 
 
 function addTask() {
@@ -72,15 +65,6 @@ function addTask() {
   let assignedTo = assigned;
   let category = currentCategory;
   let selectedSubtasks = newSubtasks;
-
-  console.log('Titel: ', titel);
-  console.log('Description: ', description);
-  console.log('Date: ', date);
-  console.log('Prio: ', prio);
-  console.log('Assigned: ', assignedTo);
-  console.log('Category: ', category);
-  console.log('Subtasks', selectedSubtasks);
-  console.log('Color ', color);
 }
 
 
@@ -108,179 +92,41 @@ function getTaskPrio(button, priority) {
   currentPrio = priority;
 }
 
-function changeToInput(containerId, buttonId) {
-  let cId = document.getElementById(containerId);
-  let bId = document.getElementById(buttonId);
-  cId.innerHTML = '';
-  bId.innerHTML = '';
 
-  if (cId.id.includes('category-input')) {
-    cId.innerHTML += generateCategoryInputHTML();
-    bId.innerHTML += generateCategoryButtonHTML();
-    document.querySelector('.colorpicker').click();
+/**
+ * Category Section
+*/
 
+/**
+ * This eventslistener change the color when a color gets selected
+ */
+document.addEventListener('coloris:pick', event => {
+  document.querySelector('.colorpicker').style.backgroundColor = event.detail.color;
+});
 
-  } else if (cId.id.includes('assigned-input')) {
-    cId.innerHTML += generateAssignedInputHTML();
-    bId.innerHTML += generateAssigendButtonHTML();
-    
-  } else {
-    bId.innerHTML += generateSubtaskButtonHTML();
-    cId.innerHTML += generateSubtaskInputHTML();
-  }
-}
+document.addEventListener('coloris:change', event => {
+  document.querySelector('.colorpicker').style.backgroundColor = event.detail.color;
+});
 
 
+/**
+ * 
+ * This function gets called, when the task gets generated
+ * it pushes the color value && the selected category into the category-object
+ * 
+ */
 function addNewCategory() {
   let input = document.getElementById('generatedInput').value;
   let color = document.querySelector('.colorpicker').value;
-  if (!input == '' || !color == undefined) {
-    // Do nothing
-  } else {
+  if (input !== '' && color !== undefined) {
     categorys.push({
       name: input,
       color: color
-    })
-  }
-  renderCategorys();
-}
-
-
-function renderContacts() {
-  let contacts = document.getElementById('renderContacts');
-  contacts.innerHTML = '';
-  contacts.innerHTML += `
-  <div>
-    <li class="contact-item">You<a onclick="changeCheckbox(0)"><img class="checkboxImg cursor-p" id="checkboxImg0" src="./img/checkbox.png"></a></li>
-  </div>
-  `;
-
-  for (let i = 0; i < getContacts.length; i++) {
-    const contact = getContacts[i];
-    contacts.innerHTML += `
-    <div>
-      <li class="contact-item">${contact['name']} <a onclick="changeCheckbox(${i + 1})"><img class="checkboxImg cursor-p" id="checkboxImg${i + 1}" src="./img/checkbox.png"></a></li>
-    </div>
-    `;
-  }
-
-  contacts.innerHTML += `
-  <div>
-    <li onclick="changeToInput('assigned-input', 'assigned-button')" class="contact-item">Invite new contact <img class="cursor-p"src="./img/contacts_black.png"></li>
-  </div>
-  `;
-}
-
-function changeCheckbox(i) {
-  let checkboxImg = document.getElementById(`checkboxImg${i}`);
-
-  if (checkboxImg.getAttribute('src') === './img/checkbox.png') {
-    checkboxImg.src = './img/checkbox_checked.png'
-  } else {
-    checkboxImg.src = './img/checkbox.png'
+    });
+    renderCategorys();
   }
 }
 
-
-
-function getAssignedContacts() {
-  let test = document.querySelectorAll('.checkboxImg');
-  for (let i = 0; i < test.length; i++) {
-    const t = test[i];
-    const source = t['currentSrc'];
-    if (source.includes('/img/checkbox_checked.png')) {
-      let index = i;
-      assigned.push(getContacts[index]['name']);
-    }
-  }
-}
-
-function renderCategorys() {
-  let category = document.getElementById('renderCategorys');
-  category.innerHTML = '';
-  category.innerHTML = generateAddNewCategoryHTML();
-
-  for (let i = 0; i < categorys.length; i++) {
-    const cat = categorys[i];
-    category.innerHTML += renderCategorysHTML(i, cat);
-  }
-}
-
-function useCategory(i) {
-  let selection = document.querySelector('.category-input');
-  let category = document.getElementById('renderCategorys');
-  let categoryContainer = document.getElementById('category-container');
-  selection.innerHTML = `<div>
-  ${categorys[i]['name']} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-  <circle cx="10" cy="10.5" r="9" fill="${categorys[i]['color']}" stroke="white" stroke-width="2" />
-</svg>
-  </div>`;
-  currentCategory = selection.innerText;
-  category.classList.add('d-none')
-  categoryContainer.classList.remove('remove-border');
-}
-
-
-function clearInput(element) {
-  let input = element.parentNode.parentNode.parentNode.querySelector('input');
-  input.value = '';
-}
-
-
-function addSubtask() {
-  let input = document.getElementById('generatedSubtaskInput').value;
-  if (input !== '') {
-    subtasks.push(input);
-  }
-  renderSubtasks();
-  let subtasksInput = document.getElementById('subtasks-input');
-  let subtasksBtn = document.getElementById('subtasks-button');
-  subtasksInput.innerHTML = generateBasicSubtaskInputHTML();
-  subtasksBtn.innerHTML = generateBasicSubtaskButtonHTML();
-}
-
-
-
-
-function renderSubtasks() {
-  let content = document.getElementById('subtask-content');
-  let buttonContainer = document.getElementById('form-btn-container');
-  content.innerHTML = '';
-  for (let i = 0; i < subtasks.length; i++) {
-    const subt = subtasks[i];
-    content.innerHTML += generateNewSubtaskHTML(i, subt);
-    let margin = 150;
-    let calculatedMargin = margin - (29 * [i + 1])
-    margin = calculatedMargin;
-    if (margin > 39) {
-      buttonContainer.style.marginTop = margin;
-    }
-  }
-}
-
-function changeSubtaskCheckbox(i) {
-  let checkboxImg = document.getElementById(`subtask-checkbox${i}`);
-
-  if (checkboxImg.getAttribute('src') === './img/checkbox.png') {
-    checkboxImg.src = './img/checkbox_checked.png'
-    checkboxImg.setAttribute('checked', 'true');
-  } else {
-    checkboxImg.src = './img/checkbox.png'
-    changeCheckbox.setAttribute('checked', 'false')
-  }
-}
-
-
-function getSubtasks() {
-  let test = document.querySelectorAll('.subtaskCheckboxImg');
-  for (let i = 0; i < test.length; i++) {
-    const t = test[i];
-    const ti = t.getAttribute('checked');
-    if (ti == 'true') {
-      newSubtasks.push(t.parentNode.parentNode.firstElementChild.innerText);
-    }
-  }
-}
 
 
 function toggleCatgoryMenu() {
@@ -305,6 +151,31 @@ function toggleCatgoryMenu() {
   }
 }
 
+function renderCategorys() {
+  let category = document.getElementById('renderCategorys');
+  category.innerHTML = '';
+  category.innerHTML = generateAddNewCategoryHTML();
+
+  for (let i = 0; i < categorys.length; i++) {
+    const cat = categorys[i];
+    category.innerHTML += renderCategorysHTML(i, cat);
+  }
+}
+
+function useCategory(i) {
+  let selection = document.querySelector('.category-input');
+  let category = document.getElementById('renderCategorys');
+  let categoryContainer = document.getElementById('category-container');
+  selection.innerHTML = generateSelectedCategoryHTML(categorys, i);
+  currentCategory = selection.innerText;
+  category.classList.add('d-none')
+  categoryContainer.classList.remove('remove-border');
+}
+
+/**
+ * ASSIGNED
+ */
+
 function toggleAssigndMenu() {
   let contacts = document.getElementById('contact-container');
   let contactContainer = document.getElementById('assigned-container');
@@ -328,13 +199,66 @@ function toggleAssigndMenu() {
   }
 }
 
+function getAssignedContacts() {
+  let test = document.querySelectorAll('.checkboxImg');
+  for (let i = 0; i < test.length; i++) {
+    const t = test[i];
+    const source = t['currentSrc'];
+    if (source.includes('/img/checkbox_checked.png')) {
+      let index = i;
+      assigned.push(getContacts[index]['name']);
+    }
+  }
+}
 
-function clearAll() {
-  subtasks = [];
-  newSubtasks = [];
-  currentCategory;
-  renderCategorys();
+
+function renderContacts() {
+  let contacts = document.getElementById('renderContacts');
+  contacts.innerHTML = '';
+  contacts.innerHTML += generateUserAssignedHTML();
+
+  for (let i = 0; i < getContacts.length; i++) {
+    const contact = getContacts[i];
+    contacts.innerHTML += renderContactsHTML(contact, i);
+  }
+
+  contacts.innerHTML += generateAddNewContact();
+}
+
+
+
+/**
+ * SUBTASKS
+ */
+
+
+function addSubtask() {
+  let input = document.getElementById('generatedSubtaskInput').value;
+  if (input !== '') {
+    subtasks.push(input);
+  }
   renderSubtasks();
+  let subtasksInput = document.getElementById('subtasks-input');
+  let subtasksBtn = document.getElementById('subtasks-button');
+  subtasksInput.innerHTML = generateBasicSubtaskInputHTML();
+  subtasksBtn.innerHTML = generateBasicSubtaskButtonHTML();
+}
+
+
+function renderSubtasks() {
+  let content = document.getElementById('subtask-content');
+  let buttonContainer = document.getElementById('form-btn-container');
+  content.innerHTML = '';
+  for (let i = 0; i < subtasks.length; i++) {
+    const subt = subtasks[i];
+    content.innerHTML += generateNewSubtaskHTML(i, subt);
+    let margin = 150;
+    let calculatedMargin = margin - (29 * [i + 1])
+    margin = calculatedMargin;
+    if (margin > 39) {
+      buttonContainer.style.marginTop = margin;
+    }
+  }
 }
 
 
@@ -346,71 +270,106 @@ function changeToSubtask() {
 }
 
 
+function changeSubtaskCheckbox(i) {
+  let checkboxImg = document.getElementById(`subtask-checkbox${i}`);
+
+  if (checkboxImg.getAttribute('src') === './img/checkbox.png') {
+    checkboxImg.src = './img/checkbox_checked.png'
+    checkboxImg.setAttribute('checked', 'true');
+  } else {
+    checkboxImg.src = './img/checkbox.png'
+    changeCheckbox.setAttribute('checked', 'false')
+  }
+}
 
 
+function getSubtasks() {
+  let subtaskCheckboxes = document.querySelectorAll('.subtaskCheckboxImg');
+  for (let i = 0; i < subtaskCheckboxes.length; i++) {
+    const subCb = subtaskCheckboxes[i];
+    const subCbValidation = subCb.getAttribute('checked');
+    if (subCbValidation == 'true') {
+      newSubtasks.push(subCb.parentNode.parentNode.firstElementChild.innerText);
+    }
+  }
+}
+
+/**
+ * Helper function Section
+ */
 
 
 /**
  * 
- * This section generates subtask templates
- *
- * @returns Subtask HTML-templates
-*/
-
-function generateSubtaskInputHTML() {
-  return `
-    <div>
-      <input id="generatedSubtaskInput" placeholder="Enter a new subtask" class="ol-none b-none">
-    </div>
-    `;
+ * @param {id} containerId 
+ * @param {id} buttonId 
+ * This function gets the id from the input-container && button-container
+ * according to the clicked container the new input field & buttons get generated
+ * 
+ */
+function changeToInput(containerId, buttonId) {
+  let cId = document.getElementById(containerId);
+  let bId = document.getElementById(buttonId);
+  cId.innerHTML = '';
+  bId.innerHTML = '';
+  if (cId.id.includes('category-input')) {
+    cId.innerHTML += generateCategoryInputHTML();
+    bId.innerHTML += generateCategoryButtonHTML();
+    document.querySelector('.colorpicker').click();
+  } else if (cId.id.includes('assigned-input')) {
+    cId.innerHTML += generateAssignedInputHTML();
+    bId.innerHTML += generateAssigendButtonHTML();
+  } else {
+    bId.innerHTML += generateSubtaskButtonHTML();
+    cId.innerHTML += generateSubtaskInputHTML();
+  }
 }
 
 
-function generateSubtaskButtonHTML() {
-  return `
-    <div class="generated-Btn-Container">
-    <button onclick="clearInput(this); changeToSubtask()" type="button"><img src="./img/cancel_icon.png"></button>
-    <svg class="btn-seperator" xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
-    <path d="M1 0V31" stroke="#D1D1D1"/>
-    </svg>
-    <button onclick="addSubtask()" type="button"><img src="./img/check_black_icon.png"></button>
-    </div>`;
+/**
+ * 
+ * This function gets the id from an input-field and gets called via onclick
+ * onclick the input field gets emptied
+ * 
+ * @param {id} element 
+ */
+function clearInput(element) {
+  let input = element.parentNode.parentNode.parentNode.querySelector('input');
+  input.value = '';
 }
 
 
-function generateBasicSubtaskInputHTML() {
-  return `
-  <input onclick="changeToInput('subtasks-input', 'subtasks-button')" class="subtask-input  ol-none" type="text"
-  placeholder="Add new subtask">
-  `;
+/**
+ * 
+ * This function gets the id from the checkbox-images.
+ * Onclick the src gets changed to show a checked checkbox
+ * @param {integer} i 
+ */
+function changeCheckbox(i) {
+  let checkboxImg = document.getElementById(`checkboxImg${i}`);
+  if (checkboxImg.getAttribute('src') === './img/checkbox.png') {
+    checkboxImg.src = './img/checkbox_checked.png'
+  } else {
+    checkboxImg.src = './img/checkbox.png'
+  }
 }
 
 
-function generateBasicSubtaskButtonHTML() {
-  return `
-  <div class="subtasks-button-container" id="subtasks-button">
-    <button type="button"><img src="./img/plus_icon.png"></button>
-  </div>
-  `;
-}
-
-
-function generateNewSubtaskHTML(i, subt) {
-  rturn `
-    <div class="generated-subtask-container w-422">
-    <div onclick="changeSubtaskCheckbox(${i})"><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${i}" src="./img/checkbox.png"></div>
-    <div class="font16" id="subtask${i}">${subt}</div>
-    </div>
-    `;
-}
-
-
-function renderCategorysHTML(i, cat) {
-  return `<div class="category-dropdown-items" onclick="useCategory(${i})">
-  <li class="font20 category-li-item"">${cat['name']} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-  <circle cx="10" cy="10.5" r="9" fill="${cat['color']}" stroke="white" stroke-width="2" />
-</svg></li>
-  </div>`;
+/**
+ * This function gets called, when clicked on the Clear-Button
+ * If clicked, it clears the Arrays Subtasks and deletes the current Category
+ * 
+ */
+function clearAll() {
+  const categoryContainer = document.getElementById('category-container');
+  const categoryBtn = document.getElementById('category-button')
+  categoryContainer.innerHTML = generateCategoryInputHTML();
+  categoryBtn.innerHTML = generateCategoryButtonHTML();
+  subtasks = [];
+  newSubtasks = [];
+  currentCategory;
+  renderCategorys();
+  renderSubtasks();
 }
 
 
@@ -421,6 +380,7 @@ function renderCategorysHTML(i, cat) {
  * @returns Category HTML-templates
 */
 
+//Generates the input field, when clicked on "Add new Category" 
 function generateCategoryInputHTML() { 
   return `
   <div>
@@ -429,7 +389,7 @@ function generateCategoryInputHTML() {
   `;
 }
 
-
+//Generates the new buttons, when clicked on "Add new Category" 
 function generateCategoryButtonHTML() {
   return `
   <div class="generated-Btn-Container">
@@ -442,7 +402,7 @@ function generateCategoryButtonHTML() {
   </div>`;
 }
 
-
+//Generates the dropdown menu option "Add new category" before the aviable categorys gets renderd
 function generateAddNewCategoryHTML() {
   return `
   <div onclick="changeToInput('category-input', 'category-button')" class="category-generated-list font20">
@@ -451,7 +411,37 @@ function generateAddNewCategoryHTML() {
   `;
 }
 
+//Generates new HTML for rendering the aviable categorys + the newly added one
+function renderCategorysHTML(i, cat) {
+  return `<div class="category-dropdown-items" onclick="useCategory(${i})">
+  <li class="font20 category-li-item"">${cat['name']} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+  <circle cx="10" cy="10.5" r="9" fill="${cat['color']}" stroke="white" stroke-width="2" />
+</svg></li>
+  </div>`;
+}
 
+//If a Category gets selected, the category gets written in the innerText from the category dropdown menu
+function generateSelectedCategoryHTML(categorys, i) {
+  return `<div>
+  ${categorys[i]['name']} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+  <circle cx="10" cy="10.5" r="9" fill="${categorys[i]['color']}" stroke="white" stroke-width="2" />
+</svg>
+  </div>`;
+}
+
+//Generates the basic input field for categorys, from the HTML
+function generateBasicCategoryInputHTML() {
+  return `
+  <div class="category-input cursor-p" id="category-input">
+  <span>Select task category</span>`;
+}
+
+//Generates the basic button for categorys, from the HTML
+function generateBasicCategoryButtonHTML() {
+  return `
+  <button type="button"><img src="./img/arrow_down.png"></button>
+  `;
+}
 
 /**
  * 
@@ -460,6 +450,7 @@ function generateAddNewCategoryHTML() {
  * @returns Assigned HTML-templates
 */
 
+//Generates the input field, when clicked on "Invite new contact"
 function generateAssignedInputHTML() { 
   return `
   <div>
@@ -468,6 +459,7 @@ function generateAssignedInputHTML() {
   `;
 }
 
+//Generates the buttons, when clicked on "Invite new contact"
 function generateAssigendButtonHTML() {
   return `
   <div class="generated-Btn-Container">
@@ -477,4 +469,86 @@ function generateAssigendButtonHTML() {
   </svg>
   <button class="check-btn" type="button"><img src="./img/check_black_icon.png"></button>
   </div>`;
+}
+
+//Generates the User option, when the dropdown menu "Assigned to" (You) gets opend
+function generateUserAssignedHTML() {
+  return `
+  <div>
+    <li class="contact-item">You<a onclick="changeCheckbox(0)"><img class="checkboxImg cursor-p" id="checkboxImg0" src="./img/checkbox.png"></a></li>
+  </div>
+  `;
+}
+
+//Generates new HTML for rendering the aviable contacts + the newly added one
+function renderContactsHTML(contact, i) {
+  return `
+    <div>
+      <li class="contact-item">${contact['name']} <a onclick="changeCheckbox(${i + 1})"><img class="checkboxImg cursor-p" id="checkboxImg${i + 1}" src="./img/checkbox.png"></a></li>
+    </div>
+    `;
+}
+
+//Generates the input field, when clicked on "Invite new contact" to insert a new User Mail
+function generateAddNewContact() {
+  return `
+  <div>
+    <li onclick="changeToInput('assigned-input', 'assigned-button')" class="contact-item">Invite new contact <img class="cursor-p"src="./img/contacts_black.png"></li>
+  </div>
+  `;
+}
+
+/**
+ * 
+ * This section generates subtask templates
+ *
+ * @returns Subtask HTML-templates
+*/
+
+//Generates the input field, when clicked on "Add new subtask"
+function generateSubtaskInputHTML() {
+  return `
+    <div>
+      <input id="generatedSubtaskInput" placeholder="Enter a new subtask" class="ol-none b-none">
+    </div>
+    `;
+}
+
+//Generates the new buttons inside the input field, when clicked on "Add new subtask"
+function generateSubtaskButtonHTML() {
+  return `
+    <div class="generated-Btn-Container">
+    <button onclick="clearInput(this); changeToSubtask()" type="button"><img src="./img/cancel_icon.png"></button>
+    <svg class="btn-seperator" xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
+    <path d="M1 0V31" stroke="#D1D1D1"/>
+    </svg>
+    <button onclick="addSubtask()" type="button"><img src="./img/check_black_icon.png"></button>
+    </div>`;
+}
+
+//Generates the basic-styled "Add new subtask" input field (from html), when new subtask was added
+function generateBasicSubtaskInputHTML() {
+  return `
+  <input onclick="changeToInput('subtasks-input', 'subtasks-button')" class="subtask-input  ol-none" type="text"
+  placeholder="Add new subtask">
+  `;
+}
+
+//Generates the basic-styled "Add new subtask" buttons (from html), when new subtask was added
+function generateBasicSubtaskButtonHTML() {
+  return `
+  <div class="subtasks-button-container" id="subtasks-button">
+    <button type="button"><img src="./img/plus_icon.png"></button>
+  </div>
+  `;
+}
+
+//Generates new HTML for rendering the newly added subtasks
+function generateNewSubtaskHTML(i, subt) {
+  return `
+    <div class="generated-subtask-container w-422">
+    <div onclick="changeSubtaskCheckbox(${i})"><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${i}" src="./img/checkbox.png"></div>
+    <div class="font16" id="subtask${i}">${subt}</div>
+    </div>
+    `;
 }
