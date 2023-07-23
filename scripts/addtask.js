@@ -36,6 +36,7 @@ function init() {
 
 let tasks = [
   {
+    id: 0,
     titel: '',
     description: '',
     status: '',
@@ -58,7 +59,6 @@ function addTask() {
   let date = document.getElementById('task-date').value;
   let prio = currentPrio;
   let color = document.querySelector('.colorpicker').value;
-
   if (prio == undefined) {
     prio = 'low';
   }
@@ -68,6 +68,8 @@ function addTask() {
 }
 
 
+
+
 function getTaskPrio(button, priority) {
   const buttons = document.querySelectorAll('.prioBtn');
   let images = {
@@ -75,7 +77,6 @@ function getTaskPrio(button, priority) {
     medium: document.getElementById('mediumImg'),
     urgent: document.getElementById('urgentImg')
   };
-
   buttons.forEach(function (btn) {
     if (btn.classList.contains(priority + '-active')) {
       btn.classList.remove(priority + '-active');
@@ -95,10 +96,18 @@ function getTaskPrio(button, priority) {
 
 /**
  * Category Section
+ * 
 */
 
+function clearCategory() {
+  let category = document.getElementById('category-input');
+  let categoryBtn = document.getElementById('category-button');
+  category.innerHTML = generateBasicCategoryInputHTML();
+  categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
+}
+
 /**
- * This eventslistener change the color when a color gets selected
+ * This eventslistener change the color inside the HTML when a color gets selected
  */
 document.addEventListener('coloris:pick', event => {
   document.querySelector('.colorpicker').style.backgroundColor = event.detail.color;
@@ -118,6 +127,9 @@ document.addEventListener('coloris:change', event => {
 function addNewCategory() {
   let input = document.getElementById('generatedInput').value;
   let color = document.querySelector('.colorpicker').value;
+  let category = document.getElementById('category-input');
+  let categoryBtn = document.getElementById('category-button');
+
   if (input !== '' && color !== undefined) {
     categorys.push({
       name: input,
@@ -125,6 +137,10 @@ function addNewCategory() {
     });
     renderCategorys();
   }
+  category.innerHTML = generateBasicCategoryInputHTML();
+  categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
+  let index = categorys.length;
+  category.innerHTML = generateSelectedCategoryHTML(categorys, index - 1)
 }
 
 
@@ -362,9 +378,13 @@ function changeCheckbox(i) {
  */
 function clearAll() {
   const categoryContainer = document.getElementById('category-container');
-  const categoryBtn = document.getElementById('category-button')
+  const categoryBtn = document.getElementById('category-button');
+  document.getElementById('urgentBtn').classList.remove('urgent-active');
+  document.getElementById('mediumBtn').classList.remove('medium-active');
+  document.getElementById('lowBtn').classList.remove('low-active');
   categoryContainer.innerHTML = generateCategoryInputHTML();
   categoryBtn.innerHTML = generateCategoryButtonHTML();
+  currentPrio;
   subtasks = [];
   newSubtasks = [];
   currentCategory;
@@ -381,7 +401,7 @@ function clearAll() {
 */
 
 //Generates the input field, when clicked on "Add new Category" 
-function generateCategoryInputHTML() { 
+function generateCategoryInputHTML() {
   return `
   <div>
     <input id="generatedInput" placeholder="Enter new category" class="ol-none b-none">
@@ -394,7 +414,7 @@ function generateCategoryButtonHTML() {
   return `
   <div class="generated-Btn-Container">
   <input required class="coloris instance2 colorpicker" type="text" data-coloris>
-  <button onclick="clearInput(this)" type="button"><img  src="./img/cancel_icon.png"></button>
+  <button onclick="clearInput(this), clearCategory()" type="button"><img  src="./img/cancel_icon.png"></button>
   <svg class="btn-seperator" xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
   <path d="M1 0V31" stroke="#D1D1D1"/>
   </svg>
@@ -451,7 +471,7 @@ function generateBasicCategoryButtonHTML() {
 */
 
 //Generates the input field, when clicked on "Invite new contact"
-function generateAssignedInputHTML() { 
+function generateAssignedInputHTML() {
   return `
   <div>
     <input "type="email" id="generatedInput" placeholder="Contact email" class="ol-none b-none">
