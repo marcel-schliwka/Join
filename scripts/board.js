@@ -61,7 +61,13 @@ let tasks = [
     }
 ];
 
-const searchInput = document.querySelector('[data-search]');
+const searchInput = document.getElementById('boardInput');
+console.log(searchInput);
+
+searchInput.addEventListener('keyup', (e) => {
+    console.log(e);
+});
+
 let currentDraggedElement;
 
 function initBoard() {
@@ -315,7 +321,7 @@ function htmlTemplatePopUpMembers(element2) {
     `;
 }
 
-searchInput.addEventListener("input", (e) => {
-    const value = e.target.value;
-    console.log(value);
-})
+// searchInput.addEventListener("input", (e) => {
+//     const value = e.target.value;
+//     console.log(value);
+// })
