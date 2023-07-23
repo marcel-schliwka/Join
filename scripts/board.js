@@ -61,8 +61,8 @@ let tasks = [
     }
 ];
 
-const searchInput = document.getElementById('boardInput');
-console.log(searchInput);
+// const searchInput = document.getElementById('boardInput');
+// console.log(searchInput);
 
 // searchInput.addEventListener('keyup', (e) => {
 //     console.log(e);
@@ -325,3 +325,99 @@ function htmlTemplatePopUpMembers(element2) {
 //     const value = e.target.value;
 //     console.log(value);
 // })
+
+function searchTask(){
+    let search = document.getElementById('boardInput').value;
+    search = search.toLowerCase();
+    renderSearchTodo(search);
+    renderSearchInProgress(search);
+    renderSearchAwaitingFeedback(search);
+    renderSearchDone(search);
+}
+
+function renderSearchTodo(search) {
+    let stillToDo = tasks.filter(t => t['status'] == 'todo');
+    debugger;
+    document.getElementById('todo').innerHTML = '';
+
+    for (let i = 0; i < stillToDo.length; i++) {
+        let title = stillToDo[i].titel;
+        let description = stillToDo[i].description;
+        if (title.toLowerCase().includes(search) || description.toLowerCase().includes(search)) {
+                const element = stillToDo[i];
+                document.getElementById('todo').innerHTML += htmlTemplateToDo(element, i, getPriority(element));
+                
+                let idAssigned = document.getElementById(`assignedToDo${i}`);
+        
+                idAssigned.innerHTML = "";  
+        
+                for (let j = 0; j < element['assigned'].length; j++) {
+                    idAssigned.innerHTML += htmlTemplateAssignment(element, j);
+                }
+        }
+    }
+}
+
+function renderSearchInProgress(search) {
+    let stillInProgress = tasks.filter(t => t['status'] == 'in progress');
+    document.getElementById('inProgress').innerHTML = '';
+
+    for (let i = 0; i < stillInProgress.length; i++) {
+        let title = stillInProgress[i].titel;
+        let description = stillInProgress[i].description;
+        if (title.toLowerCase().includes(search) || description.toLowerCase().includes(search)) {
+                const element = stillInProgress[i];
+                document.getElementById('inProgress').innerHTML += htmlTemplateInProgress(element, i, getPriority(element));
+                
+                let idAssigned = document.getElementById(`assignedInProgress${i}`);
+        
+                idAssigned.innerHTML = "";  
+        
+                for (let j = 0; j < element['assigned'].length; j++) {
+                    idAssigned.innerHTML += htmlTemplateAssignment(element, j);
+                }
+        }
+    }
+}
+
+function renderSearchAwaitingFeedback(search) {
+    let stillAwaitingFeedback = tasks.filter(t => t['status'] == 'awaiting feedback');
+    document.getElementById('awaitingFeedback').innerHTML = '';
+    for (let i = 0; i < stillAwaitingFeedback.length; i++) {
+        let title = stillAwaitingFeedback[i].titel;
+        let description = stillAwaitingFeedback[i].description;
+        if (title.toLowerCase().includes(search) || description.toLowerCase().includes(search)) {
+            const element = stillAwaitingFeedback[i];
+            document.getElementById('awaitingFeedback').innerHTML += htmlTemplateAwaitingFeedback(element, i, getPriority(element));
+            
+            let idAssigned = document.getElementById(`assignedAwaitingFeedback${i}`);
+    
+            idAssigned.innerHTML = "";  
+    
+            for (let j = 0; j < element['assigned'].length; j++) {
+                idAssigned.innerHTML += htmlTemplateAssignment(element, j);
+            }
+        }
+    }
+}
+
+function renderSearchDone(search) {
+    let isDone = tasks.filter(t => t['status'] == 'done');
+    document.getElementById('done').innerHTML = '';
+    for (let i = 0; i < isDone.length; i++) {
+        let title = isDone[i].titel;
+        let description = isDone[i].description;
+        if (title.toLowerCase().includes(search) || description.toLowerCase().includes(search)) {
+            const element = isDone[i];
+            document.getElementById('done').innerHTML += htmlTemplateDone(element, i, getPriority(element));
+            
+            let idAssigned = document.getElementById(`assignedDone${i}`);
+    
+            idAssigned.innerHTML = "";  
+    
+            for (let j = 0; j < element['assigned'].length; j++) {
+                idAssigned.innerHTML += htmlTemplateAssignment(element, j);
+            }
+        }
+    }
+}
