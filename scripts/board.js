@@ -6,7 +6,7 @@ let tasks = [
         description: 'description1',
         category: 'category1',
         categoryColor: 'categoryColor1',
-        assigned: ['SM', 'MV'],
+        assigned: ['SM', 'MV', 'TE', 'RI'],
         date: '01.03.22',
         prio: 'urgent',
         subtasks: []
@@ -117,14 +117,17 @@ function getPriority(element) {
     let priority;
     if (element['prio'] == "urgent") {
         priority = '<img class="height40Px" src="./img/prioUrgent.svg">';
-    } else {
+    } else if (element['prio'] == "medium") {
         priority = '<img class="height40Px" src="./img/prioMedium.svg">';
-    };
+    } else {
+        priority = '<img class="height40Px" src="./img/prioLow.svg">';
+    }
+    ;
     return priority;
 }
 
 function htmlTemplateToDo(element, i, priority) {
-    return `<div draggable="true" ondragstart="startDragging(${element['id']})" class="boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+    return `<div onclick="boardOpenPopUpTask(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
                 ${element['category']}
             </div>
@@ -142,7 +145,7 @@ function htmlTemplateToDo(element, i, priority) {
 }
 
 function htmlTemplateAssignment(element, j) {
-    return `<div class="border rounded-circle p-2" style="background-color:grey">
+    return `<div class="heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:grey">
             ${element['assigned'][j]}
         </div>`;
 }
@@ -167,7 +170,7 @@ function renderAllInProgress() {
 }
 
 function htmlTemplateInProgress(element, i, priority) {
-    return `<div draggable="true" ondragstart="startDragging(${element['id']})" class="boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+    return `<div onclick="boardOpenPopUpTask(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
                 ${element['category']}
             </div>
@@ -202,7 +205,7 @@ function renderAllAwaitingFeedback() {
 }
 
 function htmlTemplateAwaitingFeedback(element, i, priority) {
-    return `<div draggable="true" ondragstart="startDragging(${element['id']})" class="boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+    return `<div onclick="boardOpenPopUpTask(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
         <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
             ${element['category']}
         </div>
@@ -236,7 +239,7 @@ function renderAllDone() {
 }
 
 function htmlTemplateDone(element, i, priority) {
-    return `<div draggable="true" ondragstart="startDragging(${element['id']})" class="boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+    return `<div onclick="boardOpenPopUpTask(${element['id']})" draggable="true" ondragstart="startDragging(${element['id']})" class="cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
         <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
             ${element['category']}
         </div>
@@ -268,6 +271,66 @@ function allowDrop(ev) {
 function moveTo(status) {
     tasks[currentDraggedElement]['status'] = status; // z.B. task mit id 1: Das Feld 'status' ändert sich von 'todo' zu 'in progress'
     updateHTML();
+}
+
+function boardOpenPopUpTask(i) {
+    let element = tasks[i];
+    document.getElementById('popUpBoard').classList.remove('dNone');
+    document.getElementById('popUpBoard').innerHTML = '';
+    document.getElementById('popUpBoard').innerHTML = htmlTemplatePopUpTask(i, getThePriority(element));
+    document.getElementById('boardTasksMembers').innerHTML = '';
+    for (let j = 0; j < element['assigned'].length; j++) {
+        const element2 = element['assigned'][j];
+        document.getElementById('boardTasksMembers').innerHTML += htmlTemplatePopUpMembers(element2);
+    }
+    
+}
+
+function boardClosePopUpTask() {
+    document.getElementById('popUpBoard').classList.add('dNone');
+}
+
+function htmlTemplatePopUpTask(i, priority) {
+    return `<div class="popUpBoardTask px-4 pt-4 pb-1 rounded-4 d-flex flex-column align-items-start">
+        <img onclick="boardClosePopUpTask()" class="boardTaskClose cursorPointer" src="./img/close.svg" alt="close">
+        <div class="boardTaskEdit d-flex">
+            <img class="cursorPointer heightWidth35Px" src="./img/deleteButton.svg" alt="delete">
+            <img class="cursorPointer heightWidth35Px" src="./img/editButton.svg" alt="edit">
+        </div>
+        <div style="background-color: grey;" class="textWhite px-3 rounded-2">category</div>
+        <div class="size3Em bold">${tasks[i]['titel']}</div>
+        <div class="pb-2">${tasks[i]['description']}</div>
+        <div class="pb-2 d-flex">
+            <div class="pe-3 bold">Due date:</div>
+            <div>${tasks[i]['date']}</div>
+        </div>
+        <div class="pb-2 d-flex align-items-center">
+            <div class="pe-3 bold">Priority:</div>
+            <div>${priority}</div>
+        </div>
+        <div>
+            <div class="pb-3 bold">Assigned to:</div>
+            <div id="boardTasksMembers"></div>
+        </div>
+    </div>`;
+}
+
+function getThePriority(element) {
+    let priority;
+    if (element['prio'] == "urgent") {
+        priority = '<img class="height35Px" src="./img/urgentPriority.png">';
+    } else if (element['prio'] == "medium") {
+        priority = '<img class="height35Px" src="./img/mediumPriority.png">';
+    } else {
+        priority = '<img class="height35Px" src="./img/lowPriority.png">';
+    }
+    ;
+    return priority;
+}
+
+function htmlTemplatePopUpMembers(element2) {
+    return `<div class="textWhite heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:grey">${element2}</div>
+    `;
 }
 
 // searchInput.addEventListener('input', (e) => {
