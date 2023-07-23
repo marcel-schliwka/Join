@@ -64,17 +64,17 @@
         </div>
 
         <label class="font20" for="assigned">Assigned to</label>
-        <div class="assigned-container font20 cursor-p">
+        <div onclick="toggleAssigndMenu()" class="assigned-container font20 cursor-p" id="assigned-container">
           <div class="assigned-input" id="assigned-input">
-            <span onclick="changeToInput('assigned-input', 'assigned-button')">Select contacts to assign</span>
+            <span>Select contacts to assign</span>
           </div>
 
           <div class="assigned-button-container" id="assigned-button">
-            <button type="button" onclick="changeToInput('assigned-input', 'assigned-button')"><img src="./img/arrow_down.png"></button>
+            <button type="button"><img src="./img/arrow_down.png"></button>
           </div>
         </div>
 
-        <div class="contacts">
+        <div class="contacts font20 d-none" id="contact-container">
           <ul id="renderContacts">
             <li>Max Mustermann <img src="./img/checkbox.png"></li>
           </ul>

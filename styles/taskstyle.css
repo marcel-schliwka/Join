@@ -327,11 +327,13 @@ form textarea {
     padding-right: 22px;
     display: flex;
     justify-content: space-between;
-    width: 422px;
+    width: 415px;
     text-decoration: none;
     margin-left: -27px;
-    padding-left: 22px;
+    padding-left: 18px;
     padding-top: 5px;
+    padding-bottom: 5px;
+    overflow-x: hidden;
 }
 
 
@@ -463,6 +465,25 @@ li {
 
 #renderCategorys {
     max-height: 150px;
-    overflow-y: auto;
+    overflow-y: scroll;
+}
+
+#renderContacts {
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+
+
+.contacts {
+    margin-top: -15px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 1px solid #D1D1D1;
+    background: #FFF;
+    border-top: none;
+    width: 422px;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }
 

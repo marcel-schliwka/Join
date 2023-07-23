@@ -108,7 +108,7 @@ function getTaskPrio(button, priority) {
   currentPrio = priority;
 }
 
-
+/*   Aktuell an Überarbeitung
 function changeToInput(containerId, buttonId) {
   let cId = document.getElementById(containerId);
   let bId = document.getElementById(buttonId);
@@ -163,7 +163,7 @@ function changeToInput(containerId, buttonId) {
     `;
   }
 }
-
+*/
 
 function addNewCategory() {
   let input = document.getElementById('generatedInput').value;
@@ -183,16 +183,26 @@ function addNewCategory() {
 function renderContacts() {
   let contacts = document.getElementById('renderContacts');
   contacts.innerHTML = '';
-
+  contacts.innerHTML += `
+  <div>
+    <li class="contact-item">You<a onclick="changeCheckbox(0)"><img class="checkboxImg cursor-p" id="checkboxImg0" src="./img/checkbox.png"></a></li>
+  </div>
+  `;
 
   for (let i = 0; i < getContacts.length; i++) {
     const contact = getContacts[i];
     contacts.innerHTML += `
     <div>
-      <li class="contact-item">${contact['name']} <a onclick="changeCheckbox(${i})"><img class="checkboxImg cursor-p" id="checkboxImg${i}" src="./img/checkbox.png"></a></li>
+      <li class="contact-item">${contact['name']} <a onclick="changeCheckbox(${i+1})"><img class="checkboxImg cursor-p" id="checkboxImg${i+1}" src="./img/checkbox.png"></a></li>
     </div>
     `;
   }
+
+  contacts.innerHTML += `
+  <div>
+    <li onclick="changeToInput('assigned-input', 'assigned-button')" class="contact-item">Invite new contact <img class="cursor-p"src="./img/contacts_black.png"></li>
+  </div>
+  `;
 }
 
 function changeCheckbox(i) {
@@ -282,7 +292,7 @@ function renderSubtasks() {
     `;
     let margin = 150;
 
-    let calculatedMargin = margin - (29 * [i])
+    let calculatedMargin = margin - (29 * [i + 1])
     margin = calculatedMargin;
     if (margin > 39) {
       buttonContainer.style.marginTop = margin;
@@ -331,6 +341,26 @@ function toggleCatgoryMenu() {
     event.stopPropagation();
   });
 }
+
+function toggleAssigndMenu() {
+  let contacts = document.getElementById('contact-container');
+  let contactContainer = document.getElementById('assigned-container');
+  contacts.classList.toggle('d-none');
+  contactContainer.classList.toggle('remove-border');
+
+  document.addEventListener('click', event => {
+    if (!contactContainer.contains(event.target)) {
+      contacts.classList.add('d-none');
+      contactContainer.classList.remove('remove-border');
+    }
+  });
+  contacts.addEventListener('click', event => {
+    event.stopPropagation();
+  });
+}
+
+
+
 
 function clearAll() {
   subtasks = [];
