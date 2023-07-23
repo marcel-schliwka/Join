@@ -23,20 +23,16 @@ let categorys = [
 ];
 
 let assigned = [];
-
 let newSubtasks = [];
 let subtasks = [];
-
-
 let currentCategory;
+let currentPrio;
 
 function init() {
   renderContacts();
   renderCategorys();
   renderSubtasks();
 }
-
-
 
 let tasks = [
   {
@@ -52,6 +48,7 @@ let tasks = [
   }
 ];
 
+
 document.addEventListener('coloris:pick', event => {
   document.querySelector('.colorpicker').style.backgroundColor = event.detail.color;
 });
@@ -59,11 +56,6 @@ document.addEventListener('coloris:pick', event => {
 document.addEventListener('coloris:change', event => {
   document.querySelector('.colorpicker').style.backgroundColor = event.detail.color;
 });
-
-
-
-
-
 
 
 function addTask() {
@@ -81,7 +73,6 @@ function addTask() {
   let category = currentCategory;
   let selectedSubtasks = newSubtasks;
 
-
   console.log('Titel: ', titel);
   console.log('Description: ', description);
   console.log('Date: ', date);
@@ -90,11 +81,8 @@ function addTask() {
   console.log('Category: ', category);
   console.log('Subtasks' , selectedSubtasks);
   console.log('Color ', color);
-
 }
 
-
-let currentPrio;
 
 function getTaskPrio(button, priority) {
   const buttons = document.querySelectorAll('.prioBtn');
@@ -121,7 +109,6 @@ function getTaskPrio(button, priority) {
 }
 
 
-
 function changeToInput(containerId, buttonId) {
   let cId = document.getElementById(containerId);
   let bId = document.getElementById(buttonId);
@@ -134,7 +121,7 @@ function changeToInput(containerId, buttonId) {
       <input id="generatedInput" placeholder="Enter new category" class="ol-none b-none">
     </div>
     `;
-    bId.innerHTML += `
+  bId.innerHTML += `
   <div class="generated-Btn-Container">
   <input class="coloris instance2 colorpicker" type="text" data-coloris>
   <button onclick="clearInput(this)" type="button"><img  src="./img/cancel_icon.png"></button>
@@ -189,12 +176,8 @@ function addNewCategory() {
       color: color
     }) 
   }
-
   renderCategorys();
 }
-
-
-
 
 
 function renderContacts() {
@@ -206,7 +189,7 @@ function renderContacts() {
     const contact = getContacts[i];
     contacts.innerHTML += `
     <div>
-      <li class="contact-item">${contact['name']} <a onclick="changeCheckbox(${i})"><img class="checkboxImg" id="checkboxImg${i}" src="./img/checkbox.png"></a></li>
+      <li class="contact-item">${contact['name']} <a onclick="changeCheckbox(${i})"><img class="checkboxImg cursor-p" id="checkboxImg${i}" src="./img/checkbox.png"></a></li>
     </div>
     `;
   }
@@ -240,14 +223,14 @@ function renderCategorys() {
   let category = document.getElementById('renderCategorys');
   category.innerHTML = '';
   category.innerHTML = `
-  <div class="custom-border w-422 category-generated-list font20">
+  <div class="category-generated-list font20">
   <li class="font20 category-li-item" onclick="changeToInput('category-input', 'category-button')">Add new category</li>
   </div>
   `;
 
   for (let i = 0; i < categorys.length; i++) {
     const cat = categorys[i];
-    category.innerHTML += `<div class="category-dropdown-items custom-border">
+    category.innerHTML += `<div class="category-dropdown-items">
     <li onclick="useCategory(${i})" class="font20 category-li-item"">${cat['name']} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
     <circle cx="10" cy="10.5" r="9" fill="${cat['color']}" stroke="white" stroke-width="2" />
   </svg></li>
@@ -266,14 +249,10 @@ function useCategory(i) {
 }
 
 
-
 function clearInput(element) {
   let input = element.parentNode.parentNode.parentNode.querySelector('input');
   input.value = '';
 }
-
-
-
 
 
 function addSubtask() {
@@ -281,7 +260,6 @@ function addSubtask() {
   subtasks.push(input);
   renderSubtasks();
 }
-
 
 function renderSubtasks() {
   let content = document.getElementById('subtask-content');
@@ -291,8 +269,8 @@ function renderSubtasks() {
     const subt = subtasks[i];
     content.innerHTML += `
     <div class="generated-subtask-container w-422">
-    <div id="subtask${i}">${subt}</div>
     <div onclick="changeSubtaskCheckbox(${i})"><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${i}" src="./img/checkbox.png"></div>
+    <div id="subtask${i}">${subt}</div>
     </div>
     `;
   }
@@ -321,5 +299,12 @@ function getSubtasks() {
       newSubtasks.push(t.parentNode.parentNode.firstElementChild.innerText);
     }
   }
+}
 
+
+function toggleCatgoryMenu() {
+  let category = document.getElementById('renderCategorys');
+  let categoryContainer = document.getElementById('category-container');
+  category.classList.toggle('d-none');
+  categoryContainer.classList.toggle('remove-border');
 }

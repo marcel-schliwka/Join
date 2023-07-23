@@ -94,6 +94,20 @@
     padding: 18px 10px;
 }
 
+.d-none {
+    display: none;
+}
+
+.cursor-p {
+    cursor: pointer;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
 
 
 body {
@@ -275,7 +289,9 @@ form textarea {
 
 
 
-.category-container, .assigned-container, .subtasks-container {
+.category-container,
+.assigned-container,
+.subtasks-container {
     font-size: 20px;
     display: flex;
     justify-content: space-between;
@@ -342,8 +358,21 @@ form textarea {
 
 .generated-subtask-container {
     display: flex;
-    justify-content: space-between;
-    padding: 0px 22px 10px 22px;
+    gap: 20px;
+    padding-bottom: 5px;
+}
+
+ul {
+    margin-bottom: 0rem !important;
+}
+
+.categorys {
+    margin-top: -15px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: 1px solid #D1D1D1;
+    background: #FFF;
+    border-top: none;
 }
 
 .categorys ul {
@@ -358,6 +387,7 @@ form textarea {
 .category-generated-list {
     display: flex;
     align-items: center;
+    width: 420px;
 
 }
 
@@ -365,12 +395,11 @@ form textarea {
     display: flex;
     align-items: center;
     gap: 10px;
-    
+    padding-left: 22px;
 }
 
 .category-dropdown-items {
     height: 51px;
-    padding: 0px 22px 5px 22px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -393,6 +422,7 @@ form textarea {
 }
 
 
+
 .hidden-input-container:focus {
     outline: none;
 }
@@ -403,4 +433,21 @@ form textarea {
 
 .hidden-input input:focus {
     outline: none;
+}
+
+
+.remove-border {
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    border-bottom: none !important;
+}
+
+
+li {
+    cursor: pointer;
+}
+
+#renderCategorys {
+    max-height: 150px;
+    overflow-y: auto;
 }
