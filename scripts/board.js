@@ -61,26 +61,8 @@ let tasks = [
     }
 ];
 
-// const searchInput = document.querySelector('[data-search]');
+const searchInput = document.querySelector('[data-search]');
 let currentDraggedElement;
-// let lists = document.getElementsByClassName('list');
-// let boxToDo = document.getElementById('todo');
-// let boxInProgress = document.getElementById('inProgress');
-
-// for(list of lists) {
-//     list.addEventListener("dragstart", function(e){
-//         let selected = e.target;
-    
-//         boxToDo.addEventListener("dragover", function(e){
-//             e.preventDefault();
-//         });
-//         boxToDo.addEventListener("drop", function(e){
-//             boxToDo.appendChild(selected);
-//             selected = null;
-//         })
-
-//     })
-// }
 
 function initBoard() {
     updateHTML();
@@ -333,7 +315,7 @@ function htmlTemplatePopUpMembers(element2) {
     `;
 }
 
-// searchInput.addEventListener('input', (e) => {
-//     const value = e.target.value;
-//     console.log(value);
-// })
+searchInput.addEventListener("input", (e) => {
+    const value = e.target.value;
+    console.log(value);
+})
