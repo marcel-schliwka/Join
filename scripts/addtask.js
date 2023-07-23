@@ -58,12 +58,12 @@ function addTask() {
   let description = document.getElementById('description-input').value;
   let date = document.getElementById('task-date').value;
   let prio = currentPrio;
-  let color = document.querySelector('.colorpicker').value;
+  let color = document.querySelector('.category-input circle').getAttribute('fill');
   if (prio == undefined) {
     prio = 'low';
   }
   let assignedTo = assigned;
-  let category = currentCategory;
+  let category = document.querySelector('.category-input').innerText;
   let selectedSubtasks = newSubtasks;
 
 
@@ -121,6 +121,7 @@ function clearCategory() {
  */
 document.addEventListener('coloris:pick', event => {
   document.querySelector('.colorpicker').style.backgroundColor = event.detail.color;
+
 });
 
 document.addEventListener('coloris:change', event => {
@@ -326,7 +327,7 @@ function getSubtasks() {
     const subCb = subtaskCheckboxes[i];
     const subCbValidation = subCb.getAttribute('checked');
     if (subCbValidation == 'true') {
-      newSubtasks.push(subCb.parentNode.parentNode.firstElementChild.innerText);
+      newSubtasks.push(subCb.parentNode.parentNode.firstElementChild);
     }
   }
 }
