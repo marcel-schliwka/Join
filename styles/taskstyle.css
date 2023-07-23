@@ -360,6 +360,7 @@ form textarea {
     display: flex;
     gap: 20px;
     padding-bottom: 5px;
+    align-items: center;
 }
 
 ul {
@@ -380,6 +381,14 @@ ul {
     padding: 0;
 }
 
+.category-generated-list:hover {
+    background-color: lightgray;
+}
+
+.category-dropdown-items:hover {
+    background-color: lightgray;
+}
+
 .category-generated-list li {
     height: 51px
 }
@@ -396,6 +405,11 @@ ul {
     align-items: center;
     gap: 10px;
     padding-left: 22px;
+}
+
+.geneneratedSubtasks {
+    max-height: 139px;
+    overflow-y: auto;
 }
 
 .category-dropdown-items {
@@ -451,3 +465,4 @@ li {
     max-height: 150px;
     overflow-y: auto;
 }
+

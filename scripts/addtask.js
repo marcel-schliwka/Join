@@ -79,7 +79,7 @@ function addTask() {
   console.log('Prio: ', prio);
   console.log('Assigned: ', assignedTo);
   console.log('Category: ', category);
-  console.log('Subtasks' , selectedSubtasks);
+  console.log('Subtasks', selectedSubtasks);
   console.log('Color ', color);
 }
 
@@ -121,9 +121,9 @@ function changeToInput(containerId, buttonId) {
       <input id="generatedInput" placeholder="Enter new category" class="ol-none b-none">
     </div>
     `;
-  bId.innerHTML += `
+    bId.innerHTML += `
   <div class="generated-Btn-Container">
-  <input class="coloris instance2 colorpicker" type="text" data-coloris>
+  <input required class="coloris instance2 colorpicker" type="text" data-coloris>
   <button onclick="clearInput(this)" type="button"><img  src="./img/cancel_icon.png"></button>
   <svg xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
   <path d="M1 0V31" stroke="#D1D1D1"/>
@@ -174,7 +174,7 @@ function addNewCategory() {
     categorys.push({
       name: input,
       color: color
-    }) 
+    })
   }
   renderCategorys();
 }
@@ -223,15 +223,15 @@ function renderCategorys() {
   let category = document.getElementById('renderCategorys');
   category.innerHTML = '';
   category.innerHTML = `
-  <div class="category-generated-list font20">
-  <li class="font20 category-li-item" onclick="changeToInput('category-input', 'category-button')">Add new category</li>
+  <div onclick="changeToInput('category-input', 'category-button')" class="category-generated-list font20">
+  <li class="font20 category-li-item" >Add new category</li>
   </div>
   `;
 
   for (let i = 0; i < categorys.length; i++) {
     const cat = categorys[i];
-    category.innerHTML += `<div class="category-dropdown-items">
-    <li onclick="useCategory(${i})" class="font20 category-li-item"">${cat['name']} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+    category.innerHTML += `<div class="category-dropdown-items" onclick="useCategory(${i})">
+    <li class="font20 category-li-item"">${cat['name']} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
     <circle cx="10" cy="10.5" r="9" fill="${cat['color']}" stroke="white" stroke-width="2" />
   </svg></li>
     </div>`;
@@ -240,12 +240,16 @@ function renderCategorys() {
 
 function useCategory(i) {
   let selection = document.querySelector('.category-input');
+  let category = document.getElementById('renderCategorys');
+  let categoryContainer = document.getElementById('category-container');
   selection.innerHTML = `<div>
   ${categorys[i]['name']} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
   <circle cx="10" cy="10.5" r="9" fill="${categorys[i]['color']}" stroke="white" stroke-width="2" />
 </svg>
   </div>`;
   currentCategory = selection.innerText;
+  category.classList.add('d-none')
+  categoryContainer.classList.remove('remove-border');
 }
 
 
@@ -257,12 +261,15 @@ function clearInput(element) {
 
 function addSubtask() {
   let input = document.getElementById('generatedSubtaskInput').value;
-  subtasks.push(input);
+  if (input !== '') {
+    subtasks.push(input);
+  }
   renderSubtasks();
 }
 
 function renderSubtasks() {
   let content = document.getElementById('subtask-content');
+  let buttonContainer = document.getElementById('form-btn-container');
   content.innerHTML = '';
 
   for (let i = 0; i < subtasks.length; i++) {
@@ -270,9 +277,16 @@ function renderSubtasks() {
     content.innerHTML += `
     <div class="generated-subtask-container w-422">
     <div onclick="changeSubtaskCheckbox(${i})"><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${i}" src="./img/checkbox.png"></div>
-    <div id="subtask${i}">${subt}</div>
+    <div class="font16" id="subtask${i}">${subt}</div>
     </div>
     `;
+    let margin = 150;
+
+    let calculatedMargin = margin - (29 * [i])
+    margin = calculatedMargin;
+    if (margin > 39) {
+      buttonContainer.style.marginTop = margin;
+    }
   }
 }
 
@@ -307,4 +321,21 @@ function toggleCatgoryMenu() {
   let categoryContainer = document.getElementById('category-container');
   category.classList.toggle('d-none');
   categoryContainer.classList.toggle('remove-border');
+  document.addEventListener('click', event => {
+    if (!categoryContainer.contains(event.target)) {
+      category.classList.add('d-none');
+      categoryContainer.classList.remove('remove-border');
+    }
+  });
+  category.addEventListener('click', event => {
+    event.stopPropagation();
+  });
+}
+
+function clearAll() {
+  subtasks = [];
+  newSubtasks = [];
+  currentCategory;
+  renderCategorys();
+  renderSubtasks();
 }
