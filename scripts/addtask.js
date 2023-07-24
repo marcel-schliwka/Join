@@ -1,3 +1,23 @@
+let getContacts;
+
+
+async function loadUserContacts() {
+  getContacts = await getItem('guest_contacts');
+}
+
+async function loadTask() {
+  getId = await getItem('guest_task');
+}
+
+
+async function setItem(key, value) {
+  const PAYLOAD = { key, value, token: STORAGE_TOKEN };
+  return fetch(STORAGE_URL, {
+    method: "POST",
+    body: JSON.stringify(PAYLOAD),
+  }).then((res) => res.json());
+}
+
 
 
 
@@ -16,26 +36,6 @@
  */
 
 
-
-
-let assigned = [];
-let newSubtasks = [];
-let subtasks = [];
-let currentCategory;
-let currentPrio;
-let tasks = [];
-
-
-
-let getContacts = [
-  {
-    name: 'Max Mustermann'
-  },
-  {
-    name: 'Peter Lustig'
-  }
-];
-
 let categorys = [
   {
     name: 'Sales',
@@ -51,9 +51,17 @@ let categorys = [
   }
 ];
 
+let assigned = [];
+let newSubtasks = [];
+let subtasks = [];
+let currentCategory;
+let currentPrio;
+let tasks = [];
 
 
-function init() {
+
+async function init() {
+  await loadUserContacts()
   renderContacts();
   renderCategorys();
   renderSubtasks();
@@ -77,11 +85,12 @@ function addTask() {
   let category = document.querySelector('.category-input').innerText;
   let selectedSubtasks = newSubtasks;
 
+
+
   let newTask = {
     titel: titel,
     description: description,
     status: 'to do',
-    //id: storagetasks.length
     category: category,
     categoryColor: color,
     assigned: assignedTo,
@@ -90,11 +99,13 @@ function addTask() {
     subtasks: selectedSubtasks
   };
   tasks.push(newTask);
+  setItem('guest_task', JSON.stringify(tasks));
 }
 
 
 function setDate() {
-  let 
+  let newDate = new Date;
+  console.log(newDate);
 }
 
 
@@ -276,6 +287,7 @@ function renderContacts() {
 
   for (let i = 0; i < getContacts.length; i++) {
     const contact = getContacts[i];
+    console.log(contact);
     contacts.innerHTML += renderContactsHTML(contact, i);
   }
 
@@ -329,13 +341,12 @@ function changeToSubtask() {
 
 function changeSubtaskCheckbox(i) {
   let checkboxImg = document.getElementById(`subtask-checkbox${i}`);
-
   if (checkboxImg.getAttribute('src') === './img/checkbox.png') {
-    checkboxImg.src = './img/checkbox_checked.png'
+    checkboxImg.src = './img/checkbox_checked.png';
     checkboxImg.setAttribute('checked', 'true');
   } else {
-    checkboxImg.src = './img/checkbox.png'
-    changeCheckbox.setAttribute('checked', 'false')
+    checkboxImg.src = './img/checkbox.png';
+    changeCheckbox.setAttribute('checked', 'false');
   }
 }
 
