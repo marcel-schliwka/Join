@@ -61,13 +61,6 @@ let tasks = [
     }
 ];
 
-// const searchInput = document.getElementById('boardInput');
-// console.log(searchInput);
-
-// searchInput.addEventListener('keyup', (e) => {
-//     console.log(e);
-// });
-
 let currentDraggedElement;
 
 function initBoard() {
@@ -252,10 +245,6 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-// function allowDrop(ev) {
-//     ev.preventDefault();
-// }
-
 function moveTo(status) {
     tasks[currentDraggedElement]['status'] = status; // z.B. task mit id 1: Das Feld 'status' ändert sich von 'todo' zu 'in progress'
     updateHTML();
@@ -420,4 +409,9 @@ function renderSearchDone(search) {
             }
         }
     }
+}
+
+function boardOpenDialog() {
+    let openDialog = document.getElementById('boardOpenDialog');
+    openDialog.show();
 }
