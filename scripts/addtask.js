@@ -18,11 +18,6 @@
 
 
 
-
-
-
-
-
 let assigned = [];
 let newSubtasks = [];
 let subtasks = [];
@@ -97,6 +92,10 @@ function addTask() {
   tasks.push(newTask);
 }
 
+
+function setDate() {
+  let 
+}
 
 
 
