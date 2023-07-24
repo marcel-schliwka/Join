@@ -173,6 +173,33 @@ function renderInitials() {
  * @param {string} initials to find the correct container for contact-cards to be rendered in
  * @param {string} contacts to deliver and generate all contact details 
  */
+// function renderContactsInContainer(initials, contacts) {
+//   for (let i = 0; i < initials.length; i++) {
+//     const initial = initials[i];
+//     let groupContainer = document.getElementById(`containerLetter${initial}`);
+
+//     for (let c = 0; c < contacts.length; c++) {
+//       const contact = contacts[c];
+//       let name = contact.name;
+//       let email = contact.email;
+//       let firstLetter = contact.firstLetters;
+//       let colorSign = contact.colorInitial;
+//       groupContainer.innerHTML += /*html*/ `
+//         <div class="single-contact-card" id="card${c}">
+//             <div class="circle" id="${colorSign}">
+//               ${firstLetter}
+//             </div>
+
+//             <div class="info">
+//                 <h4 class="info__name">${name}</h4>
+//                  <p>${email}</p>
+//             </div>
+//          </div>
+//       `;
+//     }
+//   }
+// }
+
 function renderContactsInContainer(initials, contacts) {
   for (let i = 0; i < initials.length; i++) {
     const initial = initials[i];
@@ -199,6 +226,7 @@ function renderContactsInContainer(initials, contacts) {
     }
   }
 }
+
 
 /**
  * generating color of circle in ContactList according to initial of surname
@@ -448,11 +476,8 @@ function cancelCreateContact() {
  * @function
  */
 function addNewContact() {
-  /* turning first letter into uppercase */ 
-  let value = createDialogElements.inputName.value;
-  let name = value[0].toUpperCase() + value.slice(1);
   contacts.push({
-    name: name,
+    name: createDialogElements.inputName.value,
     email: createDialogElements.inputEmail.value,
     number: createDialogElements.inputPhone.value,
   });
