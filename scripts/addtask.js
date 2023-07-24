@@ -93,12 +93,6 @@ function addTask() {
 }
 
 
-function setDate() {
-  let 
-}
-
-
-
 function getTaskPrio(button, priority) {
   const buttons = document.querySelectorAll('.prioBtn');
   let images = {
