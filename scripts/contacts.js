@@ -448,8 +448,11 @@ function cancelCreateContact() {
  * @function
  */
 function addNewContact() {
+  /* turning first letter into uppercase */ 
+  let value = createDialogElements.inputName.value;
+  let name = value[0].toUpperCase() + value.slice(1);
   contacts.push({
-    name: createDialogElements.inputName.value,
+    name: name,
     email: createDialogElements.inputEmail.value,
     number: createDialogElements.inputPhone.value,
   });
