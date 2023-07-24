@@ -133,7 +133,7 @@ function htmlTemplateToDo(element, i, priority) {
 }
 
 function htmlTemplateAssignment(element, j) {
-    return `<div class="heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:grey">
+    return `<div class="margin-4 heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:grey">
             ${element['assigned'][j]}
         </div>`;
 }
@@ -280,7 +280,7 @@ function boardClosePopUpTask() {
 
 function htmlTemplatePopUpTask(i, priority) {
     return `<div class="popUpBoardTask px-4 pt-4 pb-1 rounded-4 d-flex flex-column align-items-start">
-        <img onclick="boardClosePopUpTask()" class="boardTaskClose cursorPointer" src="./img/close.svg" alt="close">
+        <img onclick="boardClosePopUpTask()" class="boardTaskClose cursorPointer" src="./img/closeIt.svg" alt="close">
         <div class="boardTaskEdit d-flex">
             <img class="cursorPointer heightWidth35Px" src="./img/deleteButton.svg" alt="delete">
             <img class="cursorPointer heightWidth35Px" src="./img/editButton.svg" alt="edit">
