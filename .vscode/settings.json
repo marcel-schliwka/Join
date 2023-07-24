@@ -2,3 +2,6 @@
   "spellright.language": ["de"],
   "spellright.documentTypes": ["markdown", "latex", "plaintext"]
 }
+{
+    "liveServer.settings.port": 5501
+}
