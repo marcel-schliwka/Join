@@ -56,7 +56,7 @@ let newSubtasks = [];
 let subtasks = [];
 let currentCategory;
 let currentPrio;
-let tasks = [];
+let addtasks = [];
 
 
 
@@ -98,8 +98,8 @@ function addTask() {
     prio: prio,
     subtasks: selectedSubtasks
   };
-  tasks.push(newTask);
-  setItem('guest_task', JSON.stringify(tasks));
+  addtasks.push(newTask);
+  setItem('guest_task', JSON.stringify(addtasks));
 }
 
 
@@ -132,6 +132,16 @@ function getTaskPrio(button, priority) {
   images[priority].src = `./img/prio_${priority}.png`;
   currentPrio = priority;
 }
+
+function showTaskModal() {
+  let modal = document.getElementById('addTaskModal');
+  modal.classList.remove('d-none');
+  modal.classList.add('add-task-template');
+
+}
+
+
+
 
 
 /**
