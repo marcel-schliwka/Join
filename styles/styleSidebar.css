@@ -12,8 +12,17 @@ nav {
     color: white;
 }
 
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
 .sidebar {
     display: flex;
+}
+
+.activeSite {
+    background-color: rgba(9,25,49,255);
 }
 
 header {
@@ -28,8 +37,15 @@ header {
     font-size: 20px;
 }
 
+.twoLetters {
+    color:  #31aee3;
+    border: 3px solid black;
+    border-radius: 100%;
+    padding: 10px;
+}
+
 .gap26px {
-    padding-left: 26px;
+    margin-left: 26px;
 }
 
 .logoDiv {
