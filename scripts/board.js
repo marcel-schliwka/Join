@@ -61,10 +61,21 @@ let tasks = [
     }
 ];
 
+let contacts;
 let currentDraggedElement;
 
-function initBoard() {
+async function initBoard() {
+    await loadUserContacts();
     updateHTML();
+}
+
+async function loadUserContacts() {
+    try {
+        contacts = await getItem('guest_contacts');
+        console.log(contacts);
+    } catch {
+        console.log('error');
+    }
 }
 
 function updateHTML(){
