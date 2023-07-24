@@ -272,7 +272,7 @@ function htmlTemplatePopUpTask(i, priority) {
         <img onclick="boardClosePopUpTask()" class="boardTaskClose cursorPointer" src="./img/closeIt.svg" alt="close">
         <div class="boardTaskEdit d-flex">
             <img class="cursorPointer heightWidth35Px" src="./img/deleteButton.svg" alt="delete">
-            <img class="cursorPointer heightWidth35Px" src="./img/editButton.svg" alt="edit">
+            <img onclick="editTheTask(${i})" class="cursorPointer heightWidth35Px" src="./img/editButton.svg" alt="edit">
         </div>
         <div style="background-color: grey;" class="textWhite px-3 rounded-2">category</div>
         <div class="size3Em bold">${tasks[i]['titel']}</div>
@@ -309,11 +309,6 @@ function htmlTemplatePopUpMembers(element2) {
     return `<div class="textWhite heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:grey">${element2}</div>
     `;
 }
-
-// searchInput.addEventListener("input", (e) => {
-//     const value = e.target.value;
-//     console.log(value);
-// })
 
 function searchTask(){
     let search = document.getElementById('boardInput').value;
@@ -414,4 +409,49 @@ function renderSearchDone(search) {
 function boardOpenDialog() {
     let openDialog = document.getElementById('boardOpenDialog');
     openDialog.show();
+}
+
+function editTheTask(i) {
+    document.getElementById('popUpBoard').innerHTML = '';
+    document.getElementById('popUpBoard').innerHTML = `
+    <div class="popUpBoardTask popUpBoardTask2 ps-4 pt-4 pb-1 rounded-4 d-flex flex-column align-items-start">  
+        <img onclick="boardClosePopUpTask()" class="boardTaskClose cursorPointer" src="./img/closeIt.svg" alt="close">
+        <img class="boardTaskEdit height35Px cursorPointer" src="./img/okBtnDarkRectangle.png" alt="OK">
+        <div class="w-100 pb-3">
+            <div>Title</div>
+            <input class="py-2 px-3 outlineNone borderLightGrey rounded-2 w-100" id="inputTitel" class="w-100">
+        </div>
+        <div class="pb-3 w-100">
+            <div>Description</div>
+            <textarea class="py-2 px-3 outlineNone borderLightGrey rounded-2 w-100" id="textareaDescription" class="w-100"></textarea>
+        </div>
+        <div class="pb-3 w-100">
+            <div>Due date</div>
+            <div class="d-flex align-items-center">
+                <input class="py-2 px-3 outlineNone borderLightGrey rounded-2 w-100">
+                <img class="cursorPointer marginLeft-30Px height20Px" src="./img/boardCalendar.png">
+            </div>
+        </div>
+        <div class="pb-3">
+            <div>Prio</div>
+            <div class="d-flex">
+                <img class="height45Px cursorPointer" src="./img/urgentPrioRectangle.png">
+                <img class="height45Px cursorPointer" src="./img/mediumPrioRectangle.png">
+                <img class="height45Px cursorPointer" src="./img/lowPrioRectangle.png">
+            </div>
+        </div>
+        <div class="pb-3 w-100">
+            <div>Assigned to</div>
+            <select class="py-2 px-3 outlineNone borderLightGrey rounded-2 w-100">
+                <option>1</option>
+                <option>2</option>
+            </select>
+        </div>
+    </div>  
+    `;
+    let titelInput = tasks[i]['titel'];
+    document.getElementById('inputTitel').value = titelInput;
+    let descriptionTextArea = tasks[i]['description'];
+    document.getElementById('textareaDescription').value = descriptionTextArea;
+
 }

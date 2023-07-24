@@ -105,8 +105,20 @@
     height: 35px;
 }
 
+.height45Px {
+    height: 45px;
+}
+
+.height20Px {
+    height: 20px;
+}
+
 .margin-4 {
     margin: -4px;
+}
+
+.marginLeft-30Px {
+    margin-left: -30px;
 }
 
 .display-flex {
@@ -134,4 +146,16 @@ border-radius: 10px;
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
 background: #5e5e5e; 
+}
+
+.popUpBoardTask2 {
+    padding-right: 100px;
+}
+
+.outlineNone {
+    outline: none;
+}
+
+.borderLightGrey {
+    border: 0.5px solid lightgrey;
 }
