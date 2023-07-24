@@ -67,6 +67,7 @@ let currentDraggedElement;
 async function initBoard() {
     await loadUserContacts();
     updateHTML();
+    // generateCircleColor();
 }
 
 async function loadUserContacts() {
@@ -137,7 +138,7 @@ function htmlTemplateToDo(element, i, priority) {
 }
 
 function htmlTemplateAssignment(element, j) {
-    return `<div class="margin-4 heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:grey">
+    return `<div class="circle margin-4 heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:grey">
             ${element['assigned'][j]}
         </div>`;
 }
