@@ -101,3 +101,11 @@
 .height35Px {
     height: 35px;
 }
+
+.margin-4 {
+    margin: -4px;
+}
+
+.display-flex {
+    display: flex;
+}

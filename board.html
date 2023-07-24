@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="./styles/styleSidebar.css">
     <link rel="stylesheet" href="./styles/summary.css">
     <link rel="stylesheet" href="./styles/board.css"> 
+    <link rel="stylesheet" href="./styles/taskstyle.css">
     <script src="./scripts/board.js"></script> 
     <script src="./scripts/summary.js"></script>
     <script src="./scripts/sidebar.js"></script>
@@ -53,7 +54,7 @@
 </head>
 <body onload="includeHTML(); initBoard()">
     <div w3-include-html="./templates/sidebar.html"></div>
-    <div id="popUpBoard" class="dNone popUpBoardBackground d-flex justify-content-center align-items-center"></div>
+    <div id="popUpBoard" class="dNone popUpBoardBackground display-flex justify-content-center align-items-center"></div>
     <div class="parentDiv paddingRight50Px">
         <div class="d-flex justify-content-between mb-5">
             <div class="size3Em bold">
@@ -66,7 +67,7 @@
                         <img src="./img/search2.svg" alt="search">
                     </div>
                 </div>
-                <div class="addTaskBoardBtn bold px-2 py-2 ms-4 cursorPointer">
+                <div onclick="boardOpenDialog()" class="addTaskBoardBtn bold px-2 py-2 ms-4 cursorPointer">
                     Add task +
                 </div>
             </div>
@@ -98,6 +99,10 @@
                 <div ondrop="moveTo('done')" ondragover="allowDrop(event)" id="done"></div>
             </div>
         </div>
+    </div>
+    <!-- <dialog modal w3-include-html="./templates/addTaskTemplate.html" id="boardOpenDialog" open>
+    </dialog> -->
+    <div w3-include-html="./templates/addTaskTemplate.html">
     </div>
 </body>
 </html>

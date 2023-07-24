@@ -61,13 +61,6 @@ let tasks = [
     }
 ];
 
-// const searchInput = document.getElementById('boardInput');
-// console.log(searchInput);
-
-// searchInput.addEventListener('keyup', (e) => {
-//     console.log(e);
-// });
-
 let currentDraggedElement;
 
 function initBoard() {
@@ -133,7 +126,7 @@ function htmlTemplateToDo(element, i, priority) {
 }
 
 function htmlTemplateAssignment(element, j) {
-    return `<div class="heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:grey">
+    return `<div class="margin-4 heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:grey">
             ${element['assigned'][j]}
         </div>`;
 }
@@ -252,10 +245,6 @@ function allowDrop(ev) {
     ev.preventDefault();
 }
 
-// function allowDrop(ev) {
-//     ev.preventDefault();
-// }
-
 function moveTo(status) {
     tasks[currentDraggedElement]['status'] = status; // z.B. task mit id 1: Das Feld 'status' ändert sich von 'todo' zu 'in progress'
     updateHTML();
@@ -280,7 +269,7 @@ function boardClosePopUpTask() {
 
 function htmlTemplatePopUpTask(i, priority) {
     return `<div class="popUpBoardTask px-4 pt-4 pb-1 rounded-4 d-flex flex-column align-items-start">
-        <img onclick="boardClosePopUpTask()" class="boardTaskClose cursorPointer" src="./img/close.svg" alt="close">
+        <img onclick="boardClosePopUpTask()" class="boardTaskClose cursorPointer" src="./img/closeIt.svg" alt="close">
         <div class="boardTaskEdit d-flex">
             <img class="cursorPointer heightWidth35Px" src="./img/deleteButton.svg" alt="delete">
             <img class="cursorPointer heightWidth35Px" src="./img/editButton.svg" alt="edit">
@@ -420,4 +409,9 @@ function renderSearchDone(search) {
             }
         }
     }
+}
+
+function boardOpenDialog() {
+    let openDialog = document.getElementById('boardOpenDialog');
+    openDialog.show();
 }
