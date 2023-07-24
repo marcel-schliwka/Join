@@ -105,3 +105,7 @@
 .margin-4 {
     margin: -4px;
 }
+
+.display-flex {
+    display: flex;
+}
