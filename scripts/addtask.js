@@ -1,23 +1,3 @@
-let getContacts;
-
-
-async function loadUserContacts() {
-  getContacts = await getItem('guest_contacts');
-}
-
-async function loadTask() {
-  getId = await getItem('guest_task');
-}
-
-
-async function setItem(key, value) {
-  const PAYLOAD = { key, value, token: STORAGE_TOKEN };
-  return fetch(STORAGE_URL, {
-    method: "POST",
-    body: JSON.stringify(PAYLOAD),
-  }).then((res) => res.json());
-}
-
 
 
 
@@ -36,6 +16,26 @@ async function setItem(key, value) {
  */
 
 
+
+
+let assigned = [];
+let newSubtasks = [];
+let subtasks = [];
+let currentCategory;
+let currentPrio;
+let tasks = [];
+
+
+
+let getContacts = [
+  {
+    name: 'Max Mustermann'
+  },
+  {
+    name: 'Peter Lustig'
+  }
+];
+
 let categorys = [
   {
     name: 'Sales',
@@ -51,23 +51,30 @@ let categorys = [
   }
 ];
 
-let assigned = [];
-let newSubtasks = [];
-let subtasks = [];
-let currentCategory;
-let currentPrio;
-let addtasks = [];
 
 
-
-async function init() {
-  await loadUserContacts()
+function init() {
   renderContacts();
   renderCategorys();
   renderSubtasks();
 }
 
 
+
+function hideAssignedToDropdown() {
+  let assignedContainer = document.getElementById('contact-container');
+  let assignedInput = document.getElementById('assigned-container');
+  assignedContainer.classList.add('d-none');
+  assignedInput.classList.remove('remove-border');
+}
+
+function clearAssigned() {
+  let assignedInput = document.getElementById('assigned-input');
+  let assignedBtn = document.getElementById('assigned-button');
+  assignedInput.innerHTML = generateBasicAssignedInputHTML();
+  assignedBtn.innerHTML = generateBasicAssignedButtonHTML();
+
+}
 
 
 
@@ -85,12 +92,11 @@ function addTask() {
   let category = document.querySelector('.category-input').innerText;
   let selectedSubtasks = newSubtasks;
 
-
-
   let newTask = {
     titel: titel,
     description: description,
     status: 'to do',
+    //id: storagetasks.length
     category: category,
     categoryColor: color,
     assigned: assignedTo,
@@ -98,16 +104,8 @@ function addTask() {
     prio: prio,
     subtasks: selectedSubtasks
   };
-  addtasks.push(newTask);
-  setItem('guest_task', JSON.stringify(addtasks));
+  tasks.push(newTask);
 }
-
-
-function setDate() {
-  let newDate = new Date;
-  console.log(newDate);
-}
-
 
 
 function getTaskPrio(button, priority) {
@@ -132,16 +130,6 @@ function getTaskPrio(button, priority) {
   images[priority].src = `./img/prio_${priority}.png`;
   currentPrio = priority;
 }
-
-function showTaskModal() {
-  let modal = document.getElementById('addTaskModal');
-  modal.classList.remove('d-none');
-  modal.classList.add('add-task-template');
-
-}
-
-
-
 
 
 /**
@@ -297,7 +285,6 @@ function renderContacts() {
 
   for (let i = 0; i < getContacts.length; i++) {
     const contact = getContacts[i];
-    console.log(contact);
     contacts.innerHTML += renderContactsHTML(contact, i);
   }
 
@@ -351,12 +338,13 @@ function changeToSubtask() {
 
 function changeSubtaskCheckbox(i) {
   let checkboxImg = document.getElementById(`subtask-checkbox${i}`);
+
   if (checkboxImg.getAttribute('src') === './img/checkbox.png') {
-    checkboxImg.src = './img/checkbox_checked.png';
+    checkboxImg.src = './img/checkbox_checked.png'
     checkboxImg.setAttribute('checked', 'true');
   } else {
-    checkboxImg.src = './img/checkbox.png';
-    changeCheckbox.setAttribute('checked', 'false');
+    checkboxImg.src = './img/checkbox.png'
+    changeCheckbox.setAttribute('checked', 'false')
   }
 }
 
@@ -532,6 +520,24 @@ function generateBasicCategoryButtonHTML() {
  * @returns Assigned HTML-templates
 */
 
+//Generates the basic button for categorys, from the HTML
+function generateBasicAssignedButtonHTML() {
+  return `
+  <div class="assigned-button-container" id="assigned-button">
+    <button type="button"><img src="./img/arrow_down.png"></button>
+  </div>
+  `;
+}
+
+//Generates the basic input for categorys, from the HTML
+function generateBasicAssignedInputHTML() {
+  return `
+  <div class="assigned-input" id="assigned-input">
+    <span>Select contacts to assign</span>
+  </div>
+  `;
+}
+
 //Generates the input field, when clicked on "Invite new contact"
 function generateAssignedInputHTML() {
   return `
@@ -545,7 +551,7 @@ function generateAssignedInputHTML() {
 function generateAssigendButtonHTML() {
   return `
   <div class="generated-Btn-Container">
-  <button class="cancel-btn" onclick="clearInput(this)" type="button"><img src="./img/cancel_icon.png"></button>
+  <button class="cancel-btn" onclick="clearInput(this); clearAssigned()" type="button"><img src="./img/cancel_icon.png"></button>
   <svg class="btn-seperator" xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
   <path d="M1 0V31" stroke="#D1D1D1"/>
   </svg>
@@ -575,7 +581,7 @@ function renderContactsHTML(contact, i) {
 function generateAddNewContact() {
   return `
   <div>
-    <li onclick="changeToInput('assigned-input', 'assigned-button')" class="contact-item">Invite new contact <img class="cursor-p"src="./img/contacts_black.png"></li>
+    <li onclick="changeToInput('assigned-input', 'assigned-button'); hideAssignedToDropdown()" class="contact-item">Invite new contact <img class="cursor-p"src="./img/contacts_black.png"></li>
   </div>
   `;
 }
