@@ -420,6 +420,10 @@ function cancelCreateContact() {
  * @function
  */
 function addNewContact() {
+  let input = createDialogElements.inputName.value;
+  let capitalInput = input.charAt(0).toUpperCase() + input.slice(1);
+  console.log(capitalInput);
+
   contacts.push({
     name: createDialogElements.inputName.value,
     email: createDialogElements.inputEmail.value,
