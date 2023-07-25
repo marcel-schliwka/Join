@@ -1,20 +1,34 @@
-
-
-
-
 /**
  * TO-DO
  * 
  * Aktuelles Datum bekommen um das als mindestwert zu setzen.
  * Assigned to Container d-none usw bei eingabe eines neuen Contacts + Aufnahmee des Kontaktes + wieder verschwinden lassen -> umstellung Input
  * Category-Overflow aktuell verbuggt, wenn nicht in den Developer-Tools unterwegs
- * Daten von Storage bekommen => Anhand dessen ID für jede To Do vergeben
  * Dokumentation vervollständigen
- * Daten auf den Server pushen => Categorie abklären: Entweder löschen ermöglichen oder nur in die Tasks pushen aber nicht in die categorys
  * responsiveness
  * 
  */
 
+
+let getContacts;
+
+
+async function loadUserContacts() {
+  getContacts = await getItem('guest_contacts');
+}
+
+async function loadTask() {
+  getId = await getItem('guest_task');
+}
+
+
+async function setItem(key, value) {
+  const PAYLOAD = { key, value, token: STORAGE_TOKEN };
+  return fetch(STORAGE_URL, {
+    method: "POST",
+    body: JSON.stringify(PAYLOAD),
+  }).then((res) => res.json());
+}
 
 
 
@@ -24,17 +38,6 @@ let subtasks = [];
 let currentCategory;
 let currentPrio;
 let tasks = [];
-
-
-
-let getContacts = [
-  {
-    name: 'Max Mustermann'
-  },
-  {
-    name: 'Peter Lustig'
-  }
-];
 
 let categorys = [
   {
@@ -53,7 +56,8 @@ let categorys = [
 
 
 
-function init() {
+async function init() {
+  await loadUserContacts()
   renderContacts();
   renderCategorys();
   renderSubtasks();
@@ -73,7 +77,6 @@ function clearAssigned() {
   let assignedBtn = document.getElementById('assigned-button');
   assignedInput.innerHTML = generateBasicAssignedInputHTML();
   assignedBtn.innerHTML = generateBasicAssignedButtonHTML();
-
 }
 
 
@@ -96,7 +99,6 @@ function addTask() {
     titel: titel,
     description: description,
     status: 'to do',
-    //id: storagetasks.length
     category: category,
     categoryColor: color,
     assigned: assignedTo,
@@ -340,11 +342,11 @@ function changeSubtaskCheckbox(i) {
   let checkboxImg = document.getElementById(`subtask-checkbox${i}`);
 
   if (checkboxImg.getAttribute('src') === './img/checkbox.png') {
-    checkboxImg.src = './img/checkbox_checked.png'
+    checkboxImg.src = './img/checkbox_checked.png';
     checkboxImg.setAttribute('checked', 'true');
   } else {
-    checkboxImg.src = './img/checkbox.png'
-    changeCheckbox.setAttribute('checked', 'false')
+    checkboxImg.src = './img/checkbox.png';
+    changeCheckbox.setAttribute('checked', 'false');
   }
 }
 
