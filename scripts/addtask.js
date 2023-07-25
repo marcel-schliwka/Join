@@ -1,8 +1,11 @@
 /**
+ * To-Discuss
+ * 
+ * AssignedTo ==> New Assigned / New Contact?!
+ * 
  * TO-DO
  * 
  * Aktuelles Datum bekommen um das als mindestwert zu setzen.
- * Assigned to Container d-none usw bei eingabe eines neuen Contacts + Aufnahmee des Kontaktes + wieder verschwinden lassen -> umstellung Input
  * Category-Overflow aktuell verbuggt, wenn nicht in den Developer-Tools unterwegs
  * Dokumentation vervollständigen
  * responsiveness
@@ -11,6 +14,21 @@
 
 
 let getContacts;
+
+
+
+window.addEventListener('DOMContentLoaded', function() {
+const taskDateInput = document.getElementById('task-date');
+  function formatDate(date) {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+  const today = new Date();
+  taskDateInput.min = formatDate(today);
+});
+
 
 
 async function loadUserContacts() {
