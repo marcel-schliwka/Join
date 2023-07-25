@@ -21,3 +21,22 @@ async function getItem(key) {
       throw `Could not find data with key "${key}".`;
     });
 }
+
+async function getLoggedInUser() {
+  const activeUser = localStorage.getItem("activeUser");
+  if (!activeUser) {
+    window.location.href = "index.html";
+    return 1;
+  }
+  let userObj = await getItem(activeUser);
+  return userObj;
+}
+
+function getInitials(name) {
+  const nameParts = name.trim().split(" ");
+  if (nameParts.length === 1) {
+    return nameParts[0][0];
+  } else {
+    return nameParts[0][0] + nameParts[1][0];
+  }
+}
