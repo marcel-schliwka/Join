@@ -40,3 +40,8 @@ function getInitials(name) {
     return nameParts[0][0] + nameParts[1][0];
   }
 }
+
+function getColorSign(name) {
+  const colorSign = name.split(' ').pop().charAt(0).toUpperCase();
+  return colorSign;
+}

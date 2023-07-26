@@ -43,7 +43,7 @@ let pastelColors = {
   A: "rgba(104, 166, 148, 1)", // Light Pinkconst
   B: "rgba(166, 145, 104, 1)", // Gold
   C: "rgba(104, 120, 166, 1)", // Blue
-  D: "rgba(166, 141, 104, 1)", // Light Brown
+  D: "rgba(222, 111, 13, 1)", // Light Brown
   E: "rgba(140, 166, 104, 1)", // Olive Green
   F: "rgba(140, 104, 166, 1)", // Purple
   G: "rgba(130, 166, 104, 1)", // Green
@@ -158,11 +158,11 @@ function renderContactsInContainer(initials, contacts) {
       const contact = contacts[c];
       let name = contact.name;
       let email = contact.email;
-      let firstLetter = contact.firstLetters;
-      let colorSign = contact.colorInitial;
+      // let firstLetter = contact.firstLetters;
+      // let colorSign = firstLetter;
       groupContainer.innerHTML += /*html*/ `
         <div class="single-contact-card" id="card${c}">
-            <div class="circle" id="${colorSign}">
+            <div class="circle" id="${getColorSign(contact.name)}">
               ${getInitials(contact.name)}
             </div>
 
@@ -292,9 +292,11 @@ function openContact(card) {
     .querySelector(".circle")
     .getAttribute("style");
   dialogElements["profilePic"] = document.querySelector(".dialog__circle");
-  const infoCardName = card.querySelector(".info__name").innerText;
+  const infoCardName = card.querySelector(".info__name").innerText.trim();
+  // debugger;
   /* saving returned value of getContact() in local variable */
   let clickedContact = getContact(infoCardName);
+  // debugger;
   /* calling changeDialogInfo with the just saved variable and cardID */
   changeDialogInfo(clickedContact, cardId);
   /* showing the dialogContact-Element which is a global variable relating to HTML Element */
@@ -302,6 +304,7 @@ function openContact(card) {
 }
 
 function getContact(searchedName) {
+  // debugger;
   let filteredContact = contacts.filter(
     (contact) => contact.name === searchedName
   );
@@ -325,6 +328,9 @@ function getContactIndex(searchedName) {
  * @param {Object} contact
  */
 function changeDialogInfo(contact) {
+  // let name = contact.name;
+  // let finalName = name.trim()
+
   dialogElements.profilePic.innerHTML = dialogElements.initials;
   dialogElements.profilePic.style = dialogElements.circleColor;
   dialogElements.name.innerText = contact.name;
@@ -341,17 +347,18 @@ function changeDialogInfo(contact) {
  */
 function deleteContact() {
   dialogElements.fromCard.remove();
-  debugger;
   dialogContact.close();
   contacts.splice(getContactIndex(dialogElements.name.innerText), 1);
   deleteInitial(dialogElements.name.innerText);
 }
 
-function deleteInitial(name){
-  let initial = name.trim().charAt(0);
+function deleteInitial(name) {
+  let initial = name.trim().charAt(0).toUpperCase();
   let initialDiv = document.getElementById(`containerLetter${initial}`);
-  debugger;
-  initialDiv.remove()
+  if (initialDiv.children.length == 0) {
+    initialDiv.remove();
+  }
+  renderContactList();
 }
 
 // Edit Contact
@@ -429,10 +436,12 @@ function cancelCreateContact() {
  */
 function addNewContact() {
   contacts.push({
-    name: createDialogElements.inputName.value,
-    email: createDialogElements.inputEmail.value,
-    number: createDialogElements.inputPhone.value,
+    name: createDialogElements.inputName.value.trim(),
+    email: createDialogElements.inputEmail.value.trim(),
+    number: createDialogElements.inputPhone.value.trim(),
   });
+  console.log(contacts)
+  debugger;
   document.getElementById("createContactForm").reset();
   dialogBackground.classList.add("d-none");
   cancelCreateContact();
