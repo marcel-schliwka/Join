@@ -526,6 +526,19 @@ function generateBasicCategoryButtonHTML() {
  * @returns Assigned HTML-templates
 */
 
+
+function generateBasicAssignedInputHTML() {
+  return `<span>Select contacts to assign</span>`;
+}
+
+function generateBasicAssignedButtonHTML() {
+  return `
+  <div class="assigned-button-container" id="assigned-button">
+    <button type="button"><img src="./img/arrow_down.png"></button>
+  </div>
+  `;
+}
+
 //Generates the input field, when clicked on "Invite new contact"
 function generateAssignedInputHTML() {
   return `

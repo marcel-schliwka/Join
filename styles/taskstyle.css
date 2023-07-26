@@ -544,3 +544,125 @@ li {
     color: red !important;
     padding-left: 15px;
 }
+
+@media(max-width: 428px) {
+    h1 {
+        font-size: 47px !important;
+        margin-left: 33px !important;
+        margin-top: 40.98px !important; 
+        margin-bottom: 55px;;
+    }
+
+    label {
+        font-size: 16px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left {
+        margin-left: 0px;
+    }
+
+    .seperator {
+        display: none;
+    }
+
+    #title-input {
+        height: 51px;
+        width: 363px
+    }
+
+    #description-input {
+        width: 363px;
+        height: 93px;
+    }
+
+    .category-container {
+        width: 363px;
+    }
+
+    .assigned-container {
+        width: 363px;
+    }
+
+    #task-date {
+        width: 363px;
+    }
+
+    .prio-btn {
+        width: 363px;
+        height: 51px;
+    }
+
+    .urgent-btn{
+        height: 50px;
+        width: 114px;
+    }
+    .medium-btn{
+        height: 50px;
+        width: 115px;
+    }
+    .low-btn{
+        height: 50px;
+        width: 114px;
+    }
+
+    .date-label {
+        margin-top: 8px;
+    }
+
+    .subtasks-input {
+        width: 255px;
+    }
+
+    .contacts {
+        width: 363px
+    }
+
+    .invite-contact {
+        width: 354px
+    }
+
+    .invite-contact img {
+        margin-right: 3px;
+    }
+
+    .contact-item {
+        width: 357px
+    }
+
+    .subtasks-container {
+        width: 363px;
+    }
+
+    #renderContacts {
+        overflow-x: hidden;
+    }
+
+    #renderCategorys {
+        width: 361px;
+        overflow-x: hidden;
+    }
+
+    #generatedInput {
+        width: 228px;
+    }
+
+    .clear-btn {
+        display: none;
+    }
+
+    .form-btn {
+        margin-top: 0px;
+    }
+
+    .create-btn {
+        position: absolute;
+        top: 14px;
+        right: 25px;
+    }
+}
