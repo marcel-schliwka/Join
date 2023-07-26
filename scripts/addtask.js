@@ -54,15 +54,6 @@ let categorys = [
   },
 ];
 
-let assigned = [];
-let newSubtasks = [];
-let subtasks = [];
-let currentCategory;
-let currentPrio;
-let addtasks = [];
-
-
-
 async function init() {
   userObj = await getLoggedInUser();
   // await loadUserContacts();
