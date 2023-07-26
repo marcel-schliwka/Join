@@ -129,9 +129,9 @@ function renderInitials() {
 
   for (const [key, value] of contactsSorted.entries()) {
     container.innerHTML += /*html*/ `
-            <div id="containerLetter${key}" class="container-letter initial" >
-              <div>
-                  ${key}
+            <div id="containerLetter${key}">
+              <div class="container-letter initial">
+                <span>${key}</span>
               </div>
                       
                 <div>

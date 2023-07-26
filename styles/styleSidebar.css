@@ -52,6 +52,10 @@ header {
     padding-bottom: 100px;
 }
 
+.resp-logo {
+    display: none;
+}
+
 .navChild>div {
     display: flex;
     padding-top: 8px;
@@ -84,9 +88,9 @@ header {
 
 /* RESPONSIVE */
 
-@media screen and (min-width: 320px){
+@media screen and (min-width: 320px) and (max-width: 420px){
     nav {
-        position: absolute;
+        position: fixed;
         width: 100vw;
         bottom: 0;
         left: 0;
@@ -101,6 +105,7 @@ header {
 
     header {
         position: relative;
+        height: 80px;
     }
 
     .header-text {
@@ -108,6 +113,7 @@ header {
     }
 
     .resp-logo {
+        display: block;
         position: absolute;
         left: 2%;
         width: 32px;
