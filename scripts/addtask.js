@@ -1,9 +1,22 @@
-// let getContacts;
+let getContacts;
 let userObj;
 
 // async function loadUserContacts() {
 //   getContacts = await getItem("guest_contacts");
 // }
+
+window.addEventListener('DOMContentLoaded', function() {
+  const taskDateInput = document.getElementById('task-date');
+    function formatDate(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+    const today = new Date();
+    taskDateInput.min = formatDate(today);
+  });
+  
 
 async function loadTask() {
   getId = await getItem("guest_task");
@@ -17,18 +30,14 @@ async function setItem(key, value) {
   }).then((res) => res.json());
 }
 
-/**
- * TO-DO
- *
- * Aktuelles Datum bekommen um das als mindestwert zu setzen.
- * Assigned to Container d-none usw bei eingabe eines neuen Contacts + Aufnahmee des Kontaktes + wieder verschwinden lassen -> umstellung Input
- * Category-Overflow aktuell verbuggt, wenn nicht in den Developer-Tools unterwegs
- * Daten von Storage bekommen => Anhand dessen ID für jede To Do vergeben
- * Dokumentation vervollständigen
- * Daten auf den Server pushen => Categorie abklären: Entweder löschen ermöglichen oder nur in die Tasks pushen aber nicht in die categorys
- * responsiveness
- *
- */
+
+
+let assigned = [];
+let newSubtasks = [];
+let subtasks = [];
+let currentCategory;
+let currentPrio;
+let tasks = [];
 
 let categorys = [
   {
@@ -52,6 +61,8 @@ let currentCategory;
 let currentPrio;
 let addtasks = [];
 
+
+
 async function init() {
   userObj = await getLoggedInUser();
   // await loadUserContacts();
@@ -59,6 +70,24 @@ async function init() {
   renderCategorys();
   renderSubtasks();
 }
+
+
+
+function hideAssignedToDropdown() {
+  let assignedContainer = document.getElementById('contact-container');
+  let assignedInput = document.getElementById('assigned-container');
+  assignedContainer.classList.add('d-none');
+  assignedInput.classList.remove('remove-border');
+}
+
+function clearAssigned() {
+  let assignedInput = document.getElementById('assigned-input');
+  let assignedBtn = document.getElementById('assigned-button');
+  assignedInput.innerHTML = generateBasicAssignedInputHTML();
+  assignedBtn.innerHTML = generateBasicAssignedButtonHTML();
+}
+
+
 
 function addTask() {
   getSubtasks();
@@ -96,6 +125,8 @@ function setDate() {
   let newDate = new Date();
   console.log(newDate);
 }
+
+
 
 function getTaskPrio(button, priority) {
   const buttons = document.querySelectorAll(".prioBtn");
@@ -502,7 +533,7 @@ function generateBasicCategoryButtonHTML() {
  * This section generates assigned templates
  *
  * @returns Assigned HTML-templates
- */
+*/
 
 //Generates the input field, when clicked on "Invite new contact"
 function generateAssignedInputHTML() {
@@ -517,7 +548,7 @@ function generateAssignedInputHTML() {
 function generateAssigendButtonHTML() {
   return `
   <div class="generated-Btn-Container">
-  <button class="cancel-btn" onclick="clearInput(this)" type="button"><img src="./img/cancel_icon.png"></button>
+  <button class="cancel-btn" onclick="clearInput(this); clearAssigned()" type="button"><img src="./img/cancel_icon.png"></button>
   <svg class="btn-seperator" xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
   <path d="M1 0V31" stroke="#D1D1D1"/>
   </svg>
@@ -551,7 +582,7 @@ function renderContactsHTML(contact, i) {
 function generateAddNewContact() {
   return `
   <div>
-    <li onclick="changeToInput('assigned-input', 'assigned-button')" class="contact-item">Invite new contact <img class="cursor-p"src="./img/contacts_black.png"></li>
+    <li onclick="changeToInput('assigned-input', 'assigned-button'); hideAssignedToDropdown()" class="contact-item">Invite new contact <img class="cursor-p"src="./img/contacts_black.png"></li>
   </div>
   `;
 }
