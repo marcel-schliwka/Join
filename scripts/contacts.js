@@ -450,6 +450,7 @@ function addNewContact() {
     email: createDialogElements.inputEmail.value.trim(),
     number: createDialogElements.inputPhone.value.trim(),
   });
+  debugger;
   console.log(contacts)
   document.getElementById("createContactForm").reset();
   dialogBackground.classList.add("d-none");
