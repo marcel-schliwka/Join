@@ -472,7 +472,12 @@ body {
     overflow: hidden;
   }
 
+  #dialog__editContact, #dialog__createContact {
+    display: none;
+  }
+
   .custom-style-contacts {
+    height: 100svh;
     margin-left: 0;
     display: grid;
   }
@@ -482,11 +487,16 @@ body {
   }
 
   #contactsListContainer {
+    width: 100%;
     overflow-y: hidden;
-    padding: 0;
+    /* padding: 0; */
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  .custom-btn {
+    display: block;
   }
 
   .container-letter {

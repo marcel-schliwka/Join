@@ -82,6 +82,7 @@ async function init() {
   userObj = await getLoggedInUser();
   await loadUserContacts();
   renderContactList();
+  hideDialogElements();
 }
 
 /**
@@ -109,6 +110,15 @@ function renderContactList() {
   startEventListener();
   setItem(userObj.email, JSON.stringify(userObj));
 }
+
+function hideDialogElements() {
+  let dialogs = document.querySelectorAll('dialog');
+  dialogs.forEach(function(dialog) {
+    dialog.close();
+  });
+}
+
+
 
 /**
  * getting first letters of name and surname of contacts +
