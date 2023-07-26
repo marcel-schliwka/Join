@@ -33,13 +33,13 @@ const createDialogElements = {
 /**
  * for generating colors according to initial of lastname
  * see {@link generateCircleColor()}
- * @typedef {Object} pastelColors
+ * @typedef {Object} colors 
  * @property {string} A..Z - Colors in rgba()
  *
  */
 
-/** @type {Object} pastelColors*/
-let pastelColors = {
+/** @type {Object} colors*/
+let colors = {
   A: "rgba(104, 166, 148, 1)", // Light Pinkconst
   B: "rgba(166, 145, 104, 1)", // Gold
   C: "rgba(104, 120, 166, 1)", // Blue
@@ -182,8 +182,8 @@ function renderContactsInContainer(initials, contacts) {
  * @function
  */
 function generateCircleColor() {
-  Object.keys(pastelColors).forEach((key) => {
-    let colorValue = pastelColors[key];
+  Object.keys(colors).forEach((key) => {
+    let colorValue = colors[key];
     let colorSign = key;
     let elements = document.querySelectorAll(".circle");
     elements.forEach((element) => {
