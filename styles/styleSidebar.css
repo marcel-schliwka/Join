@@ -124,10 +124,11 @@ header {
         display: none;
     }
 
-    .icon-user {
+    /* .icon-user {
         width: 32px;
         height: 32px;
-    }
+    } */
+    
     .navChild {
         display: flex;
     }
