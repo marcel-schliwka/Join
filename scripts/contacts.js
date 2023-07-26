@@ -341,9 +341,17 @@ function changeDialogInfo(contact) {
  */
 function deleteContact() {
   dialogElements.fromCard.remove();
+  debugger;
   dialogContact.close();
   contacts.splice(getContactIndex(dialogElements.name.innerText), 1);
-  renderContactList();
+  deleteInitial(dialogElements.name.innerText);
+}
+
+function deleteInitial(name){
+  let initial = name.trim().charAt(0);
+  let initialDiv = document.getElementById(`containerLetter${initial}`);
+  debugger;
+  initialDiv.remove()
 }
 
 // Edit Contact
