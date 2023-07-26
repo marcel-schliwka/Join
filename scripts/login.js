@@ -192,7 +192,7 @@ async function init() {
 
 async function loadUsers() {
   try {
-    users = JSON.parse(await getItem("users"));
+    users = await getItem("users");
   } catch (e) {
     console.error("Loading error:", e);
   }
@@ -259,18 +259,45 @@ function getLoginFormInput() {
   return input;
 }
 
-function login() {
+async function login() {
   let formInput = getLoginFormInput();
   let user = users.find((user) => user.email === formInput.email);
 
   if (user && user.password === formInput.password) {
-    alert("You are logged in!");
+    localStorage.setItem("userData", JSON.stringify(user));
+    localStorage.setItem("activeUser", user.email);
+    await createUserObject(user);
     if (formInput.remember) {
       saveRememberMe(user);
     }
   } else {
     alert("Your email or password is wrong!");
+    return;
   }
+  window.location.href = "summary.html";
+}
+
+async function createUserObject(user) {
+  if (await checkIfUserObjectExists(user.email)) {
+  } else {
+    let userObj = {
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      tasks: [],
+      contacts: [],
+    };
+    await setItem(user.email, JSON.stringify(userObj));
+  }
+}
+
+async function checkIfUserObjectExists(email) {
+  try {
+    let userObject = await getItem(email);
+  } catch (e) {
+    return false;
+  }
+  return true;
 }
 
 function saveRememberMe(user) {
@@ -278,7 +305,7 @@ function saveRememberMe(user) {
 }
 
 function checkIfUserIsLoggedIn() {
-  let user = JSON.parse(localStorage.getItem("currentUser"));
+  let user = localStorage.getItem("activeUser");
   if (user === null) {
     console.info("No User was saved in local storage");
   } else {
@@ -296,8 +323,8 @@ function showTopDown(message) {
 }
 
 function guestLogin() {
-  localStorage.setItem('activeUser', 'guest');
-  window.location.href = `summary.html?name='Guest'`;
+  localStorage.setItem("activeUser", "guest");
+  window.location.href = `summary.html`;
 }
 
 function sendPasswordMail(e) {

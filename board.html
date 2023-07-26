@@ -38,10 +38,12 @@
     <link rel="stylesheet" href="./styles/bootstrap.css" />
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/styleSidebar.css">
-    <link rel="stylesheet" href="./styles/summary.css">
-    <link rel="stylesheet" href="./styles/board.css"> 
-    <script src="./scripts/board.js"></script> 
+    <link rel="stylesheet" href="./styles/styleSidebar.css" />
+    <link rel="stylesheet" href="./styles/summary.css" />
+    <link rel="stylesheet" href="./styles/board.css" />
+    <link rel="stylesheet" href="./styles/taskstyle.css" />
+    <script src="./scripts/storage.js"></script>
+    <script src="./scripts/board.js"></script>
     <script src="./scripts/summary.js"></script>
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/bootstrap.js"></script>
@@ -49,54 +51,94 @@
     <link rel="stylesheet" href="/styles/index.css" />
 
     <title>Board</title>
-
-</head>
-<body onload="includeHTML(); initBoard()">
+  </head>
+  <body onload="includeHTML(); initBoard()">
     <div w3-include-html="./templates/sidebar.html"></div>
+    <div
+      id="popUpBoard"
+      class="dNone popUpBoardBackground display-flex justify-content-center align-items-center"
+    ></div>
     <div class="parentDiv paddingRight50Px">
-        <div class="d-flex justify-content-between mb-5">
-            <div class="size3Em bold">
-                Board
+      <div class="d-flex justify-content-between mb-5">
+        <div class="size3Em bold">Board</div>
+        <div class="d-flex align-items-center">
+          <div
+            class="border ps-3 py-1 findTaskBtn d-flex justify-content-between align-items-center"
+          >
+            <input
+              onkeyup="searchTask()"
+              id="boardInput"
+              data-search
+              placeholder="Find task"
+              class="inputfindTask border-end"
+              type="text"
+            />
+            <div
+              class="d-flex justify-content-center align-items-center px-3 cursorPointer"
+            >
+              <img src="./img/search2.svg" alt="search" />
             </div>
-            <div class="d-flex align-items-center">
-                <div class="border ps-3 py-1 findTaskBtn d-flex justify-content-between align-items-center">
-                    <input placeholder="Find task" class="inputfindTask border-end" type="text">
-                    <div class="d-flex justify-content-center align-items-center px-3 cursorPointer">
-                        <img src="./img/search2.svg" alt="search">
-                    </div>
-                </div>
-                <div class="addTaskBoardBtn bold px-2 py-2 ms-4 cursorPointer">
-                    Add task +
-                </div>
-            </div>
+          </div>
+          <div
+            onclick="boardOpenDialog()"
+            class="addTaskBoardBtn bold px-2 py-2 ms-4 cursorPointer"
+          >
+            Add task +
+          </div>
         </div>
-        <div class="gridContainerChildBoard">
-            <div>
-                <div class="d-flex justify-content-between">
-                    <div class="bold">To do</div>
-                    <div class="cursorPointer"><img src="./img/plusButton.svg" alt="plus"></div>
-                </div>
-                <div id="todo"></div>
+      </div>
+      <div class="gridContainerChildBoard">
+        <div>
+          <div class="d-flex justify-content-between">
+            <div class="bold">To do</div>
+            <div class="cursorPointer">
+              <img src="./img/plusButton.svg" alt="plus" />
             </div>
-            <div>
-                <div class="d-flex justify-content-between">
-                    <div class="bold">In Progress</div>
-                    <div class="cursorPointer"><img src="./img/plusButton.svg" alt="plus"></div>
-                </div>
-                <div>Content</div>
-            </div>
-            <div>
-                <div class="d-flex justify-content-between">
-                    <div class="bold">Awaiting Feedback</div>
-                    <div class="cursorPointer"><img src="./img/plusButton.svg" alt="plus"></div>
-                </div>
-                <div>Content</div>
-            </div>
-            <div>
-                <div class="bold">Done</div>
-                <div>Content</div>
-            </div>
+          </div>
+          <div
+            ondrop="moveTo('todo')"
+            ondragover="allowDrop(event)"
+            id="todo"
+          ></div>
         </div>
+        <div>
+          <div class="d-flex justify-content-between">
+            <div class="bold">In Progress</div>
+            <div class="cursorPointer">
+              <img src="./img/plusButton.svg" alt="plus" />
+            </div>
+          </div>
+          <div
+            ondrop="moveTo('in progress')"
+            ondragover="allowDrop(event)"
+            id="inProgress"
+          ></div>
+        </div>
+        <div>
+          <div class="d-flex justify-content-between">
+            <div class="bold">Awaiting Feedback</div>
+            <div class="cursorPointer">
+              <img src="./img/plusButton.svg" alt="plus" />
+            </div>
+          </div>
+          <div
+            ondrop="moveTo('awaiting feedback')"
+            ondragover="allowDrop(event)"
+            id="awaitingFeedback"
+          ></div>
+        </div>
+        <div>
+          <div class="bold">Done</div>
+          <div
+            ondrop="moveTo('done')"
+            ondragover="allowDrop(event)"
+            id="done"
+          ></div>
+        </div>
+      </div>
     </div>
-</body>
+    <!-- <dialog modal w3-include-html="./templates/addTaskTemplate.html" id="boardOpenDialog" open>
+    </dialog> -->
+    <div w3-include-html="./templates/addTaskTemplate.html"></div>
+  </body>
 </html>

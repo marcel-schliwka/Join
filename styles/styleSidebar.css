@@ -52,6 +52,10 @@ header {
     padding-bottom: 100px;
 }
 
+.resp-logo {
+    display: none;
+}
+
 .navChild>div {
     display: flex;
     padding-top: 8px;
@@ -80,4 +84,63 @@ header {
 
 .w-38 {
     width: 38px;
+}
+
+/* RESPONSIVE */
+
+@media screen and (min-width: 320px) and (max-width: 420px){
+    nav {
+        position: fixed;
+        width: 100vw;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        will-change: transform;
+        transform: translateZ(0);
+        display: flex;
+        height: 32px;
+        box-sizing: border-box;
+    }
+
+    header {
+        position: relative;
+        height: 80px;
+    }
+
+    .header-text {
+        display: none;
+    }
+
+    .resp-logo {
+        display: block;
+        position: absolute;
+        left: 8px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .icon-question {
+        display: none;
+    }
+
+    .icon-user {
+        width: 32px;
+        height: 32px;
+    }
+    .navChild {
+        display: flex;
+    }
+
+    .logoDiv {
+        display: none;
+    }
+
+    .navBar-bottom {
+        display: none;
+    }
+
+    .link-text {
+        display: none;
+    }
 }

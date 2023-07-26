@@ -33,17 +33,17 @@ const createDialogElements = {
 /**
  * for generating colors according to initial of lastname
  * see {@link generateCircleColor()}
- * @typedef {Object} pastelColors
+ * @typedef {Object} colors 
  * @property {string} A..Z - Colors in rgba()
  *
  */
 
-/** @type {Object} pastelColors*/
-let pastelColors = {
+/** @type {Object} colors*/
+let colors = {
   A: "rgba(104, 166, 148, 1)", // Light Pinkconst
   B: "rgba(166, 145, 104, 1)", // Gold
   C: "rgba(104, 120, 166, 1)", // Blue
-  D: "rgba(166, 141, 104, 1)", // Light Brown
+  D: "rgba(222, 111, 13, 1)", // Light Brown
   E: "rgba(140, 166, 104, 1)", // Olive Green
   F: "rgba(140, 104, 166, 1)", // Purple
   G: "rgba(130, 166, 104, 1)", // Green
@@ -82,6 +82,7 @@ async function init() {
   userObj = await getLoggedInUser();
   await loadUserContacts();
   renderContactList();
+  hideDialogElements();
 }
 
 /**
@@ -110,6 +111,15 @@ function renderContactList() {
   setItem(userObj.email, JSON.stringify(userObj));
 }
 
+function hideDialogElements() {
+  let dialogs = document.querySelectorAll('dialog');
+  dialogs.forEach(function(dialog) {
+    dialog.close();
+  });
+}
+
+
+
 /**
  * getting first letters of name and surname of contacts +
  * creating new object element for them to be available
@@ -129,9 +139,9 @@ function renderInitials() {
 
   for (const [key, value] of contactsSorted.entries()) {
     container.innerHTML += /*html*/ `
-            <div id="containerLetter${key}" class="container-letter initial" >
-              <div>
-                  ${key}
+            <div id="containerLetter${key}">
+              <div class="container-letter initial">
+                <span>${key}</span>
               </div>
                       
                 <div>
@@ -158,11 +168,11 @@ function renderContactsInContainer(initials, contacts) {
       const contact = contacts[c];
       let name = contact.name;
       let email = contact.email;
-      let firstLetter = contact.firstLetters;
-      let colorSign = contact.colorInitial;
+      // let firstLetter = contact.firstLetters;
+      // let colorSign = firstLetter;
       groupContainer.innerHTML += /*html*/ `
         <div class="single-contact-card" id="card${c}">
-            <div class="circle" id="${colorSign}">
+            <div class="circle" id="${getColorSign(contact.name)}">
               ${getInitials(contact.name)}
             </div>
 
@@ -182,8 +192,8 @@ function renderContactsInContainer(initials, contacts) {
  * @function
  */
 function generateCircleColor() {
-  Object.keys(pastelColors).forEach((key) => {
-    let colorValue = pastelColors[key];
+  Object.keys(colors).forEach((key) => {
+    let colorValue = colors[key];
     let colorSign = key;
     let elements = document.querySelectorAll(".circle");
     elements.forEach((element) => {
@@ -292,9 +302,11 @@ function openContact(card) {
     .querySelector(".circle")
     .getAttribute("style");
   dialogElements["profilePic"] = document.querySelector(".dialog__circle");
-  const infoCardName = card.querySelector(".info__name").innerText;
+  const infoCardName = card.querySelector(".info__name").innerText.trim();
+  // debugger;
   /* saving returned value of getContact() in local variable */
   let clickedContact = getContact(infoCardName);
+  // debugger;
   /* calling changeDialogInfo with the just saved variable and cardID */
   changeDialogInfo(clickedContact, cardId);
   /* showing the dialogContact-Element which is a global variable relating to HTML Element */
@@ -302,6 +314,7 @@ function openContact(card) {
 }
 
 function getContact(searchedName) {
+  // debugger;
   let filteredContact = contacts.filter(
     (contact) => contact.name === searchedName
   );
@@ -325,6 +338,9 @@ function getContactIndex(searchedName) {
  * @param {Object} contact
  */
 function changeDialogInfo(contact) {
+  // let name = contact.name;
+  // let finalName = name.trim()
+
   dialogElements.profilePic.innerHTML = dialogElements.initials;
   dialogElements.profilePic.style = dialogElements.circleColor;
   dialogElements.name.innerText = contact.name;
@@ -343,6 +359,15 @@ function deleteContact() {
   dialogElements.fromCard.remove();
   dialogContact.close();
   contacts.splice(getContactIndex(dialogElements.name.innerText), 1);
+  deleteInitial(dialogElements.name.innerText);
+}
+
+function deleteInitial(name) {
+  let initial = name.trim().charAt(0).toUpperCase();
+  let initialDiv = document.getElementById(`containerLetter${initial}`);
+  if (initialDiv.children.length == 0) {
+    initialDiv.remove();
+  }
   renderContactList();
 }
 
@@ -420,15 +445,13 @@ function cancelCreateContact() {
  * @function
  */
 function addNewContact() {
-  let input = createDialogElements.inputName.value;
-  let capitalInput = input.charAt(0).toUpperCase() + input.slice(1);
-  console.log(capitalInput);
-
   contacts.push({
-    name: createDialogElements.inputName.value,
-    email: createDialogElements.inputEmail.value,
-    number: createDialogElements.inputPhone.value,
+    name: createDialogElements.inputName.value.trim(),
+    email: createDialogElements.inputEmail.value.trim(),
+    number: createDialogElements.inputPhone.value.trim(),
   });
+  console.log(contacts)
+  debugger;
   document.getElementById("createContactForm").reset();
   dialogBackground.classList.add("d-none");
   cancelCreateContact();
