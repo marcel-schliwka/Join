@@ -451,7 +451,6 @@ function addNewContact() {
     number: createDialogElements.inputPhone.value.trim(),
   });
   console.log(contacts)
-  debugger;
   document.getElementById("createContactForm").reset();
   dialogBackground.classList.add("d-none");
   cancelCreateContact();
