@@ -37,23 +37,21 @@
     <!-- FAVICON END -->
     <link rel="stylesheet" href="./styles/bootstrap.css" />
     <link rel="stylesheet" href="./styles/fonts.css" />
-    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/taskstyle.css" />
     <link rel="stylesheet" href="./styles/styleSidebar.css" />
     <link rel="stylesheet" href="./styles/summary.css" />
     <link rel="stylesheet" href="./styles/board.css" />
-    <link rel="stylesheet" href="./styles/taskstyle.css" />
     <script src="./scripts/storage.js"></script>
     <script src="./scripts/board.js"></script>
     <script src="./scripts/summary.js"></script>
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/bootstrap.js"></script>
 
-    <link rel="stylesheet" href="/styles/index.css" />
-
     <title>Board</title>
   </head>
-  <body onload="includeHTML(); initBoard()">
+  <body onload="initBoard(); includeHTML(); ">
     <div w3-include-html="./templates/sidebar.html"></div>
+    <div w3-include-html="./templates/addTaskTemplate.html"></div>
     <div
       id="popUpBoard"
       class="dNone popUpBoardBackground display-flex justify-content-center align-items-center"
@@ -139,6 +137,5 @@
     </div>
     <!-- <dialog modal w3-include-html="./templates/addTaskTemplate.html" id="boardOpenDialog" open>
     </dialog> -->
-    <div w3-include-html="./templates/addTaskTemplate.html"></div>
   </body>
 </html>

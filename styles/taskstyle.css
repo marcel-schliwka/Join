@@ -1,668 +1,676 @@
 /*Basic Styles*/
 .font61 {
-    color: #000;
-    font-family: Inter;
-    font-size: 61px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%;
+  color: #000;
+  font-family: Inter;
+  font-size: 61px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
 }
 
 .font47 {
-    color: #000;
-    font-family: Inter;
-    font-size: 47px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 120%;
+  color: #000;
+  font-family: Inter;
+  font-size: 47px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
 }
 
 .font36 {
-    color: #000;
-    font-family: Inter;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%
+  color: #000;
+  font-family: Inter;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
 }
 
 .font27 {
-    color: #000;
-    font-family: Inter;
-    font-size: 27px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
+  color: #000;
+  font-family: Inter;
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
 }
 
 .font20 {
-    color: #000;
-    font-family: Inter;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
+  color: #000;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
 }
 
 .font16 {
-    color: #000;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
+  color: #000;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
 }
 
 .font12 {
-    color: #000;
-    font-family: Inter;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
+  color: #000;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
 }
 
 .ol-none {
-    outline: none;
+  outline: none;
 }
 
 .b-none {
-    border: none
+  border: none;
 }
 
 .w-422 {
-    width: 422px;
+  width: 422px;
 }
 
 .h-51 {
-    height: 51px;
+  height: 51px;
 }
 
 .pad-18-21 {
-    padding: 18px 21px;
+  padding: 18px 21px;
 }
 
 .pad-13-21 {
-    padding: 13px 21px;
+  padding: 13px 21px;
 }
 
 .pad-18-15 {
-    padding: 18px 15px;
+  padding: 18px 15px;
 }
 
 .pad-18-10 {
-    padding: 18px 10px;
+  padding: 18px 10px;
 }
 
 .d-none {
-    display: none;
+  display: none;
 }
 
 .cursor-p {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
-
 body {
-    background: #F6F7F8;
+  background: #f6f7f8;
 }
 
 .custom-border {
-    border-radius: 10px;
-    border: 1px solid #D1D1D1;
-    background: #FFF;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  background: #fff;
 }
 
 .prio-btn {
-    display: flex;
-    height: 61px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-shrink: 0;
+  display: flex;
+  height: 61px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .shadow {
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 .add-task-section h1 {
-    margin-left: 328px;
-    margin-top: 50px;
+  margin-left: 328px;
+  margin-top: 50px;
 }
 
 .add-task-section form {
-    display: flex;
+  display: flex;
+}
+
+#add-task-form {
+  display: flex;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 30px;
+  padding: 40px;
+}
+
+.add-task-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
 }
 
 .left {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-    margin-left: 355px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  margin-left: 355px;
+}
+
+.left-dialog {
+  margin-left: 0;
 }
 
 .add-task-section select {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
-    z-index: 999;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  z-index: 999;
 }
 
 .right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
 }
 
 .seperator {
-    margin-left: 59px;
-    margin-right: 59px;
+  margin-left: 59px;
+  margin-right: 59px;
 }
 
-form textarea {
-    height: 119px;
+#add-task-form textarea {
+  height: 119px;
 }
 
 .dropdown button {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: center !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
 }
 
 .dropdown li {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .urgent-btn {
-    width: 136px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    display: flex;
+  width: 136px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: flex;
 }
 
 .medium-btn {
-    width: 126px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    display: flex;
+  width: 126px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: flex;
 }
 
 .low-btn {
-    width: 136px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    display: flex;
+  width: 136px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: flex;
 }
 
 .clear-btn {
-    display: flex;
-    width: 136px;
-    height: 55px;
-    padding: 18px 10px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 10px;
-    background-color: white;
-    border: 1px solid #2A3647;
+  display: flex;
+  width: 136px;
+  height: 55px;
+  padding: 18px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background-color: white;
+  border: 1px solid #2a3647;
 }
 
 .clear-btn:hover {
-    border-color: #29ABE2;
-    color: #29ABE2;
+  border-color: #29abe2;
+  color: #29abe2;
 }
 
 .clear-btn:hover svg path {
-    stroke: #29ABE2;
+  stroke: #29abe2;
 }
 
-
 .create-btn {
-    display: flex;
-    height: 55px;
-    padding: 18px 15px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 10px;
-    background: #2A3647;
-    color: white;
+  display: flex;
+  height: 55px;
+  padding: 18px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: #2a3647;
+  color: white;
 }
 
 .create-btn:hover {
-    background-color: #29ABE2;
-    border: #29ABE2;
+  background-color: #29abe2;
+  border: #29abe2;
 }
 
 .form-btn {
-    margin-top: 150px;
-    margin-left: 78px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
+  margin-top: 150px;
+  margin-left: 78px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
 }
 
 .category-btn {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-    border-radius: 24px;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 24px;
 }
 
 .custom-circle {
-    width: 32px;
-    height: 32px;
-    flex-shrink: 0;
-    border-radius: 24px;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 24px;
 }
 
 .urgent-active {
-    background-color: #FF3D00 !important;
-    color: white;
+  background-color: #ff3d00 !important;
+  color: white;
 }
 
 .medium-active {
-    background-color: #FFA800 !important;
-    color: white;
+  background-color: #ffa800 !important;
+  color: white;
 }
 
 .low-active {
-    background-color: #7AE229 !important;
-    color: white;
+  background-color: #7ae229 !important;
+  color: white;
 }
-
-
 
 .category-container,
 .assigned-container,
 .subtasks-container {
-    font-size: 20px;
-    display: flex;
-    justify-content: space-between;
-    width: 422px;
-    border-radius: 10px;
-    border: 1px solid #D1D1D1;
-    background: #FFF;
-    height: 51px;
-    align-items: center;
-    padding: 18px 21px;
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 422px;
+  border-radius: 10px;
+  border: 1px solid #d1d1d1;
+  background: #fff;
+  height: 51px;
+  align-items: center;
+  padding: 18px 21px;
 }
 
 .subtasks-container input {
-    border: none;
+  border: none;
 }
 
 .category-button-container button {
-    background: white;
-    border: none;
+  background: white;
+  border: none;
 }
 
 .assigned-button-container button {
-    background: white;
-    border: none;
+  background: white;
+  border: none;
 }
 
 .subtasks-button-container button {
-    background: white;
-    border: none;
+  background: white;
+  border: none;
 }
 
 .contact-item {
-    padding-right: 22px;
-    display: flex;
-    justify-content: space-between;
-    width: 415px;
-    text-decoration: none;
-    margin-left: -27px;
-    padding-left: 18px;
-    padding-top: 5px;
-    padding-bottom: 8px;
-    overflow-x: hidden;
+  padding-right: 22px;
+  display: flex;
+  justify-content: space-between;
+  width: 415px;
+  text-decoration: none;
+  margin-left: -27px;
+  padding-left: 18px;
+  padding-top: 5px;
+  padding-bottom: 8px;
+  overflow-x: hidden;
 }
 
-
 .colorpicker {
-    border: none;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.10);
-    font-size: 0px;
-    margin-right: 8px;
+  border: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.1);
+  font-size: 0px;
+  margin-right: 8px;
 }
 
 .generated-Btn-Container {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .generated-Btn-Container button {
-    border: none;
-    background: white;
+  border: none;
+  background: white;
 }
 
 .generated-subtask-container {
-    display: flex;
-    gap: 20px;
-    padding-bottom: 5px;
-    align-items: center;
+  display: flex;
+  gap: 20px;
+  padding-bottom: 5px;
+  align-items: center;
 }
 
 ul {
-    margin-bottom: 0rem !important;
+  margin-bottom: 0rem !important;
 }
 
 .categorys {
-    margin-top: -15px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border: 1px solid #D1D1D1;
-    background: #FFF;
-    border-top: none;
+  margin-top: -15px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: 1px solid #d1d1d1;
+  background: #fff;
+  border-top: none;
 }
 
 .categorys ul {
-    list-style: none;
-    padding: 0;
+  list-style: none;
+  padding: 0;
 }
 
 .category-generated-list:hover {
-    background-color: lightgray;
+  background-color: lightgray;
 }
 
 .category-dropdown-items:hover {
-    background-color: lightgray;
+  background-color: lightgray;
 }
 
 .category-generated-list li {
-    height: 51px
+  height: 51px;
 }
 
 .category-generated-list {
-    display: flex;
-    align-items: center;
-    width: 420px;
-
+  display: flex;
+  align-items: center;
+  width: 420px;
 }
 
 .category-li-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-left: 22px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 22px;
 }
 
 .geneneratedSubtasks {
-    max-height: 139px;
-    overflow-y: auto;
+  max-height: 139px;
+  overflow-y: auto;
 }
 
 .category-dropdown-items {
-    height: 51px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  height: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .hiddenInput {
-    padding: 22px 18px;
-    height: 51px;
-    border: none;
+  padding: 22px 18px;
+  height: 51px;
+  border: none;
 }
 
 .hidden-input-container {
-    margin-top: -65px;
-    border: none;
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 10px;
+  margin-top: -65px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
 }
 
-
-
 .hidden-input-container:focus {
-    outline: none;
+  outline: none;
 }
 
 .hidden-input input {
-    outline: none;
+  outline: none;
 }
 
 .hidden-input input:focus {
-    outline: none;
+  outline: none;
 }
-
 
 .remove-border {
-    border-bottom-left-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
-    border-bottom: none !important;
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom: none !important;
 }
 
-
 li {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #renderCategorys {
-    max-height: 150px;
-    overflow-y: scroll;
+  max-height: 150px;
+  overflow-y: scroll;
 }
 
 #renderContacts {
-    max-height: 150px;
-    overflow-y: scroll;
+  max-height: 150px;
+  overflow-y: scroll;
 }
 
-
 .category-dropdown-items:hover {
-    background-color: lightgray;
+  background-color: lightgray;
 }
 
 .contact-item-container:hover {
-    background-color: lightgray;
+  background-color: lightgray;
 }
 
 .contacts {
-    margin-top: -15px;
-    border-bottom-right-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border: 1px solid #D1D1D1;
-    background: #FFF;
-    border-top: none;
-    width: 422px;
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
+  margin-top: -15px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border: 1px solid #d1d1d1;
+  background: #fff;
+  border-top: none;
+  width: 422px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .color-container button {
-    border-radius: 50% !important;
-    height: 16px !important;
-    width: 16px !important;
+  border-radius: 50% !important;
+  height: 16px !important;
+  width: 16px !important;
 }
 
 .color-container input {
-    background-color: #00000068 !important;
-    border-radius: 50% !important;
-    height: 10px !important;
-    width: 10px !important;
+  background-color: #00000068 !important;
+  border-radius: 50% !important;
+  height: 10px !important;
+  width: 10px !important;
 }
 
 .color-container {
-    display: flex;
-    align-items: center;
-    
+  display: flex;
+  align-items: center;
 }
 
 .you-own-color {
-    display: flex;
-    align-items: center;
-    margin-top: 5px;
-    margin-left: 5px;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 .btn-seperator {
-    margin-left: 8px;
-    margin-right: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 .cancel-btn {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .check-btn {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .check-btn img {
-    object-fit: contain;
-    height: 21px;
+  object-fit: contain;
+  height: 21px;
 }
 
 #hidden-error p {
-    color: red !important;
-    padding-left: 15px;
+  color: red !important;
+  padding-left: 15px;
 }
 
-@media(max-width: 428px) {
-    h1 {
-        font-size: 47px !important;
-        margin-left: 33px !important;
-        margin-top: 40.98px !important; 
-        margin-bottom: 55px;;
-    }
+@media (max-width: 428px) {
+  h1 {
+    font-size: 47px !important;
+    margin-left: 33px !important;
+    margin-top: 40.98px !important;
+    margin-bottom: 55px;
+  }
 
-    label {
-        font-size: 16px;
-    }
+  label {
+    font-size: 16px;
+  }
 
-    form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+  #add-task-form {
+    display: flex;
+    align-items: center;
+  }
 
-    .left {
-        margin-left: 0px;
-    }
+  .left {
+    margin-left: 0px;
+  }
 
-    .seperator {
-        display: none;
-    }
+  .seperator {
+    display: none;
+  }
 
-    #title-input {
-        height: 51px;
-        width: 363px
-    }
+  #title-input {
+    height: 51px;
+    width: 363px;
+  }
 
-    #description-input {
-        width: 363px;
-        height: 93px;
-    }
+  #description-input {
+    width: 363px;
+    height: 93px;
+  }
 
-    .category-container {
-        width: 363px;
-    }
+  .category-container {
+    width: 363px;
+  }
 
-    .assigned-container {
-        width: 363px;
-    }
+  .assigned-container {
+    width: 363px;
+  }
 
-    #task-date {
-        width: 363px;
-    }
+  #task-date {
+    width: 363px;
+  }
 
-    .prio-btn {
-        width: 363px;
-        height: 51px;
-    }
+  .prio-btn {
+    width: 363px;
+    height: 51px;
+  }
 
-    .urgent-btn{
-        height: 50px;
-        width: 114px;
-    }
-    .medium-btn{
-        height: 50px;
-        width: 115px;
-    }
-    .low-btn{
-        height: 50px;
-        width: 114px;
-    }
+  .urgent-btn {
+    height: 50px;
+    width: 114px;
+  }
+  .medium-btn {
+    height: 50px;
+    width: 115px;
+  }
+  .low-btn {
+    height: 50px;
+    width: 114px;
+  }
 
-    .date-label {
-        margin-top: 8px;
-    }
+  .date-label {
+    margin-top: 8px;
+  }
 
-    .subtasks-input {
-        width: 255px;
-    }
+  .subtasks-input {
+    width: 255px;
+  }
 
-    .contacts {
-        width: 363px
-    }
+  .contacts {
+    width: 363px;
+  }
 
-    .invite-contact {
-        width: 354px
-    }
+  .invite-contact {
+    width: 354px;
+  }
 
-    .invite-contact img {
-        margin-right: 3px;
-    }
+  .invite-contact img {
+    margin-right: 3px;
+  }
 
-    .contact-item {
-        width: 357px
-    }
+  .contact-item {
+    width: 357px;
+  }
 
-    .subtasks-container {
-        width: 363px;
-    }
+  .subtasks-container {
+    width: 363px;
+  }
 
-    #renderContacts {
-        overflow-x: hidden;
-    }
+  #renderContacts {
+    overflow-x: hidden;
+  }
 
-    #renderCategorys {
-        width: 361px;
-        overflow-x: hidden;
-    }
+  #renderCategorys {
+    width: 361px;
+    overflow-x: hidden;
+  }
 
-    #generatedInput {
-        width: 228px;
-    }
+  #generatedInput {
+    width: 228px;
+  }
 
-    .clear-btn {
-        display: none;
-    }
+  .clear-btn {
+    display: none;
+  }
 
-    .form-btn {
-        margin-top: 0px;
-    }
+  .form-btn {
+    margin-top: 0px;
+  }
 
-    .create-btn {
-        position: absolute;
-        top: 14px;
-        right: 25px;
-    }
+  .create-btn {
+    position: absolute;
+    top: 14px;
+    right: 25px;
+  }
 }
