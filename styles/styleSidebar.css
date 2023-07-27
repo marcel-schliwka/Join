@@ -144,4 +144,8 @@ header {
     .link-text {
         display: none;
     }
+
+    .gap26px {
+        margin-left: 0;
+    }
 }

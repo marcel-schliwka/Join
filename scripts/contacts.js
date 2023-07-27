@@ -30,6 +30,25 @@ const createDialogElements = {
   inputPhone: document.getElementById("dialog__createPhoneInput"),
 };
 
+// const openDialogElements = document.querySelectorAll('dialog');
+// const mql = window.matchMedia('(max-width: 796px)');
+
+// function screenTest(e) {
+//   if (e.matches) {
+//     console.log('Ja!');
+//     hideDialogElements();
+//   } else {
+//     console.log('Bildschirm größer als mql');
+//   }
+// }
+
+// screenTest(mql);
+// mql.addEventListener('resize', screenTest, false);
+
+// mql.onchange = function () {
+//   console.log('mql.onchange wird aufgerufen! Was bedeutet das?');
+// }
+
 /**
  * for generating colors according to initial of lastname
  * see {@link generateCircleColor()}
@@ -69,7 +88,6 @@ let colors = {
 };
 
 let contacts;
-
 let contactsSorted;
 
 /**
@@ -82,8 +100,8 @@ async function init() {
   userObj = await getLoggedInUser();
   await loadUserContacts();
   renderContactList();
-  hideDialogElements();
 }
+
 
 /**
  * loading userContacts from remote storage
@@ -112,11 +130,27 @@ function renderContactList() {
 }
 
 function hideDialogElements() {
-  let dialogs = document.querySelectorAll('dialog');
-  dialogs.forEach(function(dialog) {
+  openDialogElements.forEach((dialog) => {
     dialog.close();
   });
 }
+
+// function hideDialogElements() {
+//   let dialogs = document.querySelectorAll('dialog');
+//   dialogs.forEach(dialog => {
+//     if (dialog.open) {
+//       debugger;
+//       dialog.close();
+//     }
+//   })
+// }
+
+//  function showDialogElements() {
+//    let dialogs = document.querySelectorAll('dialog');
+//    dialogs.forEach(function(dialog) {
+//      dialog.show();
+//    });
+//  }
 
 
 
@@ -177,7 +211,7 @@ function renderContactsInContainer(initials, contacts) {
             </div>
 
             <div class="info">
-                <h4 class="info__name">${name}</h4>
+                <h4 class="info__name h4">${name}</h4>
                  <p>${email}</p>
             </div>
          </div>
@@ -269,6 +303,8 @@ function sortContactsAlphabetically(sortedInitialsMap) {
  * @date 7/22/2023 - 3:04:10 PM
  */
 let startEventListener = () => {
+  // mql.addEventListener('change', screenTest, false);
+  // window.addEventListener("resize", checkDeviceSize());
   /* selecting all elements with class of single.contact-card to be saved in variable named cards*/
   let cards = document.querySelectorAll(".single-contact-card");
   /* iterating over each contact card */
@@ -286,6 +322,13 @@ let startEventListener = () => {
     closeEditDialog()
   );
 };
+
+// function checkDeviceSize() {
+//   if (window.innerWidth <= 800) {
+//     hideDialogElements();
+//     debugger;
+//   }
+// }
 
 /**
  * opening dialog-window to show contact information
@@ -338,9 +381,6 @@ function getContactIndex(searchedName) {
  * @param {Object} contact
  */
 function changeDialogInfo(contact) {
-  // let name = contact.name;
-  // let finalName = name.trim()
-
   dialogElements.profilePic.innerHTML = dialogElements.initials;
   dialogElements.profilePic.style = dialogElements.circleColor;
   dialogElements.name.innerText = contact.name;
@@ -451,7 +491,6 @@ function addNewContact() {
     number: createDialogElements.inputPhone.value.trim(),
   });
   console.log(contacts)
-  debugger;
   document.getElementById("createContactForm").reset();
   dialogBackground.classList.add("d-none");
   cancelCreateContact();
