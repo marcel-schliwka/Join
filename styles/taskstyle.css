@@ -555,6 +555,16 @@ li {
 }
 
 @media (max-width: 428px) {
+    .add-task-section {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .add-task-section form {
+        flex-direction: column;
+        align-items: center !important;
+    }
+
   h1 {
     font-size: 47px !important;
     margin-left: 33px !important;
@@ -566,10 +576,6 @@ li {
     font-size: 16px;
   }
 
-  #add-task-form {
-    display: flex;
-    align-items: center;
-  }
 
   .left {
     margin-left: 0px;
