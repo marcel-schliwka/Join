@@ -428,6 +428,7 @@ ul {
 .geneneratedSubtasks {
   max-height: 139px;
   overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .category-dropdown-items {
@@ -480,18 +481,20 @@ li {
   overflow-y: scroll;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 #renderContacts {
   max-height: 150px;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .category-dropdown-items:hover {
   background-color: lightgray;
 }
 
-.contact-item-container:hover {
-  background-color: lightgray;
-}
 
 .contacts {
   margin-top: -15px;
@@ -767,6 +770,7 @@ li {
 
   #renderContacts {
     overflow-x: hidden;
+
   }
 
   #renderCategorys {
