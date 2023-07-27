@@ -30,24 +30,22 @@ const createDialogElements = {
   inputPhone: document.getElementById("dialog__createPhoneInput"),
 };
 
-// const openDialogElements = document.querySelectorAll('dialog');
-// const mql = window.matchMedia('(max-width: 796px)');
+const mql = window.matchMedia('(max-width: 800px)');
 
-// function screenTest(e) {
-//   if (e.matches) {
-//     console.log('Ja!');
-//     hideDialogElements();
-//   } else {
-//     console.log('Bildschirm größer als mql');
-//   }
-// }
+function screenTest(e) {
+  let dialogOpenElements = document.querySelectorAll('dialog');
+  if (e.matches) {
+    dialogOpenElements.forEach(dialog => {
+      if (dialog.open) {
+        dialog.close();
+        dialog.classList.add('display-none');
+      }
+    });
+  }
+}
 
-// screenTest(mql);
-// mql.addEventListener('resize', screenTest, false);
-
-// mql.onchange = function () {
-//   console.log('mql.onchange wird aufgerufen! Was bedeutet das?');
-// }
+screenTest(mql);
+window.addEventListener('resize', () => screenTest(mql));
 
 /**
  * for generating colors according to initial of lastname
@@ -128,30 +126,6 @@ function renderContactList() {
   startEventListener();
   setItem(userObj.email, JSON.stringify(userObj));
 }
-
-function hideDialogElements() {
-  openDialogElements.forEach((dialog) => {
-    dialog.close();
-  });
-}
-
-// function hideDialogElements() {
-//   let dialogs = document.querySelectorAll('dialog');
-//   dialogs.forEach(dialog => {
-//     if (dialog.open) {
-//       debugger;
-//       dialog.close();
-//     }
-//   })
-// }
-
-//  function showDialogElements() {
-//    let dialogs = document.querySelectorAll('dialog');
-//    dialogs.forEach(function(dialog) {
-//      dialog.show();
-//    });
-//  }
-
 
 
 /**
@@ -303,8 +277,8 @@ function sortContactsAlphabetically(sortedInitialsMap) {
  * @date 7/22/2023 - 3:04:10 PM
  */
 let startEventListener = () => {
-  // mql.addEventListener('change', screenTest, false);
-  // window.addEventListener("resize", checkDeviceSize());
+  mql.addEventListener('resize', screenTest, false);
+
   /* selecting all elements with class of single.contact-card to be saved in variable named cards*/
   let cards = document.querySelectorAll(".single-contact-card");
   /* iterating over each contact card */
@@ -323,13 +297,6 @@ let startEventListener = () => {
   );
 };
 
-// function checkDeviceSize() {
-//   if (window.innerWidth <= 800) {
-//     hideDialogElements();
-//     debugger;
-//   }
-// }
-
 /**
  * opening dialog-window to show contact information
  *
@@ -346,10 +313,8 @@ function openContact(card) {
     .getAttribute("style");
   dialogElements["profilePic"] = document.querySelector(".dialog__circle");
   const infoCardName = card.querySelector(".info__name").innerText.trim();
-  // debugger;
   /* saving returned value of getContact() in local variable */
   let clickedContact = getContact(infoCardName);
-  // debugger;
   /* calling changeDialogInfo with the just saved variable and cardID */
   changeDialogInfo(clickedContact, cardId);
   /* showing the dialogContact-Element which is a global variable relating to HTML Element */
@@ -357,7 +322,6 @@ function openContact(card) {
 }
 
 function getContact(searchedName) {
-  // debugger;
   let filteredContact = contacts.filter(
     (contact) => contact.name === searchedName
   );
@@ -420,6 +384,7 @@ function deleteInitial(name) {
  */
 function editContact() {
   /* adding class and naimation to edit-dialog-window */
+  editDialogElements.editDialog.style.display = flex;
   editDialogElements.editDialog.classList.add("show-edit-dialog");
   /* removes display: none for background to be shown */
   dialogBackground.classList.remove("d-none");
