@@ -812,3 +812,24 @@ li {
     width: 110px
   }
 }
+
+@media (max-width: 350px) {
+  .add-task-section h1 {
+    margin-bottom: 30px;
+    margin-left: 15px;
+  }
+  #title-input,
+  #description-input,
+  #category-container,
+  #assigned-container,
+  #task-date,
+  .subtasks-container,
+  .prio-btn {
+    width: 320px;
+  }
+  #urgentBtn,
+  #mediumBtn,
+  #lowBtn {
+    width: 103px
+  }
+}
