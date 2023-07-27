@@ -666,12 +666,6 @@ li {
 
 
 
-
-
-
-
-
-
 @media (max-width: 428px) {
     .add-task-section {
         display: flex;
@@ -683,7 +677,7 @@ li {
         align-items: center;
     }
 
-  h1 {
+  .add-task-section h1 {
     font-size: 47px;
     margin-left: 33px;
     margin-top: 40.98px;
@@ -713,11 +707,11 @@ li {
     height: 93px;
   }
 
-  .category-container {
+  #category-container {
     width: 363px;
   }
 
-  .assigned-container {
+  #assigned-container {
     width: 363px;
   }
 
@@ -796,5 +790,25 @@ li {
     position: absolute;
     top: 14px;
     right: 25px;
+  }
+}
+
+@media (max-width: 380px) {
+  .add-task-section h1 {
+    margin-bottom: 40px;
+  }
+  #title-input,
+  #description-input,
+  #category-container,
+  #assigned-container,
+  #task-date,
+  .subtasks-container,
+  .prio-btn {
+    width: 340px;
+  }
+  #urgentBtn,
+  #mediumBtn,
+  #lowBtn {
+    width: 110px
   }
 }
