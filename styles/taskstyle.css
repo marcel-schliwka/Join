@@ -111,6 +111,7 @@ input:-webkit-autofill:active {
 
 body {
   background: #f6f7f8;
+  max-width: 100%;
 }
 
 .custom-border {
@@ -189,7 +190,7 @@ body {
   margin-right: 59px;
 }
 
-#add-task-form textarea {
+#description-input {
   height: 119px;
 }
 
@@ -550,9 +551,126 @@ li {
 }
 
 #hidden-error p {
-  color: red !important;
+  color: red;
   padding-left: 15px;
 }
+
+@media (max-width: 1330px) {
+  .add-task-section h1 { 
+    margin-left: 300px;
+  }
+  .left {
+    margin-left: 310px;
+  }
+
+  .seperator {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+}
+
+@media (max-width: 1260px) {
+  #title-input {
+    width: 400px;
+  }
+  #description-input {
+    width: 400px;
+  }
+  #category-container {
+    width: 400px;
+  }
+  #assigned-container {
+    width: 400px;
+  }
+  #task-date {
+    width: 400px;
+  }
+  .prio-btn {
+    width: 400px;
+  }
+  .subtasks-container {
+    width: 400px;
+  }
+  .form-btn {
+    margin-left: 40px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 1220px) {
+  .add-task-section h1 {
+    font-size: 47px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 275px;
+  }
+  .left {
+    margin-left: 275px;
+  }
+  .label {
+    font-size: 18px;
+  }
+  #title-input {
+    font-size: 18px;
+    width: 390px;
+  }
+  #description-input {
+    font-size: 18px;
+    width: 390px;
+  }
+  #category-container {
+    width: 390px;
+  }
+  #category-input {
+    font-size: 18px;
+
+  }
+  #assigned-container {
+    width: 390px;
+  }
+  #assigned-input {
+    font-size: 18px;
+
+  }
+  #task-date {
+    font-size: 18px;
+    width: 390px;
+  }
+  .prio-btn button {
+    font-size: 18px;
+  }
+
+  .prio-btn {
+    height: 55px;
+    gap: 5px;
+  }
+
+  #urgentBtn {
+    width: 123px;
+  }
+  #mediumBtn {
+    width: 123px;
+  }
+  #lowBtn {
+    width: 123px;
+  }
+
+  .subtasks-container {
+    width: 390px;
+  }
+  #subtask-input {
+    font-size: 18px;
+
+  }
+}
+
+
+
+
+
+
+
+
 
 @media (max-width: 428px) {
     .add-task-section {
@@ -562,13 +680,13 @@ li {
 
     .add-task-section form {
         flex-direction: column;
-        align-items: center !important;
+        align-items: center;
     }
 
   h1 {
-    font-size: 47px !important;
-    margin-left: 33px !important;
-    margin-top: 40.98px !important;
+    font-size: 47px;
+    margin-left: 33px;
+    margin-top: 40.98px;
     margin-bottom: 55px;
   }
 
