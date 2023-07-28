@@ -5,17 +5,7 @@ let userObj;
 //   getContacts = await getItem("guest_contacts");
 // }
 
-window.addEventListener('DOMContentLoaded', function() {
-  const taskDateInput = document.getElementById('task-date');
-    function formatDate(date) {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      return `${year}-${month}-${day}`;
-    }
-    const today = new Date();
-    taskDateInput.min = formatDate(today);
-  });
+
   
 
 async function loadTask() {
@@ -63,7 +53,27 @@ async function init() {
 }
 
 
+/**
+ * adds an eventListener that the document gets onload the current date
+ * then it gives the date the calender-selector as a min so that no previous days can be selected
+ * 
+ */
+window.addEventListener('DOMContentLoaded', function() {
+  const taskDateInput = document.getElementById('task-date');
+    function formatDate(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+    }
+    const today = new Date();
+    taskDateInput.min = formatDate(today);
+  });
 
+/**
+ * 
+ * add and remove classlists to hide the assignedto dropdown menu
+ */
 function hideAssignedToDropdown() {
   let assignedContainer = document.getElementById('contact-container');
   let assignedInput = document.getElementById('assigned-container');
@@ -71,6 +81,12 @@ function hideAssignedToDropdown() {
   assignedInput.classList.remove('remove-border');
 }
 
+
+/**
+ * 
+ * onclick on cancel button inside the assigned input
+ * the input gets cleared and the basic html gets generated
+ */
 function clearAssigned() {
   let assignedInput = document.getElementById('assigned-input');
   let assignedBtn = document.getElementById('assigned-button');
@@ -80,6 +96,12 @@ function clearAssigned() {
 
 
 
+/**
+ * 
+ * onsubmit: gets all selected and added content inside the tasks and pushes them into an object
+ * the objects gets pushed into the server
+ * 
+ */
 function addTask() {
   getSubtasks();
   let titel = document.getElementById("title-input").value;
@@ -95,7 +117,6 @@ function addTask() {
   let assignedTo = assigned;
   let category = document.querySelector(".category-input").innerText;
   let selectedSubtasks = newSubtasks;
-
   let newTask = {
     titel: titel,
     description: description,
@@ -112,13 +133,16 @@ function addTask() {
   setItem(localStorage.getItem("activeUser"), JSON.stringify(userObj));
 }
 
-function setDate() {
-  let newDate = new Date();
-  console.log(newDate);
-}
 
-
-
+/**
+ * 
+ * @param {id} button 
+ * @param {string} priority 
+ * onclick the clicked button gets the class priority-active
+ * on all other buttons the class -active gets removed
+ * pushes the selected priority into the variable currentPrio
+ * 
+ */
 function getTaskPrio(button, priority) {
   const buttons = document.querySelectorAll(".prioBtn");
   let images = {
@@ -142,6 +166,9 @@ function getTaskPrio(button, priority) {
   currentPrio = priority;
 }
 
+/**
+ * opens the add-task template
+ */
 function showTaskModal() {
   let modal = document.getElementById("addTaskModal");
   modal.classList.remove("d-none");
@@ -210,6 +237,13 @@ function addNewCategory() {
   }
 }
 
+
+/**
+ * 
+ * toggles the dropdown menu with adding and removing classes
+ * adds an eventListener, when the user clicks outside of the element, the dropdown gets closed
+ * 
+ */
 function toggleCatgoryMenu() {
   let category = document.getElementById("renderCategorys");
   let categoryContainer = document.getElementById("category-container");
@@ -232,6 +266,11 @@ function toggleCatgoryMenu() {
   }
 }
 
+
+/**
+ * gets all aviable categorys and renders them inside the dropdown menu
+ * 
+ */
 function renderCategorys() {
   let category = document.getElementById("renderCategorys");
   category.innerHTML = "";
@@ -243,6 +282,16 @@ function renderCategorys() {
   }
 }
 
+
+/**
+ * 
+ * @param {id} i 
+ * 
+ * If a category gets selected it closes the dropdown menu 
+ * and takes the selected text and generate it inside the category input
+ * the selected category gets pushed into the variable currentCategory
+ * 
+ */
 function useCategory(i) {
   let selection = document.querySelector(".category-input");
   let category = document.getElementById("renderCategorys");
@@ -253,17 +302,24 @@ function useCategory(i) {
   categoryContainer.classList.remove("remove-border");
 }
 
+
+
 /**
  * ASSIGNED
  */
 
+/**
+ * 
+ * onclick the function toggles the dropdown menu
+ * adds an eventListener, that if the user clicks outside of the dropdown it gets closed
+ * 
+ */
 function toggleAssigndMenu() {
   let contacts = document.getElementById("contact-container");
   let contactContainer = document.getElementById("assigned-container");
   let input = document.querySelector(".assigned-input input");
   contacts.classList.toggle("d-none");
   contactContainer.classList.toggle("remove-border");
-
   if (input !== null) {
     contacts.classList.add("d-none");
     contactContainer.classList.remove("remove-border");
@@ -280,6 +336,16 @@ function toggleAssigndMenu() {
   }
 }
 
+
+/**
+ * 
+ * gets all checkboxes from the assigned dropdown menu
+ * checks all checkboxes, if they are checked
+ * if the checkbox is the user one it pushes the username
+ * otherwise it pushes the name from the contact into the array assigned
+ * 
+ * 
+ */
 function getAssignedContacts() {
   let test = document.querySelectorAll(".checkboxImg");
   for (let i = 0; i < test.length; i++) {
@@ -296,17 +362,24 @@ function getAssignedContacts() {
   }
 }
 
+
+/**
+ * 
+ * gets the assigned to (contacts) container
+ * inside the container it first renders the user (you)
+ * then it renders the aviable contacts
+ * after the contacts are rendert it adds another line that allows the user to add a new contact
+ * 
+ */
 function renderContacts() {
   let contacts = document.getElementById("renderContacts");
   contacts.innerHTML = "";
   contacts.innerHTML += generateUserAssignedHTML();
-
   for (let i = 0; i < userObj.contacts.length; i++) {
     const contact = userObj.contacts[i];
     console.log(contact);
     contacts.innerHTML += renderContactsHTML(contact, i);
   }
-
   contacts.innerHTML += generateAddNewContact();
 }
 
@@ -314,6 +387,14 @@ function renderContacts() {
  * SUBTASKS
  */
 
+
+/**
+ * 
+ * Gets the input from the generated subtasks and pushes them into an array.
+ * Then render the subtasks
+ * After that it generates the basic (initial html) field.
+ * 
+ */
 function addSubtask() {
   let input = document.getElementById("generatedSubtaskInput").value;
   if (input !== "") {
@@ -326,6 +407,12 @@ function addSubtask() {
   subtasksBtn.innerHTML = generateBasicSubtaskButtonHTML();
 }
 
+/**
+ * 
+ * render the generated subtasks inside the subtask-container
+ * subtracts margin from the buttons under them to stay on the same point
+ *   
+ */
 function renderSubtasks() {
   let content = document.getElementById("subtask-content");
   let buttonContainer = document.getElementById("form-btn-container");
@@ -342,6 +429,12 @@ function renderSubtasks() {
   }
 }
 
+/**
+ * 
+ * If the cancel symbol gets clicked inside the subtask input
+ * the basic subtask-field (from initial html) gets shown
+ * 
+ */
 function changeToSubtask() {
   let subtasksInput = document.getElementById("subtasks-input");
   let subtasksBtn = document.getElementById("subtasks-button");
@@ -349,6 +442,14 @@ function changeToSubtask() {
   subtasksBtn.innerHTML = generateBasicSubtaskButtonHTML();
 }
 
+
+/**
+ * 
+ * @param {id} i 
+ * gets the id from the clicked checkbox
+ * onclick it gets the attribute checked and changes the image to a checked checkbox
+ * if already checked it gets unchecked
+ */
 function changeSubtaskCheckbox(i) {
   let checkboxImg = document.getElementById(`subtask-checkbox${i}`);
   if (checkboxImg.getAttribute("src") === "./img/checkbox.png") {
@@ -360,6 +461,13 @@ function changeSubtaskCheckbox(i) {
   }
 }
 
+/**
+ * 
+ * This function gets all Checkboxes from the generated subtasks
+ * Then it checks if the checkbox has the attribute checked and is active
+ * Then it takes the Text from the subtask and push them into the Array newSubtasks
+ * 
+ */
 function getSubtasks() {
   let subtaskCheckboxes = document.querySelectorAll(".subtaskCheckboxImg");
   for (let i = 0; i < subtaskCheckboxes.length; i++) {
