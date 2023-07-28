@@ -149,10 +149,7 @@ body {
   border-radius: 30px;
   padding: 40px;
   z-index: 25;
-}
-
-.show-modal {
-  animation: showWindow 1s ease-in-out forwards;
+  width: fit-content;
 }
 
 .add-task-container {
@@ -846,17 +843,5 @@ li {
   #mediumBtn,
   #lowBtn {
     width: 103px;
-  }
-}
-
-/* ANIMATIONS */
-@keyframes showWindow {
-  from {
-    transform: translateX(300%);
-  }
-
-  to {
-    transform: translateX(0);
-    background-color: rgba(0, 0, 0, 0.4);
   }
 }

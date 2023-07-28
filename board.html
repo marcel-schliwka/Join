@@ -40,11 +40,13 @@
     <link rel="stylesheet" href="./styles/taskstyle.css" />
     <link rel="stylesheet" href="./styles/styleSidebar.css" />
     <link rel="stylesheet" href="./styles/summary.css" />
+    <link rel="stylesheet" href="./styles/animations.css" />
     <link rel="stylesheet" href="./styles/board.css" />
     <script src="./scripts/storage.js"></script>
     <script src="./scripts/board.js"></script>
     <script src="./scripts/summary.js"></script>
     <script src="./scripts/sidebar.js"></script>
+    <script src="./scripts/animations.js"></script>
     <script src="./scripts/bootstrap.js"></script>
 
     <title>Board</title>
@@ -78,7 +80,7 @@
             </div>
           </div>
           <div
-            onclick="addTaskWindow('open')"
+            onclick="openModal(document.querySelector('.modal'))"
             class="addTaskBoardBtn bold px-2 py-2 ms-4 cursorPointer"
           >
             Add task +

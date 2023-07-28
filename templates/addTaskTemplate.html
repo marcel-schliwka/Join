@@ -1,4 +1,4 @@
-<div class="add-task-container">
+<div class="modal-backdrop modal">
   <form
     onsubmit="addTask(); return false"
     id="add-task-form"
@@ -101,7 +101,7 @@
         src="/img/close.svg"
         alt="Close the Dialog Windows"
         id="closeAddTask"
-        onclick="addTaskWindow('close');"
+        onclick="closeModal(document.querySelector('.modal'));"
       />
       <label required class="font20" for="date">Due date</label>
       <input
