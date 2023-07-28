@@ -148,15 +148,26 @@ body {
   background-color: white;
   border-radius: 30px;
   padding: 40px;
+  z-index: 25;
+}
+
+.show-modal {
+  animation: showWindow 1s ease-in-out forwards;
 }
 
 .add-task-container {
   display: flex;
+  z-index: 20;
   height: 100vh;
   width: 100%;
   align-items: center;
   justify-content: center;
   position: absolute;
+  transform: translateX(300%);
+}
+
+.dark-background {
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .left {
@@ -179,10 +190,18 @@ body {
 }
 
 .right {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 14px;
+}
+
+#closeAddTask {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  top: -20px;
 }
 
 .seperator {
@@ -495,7 +514,6 @@ li {
   background-color: lightgray;
 }
 
-
 .contacts {
   margin-top: -15px;
   border-bottom-right-radius: 10px;
@@ -559,7 +577,7 @@ li {
 }
 
 @media (max-width: 1330px) {
-  .add-task-section h1 { 
+  .add-task-section h1 {
     margin-left: 300px;
   }
   .left {
@@ -626,14 +644,12 @@ li {
   }
   #category-input {
     font-size: 18px;
-
   }
   #assigned-container {
     width: 390px;
   }
   #assigned-input {
     font-size: 18px;
-
   }
   #task-date {
     font-size: 18px;
@@ -663,22 +679,19 @@ li {
   }
   #subtask-input {
     font-size: 18px;
-
   }
 }
 
-
-
 @media (max-width: 428px) {
-    .add-task-section {
-        display: flex;
-        flex-direction: column;
-    }
+  .add-task-section {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .add-task-section form {
-        flex-direction: column;
-        align-items: center;
-    }
+  .add-task-section form {
+    flex-direction: column;
+    align-items: center;
+  }
 
   .add-task-section h1 {
     font-size: 47px;
@@ -690,7 +703,6 @@ li {
   label {
     font-size: 16px;
   }
-
 
   .left {
     margin-left: 0px;
@@ -770,7 +782,6 @@ li {
 
   #renderContacts {
     overflow-x: hidden;
-
   }
 
   #renderCategorys {
@@ -813,7 +824,7 @@ li {
   #urgentBtn,
   #mediumBtn,
   #lowBtn {
-    width: 110px
+    width: 110px;
   }
 }
 
@@ -834,6 +845,18 @@ li {
   #urgentBtn,
   #mediumBtn,
   #lowBtn {
-    width: 103px
+    width: 103px;
+  }
+}
+
+/* ANIMATIONS */
+@keyframes showWindow {
+  from {
+    transform: translateX(300%);
+  }
+
+  to {
+    transform: translateX(0);
+    background-color: rgba(0, 0, 0, 0.4);
   }
 }

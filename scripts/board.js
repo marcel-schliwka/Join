@@ -252,6 +252,14 @@ function htmlTemplateDone(element, i, priority) {
     </div>`;
 }
 
+function addTaskWindow(state) {
+  let taskForm = document.getElementById("add-task-form");
+  let taskContainer = document.querySelector(".add-task-container");
+  return state == "close"
+    ? taskContainer.classList.remove("show-modal")
+    : taskContainer.classList.add("show-modal");
+}
+
 function startDragging(id) {
   currentDraggedElement = id;
 }
