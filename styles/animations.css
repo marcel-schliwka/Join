@@ -20,6 +20,10 @@
   }
 }
 
+.cardMove {
+  transform: rotate(15deg);
+}
+
 .modal {
   animation-duration: 0.5s;
   transform: translateX(100%);
