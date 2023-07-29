@@ -59,11 +59,7 @@ function getPriority(element) {
 }
 
 function htmlTemplateToDo(element, i, priority) {
-  return `<div status="to do" currentId="${i}" titel="${
-    element["titel"]
-  }" id="cardTodo${i}" onclick="boardOpenPopUpTask(${
-    (i, this)
-  })" draggable="true" ondragstart="startDragging(${i}, this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="to do" currentId="${i}" titel="${element["titel"]}" id="cardTodo${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)"  draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
                 ${element["category"]}
             </div>
@@ -110,11 +106,7 @@ function renderAllInProgress() {
 }
 
 function htmlTemplateInProgress(element, i, priority) {
-  return `<div status="in progress" currentId="${i}" titel="${
-    element["titel"]
-  }" id="cardInProgress${i}" onclick="boardOpenPopUpTask(${
-    (i, this)
-  })" draggable="true" ondragstart="startDragging(${i}, this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="in progress" currentId="${i}" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
                 ${element["category"]}
             </div>
@@ -151,11 +143,7 @@ function renderAllAwaitingFeedback() {
 }
 
 function htmlTemplateAwaitingFeedback(element, i, priority) {
-  return `<div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${
-    element["titel"]
-  }" onclick="boardOpenPopUpTask(${
-    (i, this)
-  })" draggable="true" ondragstart="startDragging(${i}, this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
         <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
             ${element["category"]}
         </div>
@@ -192,11 +180,7 @@ function renderAllDone() {
 }
 
 function htmlTemplateDone(element, i, priority) {
-  return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${
-    element["titel"]
-  }" onclick="boardOpenPopUpTask(${
-    (i, this)
-  })" draggable="true" ondragstart="startDragging(${i}, this)" class="moveableCard cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
         <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
             ${element["category"]}
         </div>
@@ -221,11 +205,11 @@ function addTaskWindow(state) {
     : taskContainer.classList.add("show-modal");
 }
 
-function startDragging(id) {
+function startDragging(id, card) {
   currentDraggedElement = id;
-  currentStatus = element.getAttribute("status");
-  currentTitel = element.getAttribute("titel");
-  element.classList.add("cardMove");
+  currentStatus = card.getAttribute("status");
+  currentTitel = card.getAttribute("titel");
+  card.classList.add("cardMove");
 }
 
 function allowDrop(ev, element) {
@@ -498,6 +482,8 @@ let endedOnTouchElement;
 let currentTouchId;
 let selectedElement = null;
 let pressTimer = null;
+let initialTouchOffsetX, initialTouchOffsetY;
+let initialScrollLeft, initialScrollTop;
 
 function startTouchEventListener() {
   document.querySelectorAll(".moveableCard").forEach((card) => {
@@ -505,20 +491,40 @@ function startTouchEventListener() {
       "touchstart",
       (e) => {
         e.preventDefault();
-        startTouchElement = e.target;
+        startTouchElement = e.target.closest(".moveableCard");
         selectedElement = startTouchElement;
+        let rect = startTouchElement.getBoundingClientRect();
+        initialTouchOffsetX = e.touches[0].clientX - rect.left;
+        initialTouchOffsetY = e.touches[0].clientY - rect.top;
+        initialScrollLeft = window.scrollX;
+        initialScrollTop = window.scrollY;
 
         checkIfElementIsValid(startTouchElement);
 
         currentStatus = startTouchElement.getAttribute("status");
         currentTitel = startTouchElement.getAttribute("titel");
         currentTouchId = startTouchElement.getAttribute("currentId");
-
+        if (selectedElement) {
+          selectedElement.style.transform = "scale(1.1) rotate(5deg)";
+          selectedElement.style.transition = "transform 125ms ease-in-out";
+        }
         // Beginn des Long Press Timers
         pressTimer = window.setTimeout(function () {
-          boardOpenPopUpTask(currentTouchId);
-          // Hier den Code einfügen, der ausgeführt werden soll, wenn ein Long Press erkannt wird.
-          // Beispielsweise ein Menü öffnen.
+          if (selectedElement && selectedElement.getAttribute("status")) {
+            selectedElement.style.left = `${
+              initialTouchOffsetX - initialScrollLeft
+            }px`;
+            selectedElement.style.top = `${
+              initialTouchOffsetY - initialScrollTop
+            }px`;
+            selectedElement.style.width = "auto";
+            selectedElement.style.height = "auto";
+            selectedElement.style.position = "static";
+            selectedElement.style.transform = "none";
+            selectedElement.style.pointerEvents = "auto";
+            selectedElement = null;
+          }
+          boardOpenPopUpTask(currentTouchId, startTouchElement);
         }, 1000);
       },
       false
@@ -534,7 +540,8 @@ function startTouchEventListener() {
       if (selectedElement && selectedElement.getAttribute("status")) {
         selectedElement.style.width = `${selectedElement.offsetWidth}px`;
         selectedElement.style.height = `${selectedElement.offsetHeight}px`;
-        selectedElement.style.position = "fixed";
+        selectedElement.style.position = "absolute";
+        selectedElement.style.pointerEvents = "none";
       }
       let touch = e.touches[0];
       moveTouchElement = document.elementFromPoint(
@@ -543,8 +550,12 @@ function startTouchEventListener() {
       );
 
       if (selectedElement) {
-        selectedElement.style.left = `${touch.clientX}px`;
-        selectedElement.style.top = `${touch.clientY}px`;
+        selectedElement.style.left = `${
+          touch.clientX - initialTouchOffsetX + initialScrollLeft
+        }px`;
+        selectedElement.style.top = `${
+          touch.clientY - initialTouchOffsetY + initialScrollTop
+        }px`;
       }
     });
 
@@ -563,6 +574,11 @@ function startTouchEventListener() {
           touch.clientX,
           touch.clientY
         );
+
+        if (selectedElement) {
+          selectedElement.style.pointerEvents = "auto";
+        }
+
         selectedElement = null;
         moveElementToNewColumn();
       },
