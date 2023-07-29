@@ -1,11 +1,9 @@
-let userObjBoard;
-
 let currentDraggedElement;
 let currentStatus;
 let currentTitel;
 
 async function initBoard() {
-  userObjBoard = await getLoggedInUser();
+  userObj = await getLoggedInUser();
   updateHTML();
 }
 
@@ -26,7 +24,7 @@ function clearAllTasks() {
 }
 // --------------- TODO --------------- \\
 function renderAllToDos() {
-  let stillToDo = userObjBoard.tasks.filter((t) => t["status"] == "to do");
+  let stillToDo = userObj.tasks.filter((t) => t["status"] == "to do");
 
   for (let i = 0; i < stillToDo.length; i++) {
     const element = stillToDo[i];
@@ -84,7 +82,7 @@ function htmlTemplateAssignment(element, j) {
 
 // --------------- IN PROGRESS --------------- \\
 function renderAllInProgress() {
-  let stillInProgress = userObjBoard.tasks.filter(
+  let stillInProgress = userObj.tasks.filter(
     (t) => t["status"] == "in progress"
   );
   for (let i = 0; i < stillInProgress.length; i++) {
@@ -125,7 +123,7 @@ function htmlTemplateInProgress(element, i, priority) {
 
 // --------------- AWAITING FEEDBACK --------------- \\
 function renderAllAwaitingFeedback() {
-  let stillAwaitingFeedback = userObjBoard.tasks.filter(
+  let stillAwaitingFeedback = userObj.tasks.filter(
     (t) => t["status"] == "awaiting feedback"
   );
   for (let i = 0; i < stillAwaitingFeedback.length; i++) {
@@ -162,7 +160,7 @@ function htmlTemplateAwaitingFeedback(element, i, priority) {
 
 // --------------- DONE --------------- \\
 function renderAllDone() {
-  let isDone = userObjBoard.tasks.filter((t) => t["status"] == "done");
+  let isDone = userObj.tasks.filter((t) => t["status"] == "done");
   for (let i = 0; i < isDone.length; i++) {
     const element = isDone[i];
     document.getElementById("done").innerHTML += htmlTemplateDone(
@@ -229,13 +227,13 @@ function moveTo(status, element) {
 
   element.classList.remove("moveBackground");
 
-  let index = userObjBoard.tasks.findIndex(
+  let index = userObj.tasks.findIndex(
     (task) => task.status == currentStatus && task.titel == currentTitel
   );
 
   if (index !== -1) {
-    userObjBoard.tasks[index].status = status;
-    setItem(userObjBoard.email, JSON.stringify(userObjBoard));
+    userObj.tasks[index].status = status;
+    setItem(userObj.email, JSON.stringify(userObj));
     setTimeout(updateHTML, 0);
   } else {
     return 0;
@@ -245,10 +243,10 @@ function moveTo(status, element) {
 function boardOpenPopUpTask(i, card) {
   currentStatus = card.getAttribute("status");
   currentTitel = card.getAttribute("titel");
-  let index = userObjBoard.tasks.findIndex(
+  let index = userObj.tasks.findIndex(
     (task) => task.status == currentStatus && task.titel == currentTitel
   );
-  let element = userObjBoard.tasks[index];
+  let element = userObj.tasks[index];
   document.getElementById("popUpBoard").classList.remove("dNone");
   document.getElementById("popUpBoard").innerHTML = "";
   document.getElementById("popUpBoard").innerHTML = htmlTemplatePopUpTask(
@@ -274,12 +272,12 @@ function htmlTemplatePopUpTask(i, priority) {
             <img class="cursorPointer heightWidth35Px" src="./img/deleteButton.svg" alt="delete" onclick="deleteTask(${i})">
             <img class="cursorPointer heightWidth35Px" src="./img/editButton.svg" alt="edit" onclick="editTask(${i})">
         </div>
-        <div style="background-color: grey;" class="textWhite px-3 rounded-2">${userObjBoard.tasks[i].category}</div>
-        <div class="size3Em bold">${userObjBoard.tasks[i]["titel"]}</div>
-        <div class="pb-2">${userObjBoard.tasks[i]["description"]}</div>
+        <div style="background-color: grey;" class="textWhite px-3 rounded-2">${userObj.tasks[i].category}</div>
+        <div class="size3Em bold">${userObj.tasks[i]["titel"]}</div>
+        <div class="pb-2">${userObj.tasks[i]["description"]}</div>
         <div class="pb-2 d-flex">
             <div class="pe-3 bold">Due date:</div>
-            <div>${userObjBoard.tasks[i]["date"]}</div>
+            <div>${userObj.tasks[i]["date"]}</div>
         </div>
         <div class="pb-2 d-flex align-items-center">
             <div class="pe-3 bold">Priority:</div>
@@ -294,8 +292,8 @@ function htmlTemplatePopUpTask(i, priority) {
 
 function deleteTask(i) {
   boardClosePopUpTask();
-  userObjBoard.tasks.splice(i, 1);
-  setItem(userObjBoard.email, JSON.stringify(userObjBoard));
+  userObj.tasks.splice(i, 1);
+  setItem(userObj.email, JSON.stringify(userObj));
   updateHTML();
 }
 
@@ -453,7 +451,7 @@ function boardOpenDialog() {
 
 function editTask(i) {
   console.log(i);
-  let currentTask = userObjBoard.tasks[i];
+  let currentTask = userObj.tasks[i];
   boardClosePopUpTask();
   openModal(document.querySelector(".modal"));
   let modalFields = getModalFields();
