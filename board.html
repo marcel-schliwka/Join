@@ -42,14 +42,13 @@
     <link rel="stylesheet" href="./styles/summary.css" />
     <link rel="stylesheet" href="./styles/animations.css" />
     <link rel="stylesheet" href="./styles/board.css" />
-
     <script defer src="./scripts/storage.js"></script>
     <script defer src="./scripts/board.js"></script>
     <!-- <script defer src="./scripts/summary.js"></script> -->
     <script defer src="./scripts/sidebar.js"></script>
     <!-- <script src="./scripts/addtask.js"></script> -->
     <script defer src="./scripts/animations.js"></script>
-    <script defer src="./scripts/bootstrap.js"></script>
+    ??<script defer src="./scripts/bootstrap.js"></script>
 
     <title>Board</title>
   </head>
@@ -98,11 +97,9 @@
             </div>
           </div>
           <div
-            ondrop="moveTo('to do', this)"
-            ondragover="allowDrop(event, this)"
-            ondragleave="leaveDropArea(this)"
+            ondrop="moveTo('to do')"
+            ondragover="allowDrop(event)"
             id="todo"
-            status="to do"
           ></div>
         </div>
         <div>
@@ -113,11 +110,9 @@
             </div>
           </div>
           <div
-            ondrop="moveTo('in progress', this)"
-            ondragover="allowDrop(event, this)"
-            ondragleave="leaveDropArea(this)"
+            ondrop="moveTo('in progress')"
+            ondragover="allowDrop(event)"
             id="inProgress"
-            status="in progress"
           ></div>
         </div>
         <div>
@@ -128,21 +123,17 @@
             </div>
           </div>
           <div
-            ondrop="moveTo('awaiting feedback', this)"
-            ondragover="allowDrop(event, this)"
-            ondragleave="leaveDropArea(this)"
+            ondrop="moveTo('awaiting feedback')"
+            ondragover="allowDrop(event)"
             id="awaitingFeedback"
-            status="awaiting feedback"
           ></div>
         </div>
         <div>
           <div class="bold">Done</div>
           <div
-            ondrop="moveTo('done', this)"
-            ondragover="allowDrop(event, this)"
-            ondragleave="leaveDropArea(this)"
+            ondrop="moveTo('done')"
+            ondragover="allowDrop(event)"
             id="done"
-            status="done"
           ></div>
         </div>
       </div>
