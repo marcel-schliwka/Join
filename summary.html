@@ -43,11 +43,12 @@
     <script src="./scripts/summary.js"></script>
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/bootstrap.js"></script>
+    <script src="scripts/storage.js"></script>
 
     <title>Summary</title>
 
 </head>
-<body onload="includeHTML(); init()">
+<body onload="includeHTML(); initSummary()">
     <div w3-include-html="./templates/sidebar.html"></div>
     <div class="parentDiv flex-column">
         <div class="pb-3 d-flex align-items-center">
@@ -60,21 +61,21 @@
     
                 <div class="item-1">
                     <div class="bgWhite border py-3 px-5 rounded-5 d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="size3Em bold">5</div>
+                        <div id="task-count" class="size3Em bold">5</div>
                         <div>
                             <div class="noWrapWords">Tasks in</div> 
                             <div>Board</div> 
                         </div>
                     </div>
                     <div class="bgWhite border py-3 px-5 rounded-5 d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="size3Em bold">2</div>
+                        <div id="progress-count" class="size3Em bold">2</div>
                         <div>
                             <div class="noWrapWords">Tasks in</div> 
                             <div>Progress</div>
                         </div>
                     </div>
                     <div class="bgWhite border py-3 px-5 rounded-5 d-flex flex-column align-items-center justify-content-center text-center">
-                        <div class="size3Em bold">2</div>
+                        <div id="feedback-count" class="size3Em bold">2</div>
                         <div>
                             <div>Awaiting</div> 
                             <div>Feedback</div>
@@ -88,7 +89,7 @@
                             <img src="./img/prio_urgent.svg" alt="urgent">
                         </div>
                         <div class="d-flex flex-column align-items-center justify-content-center text-center ps-3">
-                            <div class="size3Em bold">
+                            <div class="size3Em bold" id="urgent-count">
                                 1
                             </div>
                             <div>
@@ -97,7 +98,7 @@
                         </div>
                     </div>
                     <div class="d-flex flex-column justify-content-center">
-                        <div id="whichDate" class="bold pb-2 text-center">
+                        <div id="urgent-deadline" class="bold pb-2 text-center">
                             October 16, 2022
                         </div>
                         <div class="size08Em text-center">
@@ -112,7 +113,7 @@
                             <img id="pencil" src="./img/icon_pencil.svg" alt="pencil">
                         </div>
                         <div class="d-flex flex-column align-items-center justify-content-center ps-3">
-                            <div class="size3Em bold">
+                            <div class="size3Em bold" id="todo-count">
                                 1
                             </div>
                             <div class="noWrapWords">
@@ -125,7 +126,7 @@
                             <img id="ok" src="./img/icon_ok.svg" alt="ok">
                         </div>
                         <div class="d-flex flex-column align-items-center justify-content-center ps-3">
-                            <div class="size3Em bold">
+                            <div class="size3Em bold" id="done-count">
                                 1
                             </div>
                             <div>
@@ -139,7 +140,7 @@
             <div class="secondContainer ps-5">
                 <div>
                     <div id="whichHour" class="size2Em">Good morning,</div>
-                    <div class="size3Em bold fontColorBlue">Sofia Müller</div>
+                    <div class="size3Em bold fontColorBlue" id="welcome-user">Sofia Müller</div>
                 </div>
             </div>
         </div>
