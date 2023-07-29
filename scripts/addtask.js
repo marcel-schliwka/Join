@@ -101,9 +101,24 @@ function clearAssigned() {
  */
 function addTask() {
   getSubtasks();
-  let titel = document.getElementById("title-input").value;
-  let description = document.getElementById("description-input").value;
-  let date = document.getElementById("task-date").value;
+  const task = getAddTaskVariables();
+  userObj.tasks.push(newTask);
+  setItem(localStorage.getItem("activeUser"), JSON.stringify(userObj));
+  clearAll();
+  redirect();
+}
+
+function redirect() {
+  window.location.href = "../board.html";
+}
+
+function getAddTaskVariables() {
+  const titel = document.getElementById("title-input");
+  const description = document.getElementById("description-input");
+  const date = document.getElementById("task-date");
+  let category = document.querySelector(".category-input");
+  let assignedTo = assigned;
+  let selectedSubtasks = newSubtasks;
   let prio = currentPrio;
   let color = document
     .querySelector(".category-input circle")
@@ -111,14 +126,11 @@ function addTask() {
   if (prio == undefined) {
     prio = "low";
   }
-  let assignedTo = assigned;
-  let category = document.querySelector(".category-input").innerText;
-  let selectedSubtasks = newSubtasks;
   let newTask = {
-    titel: titel,
-    description: description,
+    titel: titel.value,
+    description: description.value,
     status: "to do",
-    category: category,
+    category: category.innerText,
     categoryColor: color,
     assigned: assignedTo,
     date: date,
@@ -126,9 +138,7 @@ function addTask() {
     subtasks: selectedSubtasks,
     id: userObj.tasks.length,
   };
-  // addtasks.push(newTask);
-  userObj.tasks.push(newTask);
-  setItem(localStorage.getItem("activeUser"), JSON.stringify(userObj));
+  return { newTask };
 }
 
 /**
@@ -530,11 +540,18 @@ function changeCheckbox(i) {
  *
  */
 function clearAll() {
+  document.getElementById("title-input").value = "";
+  document.getElementById("description-input").value = "";
+  document.getElementById("task-date").value = "";
+  currentPrio;
   const categoryContainer = document.getElementById("category-input");
   const categoryBtn = document.getElementById("category-button");
   document.getElementById("urgentBtn").classList.remove("urgent-active");
   document.getElementById("mediumBtn").classList.remove("medium-active");
   document.getElementById("lowBtn").classList.remove("low-active");
+  document.getElementById("lowBtn").src = "./img/prio_low_color.png";
+  document.getElementById("mediumBtn").src = "./img/prio_medium_color.png";
+  document.getElementById("urgentBtn").src = "./img/prio_urgent_color.png";
   categoryContainer.innerHTML = generateBasicCategoryInputHTML();
   categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
   currentPrio;
