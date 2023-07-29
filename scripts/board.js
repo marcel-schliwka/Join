@@ -205,7 +205,7 @@ function addTaskWindow(state) {
     : taskContainer.classList.add("show-modal");
 }
 
-function startDragging(id, element) {
+function startDragging(id) {
   currentDraggedElement = id;
   currentStatus = element.getAttribute("status");
   currentTitel = element.getAttribute("titel");

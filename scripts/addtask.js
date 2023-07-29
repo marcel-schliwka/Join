@@ -6,7 +6,6 @@ let userObj;
 // }
 
 
-  
 
 async function loadTask() {
   getId = await getItem("guest_task");
@@ -127,6 +126,7 @@ function addTask() {
     date: date,
     prio: prio,
     subtasks: selectedSubtasks,
+    id: userObj.tasks.length
   };
   // addtasks.push(newTask);
   userObj.tasks.push(newTask);

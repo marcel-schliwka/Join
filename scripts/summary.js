@@ -1,9 +1,132 @@
 let date = new Date();
+let userObj;
+let taskcount;
+let deadlines = [];
 
-function init() {
-    setTime();
-    setDate();
+
+async function initSummary() {
+    userObj = await getLoggedInUser();
+    updateHTML();
 }
+
+function updateHTML() {
+    setTime();
+    renderTaskCount();
+    renderDeadline();
+}
+
+
+
+
+function renderDeadline() {
+    findNextDeadline();
+    const boardVariables = getBoardVariable();
+    const urgentCount = countUrgentPrio();
+    const deadlineDate = returnNextDeadline();
+    boardVariables.urgent.innerText = urgentCount['urgent'];
+    boardVariables.deadline.innerText = deadlineDate;
+}
+
+function findNextDeadline() {
+    getDeadlineDates();
+    returnNextDeadline()
+}
+
+function returnNextDeadline() {
+    const deadlineDates = deadlines;
+    const sortedDeadline = deadlineDates.sort();
+    const closestDate = new Date(sortedDeadline[0]);
+    let dateToFormat = closestDate.toISOString();
+    let date = formateDate(dateToFormat);
+    return date;
+}
+
+function formateDate(dateToFormat) {
+    const date = dateToFormat;
+    const months = [
+        "January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"
+      ];
+    const year = date.substring(0, 4);
+    const month = date.substring(6, 7);
+    const day = date.substring(9, 10);
+
+    let formatedMonth = months[month - 1];
+    let formatedDay = day.toString().padStart(2, '0');
+    let formatedDate = formatedMonth + ' ' + formatedDay + ', ' + year;
+    return formatedDate;
+}
+
+
+
+function getDeadlineDates() {
+    const tasks = userObj.tasks;
+    tasks.forEach(tasks => {
+        if (tasks['prio'] == 'urgent') {
+            deadlines.push(tasks['date']);
+        }
+    })
+}
+
+
+
+function renderTaskCount() {
+    taskcount = countStatus();
+    const boardVariables = getBoardVariable();
+    boardVariables.tasks.innerText = userObj.tasks.length;
+    boardVariables.progress.innerText = taskcount['progress'];
+    boardVariables.feedback.innerText = taskcount['feedback'];
+    boardVariables.done.innerText = taskcount['done'];
+    boardVariables.todo.innerText = taskcount['to do'];
+    boardVariables.user.innerText = userObj.name;
+}
+
+
+function getBoardVariable() {
+    const tasks = document.getElementById('task-count');
+    const progress = document.getElementById('progress-count');
+    const feedback = document.getElementById('feedback-count');
+    const urgent = document.getElementById('urgent-count');
+    const todo = document.getElementById('todo-count');
+    const done = document.getElementById('done-count');
+    const user = document.getElementById('welcome-user');
+    const deadline = document.getElementById('urgent-deadline');
+    return {tasks, progress, feedback, urgent, todo, done, user, deadline}
+}
+
+
+function countStatus() {
+    let tasks = userObj.tasks;
+    const statusCount = {
+        'to do': 0,
+        'progress': 0,
+        'feedback': 0,
+        'done': 0,
+    };
+    tasks.forEach(tasks => {
+        const status = tasks.status;
+        if(status in statusCount) {
+            statusCount[status]++;
+        }
+    });
+    return statusCount;
+}
+
+
+function countUrgentPrio() {
+    const tasks = userObj.tasks;
+    const urgentCount = {
+        'urgent': 0,
+    };
+    tasks.forEach(tasks => {
+        const prio = tasks.prio;
+        if (prio in urgentCount) {
+            urgentCount[prio]++
+        }
+    });
+    return urgentCount;
+}
+
 
 function setTime() {
     if (currentHour() < 10) {
@@ -22,10 +145,6 @@ function currentHour() {
     return date.getHours();
 }
 
-function setDate() {
-    let currentDate = currentMonth() + ' ' + currentDay() + ', ' + currentYear();
-    document.getElementById('whichDate').innerHTML = currentDate;
-}
 
 function currentDay() {
     return date.getDate();
