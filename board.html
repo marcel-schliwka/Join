@@ -97,9 +97,11 @@
             </div>
           </div>
           <div
-            ondrop="moveTo('to do')"
-            ondragover="allowDrop(event)"
+            ondrop="moveTo('to do', this)"
+            ondragover="allowDrop(event, this)"
+            ondragleave="leaveDropArea(this)"
             id="todo"
+            status="to do"
           ></div>
         </div>
         <div>
@@ -110,9 +112,11 @@
             </div>
           </div>
           <div
-            ondrop="moveTo('in progress')"
-            ondragover="allowDrop(event)"
+            ondrop="moveTo('in progress', this)"
+            ondragover="allowDrop(event, this)"
+            ondragleave="leaveDropArea(this)"
             id="inProgress"
+            status="in progress"
           ></div>
         </div>
         <div>
@@ -123,17 +127,21 @@
             </div>
           </div>
           <div
-            ondrop="moveTo('awaiting feedback')"
-            ondragover="allowDrop(event)"
+            ondrop="moveTo('awaiting feedback', this)"
+            ondragover="allowDrop(event, this)"
+            ondragleave="leaveDropArea(this)"
             id="awaitingFeedback"
+            status="awaiting feedback"
           ></div>
         </div>
         <div>
           <div class="bold">Done</div>
           <div
-            ondrop="moveTo('done')"
-            ondragover="allowDrop(event)"
+            ondrop="moveTo('done', this)"
+            ondragover="allowDrop(event, this)"
+            ondragleave="leaveDropArea(this)"
             id="done"
+            status="done"
           ></div>
         </div>
       </div>

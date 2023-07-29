@@ -16,6 +16,10 @@
   color: white;
 }
 
+.moveBackground {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 .findTaskBtn {
   background-color: white;
   border-radius: 8px;
