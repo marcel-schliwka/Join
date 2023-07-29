@@ -331,8 +331,7 @@ function searchTask() {
 }
 
 function renderSearchTodo(search) {
-  let stillToDo = tasks.filter((t) => t["status"] == "to do");
-  debugger;
+  let stillToDo = userObj.tasks.filter((t) => t["status"] == "to do");
   document.getElementById("todo").innerHTML = "";
 
   for (let i = 0; i < stillToDo.length; i++) {
@@ -361,7 +360,9 @@ function renderSearchTodo(search) {
 }
 
 function renderSearchInProgress(search) {
-  let stillInProgress = tasks.filter((t) => t["status"] == "in progress");
+  let stillInProgress = userObj.tasks.filter(
+    (t) => t["status"] == "in progress"
+  );
   document.getElementById("inProgress").innerHTML = "";
 
   for (let i = 0; i < stillInProgress.length; i++) {
@@ -390,7 +391,7 @@ function renderSearchInProgress(search) {
 }
 
 function renderSearchAwaitingFeedback(search) {
-  let stillAwaitingFeedback = tasks.filter(
+  let stillAwaitingFeedback = userObj.tasks.filter(
     (t) => t["status"] == "awaiting feedback"
   );
   document.getElementById("awaitingFeedback").innerHTML = "";
@@ -417,7 +418,7 @@ function renderSearchAwaitingFeedback(search) {
 }
 
 function renderSearchDone(search) {
-  let isDone = tasks.filter((t) => t["status"] == "done");
+  let isDone = userObj.tasks.filter((t) => t["status"] == "done");
   document.getElementById("done").innerHTML = "";
   for (let i = 0; i < isDone.length; i++) {
     let title = isDone[i].titel;
