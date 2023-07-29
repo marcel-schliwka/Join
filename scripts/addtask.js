@@ -104,22 +104,18 @@ function clearAssigned() {
 function addTask() {
   getSubtasks();
   const task = getAddTaskVariables();
-  userObj.tasks.push(newTask);
+  userObj.tasks.push(task);
+
   setItem(localStorage.getItem("activeUser"), JSON.stringify(userObj));
   clearAll();
-  redirect();
 }
 
-
-function redirect() {
-  window.location.href = '../board.html';
-}
 
 
 function getAddTaskVariables() {
-  const titel = document.getElementById("title-input");
-  const description = document.getElementById("description-input");
-  const date = document.getElementById("task-date");
+  let titel = document.getElementById("title-input");
+  let description = document.getElementById("description-input");
+  let date = document.getElementById("task-date");
   let category = document.querySelector(".category-input");
   let assignedTo = assigned;
   let selectedSubtasks = newSubtasks;
@@ -137,12 +133,12 @@ function getAddTaskVariables() {
     category: category.innerText,
     categoryColor: color,
     assigned: assignedTo,
-    date: date,
+    date: date.value,
     prio: prio,
     subtasks: selectedSubtasks,
     id: userObj.tasks.length
   };
-  return {newTask}
+  return newTask
 }
 
 /**
