@@ -119,6 +119,8 @@ header {
   header {
     position: relative;
     height: 80px;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .header-text {
