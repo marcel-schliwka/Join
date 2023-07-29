@@ -22,7 +22,9 @@ function renderDeadline() {
     findNextDeadline();
     const boardVariables = getBoardVariable();
     const urgentCount = countUrgentPrio();
+    const deadlineDate = returnNextDeadline();
     boardVariables.urgent.innerText = urgentCount['urgent'];
+    boardVariables.deadline.innerText = deadlineDate;
 }
 
 function findNextDeadline() {
@@ -31,8 +33,28 @@ function findNextDeadline() {
 }
 
 function returnNextDeadline() {
-    let deadlineDates = deadlines;
-    let sortedDeadline = deadlineDates.sort();
+    const deadlineDates = deadlines;
+    const sortedDeadline = deadlineDates.sort();
+    const closestDate = new Date(sortedDeadline[0]);
+    let dateToFormat = closestDate.toISOString();
+    let date = formateDate(dateToFormat);
+    return date;
+}
+
+function formateDate(dateToFormat) {
+    const date = dateToFormat;
+    const months = [
+        "January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"
+      ];
+    const year = date.substring(0, 4);
+    const month = date.substring(6, 7);
+    const day = date.substring(9, 10);
+
+    let formatedMonth = months[month - 1];
+    let formatedDay = day.toString().padStart(2, '0');
+    let formatedDate = formatedMonth + ' ' + formatedDay + ', ' + year;
+    return formatedDate;
 }
 
 
@@ -45,7 +67,6 @@ function getDeadlineDates() {
         }
     })
 }
-
 
 
 
