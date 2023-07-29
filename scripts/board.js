@@ -1,6 +1,8 @@
 let userObj;
 
 let currentDraggedElement;
+let currentStatus;
+let currentTitel;
 
 async function initBoard() {
   userObj = await getLoggedInUser();
@@ -8,17 +10,22 @@ async function initBoard() {
 }
 
 function updateHTML() {
+  clearAllTasks();
   renderAllToDos();
   renderAllInProgress();
   renderAllAwaitingFeedback();
   renderAllDone();
 }
 
+function clearAllTasks() {
+  document.getElementById("todo").innerHTML = "";
+  document.getElementById("inProgress").innerHTML = "";
+  document.getElementById("awaitingFeedback").innerHTML = "";
+  document.getElementById("done").innerHTML = "";
+}
 // --------------- TODO --------------- \\
 function renderAllToDos() {
   let stillToDo = userObj.tasks.filter((t) => t["status"] == "to do");
-
-  document.getElementById("todo").innerHTML = "";
 
   for (let i = 0; i < stillToDo.length; i++) {
     const element = stillToDo[i];
@@ -51,7 +58,7 @@ function getPriority(element) {
 }
 
 function htmlTemplateToDo(element, i, priority) {
-  return `<div onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="to do" titel="${element["titel"]}" id="cardTodo${i}" onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="cardTodo bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
                 ${element["category"]}
             </div>
@@ -79,7 +86,6 @@ function renderAllInProgress() {
   let stillInProgress = userObj.tasks.filter(
     (t) => t["status"] == "in progress"
   );
-  document.getElementById("inProgress").innerHTML = "";
   for (let i = 0; i < stillInProgress.length; i++) {
     const element = stillInProgress[i];
     document.getElementById("inProgress").innerHTML += htmlTemplateInProgress(
@@ -99,7 +105,7 @@ function renderAllInProgress() {
 }
 
 function htmlTemplateInProgress(element, i, priority) {
-  return `<div onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="in progress" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="cardInProgress bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
                 ${element["category"]}
             </div>
@@ -121,7 +127,6 @@ function renderAllAwaitingFeedback() {
   let stillAwaitingFeedback = userObj.tasks.filter(
     (t) => t["status"] == "awaiting feedback"
   );
-  document.getElementById("awaitingFeedback").innerHTML = "";
   for (let i = 0; i < stillAwaitingFeedback.length; i++) {
     const element = stillAwaitingFeedback[i];
     document.getElementById("awaitingFeedback").innerHTML +=
@@ -137,7 +142,7 @@ function renderAllAwaitingFeedback() {
 }
 
 function htmlTemplateAwaitingFeedback(element, i, priority) {
-  return `<div onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="awaiting feedback" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="cardAwaitingFeedback bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
         <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
             ${element["category"]}
         </div>
@@ -157,7 +162,6 @@ function htmlTemplateAwaitingFeedback(element, i, priority) {
 // --------------- DONE --------------- \\
 function renderAllDone() {
   let isDone = userObj.tasks.filter((t) => t["status"] == "done");
-  document.getElementById("done").innerHTML = "";
   for (let i = 0; i < isDone.length; i++) {
     const element = isDone[i];
     document.getElementById("done").innerHTML += htmlTemplateDone(
@@ -175,7 +179,7 @@ function renderAllDone() {
 }
 
 function htmlTemplateDone(element, i, priority) {
-  return `<div onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="done" id="cardDone${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="cardDone cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
         <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
             ${element["category"]}
         </div>
@@ -202,6 +206,8 @@ function addTaskWindow(state) {
 
 function startDragging(id, element) {
   currentDraggedElement = id;
+  currentStatus = element.getAttribute("status");
+  currentTitel = element.getAttribute("titel");
   element.classList.add("cardMove");
 }
 
@@ -210,7 +216,10 @@ function allowDrop(ev) {
 }
 
 function moveTo(status) {
-  userObj.tasks[currentDraggedElement].status = status;
+  let index = userObj.tasks.findIndex(
+    (task) => task.status == currentStatus && task.titel == currentTitel
+  );
+  userObj.tasks[index].status = status;
   setTimeout(updateHTML, 0);
 }
 
