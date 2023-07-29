@@ -1,11 +1,11 @@
-let userObj;
+let userObjBoard;
 
 let currentDraggedElement;
 let currentStatus;
 let currentTitel;
 
 async function initBoard() {
-  userObj = await getLoggedInUser();
+  userObjBoard = await getLoggedInUser();
   updateHTML();
 }
 
@@ -26,7 +26,7 @@ function clearAllTasks() {
 }
 // --------------- TODO --------------- \\
 function renderAllToDos() {
-  let stillToDo = userObj.tasks.filter((t) => t["status"] == "to do");
+  let stillToDo = userObjBoard.tasks.filter((t) => t["status"] == "to do");
 
   for (let i = 0; i < stillToDo.length; i++) {
     const element = stillToDo[i];
@@ -59,7 +59,7 @@ function getPriority(element) {
 }
 
 function htmlTemplateToDo(element, i, priority) {
-  return `<div status="to do" currentId="${i}" titel="${element["titel"]}" id="cardTodo${i}" onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="to do" currentId="${i}" titel="${element["titel"]}" id="cardTodo${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)"  draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
                 ${element["category"]}
             </div>
@@ -84,7 +84,7 @@ function htmlTemplateAssignment(element, j) {
 
 // --------------- IN PROGRESS --------------- \\
 function renderAllInProgress() {
-  let stillInProgress = userObj.tasks.filter(
+  let stillInProgress = userObjBoard.tasks.filter(
     (t) => t["status"] == "in progress"
   );
   for (let i = 0; i < stillInProgress.length; i++) {
@@ -106,7 +106,7 @@ function renderAllInProgress() {
 }
 
 function htmlTemplateInProgress(element, i, priority) {
-  return `<div status="in progress" currentId="${i}" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="in progress" currentId="${i}" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
                 ${element["category"]}
             </div>
@@ -125,7 +125,7 @@ function htmlTemplateInProgress(element, i, priority) {
 
 // --------------- AWAITING FEEDBACK --------------- \\
 function renderAllAwaitingFeedback() {
-  let stillAwaitingFeedback = userObj.tasks.filter(
+  let stillAwaitingFeedback = userObjBoard.tasks.filter(
     (t) => t["status"] == "awaiting feedback"
   );
   for (let i = 0; i < stillAwaitingFeedback.length; i++) {
@@ -143,7 +143,7 @@ function renderAllAwaitingFeedback() {
 }
 
 function htmlTemplateAwaitingFeedback(element, i, priority) {
-  return `<div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
         <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
             ${element["category"]}
         </div>
@@ -162,7 +162,7 @@ function htmlTemplateAwaitingFeedback(element, i, priority) {
 
 // --------------- DONE --------------- \\
 function renderAllDone() {
-  let isDone = userObj.tasks.filter((t) => t["status"] == "done");
+  let isDone = userObjBoard.tasks.filter((t) => t["status"] == "done");
   for (let i = 0; i < isDone.length; i++) {
     const element = isDone[i];
     document.getElementById("done").innerHTML += htmlTemplateDone(
@@ -180,7 +180,7 @@ function renderAllDone() {
 }
 
 function htmlTemplateDone(element, i, priority) {
-  return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="moveableCard cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
         <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
             ${element["category"]}
         </div>
@@ -205,11 +205,11 @@ function addTaskWindow(state) {
     : taskContainer.classList.add("show-modal");
 }
 
-function startDragging(id) {
+function startDragging(id, card) {
   currentDraggedElement = id;
-  currentStatus = element.getAttribute("status");
-  currentTitel = element.getAttribute("titel");
-  element.classList.add("cardMove");
+  currentStatus = card.getAttribute("status");
+  currentTitel = card.getAttribute("titel");
+  card.classList.add("cardMove");
 }
 
 function allowDrop(ev, element) {
@@ -229,24 +229,26 @@ function moveTo(status, element) {
 
   element.classList.remove("moveBackground");
 
-  let index = userObj.tasks.findIndex(
+  let index = userObjBoard.tasks.findIndex(
     (task) => task.status == currentStatus && task.titel == currentTitel
   );
 
   if (index !== -1) {
-    userObj.tasks[index].status = status;
-    setItem(userObj.email, JSON.stringify(userObj));
+    userObjBoard.tasks[index].status = status;
+    setItem(userObjBoard.email, JSON.stringify(userObjBoard));
     setTimeout(updateHTML, 0);
   } else {
     return 0;
   }
 }
 
-function boardOpenPopUpTask(i) {
-  let index = userObj.tasks.findIndex(
+function boardOpenPopUpTask(i, card) {
+  currentStatus = card.getAttribute("status");
+  currentTitel = card.getAttribute("titel");
+  let index = userObjBoard.tasks.findIndex(
     (task) => task.status == currentStatus && task.titel == currentTitel
   );
-  let element = userObj.tasks[index];
+  let element = userObjBoard.tasks[index];
   document.getElementById("popUpBoard").classList.remove("dNone");
   document.getElementById("popUpBoard").innerHTML = "";
   document.getElementById("popUpBoard").innerHTML = htmlTemplatePopUpTask(
@@ -272,12 +274,12 @@ function htmlTemplatePopUpTask(i, priority) {
             <img class="cursorPointer heightWidth35Px" src="./img/deleteButton.svg" alt="delete" onclick="deleteTask(${i})">
             <img class="cursorPointer heightWidth35Px" src="./img/editButton.svg" alt="edit" onclick="editTask(${i})">
         </div>
-        <div style="background-color: grey;" class="textWhite px-3 rounded-2">${userObj.tasks[i].category}</div>
-        <div class="size3Em bold">${userObj.tasks[i]["titel"]}</div>
-        <div class="pb-2">${userObj.tasks[i]["description"]}</div>
+        <div style="background-color: grey;" class="textWhite px-3 rounded-2">${userObjBoard.tasks[i].category}</div>
+        <div class="size3Em bold">${userObjBoard.tasks[i]["titel"]}</div>
+        <div class="pb-2">${userObjBoard.tasks[i]["description"]}</div>
         <div class="pb-2 d-flex">
             <div class="pe-3 bold">Due date:</div>
-            <div>${userObj.tasks[i]["date"]}</div>
+            <div>${userObjBoard.tasks[i]["date"]}</div>
         </div>
         <div class="pb-2 d-flex align-items-center">
             <div class="pe-3 bold">Priority:</div>
@@ -292,8 +294,8 @@ function htmlTemplatePopUpTask(i, priority) {
 
 function deleteTask(i) {
   boardClosePopUpTask();
-  userObj.tasks.splice(i, 1);
-  setItem(userObj.email, JSON.stringify(userObj));
+  userObjBoard.tasks.splice(i, 1);
+  setItem(userObjBoard.email, JSON.stringify(userObjBoard));
   updateHTML();
 }
 
@@ -451,7 +453,7 @@ function boardOpenDialog() {
 
 function editTask(i) {
   console.log(i);
-  let currentTask = userObj.tasks[i];
+  let currentTask = userObjBoard.tasks[i];
   boardClosePopUpTask();
   openModal(document.querySelector(".modal"));
   let modalFields = getModalFields();
@@ -480,6 +482,8 @@ let endedOnTouchElement;
 let currentTouchId;
 let selectedElement = null;
 let pressTimer = null;
+let initialTouchOffsetX, initialTouchOffsetY;
+let initialScrollLeft, initialScrollTop;
 
 function startTouchEventListener() {
   document.querySelectorAll(".moveableCard").forEach((card) => {
@@ -487,20 +491,40 @@ function startTouchEventListener() {
       "touchstart",
       (e) => {
         e.preventDefault();
-        startTouchElement = e.target;
+        startTouchElement = e.target.closest(".moveableCard");
         selectedElement = startTouchElement;
+        let rect = startTouchElement.getBoundingClientRect();
+        initialTouchOffsetX = e.touches[0].clientX - rect.left;
+        initialTouchOffsetY = e.touches[0].clientY - rect.top;
+        initialScrollLeft = window.scrollX;
+        initialScrollTop = window.scrollY;
 
         checkIfElementIsValid(startTouchElement);
 
         currentStatus = startTouchElement.getAttribute("status");
         currentTitel = startTouchElement.getAttribute("titel");
         currentTouchId = startTouchElement.getAttribute("currentId");
-
+        if (selectedElement) {
+          selectedElement.style.transform = "scale(1.1) rotate(5deg)";
+          selectedElement.style.transition = "transform 125ms ease-in-out";
+        }
         // Beginn des Long Press Timers
         pressTimer = window.setTimeout(function () {
-          boardOpenPopUpTask(currentTouchId);
-          // Hier den Code einfügen, der ausgeführt werden soll, wenn ein Long Press erkannt wird.
-          // Beispielsweise ein Menü öffnen.
+          if (selectedElement && selectedElement.getAttribute("status")) {
+            selectedElement.style.left = `${
+              initialTouchOffsetX - initialScrollLeft
+            }px`;
+            selectedElement.style.top = `${
+              initialTouchOffsetY - initialScrollTop
+            }px`;
+            selectedElement.style.width = "auto";
+            selectedElement.style.height = "auto";
+            selectedElement.style.position = "static";
+            selectedElement.style.transform = "none";
+            selectedElement.style.pointerEvents = "auto";
+            selectedElement = null;
+          }
+          boardOpenPopUpTask(currentTouchId, startTouchElement);
         }, 1000);
       },
       false
@@ -516,7 +540,8 @@ function startTouchEventListener() {
       if (selectedElement && selectedElement.getAttribute("status")) {
         selectedElement.style.width = `${selectedElement.offsetWidth}px`;
         selectedElement.style.height = `${selectedElement.offsetHeight}px`;
-        selectedElement.style.position = "fixed";
+        selectedElement.style.position = "absolute";
+        selectedElement.style.pointerEvents = "none";
       }
       let touch = e.touches[0];
       moveTouchElement = document.elementFromPoint(
@@ -525,8 +550,12 @@ function startTouchEventListener() {
       );
 
       if (selectedElement) {
-        selectedElement.style.left = `${touch.clientX}px`;
-        selectedElement.style.top = `${touch.clientY}px`;
+        selectedElement.style.left = `${
+          touch.clientX - initialTouchOffsetX + initialScrollLeft
+        }px`;
+        selectedElement.style.top = `${
+          touch.clientY - initialTouchOffsetY + initialScrollTop
+        }px`;
       }
     });
 
@@ -545,6 +574,11 @@ function startTouchEventListener() {
           touch.clientX,
           touch.clientY
         );
+
+        if (selectedElement) {
+          selectedElement.style.pointerEvents = "auto";
+        }
+
         selectedElement = null;
         moveElementToNewColumn();
       },
