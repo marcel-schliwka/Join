@@ -74,8 +74,8 @@ function renderTaskCount() {
     taskcount = countStatus();
     const boardVariables = getBoardVariable();
     boardVariables.tasks.innerText = userObj.tasks.length;
-    boardVariables.progress.innerText = taskcount['progress'];
-    boardVariables.feedback.innerText = taskcount['feedback'];
+    boardVariables.progress.innerText = taskcount['in progress'];
+    boardVariables.feedback.innerText = taskcount['awaiting feedback'];
     boardVariables.done.innerText = taskcount['done'];
     boardVariables.todo.innerText = taskcount['to do'];
     boardVariables.user.innerText = userObj.name;
@@ -99,8 +99,8 @@ function countStatus() {
     let tasks = userObj.tasks;
     const statusCount = {
         'to do': 0,
-        'progress': 0,
-        'feedback': 0,
+        'in progress': 0,
+        'awaiting feedback': 0,
         'done': 0,
     };
     tasks.forEach(tasks => {
