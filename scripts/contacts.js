@@ -30,14 +30,16 @@ const createDialogElements = {
   inputPhone: document.getElementById("dialog__createPhoneInput"),
 };
 
+const dialogOpenElements = document.querySelectorAll('dialog');
 const mql = window.matchMedia('(max-width: 800px)');
+const contactInfo = document.getElementById('contactsMain');
 
 function screenTest(e) {
-  let dialogOpenElements = document.querySelectorAll('dialog');
   if (e.matches) {
+    contactInfo.classList.add('display-none');
     dialogOpenElements.forEach(dialog => {
       if (dialog.open) {
-        dialog.close();
+        // dialog.close();
         dialog.classList.add('display-none');
       }
     });
@@ -303,6 +305,11 @@ let startEventListener = () => {
  * @param {Object} card
  */
 function openContact(card) {
+  contactInfo.classList.remove('display-none', 'overflow-hidden');
+  dialogOpenElements.forEach(dialog => {
+    dialog.classList.remove('display-none');
+  })
+
   /* getting the id of the specific card */
   const cardId = card.getAttribute("id");
   /* creating new propertes with values from card into dialogElements*/
@@ -384,7 +391,7 @@ function deleteInitial(name) {
  */
 function editContact() {
   /* adding class and naimation to edit-dialog-window */
-  editDialogElements.editDialog.style.display = flex;
+  editDialogElements.editDialog.style.display = 'flex';
   editDialogElements.editDialog.classList.add("show-edit-dialog");
   /* removes display: none for background to be shown */
   dialogBackground.classList.remove("d-none");

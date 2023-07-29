@@ -484,7 +484,7 @@ body {
   }
 
   #contactsMain {
-    display: none;
+    position: absolute;
   }
 
   #contactsListContainer {
