@@ -1,38 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- FAVICON -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/img/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/img/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/img/favicon/favicon-16x16.png"
-    />
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png" />
     <link rel="manifest" href="/img/favicon/site.webmanifest" />
-    <link
-      rel="mask-icon"
-      href="/img/favicon/safari-pinned-tab.svg"
-      color="#5bbad5"
-    />
+    <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#5bbad5" />
     <link rel="shortcut icon" href="/img/favicon/favicon.ico" />
     <meta name="msapplication-TileColor" content="#da532c" />
-    <meta
-      name="msapplication-config"
-      content="/img/favicon/browserconfig.xml"
-    />
+    <meta name="msapplication-config" content="/img/favicon/browserconfig.xml" />
     <meta name="theme-color" content="#ffffff" />
     <!-- FAVICON END -->
     <link rel="stylesheet" href="./styles/bootstrap.css" />
@@ -48,6 +28,7 @@
     <title>Summary</title>
 
 </head>
+
 <body onload="includeHTML(); initSummary()">
     <div w3-include-html="./templates/sidebar.html"></div>
     <div class="parentDiv flex-column">
@@ -56,33 +37,36 @@
             <div class="size2Em ps-4">Everythings a nutshell!</div>
         </div>
         <div class="childDiv">
-    
+
             <div class="firstContainer">
-    
+
                 <div class="item-1">
-                    <div class="bgWhite border py-3 px-5 rounded-5 d-flex flex-column align-items-center justify-content-center text-center">
-                        <div id="task-count" class="size3Em bold">5</div>
+                    <div
+                        class="bgWhite border py-3 px-5 rounded-5 d-flex flex-column align-items-center justify-content-center text-center">
+                        <div id="task-count" class="size3Em bold"></div>
                         <div>
-                            <div class="noWrapWords">Tasks in</div> 
-                            <div>Board</div> 
+                            <div class="noWrapWords">Tasks in</div>
+                            <div>Board</div>
                         </div>
                     </div>
-                    <div class="bgWhite border py-3 px-5 rounded-5 d-flex flex-column align-items-center justify-content-center text-center">
-                        <div id="progress-count" class="size3Em bold">2</div>
+                    <div
+                        class="bgWhite border py-3 px-5 rounded-5 d-flex flex-column align-items-center justify-content-center text-center">
+                        <div id="progress-count" class="size3Em bold"></div>
                         <div>
-                            <div class="noWrapWords">Tasks in</div> 
+                            <div class="noWrapWords">Tasks in</div>
                             <div>Progress</div>
                         </div>
                     </div>
-                    <div class="bgWhite border py-3 px-5 rounded-5 d-flex flex-column align-items-center justify-content-center text-center">
-                        <div id="feedback-count" class="size3Em bold">2</div>
+                    <div
+                        class="bgWhite border py-3 px-5 rounded-5 d-flex flex-column align-items-center justify-content-center text-center">
+                        <div id="feedback-count" class="size3Em bold"></div>
                         <div>
-                            <div>Awaiting</div> 
+                            <div>Awaiting</div>
                             <div>Feedback</div>
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="bgWhite border py-3 rounded-5 item-2">
                     <div class="border-end border-3 d-flex justify-content-center">
                         <div class="d-flex align-items-center">
@@ -90,7 +74,7 @@
                         </div>
                         <div class="d-flex flex-column align-items-center justify-content-center text-center ps-3">
                             <div class="size3Em bold" id="urgent-count">
-                                1
+
                             </div>
                             <div>
                                 Urgent
@@ -99,35 +83,37 @@
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                         <div id="urgent-deadline" class="bold pb-2 text-center">
-                            October 16, 2022
+
                         </div>
                         <div class="size08Em text-center">
                             Upcoming Deadline
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="item-3">
-                    <div onmouseover="whitePencil()" onmouseout="darkPencil()" class="bgWhite border py-3 px-5 rounded-5 d-flex justify-content-center">
+                    <div onmouseover="whitePencil()" onmouseout="darkPencil()"
+                        class="bgWhite border py-3 px-5 rounded-5 d-flex justify-content-center">
                         <div class="d-flex align-items-center">
                             <img id="pencil" src="./img/icon_pencil.svg" alt="pencil">
                         </div>
                         <div class="d-flex flex-column align-items-center justify-content-center ps-3">
                             <div class="size3Em bold" id="todo-count">
-                                1
+
                             </div>
                             <div class="noWrapWords">
                                 To-do
                             </div>
                         </div>
                     </div>
-                    <div onmouseover="whiteOk()" onmouseout="darkOk()" class="bgWhite border py-3 px-5 rounded-5 d-flex justify-content-center">
+                    <div onmouseover="whiteOk()" onmouseout="darkOk()"
+                        class="bgWhite border py-3 px-5 rounded-5 d-flex justify-content-center">
                         <div class="d-flex align-items-center">
                             <img id="ok" src="./img/icon_ok.svg" alt="ok">
                         </div>
                         <div class="d-flex flex-column align-items-center justify-content-center ps-3">
                             <div class="size3Em bold" id="done-count">
-                                1
+
                             </div>
                             <div>
                                 Done
@@ -136,7 +122,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="secondContainer ps-5">
                 <div>
                     <div id="whichHour" class="size2Em">Good morning,</div>
@@ -146,6 +132,7 @@
         </div>
 
     </div>
-    
+
 </body>
+
 </html>
