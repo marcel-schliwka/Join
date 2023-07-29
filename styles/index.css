@@ -5,6 +5,7 @@ body {
 
 h1 {
   font-weight: 700;
+  font-size: 3rem;
 }
 .logo-img {
   position: absolute;
@@ -198,6 +199,17 @@ form {
   gap: 50px;
 }
 
+.footer-container {
+  display: flex;
+  gap: 16px;
+  color: #a8a8a8;
+  margin-top: 180px;
+}
+
+.footer-container a {
+  cursor: pointer;
+}
+
 @keyframes logoSlideIn {
   0% {
     top: calc(100vh - 50% - 100px);
@@ -213,13 +225,13 @@ form {
 
 @keyframes logoSlideInMobile {
   0% {
-    background-image: url(../img/logo.svg);
+    background-image: url(../img/logo_dark.svg);
     top: calc(100vh - 50% - 100px);
     left: calc(100vw - 50% - 100px);
   }
 
   100% {
-    background-image: url(../img/logo.svg);
+    background-image: url(../img/logo_dark.svg);
     top: 0px;
     left: 10px;
     transform: scale(0.5);
@@ -266,11 +278,17 @@ form {
     width: 70%;
     margin: 15vh 20px 50px 20px;
   }
+  .login-line {
+    margin-bottom: 40px;
+  }
 }
 @media only screen and (max-width: 600px) {
   body {
     background-color: #2a3647;
     animation: mobileBackgroundColorChange 2s forwards 1s;
+  }
+  form {
+    align-items: center;
   }
   .logo-img {
     background-image: url(../img/logo_white.svg);
@@ -279,11 +297,18 @@ form {
   .login-box {
     width: 90%;
   }
+  .footer-container {
+    margin-top: 0;
+    margin-bottom: 50px;
+  }
   .nav-join-user {
     display: none;
   }
   .login-btn-container {
     justify-content: space-around;
+    flex-direction: column;
+    max-width: fit-content;
+    gap: 20px;
   }
   .nav-join-user-mobile {
     display: flex;
@@ -293,4 +318,19 @@ form {
     margin-right: 20px;
     margin-left: 20px;
   }
+  .checkbox-container {
+    flex-direction: column-reverse;
+    align-self: flex-start;
+    gap: 5px;
+  }
+  .remember-me-container {
+    justify-content: flex-start;
+  }
+  .remember-checkbox {
+    margin: 0;
+    margin-right: 10px;
+  }
+}
+
+@media only screen and (max-width: 390px) {
 }
