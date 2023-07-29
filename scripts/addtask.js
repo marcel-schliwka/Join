@@ -71,7 +71,7 @@ window.addEventListener("DOMContentLoaded", function () {
 function hideAssignedToDropdown() {
   let assignedContainer = document.getElementById("contact-container");
   let assignedInput = document.getElementById("assigned-container");
-  assignedContainer.classList.add("d-none");
+  assignedContainer.classList.add("display-none");
   assignedInput.classList.remove("remove-border");
 }
 
@@ -168,7 +168,7 @@ function getTaskPrio(button, priority) {
  */
 function showTaskModal() {
   let modal = document.getElementById("addTaskModal");
-  modal.classList.remove("d-none");
+  modal.classList.remove("display-none");
   modal.classList.add("add-task-template");
 }
 
@@ -212,16 +212,16 @@ function addNewCategory() {
 
   if (input == "" && color == "") {
     hiddenError.innerText = "Oops.. something went wrong";
-    hiddenError.classList.remove("d-none");
+    hiddenError.classList.remove("display-none");
   } else if (input == "") {
     hiddenError.innerText = "You need to type a new category";
-    hiddenError.classList.remove("d-none");
+    hiddenError.classList.remove("display-none");
   } else if (color == "") {
     hiddenError.innerText = "You need to pick a color";
-    hiddenError.classList.remove("d-none");
+    hiddenError.classList.remove("display-none");
   } else {
     hiddenError.innerText = "";
-    hiddenError.classList.add("d-none");
+    hiddenError.classList.add("display-none");
     categorys.push({
       name: input,
       color: color,
@@ -244,15 +244,16 @@ function toggleCatgoryMenu() {
   let category = document.getElementById("renderCategorys");
   let categoryContainer = document.getElementById("category-container");
   let input = document.querySelector(".category-input input");
-  category.classList.toggle("d-none");
+  category.classList.toggle("display-none");
+  category.classList.toggle('category-custom-border')
   categoryContainer.classList.toggle("remove-border");
   if (input !== null) {
     categoryContainer.classList.remove("remove-border");
-    category.classList.add("d-none");
+    category.classList.add("display-none");
   } else {
     document.addEventListener("click", (event) => {
       if (!categoryContainer.contains(event.target)) {
-        category.classList.add("d-none");
+        category.classList.add("display-none");
         categoryContainer.classList.remove("remove-border");
       }
     });
@@ -292,7 +293,7 @@ function useCategory(i) {
   let categoryContainer = document.getElementById("category-container");
   selection.innerHTML = generateSelectedCategoryHTML(categorys, i);
   currentCategory = selection.innerText;
-  category.classList.add("d-none");
+  category.classList.add("display-none");
   categoryContainer.classList.remove("remove-border");
 }
 
@@ -310,15 +311,15 @@ function toggleAssigndMenu() {
   let contacts = document.getElementById("contact-container");
   let contactContainer = document.getElementById("assigned-container");
   let input = document.querySelector(".assigned-input input");
-  contacts.classList.toggle("d-none");
+  contacts.classList.toggle("display-none");
   contactContainer.classList.toggle("remove-border");
   if (input !== null) {
-    contacts.classList.add("d-none");
+    contacts.classList.add("display-none");
     contactContainer.classList.remove("remove-border");
   } else {
     document.addEventListener("click", (event) => {
       if (!contactContainer.contains(event.target)) {
-        contacts.classList.add("d-none");
+        contacts.classList.add("display-none");
         contactContainer.classList.remove("remove-border");
       }
     });
@@ -688,7 +689,7 @@ function renderContactsHTML(contact, i) {
 function generateAddNewContact() {
   return `
   <div>
-    <li onclick="changeToInput('assigned-input', 'assigned-button'); hideAssignedToDropdown()" class="contact-item">Invite new contact <img class="cursor-p"src="./img/contacts_black.png"></li>
+    <li onclick="changeToInput('assigned-input', 'assigned-button'); hideAssignedToDropdown()" class="contact-item">Invite new contact <img id="contact-img" class="cursor-p"src="./img/contacts_black.png"></li>
   </div>
   `;
 }
