@@ -51,7 +51,7 @@ function getPriority(element) {
 }
 
 function htmlTemplateToDo(element, i, priority) {
-  return `<div onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${i}, this)" class="bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div onclick="boardOpenPopUpTask(${i})" draggable="true" ondragstart="startDragging(${element['id']})" class="bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
                 ${element["category"]}
             </div>
@@ -200,7 +200,7 @@ function addTaskWindow(state) {
     : taskContainer.classList.add("show-modal");
 }
 
-function startDragging(id, element) {
+function startDragging(id) {
   currentDraggedElement = id;
   element.classList.add("cardMove");
 }
@@ -302,7 +302,7 @@ function searchTask() {
 function renderSearchTodo(search) {
   let stillToDo = tasks.filter((t) => t["status"] == "to do");
   debugger;
-  document.getElementById("todo").innerHTML = "";
+  document.getElementById("todo").innerHTML = '';
 
   for (let i = 0; i < stillToDo.length; i++) {
     let title = stillToDo[i].titel;
