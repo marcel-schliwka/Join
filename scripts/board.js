@@ -584,6 +584,7 @@ function startTouchEventListener() {
         window.clearTimeout(pressTimer);
         pressTimer = null;
       }
+
       if (selectedElement && selectedElement.getAttribute("status")) {
         selectedElement.style.width = `${selectedElement.offsetWidth}px`;
         selectedElement.style.height = `${selectedElement.offsetHeight}px`;
@@ -591,6 +592,10 @@ function startTouchEventListener() {
         selectedElement.style.pointerEvents = "none";
       }
       let touch = e.touches[0];
+      let touchY = touch.clientY;
+      if (touchY > window.innerHeight - 500) {
+        window.scrollBy(0, 20);
+      }
       moveTouchElement = document.elementFromPoint(
         touch.clientX,
         touch.clientY
