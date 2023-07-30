@@ -1,4 +1,4 @@
-<!DOCTYPE text/html>
+<!DOCTYPE text/html/javascript>
 <html lang="en">
 
 <head>
@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="./styles/bootstrap.css">
   <link rel="stylesheet" href="./styles/taskstyle.css">
   <link rel="stylesheet" href="./styles/styleSidebar.css">
-  <link rel="stylesheet" href="./styles/coloris.min.css"/>
+  <link rel="stylesheet" href="./styles/coloris.min.css" />
   <script src="./scripts/sidebar.js"></script>
   <script src="./scripts/bootstrap.js"></script>
   <script src="./scripts/addtask.js"></script>
@@ -23,112 +23,132 @@
 
     <form onsubmit="addTask(); return false">
 
-      <div class="left">
-        <label class="font20 label" for="title">Title</label>
-        <input id="title-input" required class="w-422 h-51 font20 pad-13-21 custom-border ol-none cursor-p" type="text"
-          placeholder="Enter a title">
+      <button onclick="getAssignedContacts()" type="submit"
+      class="d-none font20 pad-18-15 create-btn create-btn-responsive">Create<svg xmlns="http://www.w3.org/2000/svg"
+        width="25" height="25" viewBox="0 0 25 25" fill="none">
+        <path d="M4.0166 12.1704L10.0166 18.1704L20.0166 6.17041" stroke="white" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" />
+      </svg></button>
 
-        <label class="font20 label" for="description">Description</label>
-        <textarea required class="w-422 font20 pad-18-21 custom-border ol-none cursor-p" name="description"
-          id="description-input" cols="30" rows="10" placeholder="Enter a Description"></textarea>
+      <div class="top-section">
 
-        <label class="font20 label" for="category">Category</label>
-        <div onclick="toggleCatgoryMenu()" class="category-container font20" id="category-container">
-          <div class="category-input cursor-p" id="category-input">
-            <span>Select task category</span>
-          </div>
+        <div class="top-left">
+          <label class="font20 label" for="title">Title</label>
+          <input id="title-input" required class="w-422 h-51 font20 pad-13-21 custom-border ol-none cursor-p"
+            type="text" placeholder="Enter a title">
 
-          <div class="category-button-container" id="category-button">
-            <button type="button"><img src="./img/arrow_down.png"></button>
-          </div>
-        </div>
-        <div class="categorys">
-          <ul id="renderCategorys" class="font20 d-none">
-            <li>Test<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
-                <circle cx="10" cy="10.5" r="9" fill="#0038FF" stroke="white" stroke-width="2" />
-              </svg> </li>
-          </ul>
+          <label class="font20 label" for="description">Description</label>
+          <textarea required class="w-422 font20 pad-18-21 custom-border ol-none cursor-p" name="description"
+            id="description-input" cols="30" rows="10" placeholder="Enter a Description"></textarea>
         </div>
 
-        <div class="d-none" id="hidden-error"><p class="font12 hidden-error">You need to pick a color</p></div>
-
-
-        <label class="font20 label" for="assigned">Assigned to</label>
-        <div onclick="toggleAssigndMenu()" class="assigned-container font20 cursor-p" id="assigned-container">
-          <div class="assigned-input" id="assigned-input">
-            <span>Select contacts to assign</span>
-          </div>
-
-          <div class="assigned-button-container" id="assigned-button">
-            <button type="button"><img src="./img/arrow_down.png"></button>
+        <div class="top-seperator">
+          <div class="seperator">
+            <svg xmlns="http://www.w3.org/2000/svg" width="2" height="276.5" viewBox="0 0 2 553" fill="none">
+              <path d="M0.999512 1L1 552" stroke="#D1D1D1" stroke-linecap="round" />
+            </svg>
           </div>
         </div>
 
-        <div class="contacts font20 d-none" id="contact-container">
-          <ul id="renderContacts">
-          </ul>
-        </div>
+        <div class="top-right">
+          <label required class="font20 date-label label" for="date">Due date</label>
+          <input id="task-date" class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p" type="date" min=""
+            placeholder="dd/mm/yyyy">
 
-      </div>
-      <div class="seperator">
-        <svg xmlns="http://www.w3.org/2000/svg" width="2" height="553" viewBox="0 0 2 553" fill="none">
-          <path d="M0.999512 1L1 552" stroke="#D1D1D1" stroke-linecap="round" />
-        </svg>
-      </div>
-      <div class="right">
-        <label required class="font20 date-label label" for="date">Due date</label>
-        <input id="task-date" class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p" type="date" min=""
-          placeholder="dd/mm/yyyy">
-
-        <label class="font20 label" for="prio">Prio</label>
-        <div class="prio-btn">
-          <button id="urgentBtn" onclick="getTaskPrio(this, 'urgent')"
-            class="font20 pad-18-10 urgent-btn custom-border shadow prioBtn" type="button">Urgent<img id="urgentImg"
-              src="./img/prio_urgent_color.png"></button>
-          <button id="mediumBtn" onclick="getTaskPrio(this, 'medium')"
-            class="font20 pad-18-10 medium-btn custom-border shadow prioBtn" type="button">Medium<img id="mediumImg"
-              src="./img/prio_medium_color.png"></button>
-          <button id="lowBtn" onclick="getTaskPrio(this, 'low')"
-            class="font20 pad-18-10 low-btn custom-border shadow prioBtn" type="button">Low<img id="lowImg"
-              src="./img/prio_low_color.png"></button>
-        </div>
-
-
-        <label class="font20 label" for="subtasks">Subtasks</label>
-
-
-
-        <div class="subtasks-container font20 w-422 h-51 custom-border pad-18-21">
-          <div class="subtasks-input" id="subtasks-input">
-            <input onclick="changeToInput('subtasks-input', 'subtasks-button')" class="subtask-input  ol-none"
-              type="text" placeholder="Add new subtask">
+          <label class="font20 label prio-label" for="prio">Prio</label>
+          <div class="prio-btn">
+            <button id="urgentBtn" onclick="getTaskPrio(this, 'urgent')"
+              class="font20 pad-18-10 urgent-btn custom-border shadow prioBtn" type="button">Urgent<img id="urgentImg"
+                src="./img/prio_urgent_color.png"></button>
+            <button id="mediumBtn" onclick="getTaskPrio(this, 'medium')"
+              class="font20 pad-18-10 medium-btn custom-border shadow prioBtn" type="button">Medium<img id="mediumImg"
+                src="./img/prio_medium_color.png"></button>
+            <button id="lowBtn" onclick="getTaskPrio(this, 'low')"
+              class="font20 pad-18-10 low-btn custom-border shadow prioBtn" type="button">Low<img id="lowImg"
+                src="./img/prio_low_color.png"></button>
           </div>
-          <div class="subtasks-button-container" id="subtasks-button">
-            <button type="button"><img src="./img/plus_icon.png"></button>
-          </div>
-        </div>
-
-
-        <div class="geneneratedSubtasks cursor-p font20" id="subtask-content">
-        </div>
-
-
-        <div class="form-btn" id="form-btn-container">
-          <button onclick="clearAll()" type="reset" class="font20 pad-18-10 clear-btn">Clear <svg
-              xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-              <path id="cancel-icon"
-                d="M12.0174 12.1705L17.2604 17.4135M6.77441 17.4135L12.0174 12.1705L6.77441 17.4135ZM17.2604 6.92749L12.0164 12.1705L17.2604 6.92749ZM12.0164 12.1705L6.77441 6.92749L12.0164 12.1705Z"
-                stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg></button>
-          <button onclick="getAssignedContacts()" type="submit" class="font20 pad-18-15 create-btn">Create Task <svg
-              xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-              <path d="M4.0166 12.1704L10.0166 18.1704L20.0166 6.17041" stroke="white" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" />
-            </svg></button>
         </div>
       </div>
 
-    </form>
+      <div class="bottom-section">
+
+        <div class="bottom-left">
+          <label class="font20 label" for="category">Category</label>
+          <div onclick="toggleCatgoryMenu()" class="category-container font20" id="category-container">
+            <div class="category-input cursor-p" id="category-input">
+              <span>Select task category</span>
+            </div>
+            <div class="category-button-container" id="category-button">
+              <button type="button"><img src="./img/arrow_down.png"></button>
+            </div>
+          </div>
+          <div class="categorys">
+            <ul id="renderCategorys" class="font20 display-none">
+              <li>Test<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
+                  <circle cx="10" cy="10.5" r="9" fill="#0038FF" stroke="white" stroke-width="2" />
+                </svg> </li>
+            </ul>
+          </div>
+          <div class="display-none" id="hidden-error">
+            <p class="font12 hidden-error">You need to pick a color</p>
+          </div>
+
+          <label class="font20 label" for="assigned">Assigned to</label>
+          <div onclick="toggleAssigndMenu()" class="assigned-container font20 cursor-p" id="assigned-container">
+            <div class="assigned-input" id="assigned-input">
+              <span>Select contacts to assign</span>
+            </div>
+            <div class="assigned-button-container" id="assigned-button">
+              <button type="button"><img src="./img/arrow_down.png"></button>
+            </div>
+          </div>
+          <div class="contacts font20 display-none" id="contact-container">
+            <ul id="renderContacts">
+            </ul>
+          </div>
+        </div>
+
+        <div class="bottom-seperator">
+          <div class="seperator">
+            <svg xmlns="http://www.w3.org/2000/svg" width="2" height="276.5" viewBox="0 0 2 553" fill="none">
+              <path d="M0.999512 1L1 552" stroke="#D1D1D1" stroke-linecap="round" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="bottom-right">
+          <label class="font20 label" for="subtasks">Subtasks</label>
+          <div class="subtasks-container font20 w-422 h-51 custom-border pad-18-21">
+            <div class="subtasks-input" id="subtasks-input">
+              <input onclick="changeToInput('subtasks-input', 'subtasks-button')" class="subtask-input  ol-none"
+                type="text" placeholder="Add new subtask">
+            </div>
+
+            <div class="subtasks-button-container" id="subtasks-button">
+              <button type="button"><img src="./img/plus_icon.png"></button>
+            </div>
+          </div>
+          <div class="geneneratedSubtasks cursor-p font20" id="subtask-content">
+          </div>
+
+          <div class="form-btn" id="form-btn-container">
+            <button onclick="clearAll()" type="reset" class="font20 pad-18-10 clear-btn">Clear <svg
+                xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+                <path id="cancel-icon"
+                  d="M12.0174 12.1705L17.2604 17.4135M6.77441 17.4135L12.0174 12.1705L6.77441 17.4135ZM17.2604 6.92749L12.0164 12.1705L17.2604 6.92749ZM12.0164 12.1705L6.77441 6.92749L12.0164 12.1705Z"
+                  stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg></button>
+            <button onclick="getAssignedContacts()" type="submit"
+              class="font20 pad-18-15 create-btn create-btn-web">Create Task <svg xmlns="http://www.w3.org/2000/svg"
+                width="25" height="25" viewBox="0 0 25 25" fill="none">
+                <path d="M4.0166 12.1704L10.0166 18.1704L20.0166 6.17041" stroke="white" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
   </div>
   <script type="text/javascript" src="./scripts/coloris.min.js"></script>
 </body>
