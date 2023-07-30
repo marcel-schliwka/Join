@@ -822,12 +822,87 @@ High-res laptop or desktop: 1920 x 1080.
 
 
 
-@media only screen and (max-width: 1000px) and (min-width: 901px) {
+@media only screen and (max-width: 1000px) and (min-width: 950px) {
+
   .add-task-section form,
   .add-task-section h1 {
     margin-left: 255px;
   }
+  .add-task-section h1 {
+    font-size: 47px;
+  }
 
+
+  .categorys,
+  #render-categorys,
+  #title-input,
+  #description-input,
+  #category-container,
+  #assigned-container,
+  #task-date,
+  .subtasks-container,
+  .contacts,
+  .contact-item,
+  .prio-btn {
+    width: 320px;
+    font-size: 16px;
+  }
+
+  #urgentBtn,
+  #mediumBtn,
+  #lowBtn {
+    height: 47px;
+    width: 100px;
+    padding: 18px 10px;
+    font-size: 16px;
+  }
+
+  #description-input {
+    height: 120px;
+  }
+
+  .seperator {
+    margin-left: 25px;
+    margin-right: 25px;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  .category-li-item {
+    font-size: 16px;
+  }
+
+  #generatedInput,
+  #generatedSubtaskInput,
+  .subtasks-input {
+    width: 180px;
+    font-size: 16px;
+  }
+
+  .form-btn {
+    margin-left: 0px;
+    margin-top: 75px;
+    gap: 10px;
+  }
+
+  .form-btn button {
+    font-size: 16px;
+    height: 50px;
+  }
+
+  .clear-btn {
+    width: 100px;
+  }
+
+  .create-btn-web {
+    width: 160px;
+  }
+
+  #contact-img {
+    margin-right: 3px;
+  }
 }
 
 
@@ -839,6 +914,7 @@ High-res laptop or desktop: 1920 x 1080.
   .add-task-section form {
     margin-left: 270px;
   }
+
   .categorys,
   #render-categorys,
   #title-input,
@@ -857,14 +933,14 @@ High-res laptop or desktop: 1920 x 1080.
   .label {
     font-size: 18px;
   }
-  
+
   #generatedInput,
   #generatedSubtaskInput,
-  .subtasks-input
-  {
+  .subtasks-input {
     width: 180px;
     font-size: 18px;
   }
+
   #category-input {
     width: 195px;
     font-size: 18px;
@@ -887,13 +963,16 @@ High-res laptop or desktop: 1920 x 1080.
     padding: 18px 10px;
     font-size: 18px;
   }
+
   .form-btn {
     margin-left: -30px;
+    font-size: 18px;
   }
 }
 
 
 @media only screen and (max-width: 1200px) and (min-width: 1101px) {
+
   .categorys,
   #render-categorys,
   #title-input,
@@ -907,6 +986,7 @@ High-res laptop or desktop: 1920 x 1080.
   .prio-btn {
     width: 363px;
   }
+
   #category-input,
   #generatedInput,
   #generatedSubtaskInput {
@@ -925,17 +1005,21 @@ High-res laptop or desktop: 1920 x 1080.
     margin-left: 40px;
     margin-right: 40px;
   }
+
   .form-btn {
     margin-left: 20px;
     gap: 15px;
     margin-top: 105px;
   }
+
   .add-task-section form {
     margin-left: 300px;
   }
+
   .add-task-section h1 {
     margin-left: 305px;
   }
+
   #contact-img {
     margin-right: 3px;
   }
