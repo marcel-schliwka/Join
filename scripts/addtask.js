@@ -219,13 +219,19 @@ document.addEventListener("coloris:change", (event) => {
  * it pushes the color value && the selected category into the category-object
  *
  */
+
+function checkIfCategoryInputExists() {
+  return document.getElementById("generatedInput");
+}
 function addNewCategory() {
-  try {
+  if (checkIfCategoryInputExists()) {
     let input = document.getElementById("generatedInput").value;
-    let color = document.querySelector(".colorpicker").value;
-    let category = document.getElementById("category-input");
-    let categoryBtn = document.getElementById("category-button");
-    let hiddenError = document.getElementById("hidden-error");
+  }
+
+  let color = document.querySelector(".colorpicker").value;
+  let category = document.getElementById("category-input");
+  let categoryBtn = document.getElementById("category-button");
+  let hiddenError = document.getElementById("hidden-error");
 
     if (input == "" && color == "") {
       hiddenError.innerText = "Oops.. something went wrong";

@@ -59,16 +59,7 @@ html {
 }
 
 .dropArea {
-  min-height: 300px;
-}
-
-#todo,
-#inProgress,
-#awaitingFeedback,
-#done {
-  /* border: 2px dashed lightgrey; */
-
-  /* overflow-y:scroll; */
+  min-height: 90vh;
 }
 
 .bgWhite2 {
@@ -135,10 +126,29 @@ html {
   flex-direction: column;
   gap: 20px;
 }
+.closeAddTask {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+}
 
-.right-dialog {
+.right {
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+
+.addTaskFormWrapper {
+  width: fit-content !important;
+  height: fit-content !important;
+  padding: 50px;
+  background-color: white !important;
+  position: absolute;
+  border-radius: 30px;
+}
+#clr-picker {
+  z-index: 1200;
 }
 
 @media screen and (max-width: 870px) {
@@ -165,6 +175,7 @@ html {
   }
   .mobileAddTask {
     display: block;
+    cursor: pointer;
     position: absolute;
     right: 0;
     bottom: 0;
@@ -196,5 +207,32 @@ html {
 
   #done {
     padding-bottom: 200px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .addTaskFormWrapper {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 0;
+  }
+  #form-btn-container {
+    display: none !important;
+  }
+  .addTaskHeadline {
+    margin-top: 50px;
+  }
+
+  .addTaskFormWrapper input,
+  .addTaskFormWrapper textarea,
+  #category-container,
+  #assigned-container,
+  #assigned-container > *,
+  .subtasks-container,
+  .subtasks-container > *,
+  #contact-container,
+  #contact-container > *,
+  .prio-btn {
+    width: 90%;
   }
 }
