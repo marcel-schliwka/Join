@@ -41,7 +41,6 @@ let categorys = [
 
 async function init() {
   userObj = await getLoggedInUser();
-  // await loadUserContacts();
   renderContacts();
   renderCategorys();
   renderSubtasks();
@@ -97,7 +96,6 @@ function addTask() {
   getSubtasks();
   const task = getAddTaskVariables();
   userObj.tasks.push(task);
-
   setItem(userObj.email, JSON.stringify(userObj));
   clearAll();
 }
@@ -253,6 +251,7 @@ function toggleCatgoryMenu() {
   } else {
     document.addEventListener("click", (event) => {
       if (!categoryContainer.contains(event.target)) {
+        addNewCategory();
         category.classList.add("display-none");
         addNewCategory();
         categoryContainer.classList.remove("remove-border");
@@ -750,16 +749,4 @@ function generateNewSubtaskHTML(i, subt) {
     `;
 }
 
-// users = [{
-//   name: "Marcel"
-//   email: test@gmail.com,
-//   password: 12334
-// }]
 
-// activeUser = users.email
-
-// test@gmail.com = {
-//   tasks: [],
-//   contacts: [],
-//   name: "Marcel"
-// }
