@@ -58,7 +58,7 @@ function getPriority(element) {
 
 function htmlTemplateToDo(element, i, priority) {
   return `<div status="to do" currentId="${i}" titel="${element["titel"]}" id="cardTodo${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)"  draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-            <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
+            <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element['categoryColor']}">
                 ${element["category"]}
             </div>
             <div class="mt-2 mx-2 bold">
@@ -105,7 +105,7 @@ function renderAllInProgress() {
 
 function htmlTemplateInProgress(element, i, priority) {
   return `<div status="in progress" currentId="${i}" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-            <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
+            <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element['categoryColor']}">
                 ${element["category"]}
             </div>
             <div class="mt-2 mx-2 bold">
@@ -142,7 +142,7 @@ function renderAllAwaitingFeedback() {
 
 function htmlTemplateAwaitingFeedback(element, i, priority) {
   return `<div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-        <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
+        <div class="textWhite border rounded-3 px-3 m-2" style="background-color: ${element['categoryColor']}">
             ${element["category"]}
         </div>
         <div class="mt-2 mx-2 bold">
@@ -179,7 +179,7 @@ function renderAllDone() {
 
 function htmlTemplateDone(element, i, priority) {
   return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-        <div class="textWhite border rounded-3 px-3 m-2" style="background-color:grey">
+        <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element['categoryColor']}">
             ${element["category"]}
         </div>
         <div class="mt-2 mx-2 bold">
