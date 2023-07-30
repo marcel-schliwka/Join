@@ -30,11 +30,15 @@ function findNextDeadline() {
 
 function returnNextDeadline() {
   const deadlineDates = deadlines;
-  const sortedDeadline = deadlineDates.sort();
-  const closestDate = new Date(sortedDeadline[0]);
-  let dateToFormat = closestDate.toISOString();
-  let date = formateDate(dateToFormat);
-  return date;
+  if (deadlineDates.length !== 0) {
+    const sortedDeadline = deadlineDates.sort();
+    const closestDate = new Date(sortedDeadline[0]);
+    let dateToFormat = closestDate.toISOString();
+    let date = formateDate(dateToFormat);
+    return date;
+  } else {
+    return "No deadline set";
+  }
 }
 
 function formateDate(dateToFormat) {
@@ -73,14 +77,14 @@ function getDeadlineDates() {
 }
 
 function renderTaskCount() {
-    taskcount = countStatus();
-    const boardVariables = getBoardVariable();
-    boardVariables.tasks.innerText = userObj.tasks.length;
-    boardVariables.progress.innerText = taskcount['in progress'];
-    boardVariables.feedback.innerText = taskcount['awaiting feedback'];
-    boardVariables.done.innerText = taskcount['done'];
-    boardVariables.todo.innerText = taskcount['to do'];
-    boardVariables.user.innerText = userObj.name;
+  taskcount = countStatus();
+  const boardVariables = getBoardVariable();
+  boardVariables.tasks.innerText = userObj.tasks.length;
+  boardVariables.progress.innerText = taskcount["in progress"];
+  boardVariables.feedback.innerText = taskcount["awaiting feedback"];
+  boardVariables.done.innerText = taskcount["done"];
+  boardVariables.todo.innerText = taskcount["to do"];
+  boardVariables.user.innerText = userObj.name;
 }
 
 function getBoardVariable() {
@@ -96,20 +100,20 @@ function getBoardVariable() {
 }
 
 function countStatus() {
-    let tasks = userObj.tasks;
-    const statusCount = {
-        'to do': 0,
-        'in progress': 0,
-        'awaiting feedback': 0,
-        'done': 0,
-    };
-    tasks.forEach(tasks => {
-        const status = tasks.status;
-        if(status in statusCount) {
-            statusCount[status]++;
-        }
-    });
-    return statusCount;
+  let tasks = userObj.tasks;
+  const statusCount = {
+    "to do": 0,
+    "in progress": 0,
+    "awaiting feedback": 0,
+    done: 0,
+  };
+  tasks.forEach((tasks) => {
+    const status = tasks.status;
+    if (status in statusCount) {
+      statusCount[status]++;
+    }
+  });
+  return statusCount;
 }
 
 function countUrgentPrio() {
