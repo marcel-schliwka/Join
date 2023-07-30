@@ -35,13 +35,13 @@
   <!-- Edit Contact -->
   <dialog open id="dialog__editContact">
     <div class="dialog__editLeftSide">
-      <img src="./img/logo_white.svg" alt="White Join Logo" />
+      <img id="openEditContactLogo" src="./img/logo_white.svg" alt="White Join Logo" />
       <h2>Edit contact</h2>
       <span class="dialog__blue-line"></span>
     </div>
     <div class="dialog__editRightSide">
       <img src="./img/close.svg" alt="Close the Dialog Windows" id="dialog__editClose" />
-      <div class="dialog__editRightImg">
+      <div id="dialog__editRightImg" class="dialog__editRightImg">
         <img src="./img/test_circle.png" alt="" srcset="" />
       </div>
       <form class="dialog__editRightForm" onsubmit="return false;">
@@ -68,9 +68,10 @@
       <h4>Tasks are better with a team!</h4>
       <span id="responsiveSeperator" class="dialog__blue-line d-none"></span>
 
-        <img id="dialog__createMiddleImg" class="dialog__createRightImg d-none" src="./img/create_contact_frame.svg"
-          alt="" srcset="" />
+      <img id="dialog__createMiddleImg" class="dialog__createMiddleImg d-none" src="./img/create_contact_frame.svg"
+        alt="" srcset="" />
     </div>
+
     <div class="dialog__createRightSide">
       <img src="./img/close.svg" alt="Close the Dialog Windows" id="dialog__createClose"
         onclick="cancelCreateContact()" />
@@ -107,13 +108,14 @@
           <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
         </svg>
 
-        <span class="custom-fs-27">Better with a team</span>
+        <span id="subHeaderDialog" class="custom-fs-27">Better with a team</span>
 
         <img src="./img/seperator_horizontal_responsive.svg" id="seperatorResponsive" class="d-none">
 
 
         <!-- <div class="custom-btn-container"> -->
-        <button id="openCreateContactButton" class="fw-bold custom-lh-120 custom-btn pos-btn" onclick="openCreateContact()">
+        <button id="openCreateContactButton" class="fw-bold custom-lh-120 custom-btn pos-btn"
+          onclick="openCreateContact()">
           <span class="custom-fs-21">New contact</span>
           <img src="./img/icon_add_contact.png" alt="" />
         </button>
@@ -121,7 +123,7 @@
       </div>
 
       <dialog id="dialogContact">
-        <div class="d-flex align-items-center justify-content-around gap-5">
+        <div class="d-flex align-items-center justify-content-around gap-5 header-dialog-responsive">
           <div class="circle dialog__circle">
           </div>
 
@@ -168,20 +170,20 @@
 
         <h6 class="mt-4 mb-2">Phone</h6>
         <a id="dialog__phone" phone href="tel:">01567283716</a>
+
       </dialog>
     </div>
-  </div>
 
-  <div class="background-dialog d-none" onclick="closeDialog()">
-  </div>
+    <div class="background-dialog d-none" onclick="closeDialog()">
+    </div>
 
-  <button id="responsiveButton" class="d-none fw-bold custom-lh-120 custom-btn pos-btn"
-    onclick="responsiveOpenCreateContact()">
-    <img src="./img/icon_add_contact.png" alt="" />
-  </button>
+    <button id="responsiveButton" class="d-none fw-bold custom-lh-120 custom-btn pos-btn"
+      onclick="responsiveOpenCreateContact()">
+      <img src="./img/icon_add_contact.png" alt="" />
+    </button>
 
-  <script src="./scripts/contacts.js"></script>
-  <script src="./scripts/bootstrap.js"></script>
+    <script src="./scripts/contacts.js"></script>
+    <script src="./scripts/bootstrap.js"></script>
 </body>
 
 </html>

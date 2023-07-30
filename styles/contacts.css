@@ -270,22 +270,9 @@ body {
   overflow: auto !important;
 }
 
-/* .container-letter {
-  position: relative;
-} */
-
-/* .container-letter > span {
-  position: absolute;
-} */
-
 .initial {
-  /* display: flex; */
-  /* align-items: center; */
-  /* height: 60px; */
   font-weight: 400;
   font-size: 21px;
-  /* margin-top: 10px; */
-  /* margin-bottom: 10px; */
 }
 
 .single-contact-card {
@@ -475,6 +462,17 @@ body {
 
 /* RESPONSIVE */
 
+.dialog__createLeftSide,
+.dialog__editLeftSide {
+  width: 100%;
+  height: 50%;
+  background-color: #2a3647;
+  /* padding-bottom: 60px; */
+  padding-top: 60px;
+  padding-left: 30px;
+  padding: 66px, 32px, 66px, 32px;
+}
+
 .custom-btn-resp {
   display: flex;
   height: 55px;
@@ -511,6 +509,14 @@ body {
 }
 
 @media only screen and (max-width: 428px) {
+  .pt-20 {
+    padding-top: 20px;
+  }
+
+  .fs-21 {
+    font-size: 21px;
+  }
+
   body {
     overflow: hidden;
     font-size: 16px !important;
@@ -525,7 +531,7 @@ body {
     position: absolute;
     background-color: #F6F7F8;
     z-index: 3;
-    height: 100%;
+    height: 90%;
     padding-top: 20px;
     display: flex;
     flex-direction: column;
@@ -541,19 +547,17 @@ body {
 
   #contactsListContainer {
     /* width: max-content; */
-    /* width: 100%; */
-    width: fit-content;
-    padding-bottom: 10%;
-    padding: 0;
+    width: 100%;
+    padding-bottom: 80px;
     overflow-y: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .custom-btn {
+  /* .custom-btn {
     border-radius: 50%;
-  }
+  } */
 
   .pos-btn {
     position: fixed;
@@ -572,24 +576,46 @@ body {
     display: flex;
   }
 
-  #dialog__createContact {
+  #dialog__createContact{
     top: 4%;
-    height: 80%;
+    height: 90%;
+    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    background-color: white;
   }
 
-  #dialogConact {
-    padding: unset;
+  #dialog__editContact {
+    transform: translate(10px, 10px);
+    position: absolute;
+    top: 4%;
+    height: 90%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: white;
+    margin-left: 0;
+  }
+
+  #dialogContact {
+    padding: 0px;
     width: 100%;
   }
 
-  .dialog__createRightSide {
+  .header-dialog-responsive {
+    gap: 15px !important;
+    justify-content: unset !important;
+  }
+
+  .dialog__createRightSide, 
+  .dialog__editRightSide {
     position: relative;
-    width: unset;
+    width: 100%;
     flex-direction: column;
-    height: 100%;
+    height: 50%;
+    padding-top: 66px;
   }
 
   .dialog_createRightImg {
@@ -597,7 +623,8 @@ body {
     top: -60px;
   }
 
-  #dialog__createClose {
+  #dialog__createClose,
+  #dialog__editClose {
     position: fixed;
   }
 
@@ -605,9 +632,13 @@ body {
     width: 6rem;
   }
 
-  .dialog__createRightImg {
+  .dialog__createMiddleImg {
     position: absolute;
     align-self: center;
+    top: calc(50% - 50px) !important;
+    left: calc(50% - 50px) !important;
+    z-index: 999;
+    width: 100px !important;
   }
 
   .dialog__createRightBtn {
@@ -617,5 +648,39 @@ body {
   .dialog__editRightForm,
   .dialog__createRightForm {
     width: unset;
+  }
+
+  #editResponsiveBtn {
+    border: none;
+    z-index: 5;
+    background-color: #F6F7F8;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .edit-btn-resp:hover {
+    background: url('./img/edit_contact_responsive_lightBlue.svg');
+  }
+
+  #editOptions {
+    display: flex;
+    justify-content: end;
+  }
+
+  .edit-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+    padding: 10px;
+    border-radius: 20px 20px 0px 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    z-index: 10;
+  }
+
+  .edit-options button {
+    border: none;
+    background-color: #f6f7f8;
+    width: 160px;
   }
 }

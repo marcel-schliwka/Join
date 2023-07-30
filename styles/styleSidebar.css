@@ -100,7 +100,7 @@ header {
     }
 
     header {
-        width: auto;
+        /* width: auto; */
         position: sticky;
         top: 0;
         height: 80px;
