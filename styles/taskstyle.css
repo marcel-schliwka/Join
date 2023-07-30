@@ -1227,3 +1227,16 @@ li {
     margin-right: 4px;
   }
 }
+
+@media (min-width: 1380px) {
+  .category-input,
+  #category-input {
+    width: 300px;
+  }
+  #description-input {
+    height: 120px;
+  }
+  #contact-img {
+    margin-right: 3px;
+  }
+}
