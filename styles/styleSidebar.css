@@ -100,10 +100,9 @@ header {
   }
 }
 
-
-@media(max-width: 760px) {
+@media (max-width: 760px) {
   nav {
-    position: fixed;
+    position: sticky;
     width: 100vw;
     bottom: 0;
     left: 0;
@@ -161,7 +160,6 @@ header {
     display: none;
   }
 }
-
 
 @media screen and (min-width: 320px) and (max-width: 420px) {
   nav {
