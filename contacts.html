@@ -61,16 +61,20 @@
   </dialog>
   <!-- Add new Contact -->
   <dialog open id="dialog__createContact">
-    <div class="dialog__createLeftSide">
-      <img src="./img/logo_white.svg" alt="White Join Logo" />
+    <div id="dialog__createLeftSide" class="dialog__createLeftSide">
+      <img id="openCreateContactLogo" src="./img/logo_white.svg" alt="White Join Logo" />
       <h2>Add contact</h2>
-      <span class="dialog__blue-line"></span>
-      <h4>Tasks are better with a team!</h3>
+      <span id="openCreateContactSeperator" class="dialog__blue-line"></span>
+      <h4>Tasks are better with a team!</h4>
+      <span id="responsiveSeperator" class="dialog__blue-line d-none"></span>
+
+        <img id="dialog__createMiddleImg" class="dialog__createRightImg d-none" src="./img/create_contact_frame.svg"
+          alt="" srcset="" />
     </div>
     <div class="dialog__createRightSide">
       <img src="./img/close.svg" alt="Close the Dialog Windows" id="dialog__createClose"
         onclick="cancelCreateContact()" />
-      <div class="dialog__createRightImg">
+      <div id="dialog__createRightImg" class="dialog__createRightImg">
         <img src="./img/create_contact_frame.svg" alt="" srcset="" />
       </div>
       <form id="createContactForm" class="dialog__createRightForm" onsubmit="return false;">
@@ -89,21 +93,27 @@
     </div>
   </dialog>
 
-  <div class="custom-style-contacts">
+  <!-- <dialog id="resp_create_contact" class="d-none"></dialog> -->
+
+
+  <div id="contactsMainContainer" class="custom-style-contacts">
     <div id="contactsListContainer" class="overflow-x-hidden overflow-y-auto"></div>
 
     <div id="contactsMain" class="overflow-hidden">
       <div id="contactsHeader" class="contacts-header">
         <h1 class="fw-bold display-4 lh-120">Contacts</h1>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="4" height="63" viewBox="0 0 4 63" fill="none">
+        <svg id="svgElement" xmlns="http://www.w3.org/2000/svg" width="4" height="63" viewBox="0 0 4 63" fill="none">
           <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
         </svg>
 
         <span class="custom-fs-27">Better with a team</span>
 
+        <img src="./img/seperator_horizontal_responsive.svg" id="seperatorResponsive" class="d-none">
+
+
         <!-- <div class="custom-btn-container"> -->
-        <button class="fw-bold custom-lh-120 custom-btn pos-btn" onclick="openCreateContact()">
+        <button id="openCreateContactButton" class="fw-bold custom-lh-120 custom-btn pos-btn" onclick="openCreateContact()">
           <span class="custom-fs-21">New contact</span>
           <img src="./img/icon_add_contact.png" alt="" />
         </button>
@@ -117,7 +127,7 @@
 
           <div>
             <h1 id="dialog__name">Tatjana Wolf</h1>
-            <div class="d-flex gap-5">
+            <div id="dialog__Buttons" class="d-flex gap-5">
               <div id="dialog__editBtn" class="icon-dialog d-flex align-items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <mask id="mask0_71421_3311" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
@@ -163,8 +173,12 @@
   </div>
 
   <div class="background-dialog d-none" onclick="closeDialog()">
-
   </div>
+
+  <button id="responsiveButton" class="d-none fw-bold custom-lh-120 custom-btn pos-btn"
+    onclick="responsiveOpenCreateContact()">
+    <img src="./img/icon_add_contact.png" alt="" />
+  </button>
 
   <script src="./scripts/contacts.js"></script>
   <script src="./scripts/bootstrap.js"></script>

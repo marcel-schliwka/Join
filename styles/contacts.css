@@ -186,6 +186,13 @@ body {
   animation: showEditDialog 1s ease-in-out forwards;
 }
 
+.show-add-dialog {
+  animation-duration: 3s;
+  animation-name: slidein;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
 /* .icon-dialog svg:hover {
     fill: #007CEE;
 } */
@@ -468,12 +475,42 @@ body {
 
 /* RESPONSIVE */
 
+.custom-btn-resp {
+  display: flex;
+  height: 55px;
+  z-index: 15;
+  padding: 18px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--white, #fff);
+  border-radius: 10px;
+  border: 1px solid #2a3647;
+  background-color: #2a3647;
+}
+
+#resp_create_contact {
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  background-color: rgb(42, 54, 71);
+
+  width: 90%;
+  border: none;
+}
+
+.dialog-bottom {
+  background-color: white;
+}
+
 @media screen and (max-width: 796px) {
   .display-none {
     display: none !important;
   }
 }
-@media screen and (min-width: 320px) and (max-width: 420px) {
+
+@media only screen and (max-width: 428px) {
   body {
     overflow: hidden;
     font-size: 16px !important;
@@ -481,16 +518,33 @@ body {
 
   .custom-style-contacts {
     margin-left: 0;
+    padding-bottom: 130px;
   }
 
   #contactsMain {
     position: absolute;
+    background-color: #F6F7F8;
+    z-index: 3;
+    height: 100%;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .contacts-header {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    gap: 15px;
   }
 
   #contactsListContainer {
-    width: max-content;
+    /* width: max-content; */
+    /* width: 100%; */
+    width: fit-content;
+    padding-bottom: 10%;
     padding: 0;
-    width: 100%;
     overflow-y: hidden;
     display: flex;
     flex-direction: column;
@@ -498,10 +552,70 @@ body {
   }
 
   .custom-btn {
-    display: block;
+    border-radius: 50%;
+  }
+
+  .pos-btn {
+    position: fixed;
+    right: 24px;
+    bottom: 160px;
+    z-index: 1;
+  }
+
+  .pos-btn::after {
+    position: fixed;
+    right: 24px;
+    bottom: 160px;
   }
 
   .container-letter {
     display: flex;
+  }
+
+  #dialog__createContact {
+    top: 4%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  #dialogConact {
+    padding: unset;
+    width: 100%;
+  }
+
+  .dialog__createRightSide {
+    position: relative;
+    width: unset;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .dialog_createRightImg {
+    position: relative;
+    top: -60px;
+  }
+
+  #dialog__createClose {
+    position: fixed;
+  }
+
+  .dialog__blue-line {
+    width: 6rem;
+  }
+
+  .dialog__createRightImg {
+    position: absolute;
+    align-self: center;
+  }
+
+  .dialog__createRightBtn {
+    justify-content: center;
+  }
+
+  .dialog__editRightForm,
+  .dialog__createRightForm {
+    width: unset;
   }
 }

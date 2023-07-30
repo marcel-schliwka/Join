@@ -30,25 +30,6 @@ const createDialogElements = {
   inputPhone: document.getElementById("dialog__createPhoneInput"),
 };
 
-const dialogOpenElements = document.querySelectorAll('dialog');
-const mql = window.matchMedia('(max-width: 800px)');
-const contactInfo = document.getElementById('contactsMain');
-
-function screenTest(e) {
-  if (e.matches) {
-    contactInfo.classList.add('display-none');
-    dialogOpenElements.forEach(dialog => {
-      if (dialog.open) {
-        // dialog.close();
-        dialog.classList.add('display-none');
-      }
-    });
-  }
-}
-
-screenTest(mql);
-window.addEventListener('resize', () => screenTest(mql));
-
 /**
  * for generating colors according to initial of lastname
  * see {@link generateCircleColor()}
@@ -484,4 +465,96 @@ function closeDialog() {
   ) {
     cancelCreateContact();
   }
+}
+
+
+// Responsive
+const dialogOpenElements = document.querySelectorAll('dialog');
+const mql = window.matchMedia('(max-width: 800px)');
+const contactInfo = document.getElementById('contactsMain');
+const respDialogAddContact = document.getElementById('resp_create_contact');
+
+
+let responsiveStartEventListener = () => {
+  /* selecting all elements with class of single.contact-card to be saved in variable named cards*/
+  let cards = document.querySelectorAll(".single-contact-card");
+  /* iterating over each contact card */
+  cards.forEach((card) => {
+    /* storing the clicked contact in local variable named clickedCard*/
+    let clickedCard = card;
+    /* calling openContact() when contact card is clicked */
+    card.addEventListener("click", () => responsiveOpenContact(clickedCard));
+  });
+};
+
+function screenTest(e) {
+  if (e.matches) {
+    responsiveStartEventListener();
+    contactInfo.classList.add('d-none');
+    dialogOpenElements.forEach(dialog => {
+      if (dialog.open) {
+        // dialog.close();
+        dialog.classList.add('d-none');
+      }
+    });
+    document.getElementById('responsiveButton').classList.remove('d-none');
+  }
+}
+
+screenTest(mql);
+window.addEventListener('resize', () => screenTest(mql));
+
+function responsiveOpenCreateContact() {
+  dialogBackground.classList.remove('d-none');
+  dialogBackground.addEventListener ('click', () => responsiveCloseCreateContact());
+  document.getElementById('openCreateContactLogo').classList.add('d-none');
+  document.getElementById('dialog__createDeleteBtn').classList.add('d-none');
+  document.getElementById('openCreateContactSeperator').classList.add('d-none');
+  document.getElementById('dialog__createSaveBtn').classList.remove('custom-btn');
+  document.getElementById('responsiveSeperator').classList.remove('d-none');
+  document.getElementById('dialog__createSaveBtn').classList.add('custom-btn-resp');
+  document.getElementById('dialog__createSaveBtn').innerHTML = /*html*/`
+    <span>Create Contact</span>
+    <img src="./img/icon_check.png"></img>
+  `
+  document.getElementById('dialog__createRightImg').classList.add('d-none');
+  document.getElementById('dialog__createMiddleImg').classList.remove('d-none');
+  createDialogElements.closeDialog.src = './img/close_white.svg';
+  
+  // createDialogElements.createDialog.classList.add("show-add-dialog");
+  // respDialogAddContact.classList.remove('d-none');
+  // respDialogAddContact.innerHTML += generaterespDialogAddContact();
+  createDialogElements.createDialog.classList.remove('d-none');
+  createDialogElements.createDialog.classList.add("show-edit-dialog");
+
+}
+
+function responsiveOpenContact(card) {
+  document.getElementById('contactsMain').classList.remove('d-none');
+  document.getElementById('dialogContact').classList.remove('d-none');
+  document.getElementById('openCreateContactButton').classList.add('d-none');
+  document.getElementById('dialog__Buttons').classList.add('d-none');
+  document.getElementById('svgElement').classList.add('d-none');
+  document.getElementById('seperatorResponsive').classList.remove('d-none');
+}
+
+function styleSVG() {
+  let svg = document.getElementById('svgElement');
+  let svgPath = document.getElementById('svgPath');
+  svgPath.setAttribute('transform', sclae(1, -1));
+  svg.setAttribute('width', '63');
+  svg.setAttribute('height', '4');
+}
+// function generaterespDialogAddContact() {
+//   return /*html*/`
+//   <div class="dialog-top"></div>
+//   <div class="dialog-bottom"></div>
+//   `
+// }
+
+function responsiveCloseCreateContact() {
+  dialogBackground.classList.add('d-none');
+  createDialogElements.createDialog.classList.add('d-none');
+
+  // respDialogAddContact.classList.add('d-none');
 }
