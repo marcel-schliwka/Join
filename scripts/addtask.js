@@ -275,6 +275,7 @@ function toggleCatgoryMenu() {
       if (!categoryContainer.contains(event.target)) {
         addNewCategory();
         category.classList.add("display-none");
+        addNewCategory();
         categoryContainer.classList.remove("remove-border");
       }
     });
