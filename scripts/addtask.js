@@ -245,7 +245,7 @@ function toggleCatgoryMenu() {
   let categoryContainer = document.getElementById("category-container");
   let input = document.querySelector(".category-input input");
   category.classList.toggle("display-none");
-  category.classList.toggle('category-custom-border')
+  category.classList.toggle("category-custom-border");
   categoryContainer.classList.toggle("remove-border");
   if (input !== null) {
     categoryContainer.classList.remove("remove-border");
@@ -254,6 +254,7 @@ function toggleCatgoryMenu() {
     document.addEventListener("click", (event) => {
       if (!categoryContainer.contains(event.target)) {
         category.classList.add("display-none");
+        addNewCategory();
         categoryContainer.classList.remove("remove-border");
       }
     });

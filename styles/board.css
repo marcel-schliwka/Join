@@ -1,9 +1,13 @@
+html {
+  background-color: rgba(246, 247, 248, 255);
+}
 .gridContainerChildBoard {
   /* background-color: red; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   gap: 35px;
+  min-height: 300px;
 }
 
 .paddingRight50Px {
@@ -14,6 +18,10 @@
   background-color: rgba(42, 54, 71, 255);
   border-radius: 8px;
   color: white;
+}
+
+.mobileAddTask {
+  display: none;
 }
 
 .moveBackground {
@@ -50,13 +58,16 @@
   height: 40px;
 }
 
+.dropArea {
+  min-height: 300px;
+}
+
 #todo,
 #inProgress,
 #awaitingFeedback,
 #done {
-  border: 2px dashed lightgrey;
-  min-height: 100%;
-  max-height: 100%;
+  /* border: 2px dashed lightgrey; */
+
   /* overflow-y:scroll; */
 }
 
@@ -115,4 +126,72 @@
 
 .display-flex {
   display: flex;
+}
+.left-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.right-dialog {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 870px) {
+  .gridContainerChildBoard {
+    display: flex;
+    flex-direction: column;
+  }
+  .gridContainerChildBoard .dropArea {
+    min-height: 300px;
+  }
+
+  .addTaskBoardBtn {
+    display: none;
+  }
+  .headline-container-board {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .headlineBoard {
+    position: relative;
+    line-height: 1;
+    margin-bottom: 20px;
+  }
+  .mobileAddTask {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  .findTaskBtn,
+  .findTaskBtn input {
+    width: 100%;
+  }
+  .boardCategoryHeadline {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .parentDiv {
+    flex-direction: column;
+    padding-right: 0;
+  }
+  .gridContainerChildBoard {
+    width: 90%;
+  }
+  .dropArea {
+    min-height: 100px !important;
+  }
+  .headline-container-board {
+    align-self: flex-start;
+    margin-left: 20px;
+  }
+
+  #done {
+    padding-bottom: 200px;
+  }
 }
