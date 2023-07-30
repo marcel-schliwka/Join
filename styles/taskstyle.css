@@ -605,97 +605,7 @@ li {
   padding-left: 15px;
 }
 
-/*
-To-Do Breakpoints:
-Mobile: 360 x 640.
-Mobile: 375 x 667.
-Mobile: 360 x 720.
-iPhone X: 375 x 812.
-Pixel 2: 411 x 731.
-Tablet: 768 x 1024.
-Laptop: 1366 x 768.
-High-res laptop or desktop: 1920 x 1080.
-*/
-
-@media only screen and (max-width: 330px) {
-
-  .categorys,
-  #render-categorys,
-  #title-input,
-  #description-input,
-  #category-container,
-  #assigned-container,
-  #task-date,
-  .subtasks-container,
-  #contact-container,
-  .contacts,
-  .contact-item,
-  .prio-btn {
-    width: 300px;
-  }
-
-  #renderCategoryss {
-    max-height: 80px;
-
-  }
-
-  #urgentBtn,
-  #mediumBtn,
-  #lowBtn {
-    height: 42px;
-    width: 93.3px;
-  }
-
-  .add-task-section h1 {
-    margin-left: 10px;
-  }
-}
-
-#generatedInput,
-#generatedSubtaskInput {
-  width: 190px
-}
-
-#category-input {
-  width: 165px;
-}
-
-#description-input {
-  height: 85px;
-}
-
-
-
-@media only screen and (max-width: 370px) and (min-width: 331px) {
-
-  .categorys,
-  #render-categorys,
-  #title-input,
-  #description-input,
-  #category-container,
-  #assigned-container,
-  #task-date,
-  .subtasks-container,
-  .contact-item,
-  .prio-btn {
-    width: 320px;
-  }
-
-  #urgentBtn,
-  #mediumBtn,
-  #lowBtn {
-    height: 45px;
-    width: 100px;
-  }
-
-  .add-task-section h1 {
-    margin-left: 20px;
-  }
-}
-
-
-
-@media only screen and (max-width: 428px) and (min-width: 371px) {
+@media (max-width: 428px) {
   .add-task-section h1 {
     margin-left: 33px;
     margin-top: 41px;
@@ -812,7 +722,6 @@ High-res laptop or desktop: 1920 x 1080.
   }
 }
 
-
 @media(max-width: 400px) {
   .add-task-section form {
     margin-left: 0;
@@ -820,6 +729,200 @@ High-res laptop or desktop: 1920 x 1080.
   }
 }
 
+@media (max-width: 330px) {
+
+  .categorys,
+  #render-categorys,
+  #title-input,
+  #description-input,
+  #category-container,
+  #assigned-container,
+  #task-date,
+  .subtasks-container,
+  #contact-container,
+  .contacts,
+  .contact-item,
+  .prio-btn {
+    width: 300px;
+  }
+
+  #renderCategoryss {
+    max-height: 80px;
+
+  }
+
+  #urgentBtn,
+  #mediumBtn,
+  #lowBtn {
+    height: 42px;
+    width: 93.3px;
+  }
+
+  .add-task-section h1 {
+    margin-left: 10px;
+  }
+}
+
+#generatedInput,
+#generatedSubtaskInput {
+  width: 190px
+}
+
+#category-input {
+  width: 165px;
+}
+
+#description-input {
+  height: 85px;
+}
+
+
+
+@media (max-width: 370px) {
+
+  .categorys,
+  #render-categorys,
+  #title-input,
+  #description-input,
+  #category-container,
+  #assigned-container,
+  #task-date,
+  .subtasks-container,
+  .contact-item,
+  .prio-btn {
+    width: 320px;
+  }
+
+  #urgentBtn,
+  #mediumBtn,
+  #lowBtn {
+    height: 45px;
+    width: 100px;
+  }
+
+  .add-task-section h1 {
+    margin-left: 20px;
+  }
+}
+
+
+@media only screen and (max-width: 949px) and (min-width: 768px) {
+  .add-task-section h1 {
+    margin-left: 340px;
+    margin-top: 41px;
+    margin-bottom: 20px;;
+    font-size: 61px;
+  }
+
+  .add-task-section form {
+    margin-left: 330px;
+  }
+
+  .seperator {
+    display: none;
+  }
+
+  .top-section,
+  .bottom-section {
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .bottom-right {
+    margin-top: 0px;
+  }
+
+  .prio-label {
+    order: -1;
+  }
+
+  .prio-btn {
+    order: -1;
+  }
+
+  #task-date {
+    margin-bottom: 9px;
+  }
+
+  label {
+    font-size: 20px;
+  }
+
+  .categorys,
+  #render-categorys,
+  #title-input,
+  #description-input,
+  #category-container,
+  #assigned-container,
+  #task-date,
+  .subtasks-container,
+  .contacts,
+  .contact-item,
+  .prio-btn {
+    width: 422px;
+    font-size: 20px;
+  }
+
+  #category-input,
+  #generatedInput,
+  #generatedSubtaskInput {
+    width: 280px
+  }
+
+  #description-input {
+    height: 115px;
+  }
+
+  .category-li-item,
+  .contact-item {
+    font-size: 20px;
+  }
+
+  #urgentBtn,
+  #mediumBtn,
+  #lowBtn {
+    height: 51px;
+    width: 134px;
+    padding: 18px 10px;
+    font-size: 20px;
+  }
+
+  .contact-item {
+    margin-right: 8px;
+  }
+
+  #contact-img {
+    margin-right: 9px;
+  }
+
+  .checkboxImg {
+    margin-right: 6px;
+  }
+
+  .clear-btn {
+    display: none;
+  }
+
+  #renderCategorys {
+    max-height: 150px;
+  }
+
+  .create-btn-web {
+    display: none;
+  }
+
+  .create-btn-responsive {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    height: 51px;
+    width: 118px;
+  }
+
+  #subtask-content {
+    padding-bottom: 40px;
+  }
+}
 
 
 @media only screen and (max-width: 1000px) and (min-width: 950px) {
