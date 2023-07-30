@@ -605,11 +605,97 @@ li {
   padding-left: 15px;
 }
 
+/*
+To-Do Breakpoints:
+Mobile: 360 x 640.
+Mobile: 375 x 667.
+Mobile: 360 x 720.
+iPhone X: 375 x 812.
+Pixel 2: 411 x 731.
+Tablet: 768 x 1024.
+Laptop: 1366 x 768.
+High-res laptop or desktop: 1920 x 1080.
+*/
+
+@media only screen and (max-width: 330px) {
+
+  .categorys,
+  #render-categorys,
+  #title-input,
+  #description-input,
+  #category-container,
+  #assigned-container,
+  #task-date,
+  .subtasks-container,
+  #contact-container,
+  .contacts,
+  .contact-item,
+  .prio-btn {
+    width: 300px;
+  }
+
+  #renderCategoryss {
+    max-height: 80px;
+
+  }
+
+  #urgentBtn,
+  #mediumBtn,
+  #lowBtn {
+    height: 42px;
+    width: 93.3px;
+  }
+
+  .add-task-section h1 {
+    margin-left: 10px;
+  }
+}
+
+#generatedInput,
+#generatedSubtaskInput {
+  width: 190px
+}
+
+#category-input {
+  width: 165px;
+}
+
+#description-input {
+  height: 85px;
+}
 
 
 
+@media only screen and (max-width: 370px) and (min-width: 331px) {
 
-@media (max-width: 428px) {
+  .categorys,
+  #render-categorys,
+  #title-input,
+  #description-input,
+  #category-container,
+  #assigned-container,
+  #task-date,
+  .subtasks-container,
+  .contact-item,
+  .prio-btn {
+    width: 320px;
+  }
+
+  #urgentBtn,
+  #mediumBtn,
+  #lowBtn {
+    height: 45px;
+    width: 100px;
+  }
+
+  .add-task-section h1 {
+    margin-left: 20px;
+  }
+}
+
+
+
+@media only screen and (max-width: 428px) and (min-width: 371px) {
   .add-task-section h1 {
     margin-left: 33px;
     margin-top: 41px;
@@ -658,6 +744,7 @@ li {
   #assigned-container,
   #task-date,
   .subtasks-container,
+  .contacts,
   .contact-item,
   .prio-btn {
     width: 363px;
@@ -686,10 +773,6 @@ li {
     width: 111px;
     padding: 18px 10px;
     font-size: 16px;
-  }
-
-  .contacts {
-    width: 363px;
   }
 
   .contact-item {
@@ -724,8 +807,180 @@ li {
     width: 118px;
   }
 
-
   #subtask-content {
     padding-bottom: 40px;
+  }
+}
+
+
+@media(max-width: 400px) {
+  .add-task-section form {
+    margin-left: 0;
+    align-items: center;
+  }
+}
+
+
+
+@media only screen and (max-width: 1000px) and (min-width: 901px) {
+  .add-task-section form,
+  .add-task-section h1 {
+    margin-left: 255px;
+  }
+
+}
+
+
+@media only screen and (max-width: 1100px) and (min-width: 1001px) {
+  .add-task-section h1 {
+    margin-left: 275px;
+  }
+
+  .add-task-section form {
+    margin-left: 270px;
+  }
+  .categorys,
+  #render-categorys,
+  #title-input,
+  #description-input,
+  #category-container,
+  #assigned-container,
+  #task-date,
+  .subtasks-container,
+  .contacts,
+  .contact-item,
+  .prio-btn {
+    width: 320px;
+    font-size: 18px;
+  }
+
+  .label {
+    font-size: 18px;
+  }
+  
+  #generatedInput,
+  #generatedSubtaskInput,
+  .subtasks-input
+  {
+    width: 180px;
+    font-size: 18px;
+  }
+  #category-input {
+    width: 195px;
+    font-size: 18px;
+  }
+
+  #description-input {
+    height: 120px;
+  }
+
+  .seperator {
+    margin-left: 35px;
+    margin-right: 35px;
+  }
+
+  #urgentBtn,
+  #mediumBtn,
+  #lowBtn {
+    height: 47px;
+    width: 100px;
+    padding: 18px 10px;
+    font-size: 18px;
+  }
+  .form-btn {
+    margin-left: -30px;
+  }
+}
+
+
+@media only screen and (max-width: 1200px) and (min-width: 1101px) {
+  .categorys,
+  #render-categorys,
+  #title-input,
+  #description-input,
+  #category-container,
+  #assigned-container,
+  #task-date,
+  .subtasks-container,
+  .contacts,
+  .contact-item,
+  .prio-btn {
+    width: 363px;
+  }
+  #category-input,
+  #generatedInput,
+  #generatedSubtaskInput {
+    width: 232px
+  }
+
+  #urgentBtn,
+  #mediumBtn,
+  #lowBtn {
+    height: 51px;
+    width: 117px;
+    padding: 18px 10px;
+  }
+
+  .seperator {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  .form-btn {
+    margin-left: 20px;
+    gap: 15px;
+    margin-top: 105px;
+  }
+  .add-task-section form {
+    margin-left: 300px;
+  }
+  .add-task-section h1 {
+    margin-left: 305px;
+  }
+  #contact-img {
+    margin-right: 3px;
+  }
+}
+
+
+
+@media only screen and (max-width: 1380px) and (min-width: 1201px) {
+  .add-task-section form {
+    margin-left: 290px;
+  }
+
+  .add-task-section h1 {
+    margin-left: 298px;
+  }
+
+  .categorys,
+  #render-categorys,
+  #title-input,
+  #description-input,
+  #category-container,
+  #assigned-container,
+  #task-date,
+  .subtasks-container,
+  .contacts,
+  .contact-item,
+  .prio-btn {
+    width: 380px;
+  }
+
+  .category-input,
+  #category-input {
+    width: 280px;
+  }
+
+  #description-input {
+    height: 120px;
+  }
+
+  .form-btn {
+    margin-left: 45px;
+    margin-top: 130px;
+  }
+
+  #contact-img {
+    margin-right: 4px;
   }
 }
