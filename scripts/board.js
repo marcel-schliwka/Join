@@ -75,7 +75,7 @@ function htmlTemplateToDo(element, i, priority) {
 }
 
 function htmlTemplateAssignment(element, j) {
-  return `<div class="margin-4 heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:grey">
+  return `<div class="margin-4 heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:${MemberColors[getColorSign(element["assigned"][j])]}">
             ${getInitials(element["assigned"][j])}
         </div>`;
 }
@@ -310,7 +310,7 @@ function getThePriority(element) {
 }
 
 function htmlTemplatePopUpMembers(element2) {
-  return `<div class="textWhite heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:grey">${getInitials(
+  return `<div class="textWhite heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${MemberColors[getColorSign(element2)]}">${getInitials(
     element2
   )}</div>
     `;
