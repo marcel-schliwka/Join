@@ -260,7 +260,7 @@ function sortContactsAlphabetically(sortedInitialsMap) {
  * @date 7/22/2023 - 3:04:10 PM
  */
 let startEventListener = () => {
-  mql.addEventListener('resize', screenTest, false);
+window.addEventListener('resize', () => screenTest(mql));
 
   /* selecting all elements with class of single.contact-card to be saved in variable named cards*/
   let cards = document.querySelectorAll(".single-contact-card");
@@ -495,11 +495,13 @@ let responsiveStartEventListener = () => {
 };
 
 function screenTest(e) {
+  console.log('screentest wird aufgerufen!')
   if (e.matches) {
     responsiveStartEventListener();
     contactInfo.classList.add('d-none');
     respDialogCreateButton.addEventListener('click', responsiveCloseCreateContact);
     editDialogElements.closeDialog.addEventListener('click', responsiveCloseCreateContact);
+    document.getElementById('dialog__editSaveBtn').addEventListener('click', responsiveCloseCreateContact)
     dialogOpenElements.forEach(dialog => {
       if (dialog.open) {
         // dialog.close();
@@ -513,8 +515,6 @@ function screenTest(e) {
   }
 }
 
-screenTest(mql);
-window.addEventListener('resize', () => screenTest(mql));
 
 function responsiveOpenCreateContact() {
   dialogBackground.classList.remove('d-none');
@@ -559,14 +559,11 @@ function responsiveOpenContact(card) {
 }
 
 function responsiveCloseCreateContact() {
-  console.log('schließfunktion wird aufgerufen');
   dialogBackground.classList.add('d-none');
   contactInfo.classList.add('d-none');
   dialogOpenElements.forEach(dialog => {
     dialog.classList.add('d-none');
   });
-  // document.getElementById('dialogContact').classList.add('d-none');
-  // screenTest(mql);
 }
 
 function responsiveCloseDialog() {
@@ -633,7 +630,7 @@ function responsiveEditContact() {
   editDialogElements.editDialog.classList.remove('d-none');
   dialogBackground.classList.remove("d-none");
   editDialogElements.closeDialog.src = './img/close_white.svg';
-  
+  dialogElements.profilePic.style = dialogElements.circleColor;
   dialogBackground.addEventListener('click', () => responsiveCloseEditContact());
   editDialogElements.inputName.value = dialogElements.name.innerText;
   editDialogElements.inputEmail.value = dialogElements.email.innerText;
