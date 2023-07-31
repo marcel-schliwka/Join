@@ -298,7 +298,7 @@ body {
   stroke: #29abe2;
 }
 
-.create-btn {
+.create-btn-responsive {
   display: flex;
   height: 55px;
   padding: 18px 15px;
@@ -309,6 +309,19 @@ body {
   background: #2a3647;
   color: white;
 }
+
+.create-btn-web {
+  display: flex;
+  height: 55px;
+  padding: 18px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 10px;
+  background: #2a3647;
+  color: white;
+}
+
 
 .create-btn:hover {
   background-color: #29abe2;
@@ -857,6 +870,18 @@ li {
   .category-generated-list {
     margin-top: -3px;
   }
+  .create-btn-web {
+    display: none;
+  }
+  .clear-btn {
+    display: none;
+  }
+  .create-btn-responsive {
+    display: flex;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+  }
 }
 
 
@@ -964,15 +989,15 @@ li {
   }
 
   .create-btn-web {
-    display: none;
+    display: flex;
+  }
+
+  .clear-btn {
+    display: flex;
   }
 
   .create-btn-responsive {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    height: 51px;
-    width: 118px;
+    display: none;
   }
 
   #subtask-content {
@@ -1051,6 +1076,10 @@ li {
     height: 50px;
   }
 
+  .create-btn-responsive {
+    display: none;
+  }
+
   .clear-btn {
     width: 100px;
   }
@@ -1127,6 +1156,10 @@ li {
     margin-left: -30px;
     font-size: 18px;
   }
+
+  .create-btn-responsive {
+    display: none;
+  }
 }
 
 
@@ -1182,6 +1215,10 @@ li {
   #contact-img {
     margin-right: 3px;
   }
+
+  .create-btn-responsive {
+    display: none;
+  }
 }
 
 
@@ -1226,6 +1263,10 @@ li {
   #contact-img {
     margin-right: 4px;
   }
+
+  .create-btn-responsive {
+    display: none;
+  }
 }
 
 @media (min-width: 1380px) {
@@ -1238,5 +1279,8 @@ li {
   }
   #contact-img {
     margin-right: 3px;
+  }
+  .create-btn-responsive {
+    display: none;
   }
 }
