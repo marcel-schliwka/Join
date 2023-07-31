@@ -376,6 +376,7 @@ function deleteInitial(name) {
  * @function
  */
 function editContact() {
+  editDialogElements.editDialog.classList.remove('resp-none');
   /* adding class and naimation to edit-dialog-window */
   editDialogElements.editDialog.classList.add("show-edit-dialog");
   /* removes display: none for background to be shown */
@@ -392,6 +393,7 @@ function editContact() {
  * @function
  */
 function closeEditDialog() {
+  editDialogElements.editDialog.classList.add('resp-none');
   editDialogElements.editDialog.classList.remove("show-edit-dialog");
   dialogBackground.classList.add("d-none");
 }
@@ -420,9 +422,9 @@ function saveEditDialog() {
  * @function
  */
 function openCreateContact() {
+  createDialogElements.createDialog.classList.remove("resp-none");
   createDialogElements.createDialog.classList.add("show-edit-dialog");
   dialogBackground.classList.remove("d-none");
-  dialogBackground.classList.createDialog.remove("d-none");
 }
 
 /**
@@ -431,6 +433,7 @@ function openCreateContact() {
  * @function
  */
 function cancelCreateContact() {
+  createDialogElements.createDialog.classList.add('resp-none');
   createDialogElements.createDialog.classList.remove("show-edit-dialog");
   dialogBackground.classList.add("d-none");
 }

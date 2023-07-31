@@ -460,6 +460,10 @@ body {
   line-height: 120%;
 }
 
+.resp-none {
+  display: none !important;
+}
+
 /* ANIMATIONS */
 @keyframes showEditDialog {
   from {
@@ -547,9 +551,7 @@ body {
     display: none;
   }
 
-  .resp-none {
-    display: none;
-  }
+
 
   #dialog__editContact,
   #dialog__createContact {
