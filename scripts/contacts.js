@@ -303,10 +303,8 @@ function openContact(card) {
     .getAttribute("style");
   dialogElements["profilePic"] = document.querySelector(".dialog__circle");
   const infoCardName = card.querySelector(".info__name").innerText.trim();
-  // debugger;
   /* saving returned value of getContact() in local variable */
   let clickedContact = getContact(infoCardName);
-  // debugger;
   /* calling changeDialogInfo with the just saved variable and cardID */
   changeDialogInfo(clickedContact, cardId);
   /* showing the dialogContact-Element which is a global variable relating to HTML Element */
@@ -314,7 +312,6 @@ function openContact(card) {
 }
 
 function getContact(searchedName) {
-  // debugger;
   let filteredContact = contacts.filter(
     (contact) => contact.name === searchedName
   );
@@ -425,6 +422,7 @@ function saveEditDialog() {
 function openCreateContact() {
   createDialogElements.createDialog.classList.add("show-edit-dialog");
   dialogBackground.classList.remove("d-none");
+  dialogBackground.classList.createDialog.remove("d-none");
 }
 
 /**
@@ -450,8 +448,6 @@ function addNewContact() {
     email: createDialogElements.inputEmail.value.trim(),
     number: createDialogElements.inputPhone.value.trim(),
   });
-  debugger;
-  console.log(contacts)
   document.getElementById("createContactForm").reset();
   dialogBackground.classList.add("d-none");
   cancelCreateContact();

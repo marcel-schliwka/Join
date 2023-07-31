@@ -450,7 +450,9 @@ body {
   border: 1px solid #2a3647;
 }
 
-.btn-resp-x {
+.btn-resp-x,
+.btn-resp-add,
+.btn-resp-create {
   display: none;
 }
 
@@ -499,8 +501,9 @@ body {
     align-items: center;
   }
 
+  .custom-btn-white,
   .custom-btn {
-    display: block;
+    width: 24%;
   }
 
   .container-letter {
@@ -515,6 +518,28 @@ body {
     background-color: transparent;
     right: 0;
     border: unset;
+    margin: 16px;
+  }
+
+  .btn-resp-create {
+    display: flex;
+  }
+
+  .btn-resp-add {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 20%;
+    border: unset;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: #2a3647;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .dialog__blue-line {
+    order: +1;
   }
 
   .dialog__editLeftSide img,
@@ -522,6 +547,11 @@ body {
     display: none;
   }
 
+  .resp-none {
+    display: none;
+  }
+
+  #dialog__editContact,
   #dialog__createContact {
     flex-direction: column;
     height: 90%;
@@ -530,15 +560,45 @@ body {
     background-color: white;
   }
 
+  #dialog__editClose,
+  #dialog__createClose {
+    display: none;
+  }
+
+  .dialog__editLeftSide,
   .dialog__createLeftSide {
-    background-color: black;
+    background-color: #2a3647;
     height: 50%;
     width: 100%;
     justify-content: center;
   }
 
+  .dialog__editRightSide,
   .dialog__createRightSide {
     width: 100%;
     height: 50%;
   }
+
+  .dialog__editRightImg,
+  .dialog__createRightImg {
+    position: absolute;
+    top: calc(50px - 50%);
+  }
+
+  #dialog__createDeleteBtn,
+  #dialog__createSaveBtn,
+  .pos-btn {
+    display: none;
+  }
+
+  .dialog__editRightBtn,
+  .dialog__createRightBtn {
+    justify-content: center;
+  }
+
+  .dialog__editRightForm,
+  .dialog__createRightForm {
+    width: 80%;
+  }
+
 }
