@@ -450,7 +450,10 @@ body {
   border: 1px solid #2a3647;
 }
 
-/* GENERAL STYLINGS */
+.btn-resp-x {
+  display: none;
+}
+
 .custom-lh-120 {
   line-height: 120%;
 }
@@ -472,7 +475,8 @@ body {
     overflow: hidden;
   }
 
-  #dialog__editContact, #dialog__createContact {
+  #dialog__editContact,
+  #dialog__createContact {
     display: none;
   }
 
@@ -501,5 +505,40 @@ body {
 
   .container-letter {
     display: flex;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  .btn-resp-x {
+    display: block;
+    position: absolute;
+    background-color: transparent;
+    right: 0;
+    border: unset;
+  }
+
+  .dialog__editLeftSide img,
+  .dialog__createLeftSide img {
+    display: none;
+  }
+
+  #dialog__createContact {
+    flex-direction: column;
+    height: 90%;
+    top: unset;
+    width: 90%;
+    background-color: white;
+  }
+
+  .dialog__createLeftSide {
+    background-color: black;
+    height: 50%;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dialog__createRightSide {
+    width: 100%;
+    height: 50%;
   }
 }
