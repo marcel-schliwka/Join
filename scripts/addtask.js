@@ -46,6 +46,16 @@ async function init() {
   renderSubtasks();
 }
 
+
+function redirectTo(url) {
+  window.location.href = url;
+}
+
+function showBoardButton() {
+  const boardBtn = document.getElementById('board-btn-container');
+  boardBtn.classList.remove('display-none');
+}
+
 /**
  * adds an eventListener that the document gets onload the current date
  * then it gives the date the calender-selector as a min so that no previous days can be selected
@@ -98,6 +108,10 @@ function addTask() {
   userObj.tasks.push(task);
   setItem(userObj.email, JSON.stringify(userObj));
   clearAll();
+  showBoardButton();
+  setTimeout(function() {
+    redirectTo('board.html');
+  }, 1000);
 }
 
 function getAddTaskVariables() {

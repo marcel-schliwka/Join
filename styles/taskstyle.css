@@ -733,6 +733,11 @@ li {
   #subtask-content {
     padding-bottom: 40px;
   }
+
+  .add-to-board-btn {
+    bottom: 25% !important;
+    left: 50% !important;
+  }
 }
 
 @media(max-width: 400px) {
@@ -789,6 +794,23 @@ li {
   height: 85px;
 }
 
+.add-to-board-btn {
+  display: flex;
+  position: absolute;
+  bottom: 10%;
+  left: 60%;
+  transform: translateX(-50%);
+  width: 326px;
+  height: 74px;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 20px;
+  background: #2A3647;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  color: white;
+}
+
+
 
 
 @media (max-width: 370px) {
@@ -815,6 +837,10 @@ li {
 
   .add-task-section h1 {
     margin-left: 20px;
+  }
+
+  .add-to-board-btn {
+    width: 250px;
   }
 }
 
@@ -881,6 +907,11 @@ li {
     position: absolute;
     top: 15px;
     right: 25px;
+  }
+
+  .add-to-board-btn {
+    bottom: 20%;
+    left: 50%;
   }
 }
 
@@ -1282,5 +1313,12 @@ li {
   }
   .create-btn-responsive {
     display: none;
+  }
+}
+
+@media (min-width: 1430px) {
+  .add-to-board-btn {
+    left: 60%;
+    bottom: 10%;
   }
 }
