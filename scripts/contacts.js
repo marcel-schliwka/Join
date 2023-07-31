@@ -293,6 +293,8 @@ let startEventListener = () => {
  * @param {Object} card
  */
 function openContact(card) {
+  document.getElementById('contactsMain').classList.remove('contacts-none');
+  document.getElementById('buttonRespBack').classList.remove('d-none');
   /* getting the id of the specific card */
   const cardId = card.getAttribute("id");
   /* creating new propertes with values from card into dialogElements*/
@@ -393,6 +395,7 @@ function editContact() {
  * @function
  */
 function closeEditDialog() {
+  document.getElementById('contactsMain').classList.add('contacts-none');
   editDialogElements.editDialog.classList.add('resp-none');
   editDialogElements.editDialog.classList.remove("show-edit-dialog");
   dialogBackground.classList.add("d-none");

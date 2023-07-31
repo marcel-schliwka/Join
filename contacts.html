@@ -102,13 +102,14 @@
   <div class="custom-style-contacts">
     <div id="contactsListContainer" class="overflow-x-hidden overflow-y-auto"></div>
 
-    <div id="contactsMain" class="overflow-hidden">
+    <div id="contactsMain" class="contacts-none overflow-hidden">
+      <button id="buttonRespBack" onclick="closeEditDialog()" class="d-none button-resp-back">
+        <img src="./img/arrow-left-line.svg" alt="exit">
+      </button>
       <div id="contactsHeader" class="contacts-header">
         <h1 class="fw-bold display-4 lh-120">Contacts</h1>
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="4" height="63" viewBox="0 0 4 63" fill="none">
-          <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
-        </svg>
+        <span class="dialog__blue-line"></span>
 
         <span class="custom-fs-27">Better with a team</span>
 
@@ -128,7 +129,7 @@
           <div>
             <h1 id="dialog__name">Tatjana Wolf</h1>
             <div class="d-flex gap-5">
-              <div id="dialog__editBtn" class="icon-dialog d-flex align-items-center gap-2 resp-none">
+              <div id="dialog__editBtn" class="icon-dialog d-flex align-items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <mask id="mask0_71421_3311" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24"
                     height="24">

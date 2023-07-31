@@ -63,7 +63,7 @@ body {
 
 .dialog__blue-line {
   width: 5rem;
-  border: 1px solid #007cee;
+  border: 1px solid #29ABE2;
   margin-top: -1em;
 }
 
@@ -476,46 +476,11 @@ body {
 }
 
 /* RESPONSIVE */
-@media screen and (min-width: 320px) and (max-width: 420px) {
-  body {
-    overflow: hidden;
-  }
-
-  #dialog__editContact,
-  #dialog__createContact {
-    display: none;
-  }
-
-  .custom-style-contacts {
-    height: 100svh;
-    margin-left: 0;
-    display: grid;
-  }
-
-  #contactsMain {
-    display: none;
-  }
-
-  #contactsListContainer {
-    width: 100%;
-    overflow-y: hidden;
-    /* padding: 0; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .custom-btn-white,
-  .custom-btn {
-    width: 24%;
-  }
-
-  .container-letter {
-    display: flex;
-  }
-}
-
 @media only screen and (max-width: 760px) {
+  .contacts-none {
+    display: none;
+  }
+
   .btn-resp-x {
     display: block;
     position: absolute;
@@ -532,7 +497,7 @@ body {
   .btn-resp-add {
     display: block;
     position: absolute;
-    right: 0;
+    right: 5%;
     bottom: 20%;
     border: unset;
     height: 80px;
@@ -540,6 +505,53 @@ body {
     border-radius: 50%;
     background-color: #2a3647;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .button-resp-back {
+    border: unset;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    background-color: #fff;
+    position: absolute;
+    right: 0;
+  }
+
+  #contactsMain {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 89px;
+    bottom: 32px;
+    padding-top: unset;
+    padding-left: 4%;
+    background-color: white;
+    z-index: 2;
+    padding-left: 4%;
+    display: flex;
+    flex-direction: column;
+    gap: 4%;
+  }
+
+  #dialogContact {
+    background-color: #fff;
+    height: unset;
+    padding: 12px 0px 0px 0px;
+  }
+
+  .contacts-header {
+    display: flex;
+    flex-direction: column;
+    align-items: unset;
+  }
+
+  #contactsListContainer {
+    width: 100%;
+  }
+
+  .custom-style-contacts {
+    margin-left: unset;
+    width: 100%;
   }
 
   .dialog__blue-line {
@@ -551,8 +563,6 @@ body {
     display: none;
   }
 
-
-
   #dialog__editContact,
   #dialog__createContact {
     flex-direction: column;
@@ -562,9 +572,11 @@ body {
     background-color: white;
   }
 
+  #dialog__deleteBtn,
+  #dialog__editBtn,
   #dialog__editClose,
   #dialog__createClose {
-    display: none;
+    display: none !important;
   }
 
   .dialog__editLeftSide,
