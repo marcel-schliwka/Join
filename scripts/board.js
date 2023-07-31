@@ -272,7 +272,7 @@ function htmlTemplatePopUpTask(i, priority) {
             <img class="cursorPointer heightWidth35Px" src="./img/deleteButton.svg" alt="delete" onclick="deleteTask(${i})">
             <img class="cursorPointer heightWidth35Px" src="./img/editButton.svg" alt="edit" onclick="editTask(${i})">
         </div>
-        <div style="background-color: grey;" class="textWhite px-3 rounded-2">${userObj.tasks[i].category}</div>
+        <div style="background-color: ${userObj.tasks[i]['categoryColor']}" class="textWhite px-3 rounded-2">${userObj.tasks[i].category}</div>
         <div class="size3Em bold">${userObj.tasks[i]["titel"]}</div>
         <div class="pb-2">${userObj.tasks[i]["description"]}</div>
         <div class="pb-2 d-flex">
