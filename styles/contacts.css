@@ -462,52 +462,48 @@ body {
 
 /* RESPONSIVE */
 
-.dialog__createLeftSide,
-.dialog__editLeftSide {
-  height: 50%;
-  background-color: #2a3647;
-  /* padding-bottom: 60px; */
-  padding-top: 60px;
-  padding-left: 30px;
-  padding: 66px, 32px, 66px, 32px;
-}
-
-.custom-btn-resp {
-  display: flex;
-  height: 55px;
-  z-index: 15;
-  padding: 18px 15px;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  color: var(--white, #fff);
-  border-radius: 10px;
-  border: 1px solid #2a3647;
-  background-color: #2a3647;
-}
-
-#resp_create_contact {
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  height: 80%;
-  background-color: rgb(42, 54, 71);
-
-  width: 90%;
-  border: none;
-}
-
-.dialog-bottom {
-  background-color: white;
-}
-
-@media screen and (max-width: 796px) {
-  .display-none {
-    display: none !important;
-  }
-}
-
 @media only screen and (max-width: 800px) {
+
+  .dialog__createLeftSide,
+  .dialog__editLeftSide {
+    width: 100%;
+    height: 50%;
+    background-color: #2a3647;
+    /* padding-bottom: 60px; */
+    padding-top: 10%;
+    padding-left: 10%;
+    /* padding: 66px, 32px, 66px, 32px; */
+  }
+
+  .custom-btn-resp {
+    display: flex;
+    height: 55px;
+    z-index: 15;
+    padding: 18px 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: var(--white, #fff);
+    border-radius: 10px;
+    border: 1px solid #2a3647;
+    background-color: #2a3647;
+  }
+
+  #resp_create_contact {
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    background-color: rgb(42, 54, 71);
+
+    width: 90%;
+    border: none;
+  }
+
+  .dialog-bottom {
+    background-color: white;
+  }
+
   .pt-20 {
     padding-top: 20px;
   }
@@ -554,8 +550,20 @@ body {
     align-items: center;
   }
 
-  .custom-btn {
+  /* .custom-btn {
     border-radius: 50%;
+  } */
+
+  #openCreateContactButton {
+    display: none;
+  }
+
+  #dialog__Buttons {
+    display: none;
+  }
+
+  #svgElement {
+    display: none;
   }
 
   .pos-btn {
@@ -575,7 +583,7 @@ body {
     display: flex;
   }
 
-  #dialog__createContact{
+  #dialog__createContact {
     top: 4%;
     height: 90%;
     width: 90%;
@@ -598,9 +606,19 @@ body {
     margin-left: 0;
   }
 
+  #dialog__editRightImg {
+    position: absolute;
+    top: calc(50px - 50%);
+  }
+
   #dialogContact {
     padding: 0px;
     width: 100%;
+  }
+
+  .dialog__editRightBtn, 
+  .dialog__createRightBtn {
+    justify-content: center;
   }
 
   .header-dialog-responsive {
@@ -608,7 +626,7 @@ body {
     justify-content: unset !important;
   }
 
-  .dialog__createRightSide, 
+  .dialog__createRightSide,
   .dialog__editRightSide {
     position: relative;
     width: 100%;
@@ -646,7 +664,7 @@ body {
 
   .dialog__editRightForm,
   .dialog__createRightForm {
-    width: unset;
+    width: 80%;
   }
 
   #editResponsiveBtn {

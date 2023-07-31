@@ -108,6 +108,10 @@
           <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
         </svg>
 
+        <img id="arrowResponsive" src="./img/arrow_left_responsive.svg"
+          class="position-absolute top-0 end-0 pt-20 d-none" onclick=" responsiveCloseDialog()">
+
+
         <span id="subHeaderDialog" class="custom-fs-27">Better with a team</span>
 
         <img src="./img/seperator_horizontal_responsive.svg" id="seperatorResponsive" class="d-none">
@@ -172,6 +176,26 @@
         <a id="dialog__phone" phone href="tel:">01567283716</a>
 
       </dialog>
+
+      <button id="editResponsiveBtn" onclick="responsiveShowOptions()" class="d-none">
+        <img src="./img/edit_contact_responsive_darkBlue.svg">
+        <!-- <img onmouseover="hover(this);" onmouseout="unhover(this);" src="./img/edit_contact_responsive_darkBlue.svg"> -->
+      </button>
+      <menu id="editOptions" class="d-none">
+        <div class="edit-options">
+
+          <button onclick="responsiveEditContact()">
+            <img src="./img/pencil_contact_responsive.svg" alt="edit contact" />
+            <span>Edit</span>
+          </button>
+      
+          <button onclick="responsiveDeleteContact()">
+            <img src="./img/bin_contact_respsonsive.svg" alt="delete contact">
+            <span>Delete</span>
+          </button>
+          
+        </div>
+      </menu>
     </div>
 
     <div class="background-dialog d-none" onclick="closeDialog()">
