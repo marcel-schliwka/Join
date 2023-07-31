@@ -798,7 +798,7 @@ li {
   display: flex;
   position: absolute;
   bottom: 10%;
-  left: 60%;
+  left: calc(116px + 50%);
   transform: translateX(-50%);
   width: 326px;
   height: 74px;
@@ -1122,6 +1122,9 @@ li {
   #contact-img {
     margin-right: 3px;
   }
+  .add-to-board-btn {
+    left: calc(116px + 50%);
+  }
 }
 
 
@@ -1190,6 +1193,10 @@ li {
 
   .create-btn-responsive {
     display: none;
+  }
+
+  .add-to-board-btn {
+    left: calc(116px + 50%);
   }
 }
 
@@ -1318,7 +1325,7 @@ li {
 
 @media (min-width: 1430px) {
   .add-to-board-btn {
-    left: 60%;
+    left: calc(116px + 50%);
     bottom: 10%;
   }
 }
