@@ -260,6 +260,13 @@ body {
   display: flex;
 }
 
+.urgent-btn:hover,
+.medium-btn:hover,
+.low-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+}
+
 .medium-btn {
   width: 126px;
   justify-content: center;
