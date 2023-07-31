@@ -46,6 +46,16 @@ async function init() {
   renderSubtasks();
 }
 
+
+function redirectTo(url) {
+  window.location.href = url;
+}
+
+function showBoardButton() {
+  const boardBtn = document.getElementById('board-btn-container');
+  boardBtn.classList.remove('display-none');
+}
+
 /**
  * adds an eventListener that the document gets onload the current date
  * then it gives the date the calender-selector as a min so that no previous days can be selected
@@ -98,6 +108,10 @@ function addTask() {
   userObj.tasks.push(task);
   setItem(userObj.email, JSON.stringify(userObj));
   clearAll();
+  showBoardButton();
+  setTimeout(function() {
+    redirectTo('board.html');
+  }, 1000);
 }
 
 function getAddTaskVariables() {
@@ -533,18 +547,17 @@ function clearAll() {
   document.getElementById("title-input").value = "";
   document.getElementById("description-input").value = "";
   document.getElementById("task-date").value = "";
-  currentPrio;
   const categoryContainer = document.getElementById("category-input");
   const categoryBtn = document.getElementById("category-button");
   document.getElementById("urgentBtn").classList.remove("urgent-active");
   document.getElementById("mediumBtn").classList.remove("medium-active");
   document.getElementById("lowBtn").classList.remove("low-active");
-  document.getElementById("lowBtn").src = "./img/prio_low_color.png";
-  document.getElementById("mediumBtn").src = "./img/prio_medium_color.png";
-  document.getElementById("urgentBtn").src = "./img/prio_urgent_color.png";
+  document.getElementById("lowImg").src = "./img/prio_low_color.png";
+  document.getElementById("mediumImg").src = "./img/prio_medium_color.png";
+  document.getElementById("urgentImg").src = "./img/prio_urgent_color.png";
   categoryContainer.innerHTML = generateBasicCategoryInputHTML();
   categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
-  currentPrio;
+  currentPrio = undefined;
   subtasks = [];
   newSubtasks = [];
   currentCategory;
