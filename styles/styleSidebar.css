@@ -88,7 +88,7 @@ header {
 
 /* RESPONSIVE */
 
-@media only screen and (max-width: 428px){
+@media only screen and (max-width: 800px){
     nav {
         position: fixed;
         padding-top: 0;
