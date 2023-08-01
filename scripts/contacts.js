@@ -490,6 +490,13 @@ function closeDialog() {
   }
 }
 
+
+
+/**
+ * show and close options-menu in responsive design
+ * 
+ * @function
+ */
 function showResponsiveOptions() {
   document.getElementById('responsiveOptionsContacts').classList.remove('d-none');
 }
