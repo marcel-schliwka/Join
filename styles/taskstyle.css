@@ -1338,7 +1338,7 @@ li {
 
 @media (min-width: 1430px) {
   .add-to-board-btn {
-    left: calc(116px + 50%);
+    left: 831px;
     bottom: 10%;
   }
 }
