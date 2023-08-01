@@ -482,3 +482,11 @@ function closeDialog() {
     cancelCreateContact();
   }
 }
+
+function showResponsiveOptions() {
+  document.getElementById('responsiveOptionsContacts').classList.remove('d-none');
+}
+
+function closeResponsiveOptions() {
+  document.getElementById('responsiveOptionsContacts').classList.add('d-none')
+}

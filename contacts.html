@@ -62,7 +62,7 @@
   </dialog>
 
   <!-- Add new Contact -->
-  <dialog class="resp-none" id="dialog__createContact" >
+  <dialog class="resp-none" id="dialog__createContact">
     <button class="btn-resp-x" onclick="cancelCreateContact()">
       <img src="./img/responsive_close_X_white.svg" alt="close dialog window">
     </button>
@@ -109,17 +109,12 @@
       <div id="contactsHeader" class="contacts-header">
         <h1 class="fw-bold display-4 lh-120">Contacts</h1>
         <img class="seperator-vertical" src="./img/seperator_contactsHeader.svg" alt="seperator">
-
         <span id="seperatorHorizontal" class="dialog__blue-line d-none"></span>
-
         <span class="custom-fs-27">Better with a team</span>
-
-        <!-- <div class="custom-btn-container"> -->
         <button class="fw-bold custom-lh-120 custom-btn pos-btn" onclick="openCreateContact()">
           <span class="custom-fs-21">New contact</span>
           <img src="./img/icon_add_contact.png" alt="" />
         </button>
-        <!-- </div> -->
       </div>
 
       <dialog close id="dialogContact">
@@ -171,6 +166,25 @@
         <h6 class="mt-4 mb-2">Phone</h6>
         <a id="dialog__phone" phone href="tel:">01567283716</a>
       </dialog>
+
+      <button onclick="showResponsiveOptions()" class="btn-resp-menu-contacts">
+        <img src="./img/resp_menu_three_dots_white.svg" alt="show options">
+        <!-- <img src="./img/responsive_show_options_contact.svg" alt="show options"> -->
+      </button>
+
+      <div id="responsiveOptionsContacts" class="d-none resp-show-options-background" onclick="closeResponsiveOptions()">
+        <div class="resp-show-options-container">
+          <button class="btn-resp-options">
+            <img src="./img/resp_pencil_black.svg" alt="pencil edit">
+            <span>Edit</span>
+          </button>
+          <button class="btn-resp-options">
+            <img src="./img/resp_bin_black.svg" alt="bin delete">
+            <span>Delete</span>
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 
