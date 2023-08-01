@@ -745,7 +745,7 @@ function generateBasicSubtaskInputHTML() {
 //Generates the basic-styled "Add new subtask" buttons (from html), when new subtask was added
 function generateBasicSubtaskButtonHTML() {
   return `
-  <div class="subtasks-button-container" id="subtasks-button">
+  <div onclick="changeToInput('subtasks-input', 'subtasks-button')" class="subtasks-button-container" id="subtasks-button">
     <button type="button"><img src="./img/plus_icon.png"></button>
   </div>
   `;
