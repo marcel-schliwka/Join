@@ -277,6 +277,28 @@ async function login() {
   window.location.href = "summary.html";
 }
 
+
+async function guestLogin() {
+  let formInput = {
+    email: 'guest@test.de',
+    password: 'test123',
+    remember: false
+  };
+  let user = users.find((user) => user.email === formInput.email);
+  if (user && user.password === formInput.password) {
+    localStorage.setItem("userData", JSON.stringify(user));
+    localStorage.setItem("activeUser", user.email);
+    await createUserObject(user);
+    if (formInput.remember) {
+      saveRememberMe(user);
+    }
+  } else {
+    alert("Your email or password is wrong!");
+    return;
+  }
+  window.location.href = "summary.html";
+}
+
 async function createUserObject(user) {
   if (await checkIfUserObjectExists(user.email)) {
   } else {
@@ -322,10 +344,7 @@ function showTopDown(message) {
   }, 5000);
 }
 
-function guestLogin() {
-  localStorage.setItem("activeUser", "guest");
-  window.location.href = `summary.html`;
-}
+
 
 function sendPasswordMail(e) {
   e.preventDefault();
