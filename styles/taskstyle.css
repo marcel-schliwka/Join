@@ -1330,6 +1330,12 @@ li {
   }
 }
 
+@media(min-width: 1201px) {
+  #generatedSubtaskInput{
+    width: 220px;
+  }
+}
+
 @media (min-width: 1430px) {
   .add-to-board-btn {
     left: calc(116px + 50%);
