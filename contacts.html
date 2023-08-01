@@ -102,14 +102,15 @@
   <div class="custom-style-contacts">
     <div id="contactsListContainer" class="overflow-x-hidden overflow-y-auto"></div>
 
-    <div id="contactsMain" class="contacts-none overflow-hidden">
-      <button id="buttonRespBack" onclick="closeEditDialog()" class="d-none button-resp-back">
+    <div id="contactsMain" class="contacts-none contacts-main overflow-hidden">
+      <button id="buttonRespBack" onclick="closeWindow()" class="d-none button-resp-back">
         <img src="./img/arrow-left-line.svg" alt="exit">
       </button>
       <div id="contactsHeader" class="contacts-header">
         <h1 class="fw-bold display-4 lh-120">Contacts</h1>
+        <img class="seperator-vertical" src="./img/seperator_contactsHeader.svg" alt="seperator">
 
-        <span class="dialog__blue-line"></span>
+        <span id="seperatorHorizontal" class="dialog__blue-line d-none"></span>
 
         <span class="custom-fs-27">Better with a team</span>
 

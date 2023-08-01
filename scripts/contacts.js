@@ -294,6 +294,7 @@ let startEventListener = () => {
  */
 function openContact(card) {
   document.getElementById('contactsMain').classList.remove('contacts-none');
+  document.getElementById('contactsMain').classList.add('contacts-main');
   document.getElementById('buttonRespBack').classList.remove('d-none');
   /* getting the id of the specific card */
   const cardId = card.getAttribute("id");
@@ -395,10 +396,15 @@ function editContact() {
  * @function
  */
 function closeEditDialog() {
-  document.getElementById('contactsMain').classList.add('contacts-none');
-  editDialogElements.editDialog.classList.add('resp-none');
   editDialogElements.editDialog.classList.remove("show-edit-dialog");
   dialogBackground.classList.add("d-none");
+}
+
+function closeWindow() {
+  document.getElementById('contactsMain').classList.add('contacts-none');
+  document.getElementById('contactsMain').classList.remove('contacts-main');
+  document.getElementById('buttonRespBack').classList.add('d-none');
+  editDialogElements.editDialog.classList.add('resp-none');
 }
 
 /**

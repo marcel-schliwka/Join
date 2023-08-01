@@ -450,6 +450,7 @@ body {
   border: 1px solid #2a3647;
 }
 
+.button-resp-back,
 .btn-resp-x,
 .btn-resp-add,
 .btn-resp-create {
@@ -481,6 +482,10 @@ body {
     display: none;
   }
 
+  .seperator-vertical {
+    display: none;
+  }
+
   .btn-resp-x {
     display: block;
     position: absolute;
@@ -508,6 +513,7 @@ body {
   }
 
   .button-resp-back {
+    display: block !important;
     border: unset;
     border-radius: 50%;
     height: 100px;
@@ -517,7 +523,7 @@ body {
     right: 0;
   }
 
-  #contactsMain {
+  .contacts-main {
     position: absolute;
     left: 0;
     right: 0;
