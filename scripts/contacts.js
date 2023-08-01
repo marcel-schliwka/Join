@@ -69,7 +69,6 @@ let colors = {
 };
 
 let contacts;
-
 let contactsSorted;
 
 /**
@@ -168,8 +167,6 @@ function renderContactsInContainer(initials, contacts) {
       const contact = contacts[c];
       let name = contact.name;
       let email = contact.email;
-      // let firstLetter = contact.firstLetters;
-      // let colorSign = firstLetter;
       groupContainer.innerHTML += /*html*/ `
         <div class="single-contact-card" id="card${c}">
             <div class="circle" id="${getColorSign(contact.name)}">
@@ -231,13 +228,9 @@ function groupInitials() {
  * @returns updated global object: sortedContacts
  */
 function sortInitialsGroup() {
-  /* saving sontacts in sorted initials*/
   let initialsMap = groupInitials();
-  /* converting initialsMap into an array of key-value and sorts the keys alphabetically (initials-contacts) */
   let sortedInitialsMap = new Map([...initialsMap.entries()].sort());
-  /* passing sorted array to function to be sorted alphabetically within the keys (initials)*/
   let sortedContacts = sortContactsAlphabetically(sortedInitialsMap);
-  /* assigning sortedContacts to global array: contactsSorted */
   contactsSorted = sortedContacts;
 }
 
@@ -269,19 +262,13 @@ function sortContactsAlphabetically(sortedInitialsMap) {
  * @date 7/22/2023 - 3:04:10 PM
  */
 let startEventListener = () => {
-  /* selecting all elements with class of single.contact-card to be saved in variable named cards*/
   let cards = document.querySelectorAll(".single-contact-card");
-  /* iterating over each contact card */
   cards.forEach((card) => {
-    /* storing the clicked contact in local variable named clickedCard*/
     let clickedCard = card;
-    /* calling openContact() when contact card is clicked */
     card.addEventListener("click", () => openContact(clickedCard));
   });
-  /* setting up event listeners for clicks on the specific buttons (delete + edit) */
   dialogElements.deleteBtn.addEventListener("click", () => deleteContact());
   dialogElements.editBtn.addEventListener("click", () => editContact());
-  /* setting up event listener for clicks on the close button of the edit dialog */
   editDialogElements.closeDialog.addEventListener("click", () =>
     closeEditDialog()
   );
@@ -296,9 +283,7 @@ function openContact(card) {
   document.getElementById('contactsMain').classList.remove('contacts-none');
   document.getElementById('contactsMain').classList.add('contacts-main');
   document.getElementById('buttonRespBack').classList.remove('d-none');
-  /* getting the id of the specific card */
   const cardId = card.getAttribute("id");
-  /* creating new propertes with values from card into dialogElements*/
   dialogElements["fromCard"] = card;
   dialogElements["initials"] = card.querySelector(".circle").innerText;
   dialogElements["circleColor"] = card
@@ -306,11 +291,8 @@ function openContact(card) {
     .getAttribute("style");
   dialogElements["profilePic"] = document.querySelector(".dialog__circle");
   const infoCardName = card.querySelector(".info__name").innerText.trim();
-  /* saving returned value of getContact() in local variable */
   let clickedContact = getContact(infoCardName);
-  /* calling changeDialogInfo with the just saved variable and cardID */
   changeDialogInfo(clickedContact, cardId);
-  /* showing the dialogContact-Element which is a global variable relating to HTML Element */
   dialogContact.show();
 }
 
@@ -338,9 +320,6 @@ function getContactIndex(searchedName) {
  * @param {Object} contact
  */
 function changeDialogInfo(contact) {
-  // let name = contact.name;
-  // let finalName = name.trim()
-
   dialogElements.profilePic.innerHTML = dialogElements.initials;
   dialogElements.profilePic.style = dialogElements.circleColor;
   dialogElements.name.innerText = contact.name;
@@ -380,12 +359,8 @@ function deleteInitial(name) {
  */
 function editContact() {
   editDialogElements.editDialog.classList.remove('resp-none');
-  /* adding class and naimation to edit-dialog-window */
   editDialogElements.editDialog.classList.add("show-edit-dialog");
-  /* removes display: none for background to be shown */
   dialogBackground.classList.remove("d-none");
-  /* getting values of input fields and */
-  editDialogElements.inputName.value = dialogElements.name.innerText;
   editDialogElements.inputEmail.value = dialogElements.email.innerText;
   editDialogElements.inputPhone.value = dialogElements.phone.innerText;
 }
@@ -401,20 +376,12 @@ function closeEditDialog() {
   dialogBackground.classList.add("d-none");
 }
 
-function closeWindow() {
-  document.getElementById('contactsMain').classList.add('contacts-none');
-  document.getElementById('contactsMain').classList.remove('contacts-main');
-  document.getElementById('buttonRespBack').classList.add('d-none');
-  editDialogElements.editDialog.classList.add('resp-none');
-}
-
 /**
  * saving edited contact
  *
  * @function
  */
 function saveEditDialog() {
-  /* creating local variable with index of current contact */
   let index = getContactIndex(dialogElements.name.innerText);
   /* changing values in contacts array at the index with the values from input field */
   contacts[index].name = editDialogElements.inputName.value;
@@ -469,11 +436,19 @@ function addNewContact() {
   renderContactList();
 }
 
+
+/**
+ * This function is capitalizing the names of input values to generate
+ * proper initial for contact list
+ *
+ * @param {string} input
+ * @return {string}
+ * 
+ * @function 
+ */
 function capitalizeFirstLetterOfEveryWord(input) {
   return input.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
-
-// Close dialog
 
 /**
  * closing edit-dialog-window and create-dialog-window
@@ -490,8 +465,6 @@ function closeDialog() {
   }
 }
 
-
-
 /**
  * show and close options-menu in responsive design
  * 
@@ -503,4 +476,11 @@ function showResponsiveOptions() {
 
 function closeResponsiveOptions() {
   document.getElementById('responsiveOptionsContacts').classList.add('d-none')
+}
+
+function closeWindow() {
+  document.getElementById('contactsMain').classList.add('contacts-none');
+  document.getElementById('contactsMain').classList.remove('contacts-main');
+  document.getElementById('buttonRespBack').classList.add('d-none');
+  editDialogElements.editDialog.classList.add('resp-none');
 }
