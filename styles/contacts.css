@@ -529,6 +529,14 @@ body {
     display: block !important;
   }
 
+  #dialog__createDeleteBtn,
+  #dialog__createSaveBtn,
+  .pos-btn,
+  .dialog__editLeftSide img,
+  .dialog__createLeftSide img,
+  .seperator-vertical,
+  .resp-none,
+  .contacts-none,
   #dialog__deleteBtn,
   #dialog__editBtn,
   #dialog__editClose,
@@ -538,22 +546,6 @@ body {
 
   #contactsMain {
     padding-top: 0px;
-  }
-
-  #dialog__editClose {
-    display: none;
-  }
-
-  .contacts-none {
-    display: none;
-  }
-
-  .resp-none {
-    display: none !important;
-  }
-
-  .seperator-vertical {
-    display: none;
   }
 
   .btn-resp-x {
@@ -719,18 +711,6 @@ body {
     order: +1;
   }
 
-  .dialog__editLeftSide img,
-  .dialog__createLeftSide img {
-    display: none;
-  }
-
-
-  #dialog__createDeleteBtn,
-  #dialog__createSaveBtn,
-  .pos-btn {
-    display: none;
-  }
-
   .dialog__editRightBtn,
   .dialog__createRightBtn {
     justify-content: center;
@@ -762,16 +742,9 @@ body {
   .seperator-vertical {
     display: none;
   }
-
+  .resp-none,
+  .pos-btn,
   .contacts-none {
-    display: none;
-  }
-
-  .resp-none {
-    display: none !important;
-  }
-
-  .pos-btn {
     display: none;
   }
 
@@ -941,7 +914,6 @@ body {
   #contactsListContainer {
     width: 362px;
   }
-
 
   .seperator-vertical {
     display: none;
