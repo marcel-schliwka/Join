@@ -113,7 +113,7 @@ function renderContactList() {
 
 function hideDialogElements() {
   let dialogs = document.querySelectorAll('dialog');
-  dialogs.forEach(function(dialog) {
+  dialogs.forEach(function (dialog) {
     dialog.close();
   });
 }
@@ -456,8 +456,10 @@ function cancelCreateContact() {
  * @function
  */
 function addNewContact() {
+  let inputName = createDialogElements.inputName.value.trim();
+  inputName = capitalizeFirstLetterOfEveryWord(inputName);
   contacts.push({
-    name: createDialogElements.inputName.value.trim(),
+    name: inputName,
     email: createDialogElements.inputEmail.value.trim(),
     number: createDialogElements.inputPhone.value.trim(),
   });
@@ -465,6 +467,10 @@ function addNewContact() {
   dialogBackground.classList.add("d-none");
   cancelCreateContact();
   renderContactList();
+}
+
+function capitalizeFirstLetterOfEveryWord(input) {
+  return input.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
 }
 
 // Close dialog
