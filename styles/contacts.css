@@ -17,6 +17,12 @@ body {
   color: black;
 }
 
+.dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+}
 .background-dialog {
   width: 100vw;
   height: 100vh;
@@ -231,6 +237,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #2a3647;
 }
+
 
 .contacts-header {
   display: inline-flex;
@@ -482,6 +489,10 @@ body {
     width: calc(100% - 233px);
   }
 
+  #seperatorHorizontal {
+    display: block !important;
+  }
+
   #dialog__deleteBtn,
   #dialog__editBtn,
   #dialog__editClose,
@@ -571,6 +582,10 @@ body {
     padding-left: 16px;
     gap: 4px;
     background-color: #fff;
+  }
+
+  #dialog__editRightBtn button {
+    width: 24%;
   }
 
   .contacts-main {
@@ -693,6 +708,26 @@ body {
 }
 
 @media only screen and (min-width: 760px) and (max-width: 1001px) {
+  #contactsMain {
+    z-index: 1;
+    background-color: #f6f7f8;
+    padding-top: 40px;
+  }
+
+  .custom-style-contacts {
+    background-color: #fff;
+  }
+
+  .dialog__blue-line {
+    display: block !important;
+    order: +1 !important;
+    margin-top: 2px;
+  }
+
+  .seperator-vertical {
+    display: none;
+  }
+
   .contacts-none {
     display: none;
   }
@@ -703,6 +738,17 @@ body {
 
   .pos-btn {
     display: none;
+  }
+
+  .resp-gap {
+    gap: 16px !important;
+  }
+
+  .contacts-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
   }
 
   .btn-resp-x {
@@ -731,11 +777,10 @@ body {
     display: block !important;
     border: unset;
     border-radius: 50%;
-    height: 100px;
-    width: 100px;
-    background-color: #fff;
+    background-color: #f6f7f8;
+    z-index: 2;
     position: absolute;
-    right: 0;
+    right: 8px;
   }
 
   .btn-resp-menu-contacts {
@@ -765,7 +810,7 @@ body {
 
   .resp-show-options-background {
     height: 25%;
-    bottom: 160px;
+    bottom: 243px;
     width: 100%;
     z-index: 20;
     display: flex;
@@ -792,7 +837,8 @@ body {
   }
 
   #contactsListContainer {
-    width: 100%;
+    width: 95%;
+    margin-left: 4%;
   }
 
   .ml-230 {
@@ -824,7 +870,7 @@ body {
     display: none !important;
   }
 
-  
+
   .dialog__editRightBtn,
   .dialog__createRightBtn {
     justify-content: center;
@@ -853,5 +899,16 @@ body {
   .dialog__editRightForm,
   .dialog__createRightForm {
     width: 80%;
+  }
+}
+
+@media only screen and (min-width: 1001px) and (max-width: 1100px) {
+  #contactsListContainer {
+    width: 362px;
+  }
+
+
+  .seperator-vertical {
+    display: none;
   }
 }
