@@ -23,6 +23,7 @@ body {
   justify-content: space-around;
   gap: 16px;
 }
+
 .background-dialog {
   width: 100vw;
   height: 100vh;
@@ -484,9 +485,44 @@ body {
 }
 
 /* RESPONSIVE */
-@media only screen and (max-width: 760px) {
+@media only screen and (min-width: 300px) and (max-width: 419px) {
+  #contactsMain {
+    padding-left: 72px;
+    padding-top: 32px;
+  }
+
+  .single-contact-card {
+    padding: 0;
+  }
+
   #contactsListContainer {
-    width: calc(100% - 233px);
+    padding: 0px 0px 0px 16px;
+  }
+
+  #dialog__createContact,
+  #dialog__editContact {
+    width: 80%;
+    height: 80%;
+    top: 124px;
+    z-index: 1000;
+  }
+
+  .dialog__editRightForm,
+  .dialog__createRightForm {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .btn-resp-add {
+    height: 72px;
+    width: 72px;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+
+  #contactsListContainer {
+    width: 100%;
   }
 
   #seperatorHorizontal {
@@ -605,8 +641,7 @@ body {
   }
 
   .resp-show-options-background {
-    bottom: 118px;
-
+    bottom: 95px;
     height: 25%;
     width: 100%;
     z-index: 20;
