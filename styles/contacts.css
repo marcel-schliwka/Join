@@ -911,11 +911,47 @@ body {
 }
 
 @media only screen and (min-width: 1001px) and (max-width: 1100px) {
-  #contactsListContainer {
-    width: 362px;
+
+  .contacts-header {
+    gap: 16px;
+    margin-top: 30px;
+  }
+
+  #contactsHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .seperator-vertical {
     display: none;
+  }
+
+  .dialog__blue-line {
+    display: block !important;
+  }
+}
+
+@media only screen  and (max-width: 1250px) {
+  #dialog__editContact, 
+  #dialog__createContact {
+    left: 20%;
+  }
+  #contactsListContainer {
+    width: 362px;
+  }
+  .seperator-vertical {
+    display: none;
+  }
+  
+  #dialogContact {
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 1251px) {
+  #dialog__editContact, 
+  #dialog__createContact {
+    left: 20%;
   }
 }
