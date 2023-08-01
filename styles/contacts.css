@@ -320,7 +320,6 @@ body {
 }
 
 #contactsMain {
-  /* position: relative; */
   padding-left: 4%;
   padding-top: 80px;
   width: 100%;
@@ -479,8 +478,31 @@ body {
 
 /* RESPONSIVE */
 @media only screen and (max-width: 760px) {
+  #contactsListContainer {
+    width: calc(100% - 233px);
+  }
+
+  #dialog__deleteBtn,
+  #dialog__editBtn,
+  #dialog__editClose,
+  #dialog__createClose {
+    display: none !important;
+  }
+
+  #contactsMain {
+    padding-top: 0px;
+  }
+
+  #dialog__editClose {
+    display: none;
+  }
+
   .contacts-none {
     display: none;
+  }
+
+  .resp-none {
+    display: none !important;
   }
 
   .seperator-vertical {
@@ -526,6 +548,7 @@ body {
 
   .btn-resp-menu-contacts {
     position: absolute;
+    bottom: 166px;
     bottom: 160px;
     right: 30px;
     display: block;
@@ -567,13 +590,15 @@ body {
   }
 
   .resp-show-options-background {
+    bottom: 118px;
+
     height: 25%;
     width: 100%;
     z-index: 20;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    background-color: rosybrown;
+    background-color: transparent;
     position: relative;
   }
 
@@ -583,7 +608,7 @@ body {
     right: 4px;
     bottom: 4px;
     background-color: white;
-    width: 18%;
+    width: 133px;
     height: 55%;
     display: flex;
     flex-direction: column;
@@ -599,14 +624,40 @@ body {
     padding: 12px 0px 0px 0px;
   }
 
+  #dialog__editContact,
+  #dialog__createContact {
+    flex-direction: column;
+    height: 76%;
+    top: 64px;
+    bottom: 203px;
+    width: 90%;
+    background-color: white;
+  }
+
+  .dialog__editLeftSide,
+  .dialog__createLeftSide {
+    background-color: #2a3647;
+    height: 50%;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dialog__editRightSide,
+  .dialog__createRightSide {
+    width: 100%;
+    height: 50%;
+  }
+
+  .dialog__editRightImg,
+  .dialog__createRightImg {
+    position: absolute;
+    top: calc(50px - 50%);
+  }
+
   .contacts-header {
     display: flex;
     flex-direction: column;
     align-items: unset;
-  }
-
-  #contactsListContainer {
-    width: 100%;
   }
 
   .custom-style-contacts {
@@ -623,13 +674,125 @@ body {
     display: none;
   }
 
+
+  #dialog__createDeleteBtn,
+  #dialog__createSaveBtn,
+  .pos-btn {
+    display: none;
+  }
+
+  .dialog__editRightBtn,
+  .dialog__createRightBtn {
+    justify-content: center;
+  }
+
+  .dialog__editRightForm,
+  .dialog__createRightForm {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 760x) and (max-width: 1001px) {
+  .contacts-none {
+    display: none;
+  }
+
+  .resp-none {
+    display: none !important;
+  }
+  .pos-btn {
+    display: none;
+  }
+
+  .btn-resp-add {
+    display: block;
+    position: absolute;
+    right: 5%;
+    bottom: 20%;
+    border: unset;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background-color: #2a3647;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn-resp-menu-contacts {
+    position: absolute;
+    bottom: 90px;
+    right: 30px;
+    display: block;
+    border: unset;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    background-color: #2a3647;
+    z-index: 10;
+  }
+
+
+  .btn-resp-options {
+    width: 100%;
+    border: unset;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 16px;
+    gap: 4px;
+    background-color: #fff;
+    z-index: 8;
+  }
+
+  .resp-show-options-background {
+    height: 25%;
+    width: 100%;
+    z-index: 20;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background-color: transparent;
+    position: relative;
+  }
+
+  /* .resp-show-options-container {
+    border-radius: 10px;
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    background-color: white;
+    width: 18%;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+    gap: 8px;
+    box-shadow: 0px 3px 15px -2px rgba(0, 0, 0, 0.14);
+  } */
+
+  #contactsListContainer {
+    width: 100%;
+  }
+
+  .ml-230 {
+    margin-left: unset;
+  }
+
+  .contacts-main {
+    position: absolute;
+    height: calc(100% - 89px);
+    width: calc(100% - 240px);
+    background-color: white;
+  }
+
   #dialog__editContact,
   #dialog__createContact {
     flex-direction: column;
-    height: 90%;
-    top: unset;
-    width: 90%;
+    height: 80%;
+    top: 64px;
+    top: 64px;
+    width: 65%;
     background-color: white;
+    margin-left: 240px;
   }
 
   #dialog__deleteBtn,
@@ -658,21 +821,4 @@ body {
     position: absolute;
     top: calc(50px - 50%);
   }
-
-  #dialog__createDeleteBtn,
-  #dialog__createSaveBtn,
-  .pos-btn {
-    display: none;
-  }
-
-  .dialog__editRightBtn,
-  .dialog__createRightBtn {
-    justify-content: center;
-  }
-
-  .dialog__editRightForm,
-  .dialog__createRightForm {
-    width: 80%;
-  }
-
 }

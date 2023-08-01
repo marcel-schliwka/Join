@@ -396,6 +396,7 @@ function editContact() {
  * @function
  */
 function closeEditDialog() {
+  editDialogElements.editDialog.classList.add('resp-none');
   editDialogElements.editDialog.classList.remove("show-edit-dialog");
   dialogBackground.classList.add("d-none");
 }

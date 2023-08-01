@@ -100,9 +100,9 @@
   </dialog>
 
   <div class="custom-style-contacts">
-    <div id="contactsListContainer" class="overflow-x-hidden overflow-y-auto"></div>
+    <div id="contactsListContainer" class="overflow-x-hidden overflow-y-auto ml-230"></div>
 
-    <div id="contactsMain" class="contacts-none contacts-main overflow-hidden">
+    <div id="contactsMain" class="contacts-none ml-230 contacts-main overflow-hidden">
       <button id="buttonRespBack" onclick="closeWindow()" class="d-none button-resp-back">
         <img src="./img/arrow-left-line.svg" alt="exit">
       </button>
@@ -173,12 +173,12 @@
       </button>
 
       <div id="responsiveOptionsContacts" class="d-none resp-show-options-background" onclick="closeResponsiveOptions()">
-        <div class="resp-show-options-container">
-          <button class="btn-resp-options">
+        <div class="resp-show-options-container" onclick="event.stopPropagation()">
+          <button class="btn-resp-options" onclick="editContact(); closeResponsiveOptions()">
             <img src="./img/resp_pencil_black.svg" alt="pencil edit">
             <span>Edit</span>
           </button>
-          <button class="btn-resp-options">
+          <button class="btn-resp-options" onclick="deleteContact(); closeResponsiveOptions()">
             <img src="./img/resp_bin_black.svg" alt="bin delete">
             <span>Delete</span>
           </button>
@@ -192,7 +192,7 @@
     <img src="./img/responsive_add_contact.svg" alt="add new contact">
   </button>
 
-  <div class="background-dialog d-none" onclick="closeDialog()">
+  <div class="background-dialog d-none" onclick="closeDialog(); closeResponsiveOptions()">
 
   </div>
 
