@@ -68,7 +68,7 @@ function htmlTemplateToDo(element, i, priority) {
             <div class="mt-2 mx-2 bold">
                 ${element["titel"]}
             </div>
-            <div class="mx-2 my-1">
+            <div class="cardText mx-2 my-1">
                 ${element["description"]}
             </div>
             <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4">

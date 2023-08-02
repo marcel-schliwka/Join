@@ -83,6 +83,8 @@ html {
   position: relative;
   min-height: 100px;
   min-width: 400px;
+  max-width: 70%;
+  overflow: hidden;
   background-color: white;
   padding: 4em 8em;
   border-radius: 20px;
@@ -167,6 +169,16 @@ html {
     display: flex;
     flex-direction: column;
     gap: 15px;
+  }
+
+  .moveableCard {
+    max-width: 300px;
+  }
+
+  .cardText {
+    overflow: hidden;
+    max-width: 90%;
+    text-overflow: ellipsis;
   }
   .headlineBoard {
     position: relative;
