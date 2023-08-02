@@ -14,6 +14,7 @@ function updateHTML() {
   renderAllAwaitingFeedback();
   renderAllDone();
   startTouchEventListener();
+  renderTopLogo(userObj);
 }
 
 function clearAllTasks() {
@@ -58,7 +59,7 @@ function getPriority(element) {
 
 function htmlTemplateToDo(element, i, priority) {
   return `<div status="to do" currentId="${i}" titel="${element["titel"]}" id="cardTodo${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)"  draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-            <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element['categoryColor']}">
+            <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element["categoryColor"]}">
                 ${element["category"]}
             </div>
             <div class="mt-2 mx-2 bold">
@@ -75,7 +76,9 @@ function htmlTemplateToDo(element, i, priority) {
 }
 
 function htmlTemplateAssignment(element, j) {
-  return `<div class="margin-4 heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:${MemberColors[getColorSign(element["assigned"][j])]}">
+  return `<div class="margin-4 heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:${
+    MemberColors[getColorSign(element["assigned"][j])]
+  }">
             ${getInitials(element["assigned"][j])}
         </div>`;
 }
@@ -105,7 +108,7 @@ function renderAllInProgress() {
 
 function htmlTemplateInProgress(element, i, priority) {
   return `<div status="in progress" currentId="${i}" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-            <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element['categoryColor']}">
+            <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element["categoryColor"]}">
                 ${element["category"]}
             </div>
             <div class="mt-2 mx-2 bold">
@@ -142,7 +145,7 @@ function renderAllAwaitingFeedback() {
 
 function htmlTemplateAwaitingFeedback(element, i, priority) {
   return `<div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-        <div class="textWhite border rounded-3 px-3 m-2" style="background-color: ${element['categoryColor']}">
+        <div class="textWhite border rounded-3 px-3 m-2" style="background-color: ${element["categoryColor"]}">
             ${element["category"]}
         </div>
         <div class="mt-2 mx-2 bold">
@@ -179,7 +182,7 @@ function renderAllDone() {
 
 function htmlTemplateDone(element, i, priority) {
   return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-        <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element['categoryColor']}">
+        <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element["categoryColor"]}">
             ${element["category"]}
         </div>
         <div class="mt-2 mx-2 bold">
@@ -272,7 +275,7 @@ function htmlTemplatePopUpTask(i, priority) {
             <img class="cursorPointer heightWidth35Px" src="./img/deleteButton.svg" alt="delete" onclick="deleteTask(${i})">
             <img class="cursorPointer heightWidth35Px" src="./img/editButton.svg" alt="edit" onclick="editTask(${i})">
         </div>
-        <div style="background-color: ${userObj.tasks[i]['categoryColor']}" class="textWhite px-3 rounded-2">${userObj.tasks[i].category}</div>
+        <div style="background-color: ${userObj.tasks[i]["categoryColor"]}" class="textWhite px-3 rounded-2">${userObj.tasks[i].category}</div>
         <div class="size3Em bold">${userObj.tasks[i]["titel"]}</div>
         <div class="pb-2">${userObj.tasks[i]["description"]}</div>
         <div class="pb-2 d-flex">
@@ -310,9 +313,9 @@ function getThePriority(element) {
 }
 
 function htmlTemplatePopUpMembers(element2) {
-  return `<div class="textWhite heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${MemberColors[getColorSign(element2)]}">${getInitials(
-    element2
-  )}</div>
+  return `<div class="textWhite heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${
+    MemberColors[getColorSign(element2)]
+  }">${getInitials(element2)}</div>
     `;
 }
 

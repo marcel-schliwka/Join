@@ -44,16 +44,16 @@ async function init() {
   renderContacts();
   renderCategorys();
   renderSubtasks();
+  renderTopLogo(userObj);
 }
-
 
 function redirectTo(url) {
   window.location.href = url;
 }
 
 function showBoardButton() {
-  const boardBtn = document.getElementById('board-btn-container');
-  boardBtn.classList.remove('display-none');
+  const boardBtn = document.getElementById("board-btn-container");
+  boardBtn.classList.remove("display-none");
 }
 
 /**
@@ -109,8 +109,8 @@ function addTask() {
   setItem(userObj.email, JSON.stringify(userObj));
   clearAll();
   showBoardButton();
-  setTimeout(function() {
-    redirectTo('board.html');
+  setTimeout(function () {
+    redirectTo("board.html");
   }, 1000);
 }
 
@@ -257,7 +257,7 @@ function toggleCatgoryMenu() {
   let categoryContainer = document.getElementById("category-container");
   let input = document.querySelector(".category-input input");
   category.classList.toggle("display-none");
-  category.classList.toggle('category-custom-border')
+  category.classList.toggle("category-custom-border");
   categoryContainer.classList.toggle("remove-border");
   if (input !== null) {
     categoryContainer.classList.remove("remove-border");
@@ -760,5 +760,3 @@ function generateNewSubtaskHTML(i, subt) {
     </div>
     `;
 }
-
-
