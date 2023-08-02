@@ -221,10 +221,11 @@ async function registerUser() {
   }
 
   if (confirmPasswordIsSame(password.value, confirmPassword.value)) {
+    let hashedPwd = await hashPassword(password.value);
     users.push({
       name: name.value,
       email: email.value,
-      password: password.value,
+      password: hashedPwd,
     });
     await setItem("users", JSON.stringify(users));
   } else {
@@ -262,8 +263,9 @@ function getLoginFormInput() {
 async function login() {
   let formInput = getLoginFormInput();
   let user = users.find((user) => user.email === formInput.email);
-
-  if (user && user.password === formInput.password) {
+  let hashPwd = await hashPassword(formInput.password);
+  console.log(hashPwd);
+  if (user && user.password === hashPwd) {
     localStorage.setItem("userData", JSON.stringify(user));
     localStorage.setItem("activeUser", user.email);
     await createUserObject(user);
@@ -278,12 +280,13 @@ async function login() {
 }
 
 async function createUserObject(user) {
+  let password = await hashPassword(user.password);
   if (await checkIfUserObjectExists(user.email)) {
   } else {
     let userObj = {
       name: user.name,
       email: user.email,
-      password: user.password,
+      password: password,
       tasks: [],
       contacts: [],
     };
@@ -324,9 +327,10 @@ function showTopDown(message) {
 
 async function guestLogin() {
   let formInput = {
-    email: 'guest@test.de',
-    password: 'test123',
-    remember: false
+    email: "guest@test.de",
+    password:
+      "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
+    remember: false,
   };
   let user = users.find((user) => user.email === formInput.email);
   if (user && user.password === formInput.password) {
@@ -343,7 +347,6 @@ async function guestLogin() {
   window.location.href = "summary.html";
 }
 
-
 /* Old version, added new version to create an userObj for guests
 function guestLogin() {
   localStorage.setItem("activeUser", "guest");
@@ -351,8 +354,18 @@ function guestLogin() {
 }
 */
 
-
 function sendPasswordMail(e) {
   e.preventDefault();
   showTopDown("We send you an email!");
+}
+
+// Create a secure hash and stores the hash instead of the password
+async function hashPassword(password) {
+  const msgUint8 = new TextEncoder().encode(password);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashedPassword = hashArray
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+  return hashedPassword;
 }
