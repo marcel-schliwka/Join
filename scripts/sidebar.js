@@ -19,6 +19,11 @@ function renderTopLogo(userObj) {
   return initials;
 }
 
+function toggleHiddenDropdown() {
+  let menu = document.getElementById('sidebarDropdown');
+  menu.classList.toggle('display-none');
+}
+
 /*
 function activeSite() {
     const fullUrl = window.location.href;
