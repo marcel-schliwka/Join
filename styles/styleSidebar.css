@@ -89,7 +89,7 @@ header {
   font-weight: 700;
 }
 
-.navChild > div {
+.navChild>div {
   display: flex;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -97,12 +97,12 @@ header {
   margin-bottom: 8px;
 }
 
-.navChild > div:hover {
+.navChild>div:hover {
   background-color: rgba(9, 25, 49, 255);
   cursor: pointer;
 }
 
-.navChild > div img {
+.navChild>div img {
   padding-right: 8px;
 }
 
@@ -122,6 +122,42 @@ header {
 .hidden-logo {
   width: 32px;
   height: 39px;
+}
+
+.display-none {
+  display: none;
+}
+
+.hiddenDropdown {
+  background-color: #2A3647;
+  border-radius: 20px 0px 20px 20px;
+  position: absolute;
+  top: -90px;
+  right: 30px;
+  margin-top: 180px;
+  z-index: 999;
+  padding: 10px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+}
+
+.hiddenDropdown a {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: #CDCDCD;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  padding: 8px
+}
+
+.hiddenDropdown a:hover {
+  color: white;
 }
 
 /* RESPONSIVE */
@@ -175,6 +211,7 @@ header {
     width: 32px;
     height: 32px;
   }
+
   .navChild {
     display: flex;
     justify-content: space-around;
@@ -233,6 +270,7 @@ header {
     width: 32px;
     height: 32px;
   }
+
   .navChild {
     display: flex;
   }
@@ -247,5 +285,26 @@ header {
 
   .link-text {
     display: none;
+  }
+}
+
+@media (min-width: 761px) {
+  #hiddenDropdown-help {
+    display: none;
+  }
+  #hiddenDropdown-legal {
+    display: none;
+  }
+  #hiddenDropdown-privacy {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  #hiddenDropdown-imprint {
+    display: none;
+  }
+  .hiddenDropdown {
+    top: -110px;
   }
 }
