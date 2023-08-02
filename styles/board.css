@@ -84,6 +84,8 @@ body {
   position: relative;
   min-height: 100px;
   min-width: 400px;
+  max-width: 70%;
+  overflow: hidden;
   background-color: white;
 }
 
@@ -165,6 +167,16 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+  }
+
+  .moveableCard {
+    max-width: 300px;
+  }
+
+  .cardText {
+    overflow: hidden;
+    max-width: 90%;
+    text-overflow: ellipsis;
   }
   .headlineBoard {
     position: relative;
