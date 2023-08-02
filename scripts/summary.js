@@ -12,6 +12,7 @@ function updateHTML() {
   setTime();
   renderTaskCount();
   renderDeadline();
+  renderTopLogo(userObj);
 }
 
 function renderDeadline() {
