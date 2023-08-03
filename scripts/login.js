@@ -2,6 +2,8 @@
 let users = [];
 let loginForm = document.getElementById("loginForm");
 let loginBox = document.querySelector(".login-box");
+
+// Templates
 function templateForgotPassword() {
   return `
         <img onclick="showLogin();" src="./img/arrow-left-line.svg" class="arrow-back" />
