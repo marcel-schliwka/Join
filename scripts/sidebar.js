@@ -19,19 +19,21 @@ function renderTopLogo(userObj) {
   return initials;
 }
 
-
 function toggleHiddenDropdown() {
-  let menu = document.getElementById('sidebarDropdown');
-  menu.classList.toggle('display-none');
+  let menu = document.getElementById("sidebarDropdown");
+  menu.classList.remove("display-none");
 }
 
-document.addEventListener('click', function(event) {
-  let dropdown = document.getElementById('sidebarDropdown');
-  let menu = document.getElementById('hiddenSidebarMenu');
+function closeHiddenDropdown(event) {
+  let dropdown = document.getElementById("sidebarDropdown");
+  let menu = document.getElementById("hiddenSidebarMenu");
+  dropdown.classList.add("display-none");
   if (!dropdown.contains(event.target) && !menu.contains(event.target)) {
-    dropdown.classList.add('display-none');
+    dropdown.classList.add("display-none");
   }
-});
+}
+
+document.addEventListener("click", closeHiddenDropdown);
 /*
 function activeSite() {
     const fullUrl = window.location.href;
