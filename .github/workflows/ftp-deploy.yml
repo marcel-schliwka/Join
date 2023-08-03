@@ -18,4 +18,4 @@ jobs:
           server: gruppe-622.developerakademie.net
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
+          protocol: ftp
