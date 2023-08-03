@@ -6,10 +6,27 @@ async function includeHTML() {
     let resp = await fetch(file);
     if (resp.ok) {
       element.innerHTML = await resp.text();
-      //activeSite();
+      markSiteAsActive();
     } else {
       element.innerHTML = "Page not found";
     }
+  }
+}
+
+function markSiteAsActive() {
+  let url = window.location.href;
+  let siteName = url.split("/")[3].split(".")[0];
+  if (siteName == "summary") {
+    document.querySelector(".summary-site").classList.add("activeSite");
+  }
+  if (siteName == "board") {
+    document.querySelector(".board-site").classList.add("activeSite");
+  }
+  if (siteName == "addtask") {
+    document.querySelector(".addtask-site").classList.add("activeSite");
+  }
+  if (siteName == "contacts") {
+    document.querySelector(".contacts-site").classList.add("activeSite");
   }
 }
 
