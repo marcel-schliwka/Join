@@ -89,7 +89,7 @@ header {
   font-weight: 700;
 }
 
-.navChild>div {
+.navChild > a {
   display: flex;
   padding-top: 8px;
   padding-bottom: 8px;
@@ -97,12 +97,12 @@ header {
   margin-bottom: 8px;
 }
 
-.navChild>div:hover {
+.navChild > a:hover {
   background-color: rgba(9, 25, 49, 255);
   cursor: pointer;
 }
 
-.navChild>div img {
+.navChild > a img {
   padding-right: 8px;
 }
 
@@ -129,7 +129,7 @@ header {
 }
 
 .hiddenDropdown {
-  background-color: #2A3647;
+  background-color: #2a3647;
   border-radius: 20px 0px 20px 20px;
   position: absolute;
   top: -90px;
@@ -137,7 +137,7 @@ header {
   margin-top: 180px;
   z-index: 999;
   padding: 10px;
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 .hiddenDropdown a {
@@ -147,13 +147,13 @@ header {
   justify-content: center;
   cursor: pointer;
   text-decoration: none;
-  color: #CDCDCD;
+  color: #cdcdcd;
   font-family: Inter;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 120%;
-  padding: 8px
+  padding: 8px;
 }
 
 .hiddenDropdown a:hover {
