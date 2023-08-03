@@ -16,7 +16,6 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: gruppe-622.developerakademie.net
-          username: ${{ secrets.FTP_USERNAME }}
+          server-dir: Join/
+          username: f015d8e1
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          port: 21
