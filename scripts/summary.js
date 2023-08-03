@@ -70,11 +70,16 @@ function formateDate(dateToFormat) {
 
 function getDeadlineDates() {
   const tasks = userObj.tasks;
-  tasks.forEach((tasks) => {
-    if (tasks["prio"] == "urgent") {
-      deadlines.push(tasks["date"]);
+  tasks.forEach((task) => {
+    if (task["prio"] == "urgent" && checkIfDateIsValid(task["date"])) {
+      deadlines.push(task["date"]);
     }
   });
+}
+
+function checkIfDateIsValid(date) {
+  let dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+  return dateRegex.test(date);
 }
 
 function renderTaskCount() {
