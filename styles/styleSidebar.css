@@ -109,10 +109,27 @@ header {
 .legalNoticeDiv {
   display: flex;
   align-items: center;
+  width: 100%;
+  gap: 16px;
+  flex-direction: column;
 }
 
-.legalNoticeDiv img {
-  padding-right: 15px;
+.align-div-left {
+  display: flex;
+  width: 50%;
+}
+.legalNoticeDiv a {
+  color: #a8a8a8 !important;
+  cursor: pointer;
+}
+.legalNoticeDiv a:hover {
+  color: #31aee3 !important;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.navBar-bottom {
+  width: 100%;
 }
 
 .w-38 {
