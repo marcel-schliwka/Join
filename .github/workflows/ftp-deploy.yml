@@ -1,22 +1,21 @@
-name: FTP Deploy
 on:
   push:
     branches:
       - main
 
+name: 🚀 Deploy website on push
 jobs:
-  build:
-    name: Build
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2.1.0
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
 
-      - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: servername
+          server: gruppe-622.developerakademie.net
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: Join/
-          delete: true
+          protocol: ftps
