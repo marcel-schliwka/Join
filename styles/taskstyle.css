@@ -1,3 +1,107 @@
+/*Basic Styles*/
+.font61 {
+  color: #000;
+  font-family: Inter;
+  font-size: 61px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 120%;
+}
+
+.font47 {
+  color: #000;
+  font-family: Inter;
+  font-size: 47px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+}
+
+.font36 {
+  color: #000;
+  font-family: Inter;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.font27 {
+  color: #000;
+  font-family: Inter;
+  font-size: 27px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.font20 {
+  color: #000;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.font16 {
+  color: #000;
+  font-family: Inter;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.font12 {
+  color: #000;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.ol-none {
+  outline: none;
+}
+
+.b-none {
+  border: none;
+}
+
+.w-422 {
+  width: 422px;
+}
+
+.h-51 {
+  height: 51px;
+}
+
+.pad-18-21 {
+  padding: 18px 21px;
+}
+
+.pad-13-21 {
+  padding: 13px 21px;
+}
+
+.pad-18-15 {
+  padding: 18px 15px;
+}
+
+.pad-18-10 {
+  padding: 18px 10px;
+}
+
+.display-none {
+  display: none;
+}
+
+.cursor-p {
+  cursor: pointer;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -84,7 +188,6 @@ body {
   gap: 14px;
 }
 
-
 .bottom-section {
   display: flex;
 }
@@ -99,14 +202,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  margin-top: -50px
+  margin-top: -50px;
 }
 
 .dark-background {
   background-color: rgba(0, 0, 0, 0.4);
 }
-
-
 
 .left-dialog {
   margin-left: 0;
@@ -118,7 +219,6 @@ body {
   align-items: center !important;
   z-index: 999;
 }
-
 
 #closeAddTask {
   position: absolute;
@@ -224,7 +324,6 @@ body {
   background: #2a3647;
   color: white;
 }
-
 
 .create-btn:hover {
   background-color: #29abe2;
@@ -434,8 +533,6 @@ ul {
   border-bottom: none !important;
 }
 
-
-
 li {
   cursor: pointer;
 }
@@ -580,7 +677,7 @@ li {
   #category-input,
   #generatedInput,
   #generatedSubtaskInput {
-    width: 232px
+    width: 232px;
   }
 
   #description-input {
@@ -643,7 +740,7 @@ li {
   }
 }
 
-@media(max-width: 400px) {
+@media (max-width: 400px) {
   .add-task-section form {
     margin-left: 0;
     align-items: center;
@@ -651,7 +748,6 @@ li {
 }
 
 @media (max-width: 330px) {
-
   .categorys,
   #render-categorys,
   #title-input,
@@ -669,7 +765,6 @@ li {
 
   #renderCategoryss {
     max-height: 80px;
-
   }
 
   #urgentBtn,
@@ -686,7 +781,7 @@ li {
 
 #generatedInput,
 #generatedSubtaskInput {
-  width: 190px
+  width: 190px;
 }
 
 #category-input {
@@ -708,16 +803,12 @@ li {
   align-items: center;
   justify-content: space-around;
   border-radius: 20px;
-  background: #2A3647;
+  background: #2a3647;
   box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
   color: white;
 }
 
-
-
-
 @media (max-width: 370px) {
-
   .categorys,
   #render-categorys,
   #title-input,
@@ -818,7 +909,6 @@ li {
   }
 }
 
-
 @media only screen and (max-width: 949px) and (min-width: 761px) {
   .add-task-section {
     display: flex;
@@ -828,10 +918,9 @@ li {
   }
   .add-task-section h1 {
     margin-top: 41px;
-    margin-bottom: 20px;;
+    margin-bottom: 20px;
     font-size: 61px;
   }
-
 
   .seperator {
     display: none;
@@ -881,7 +970,7 @@ li {
   #category-input,
   #generatedInput,
   #generatedSubtaskInput {
-    width: 280px
+    width: 280px;
   }
 
   #description-input {
@@ -939,9 +1028,7 @@ li {
   }
 }
 
-
 @media only screen and (max-width: 1000px) and (min-width: 950px) {
-
   .add-task-section form,
   .add-task-section h1 {
     margin-left: 255px;
@@ -949,7 +1036,6 @@ li {
   .add-task-section h1 {
     font-size: 47px;
   }
-
 
   .categorys,
   #render-categorys,
@@ -1030,7 +1116,6 @@ li {
   }
 }
 
-
 @media only screen and (max-width: 1100px) and (min-width: 1001px) {
   .add-task-section h1 {
     margin-left: 275px;
@@ -1103,9 +1188,7 @@ li {
   }
 }
 
-
 @media only screen and (max-width: 1200px) and (min-width: 1101px) {
-
   .categorys,
   #render-categorys,
   #title-input,
@@ -1123,7 +1206,7 @@ li {
   #category-input,
   #generatedInput,
   #generatedSubtaskInput {
-    width: 232px
+    width: 232px;
   }
 
   #urgentBtn,
@@ -1161,8 +1244,6 @@ li {
     display: none;
   }
 }
-
-
 
 @media only screen and (max-width: 1380px) and (min-width: 1201px) {
   .add-task-section form {
@@ -1226,8 +1307,8 @@ li {
   }
 }
 
-@media(min-width: 1201px) {
-  #generatedSubtaskInput{
+@media (min-width: 1201px) {
+  #generatedSubtaskInput {
     width: 220px;
   }
 }
