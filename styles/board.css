@@ -87,9 +87,12 @@ body {
   max-width: 70%;
   overflow: hidden;
   background-color: white;
+  padding: 4em 8em;
+  border-radius: 20px;
 }
 
 .boardTaskClose {
+  cursor: pointer;
   position: absolute;
   top: 25px;
   right: 25px;
