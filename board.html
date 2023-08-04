@@ -50,15 +50,20 @@
     <script defer src="./scripts/animations.js"></script>
     <script defer src="./scripts/bootstrap.js"></script>
 
+
+    <script defer type="text/javascript" src="./scripts/coloris.min.js"></script>
+
     <title>Board</title>
   </head>
   <body onload="initBoard(); includeHTML(); ">
     <div w3-include-html="./templates/sidebar.html"></div>
+
     <div class="modal-backdrop modal">
       <form onsubmit="addTask();" class="popUpBoardTask">
         <img src="./img/close.svg" alt="Close Add Task Form" class="boardTaskClose" onclick="closeModal(document.querySelector('.modal'))">
         <button onclick="getAssignedContacts()" type="submit"
         class="display-none font20 pad-18-15 create-btn create-btn-responsive">Create<svg xmlns="http://www.w3.org/2000/svg"
+
           width="25" height="25" viewBox="0 0 25 25" fill="none">
           <path d="M4.0166 12.1704L10.0166 18.1704L20.0166 6.17041" stroke="white" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round" />
@@ -190,9 +195,18 @@
       class="dNone popUpBoardBackground display-flex justify-content-center align-items-center"
     ></div>
     <div class="parentDiv paddingRight50Px">
-      <div class="d-flex justify-content-between mb-5">
-        <div class="size3Em bold">Board</div>
-        <div class="d-flex align-items-center">
+      <div class="d-flex justify-content-between mb-5 headline-container-board">
+        <div class="size3Em bold headlineBoard">
+          Board
+          <img
+            src="./img/plus_add_task_board_mobile.svg"
+            alt="Add a Task on Mobile Device"
+            onclick="openModal(document.querySelector('.modal'))"
+            class="mobileAddTask"
+          />
+        </div>
+
+        <div class="d-flex align-items-center boardSearchBox">
           <div
             class="border ps-3 py-1 findTaskBtn d-flex justify-content-between align-items-center"
           >
@@ -221,7 +235,7 @@
       <div class="gridContainerChildBoard">
         <div>
           <div class="d-flex justify-content-between">
-            <div class="bold">To do</div>
+            <div class="bold boardCategoryHeadline">To do</div>
             <div class="cursorPointer">
               <img src="./img/plusButton.svg" alt="plus" />
             </div>
@@ -230,13 +244,14 @@
             ondrop="moveTo('to do', this)"
             ondragover="allowDrop(event, this)"
             ondragleave="leaveDropArea(this)"
+            class="dropArea"
             id="todo"
             status="to do"
           ></div>
         </div>
         <div>
           <div class="d-flex justify-content-between">
-            <div class="bold">In Progress</div>
+            <div class="bold boardCategoryHeadline">In Progress</div>
             <div class="cursorPointer">
               <img src="./img/plusButton.svg" alt="plus" onclick="addTaskByStatus('in progress');"/>
             </div>
@@ -245,13 +260,14 @@
             ondrop="moveTo('in progress', this)"
             ondragover="allowDrop(event, this)"
             ondragleave="leaveDropArea(this)"
+            class="dropArea"
             id="inProgress"
             status="in progress"
           ></div>
         </div>
         <div>
           <div class="d-flex justify-content-between">
-            <div class="bold">Awaiting Feedback</div>
+            <div class="bold boardCategoryHeadline">Awaiting Feedback</div>
             <div class="cursorPointer">
               <img src="./img/plusButton.svg" alt="plus" onclick="addTaskByStatus('awaiting feedback');"/>
             </div>
@@ -260,16 +276,18 @@
             ondrop="moveTo('awaiting feedback', this)"
             ondragover="allowDrop(event, this)"
             ondragleave="leaveDropArea(this)"
+            class="dropArea"
             id="awaitingFeedback"
             status="awaiting feedback"
           ></div>
         </div>
         <div>
-          <div class="bold">Done</div>
+          <div class="bold boardCategoryHeadline">Done</div>
           <div
             ondrop="moveTo('done', this)"
             ondragover="allowDrop(event, this)"
             ondragleave="leaveDropArea(this)"
+            class="dropArea"
             id="done"
             status="done"
           ></div>
