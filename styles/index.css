@@ -15,7 +15,7 @@ h1 {
   height: 200px;
   z-index: 10;
   animation: logoSlideIn 2s forwards 1s;
-  background-image: url(../img/logo.svg);
+  background-image: url(../img/logo_dark.svg);
   background-repeat: no-repeat;
   background-size: contain;
 }
