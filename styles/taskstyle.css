@@ -1243,6 +1243,9 @@ li {
   .create-btn-responsive {
     display: none;
   }
+  #description-input {
+    height: 120px;
+  }
 }
 
 @media only screen and (max-width: 1380px) and (min-width: 1201px) {
