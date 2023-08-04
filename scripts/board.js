@@ -254,11 +254,13 @@ function moveTo(status, element) {
 }
 
 function boardOpenPopUpTask(i, card) {
+  let taskForm = document.querySelector(".popUpBoardTask");
   currentStatus = card.getAttribute("status");
   currentTitel = card.getAttribute("titel");
   let index = userObj.tasks.findIndex(
     (task) => task.status == currentStatus && task.titel == currentTitel
   );
+
   let element = userObj.tasks[index];
   document.getElementById("popUpBoard").classList.remove("dNone");
   document.getElementById("popUpBoard").innerHTML = "";
@@ -272,6 +274,38 @@ function boardOpenPopUpTask(i, card) {
     document.getElementById("boardTasksMembers").innerHTML +=
       htmlTemplatePopUpMembers(element2);
   }
+  taskForm.setAttribute("onsubmit", `saveEditTask(${index}, event)`);
+}
+
+function saveEditTask(taskIndex, event) {
+  event.preventDefault();
+  let titel = document.getElementById("title-input");
+  let description = document.getElementById("description-input");
+  let date = document.getElementById("task-date");
+  let category = document.querySelector(".category-input");
+  let assignedTo = assigned;
+  let selectedSubtasks = newSubtasks;
+  let prio = currentPrio;
+  let color = document
+    .querySelector(".category-input circle")
+    .getAttribute("fill");
+  if (prio == undefined) {
+    prio = "low";
+  }
+  let newTask = {
+    titel: titel.value,
+    description: description.value,
+    status: userObj.tasks[taskIndex].status,
+    category: category.innerText,
+    categoryColor: color,
+    assigned: assignedTo,
+    date: date.value,
+    prio: prio,
+    subtasks: selectedSubtasks,
+    id: userObj.tasks.length,
+  };
+  userObj.tasks[taskIndex] = newTask;
+  setItem(userObj.email, JSON.stringify(userObj));
 }
 
 function boardClosePopUpTask() {
@@ -473,6 +507,7 @@ function editTask(i) {
   console.log(modalFields);
   modalFields.title.value = currentTask.titel;
   modalFields.description.value = currentTask.description;
+  toggleCatgoryMenu();
   modalFields.category.innertText = currentTask.category;
 }
 

@@ -103,7 +103,6 @@ function clearAssigned() {
  *
  */
 function addTask(status, event) {
-  event.preventDefault();
   if (status === undefined) {
     status = "to do";
   }
@@ -686,7 +685,7 @@ function generateAssigendButtonHTML() {
 //Generates the User option, when the dropdown menu "Assigned to" (You) gets opend
 function generateUserAssignedHTML() {
   return `
-  <div class="contact-item-container">
+  <div class="contact-item-container" onclick="changeCheckbox(0)">
     <li class="contact-item">You<a onclick="changeCheckbox(0)"><img class="checkboxImg cursor-p" id="checkboxImg0" src="./img/checkbox.png"></a></li>
   </div>
   `;
@@ -695,10 +694,10 @@ function generateUserAssignedHTML() {
 //Generates new HTML for rendering the aviable contacts + the newly added one
 function renderContactsHTML(contact, i) {
   return `
-    <div class="contact-item-container">
-      <li class="contact-item">${contact["name"]} <a onclick="changeCheckbox(${
-    i + 1
-  })"><img class="checkboxImg cursor-p" id="checkboxImg${
+    <div class="contact-item-container" onclick="changeCheckbox(${i + 1})">
+      <li class="contact-item">${
+        contact["name"]
+      } <a ><img class="checkboxImg cursor-p" id="checkboxImg${
     i + 1
   }" src="./img/checkbox.png"></a></li>
     </div>
