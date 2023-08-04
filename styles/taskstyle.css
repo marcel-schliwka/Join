@@ -1160,6 +1160,9 @@ li {
   .create-btn-responsive {
     display: none;
   }
+  #description-input {
+    height: 120px;
+  }
 }
 
 
