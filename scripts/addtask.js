@@ -216,8 +216,15 @@ document.addEventListener("coloris:change", (event) => {
  * it pushes the color value && the selected category into the category-object
  *
  */
+
+function checkIfCategoryInputExists() {
+  return document.getElementById("generatedInput");
+}
 function addNewCategory() {
-  let input = document.getElementById("generatedInput").value;
+  if (checkIfCategoryInputExists()) {
+    let input = document.getElementById("generatedInput").value;
+  }
+
   let color = document.querySelector(".colorpicker").value;
   let category = document.getElementById("category-input");
   let categoryBtn = document.getElementById("category-button");
@@ -268,6 +275,7 @@ function toggleCatgoryMenu() {
       if (!categoryContainer.contains(event.target)) {
         addNewCategory();
         category.classList.add("display-none");
+        addNewCategory();
         categoryContainer.classList.remove("remove-border");
       }
     });
