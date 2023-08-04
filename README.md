@@ -2,7 +2,7 @@
 
 ## About
 
-JOIN is a kanban-based project management tool designed and built by a group of dedicated students as part of their web development bootcamp at the Developer Akademie.
+JOIN is a kanban-based project management tool designed and built by a group of students as part of their web development bootcamp at the [Developer Akademie](https://developerakademie.com/).
 
 Kanban, a Japanese term meaning "billboard", is a highly effective method to visualize work, limit work-in-progress, and maximize efficiency (or flow). JOIN leverages the principles of kanban to help users manage their tasks and projects in an intuitive, visual interface.
 
@@ -27,3 +27,4 @@ Now that you've added your contacts, you can start adding cards. Cards represent
 As the task moves from one stage to another, you can reflect that on the board by dragging and dropping the card from one list to another.
 
 Enjoy using JOIN to manage your tasks and projects!
+
