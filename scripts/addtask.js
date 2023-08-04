@@ -63,6 +63,7 @@ function showBoardButton() {
  */
 window.addEventListener("DOMContentLoaded", function () {
   const taskDateInput = document.getElementById("task-date");
+
   function formatDate(date) {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -218,6 +219,10 @@ document.addEventListener("coloris:change", (event) => {
  * it pushes the color value && the selected category into the category-object
  *
  */
+
+function checkIfCategoryInputExists() {
+  return document.getElementById("generatedInput");
+}
 function addNewCategory() {
   try {
     let input = document.getElementById("generatedInput").value;
@@ -274,6 +279,7 @@ function toggleCatgoryMenu() {
       if (!categoryContainer.contains(event.target)) {
         addNewCategory();
         category.classList.add("display-none");
+        addNewCategory();
         categoryContainer.classList.remove("remove-border");
       }
     });
