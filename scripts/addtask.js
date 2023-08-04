@@ -704,7 +704,9 @@ function renderContactsHTML(contact, i) {
     <div class="contact-item-container" onclick="changeCheckbox(${i + 1})">
       <li class="contact-item">${
         contact["name"]
-      } <a ><img class="checkboxImg cursor-p" onclick="changeCheckbox(${
+      } <a onclick="changeCheckbox(${
+        i + 1
+      })"><img class="checkboxImg cursor-p" onclick="changeCheckbox(${
     i + 1
   })" id="checkboxImg${i + 1}" src="./img/checkbox.png"></a></li>
     </div>
