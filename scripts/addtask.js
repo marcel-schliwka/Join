@@ -63,7 +63,7 @@ function showBoardButton() {
  */
 window.addEventListener("DOMContentLoaded", function () {
   const taskDateInput = document.getElementById("task-date");
-  
+
   function formatDate(date) {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
