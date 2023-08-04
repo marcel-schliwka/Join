@@ -102,9 +102,13 @@ function clearAssigned() {
  * the objects gets pushed into the server
  *
  */
-function addTask() {
+function addTask(status, event) {
+  event.preventDefault();
+  if (status === undefined) {
+    status = "to do";
+  }
   getSubtasks();
-  const task = getAddTaskVariables();
+  const task = getAddTaskVariables(status);
   userObj.tasks.push(task);
   setItem(userObj.email, JSON.stringify(userObj));
   clearAll();
@@ -114,7 +118,7 @@ function addTask() {
   }, 1000);
 }
 
-function getAddTaskVariables() {
+function getAddTaskVariables(status) {
   let titel = document.getElementById("title-input");
   let description = document.getElementById("description-input");
   let date = document.getElementById("task-date");
@@ -131,7 +135,7 @@ function getAddTaskVariables() {
   let newTask = {
     titel: titel.value,
     description: description.value,
-    status: "to do",
+    status: status,
     category: category.innerText,
     categoryColor: color,
     assigned: assignedTo,
@@ -216,33 +220,37 @@ document.addEventListener("coloris:change", (event) => {
  *
  */
 function addNewCategory() {
-  let input = document.getElementById("generatedInput").value;
-  let color = document.querySelector(".colorpicker").value;
-  let category = document.getElementById("category-input");
-  let categoryBtn = document.getElementById("category-button");
-  let hiddenError = document.getElementById("hidden-error");
+  try {
+    let input = document.getElementById("generatedInput").value;
+    let color = document.querySelector(".colorpicker").value;
+    let category = document.getElementById("category-input");
+    let categoryBtn = document.getElementById("category-button");
+    let hiddenError = document.getElementById("hidden-error");
 
-  if (input == "" && color == "") {
-    hiddenError.innerText = "Oops.. something went wrong";
-    hiddenError.classList.remove("display-none");
-  } else if (input == "") {
-    hiddenError.innerText = "You need to type a new category";
-    hiddenError.classList.remove("display-none");
-  } else if (color == "") {
-    hiddenError.innerText = "You need to pick a color";
-    hiddenError.classList.remove("display-none");
-  } else {
-    hiddenError.innerText = "";
-    hiddenError.classList.add("display-none");
-    categorys.push({
-      name: input,
-      color: color,
-    });
-    renderCategorys();
-    category.innerHTML = generateBasicCategoryInputHTML();
-    categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
-    let index = categorys.length;
-    category.innerHTML = generateSelectedCategoryHTML(categorys, index - 1);
+    if (input == "" && color == "") {
+      hiddenError.innerText = "Oops.. something went wrong";
+      hiddenError.classList.remove("display-none");
+    } else if (input == "") {
+      hiddenError.innerText = "You need to type a new category";
+      hiddenError.classList.remove("display-none");
+    } else if (color == "") {
+      hiddenError.innerText = "You need to pick a color";
+      hiddenError.classList.remove("display-none");
+    } else {
+      hiddenError.innerText = "";
+      hiddenError.classList.add("display-none");
+      categorys.push({
+        name: input,
+        color: color,
+      });
+      renderCategorys();
+      category.innerHTML = generateBasicCategoryInputHTML();
+      categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
+      let index = categorys.length;
+      category.innerHTML = generateSelectedCategoryHTML(categorys, index - 1);
+    }
+  } catch (error) {
+    return false;
   }
 }
 

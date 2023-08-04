@@ -2,7 +2,6 @@ body {
   background-color: rgba(246, 247, 248, 255) !important;
 }
 
-
 .gridContainerChildBoard {
   /* background-color: red; */
   display: grid;
@@ -87,6 +86,8 @@ body {
   min-height: 100px;
   min-width: 400px;
   background-color: white;
+  padding: 4em 8em;
+  border-radius: 20px;
 }
 
 .boardTaskClose {

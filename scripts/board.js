@@ -13,6 +13,9 @@ function updateHTML() {
   renderAllInProgress();
   renderAllAwaitingFeedback();
   renderAllDone();
+  renderContacts();
+  renderCategorys();
+  renderSubtasks();
   startTouchEventListener();
   renderTopLogo(userObj);
 }
@@ -104,6 +107,13 @@ function renderAllInProgress() {
       idAssigned.innerHTML += htmlTemplateAssignment(element, j);
     }
   }
+}
+
+function addTaskByStatus(status) {
+  document
+    .querySelector(".popUpBoardTask")
+    .setAttribute("onsubmit", `addTask('${status}', event); return false`);
+  openModal(document.querySelector(".modal"));
 }
 
 function htmlTemplateInProgress(element, i, priority) {
