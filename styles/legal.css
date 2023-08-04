@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+    background: #F6F7F8;
+}
+
+.legal-notice-section {
+    margin: 110px 98px 0px 328px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+ul {
+    padding-inline-start: 20px;
+}
+
+h1 {
+    margin: 0;
+}
+
+h2,
+h3 {
+    font-weight: 700 !important;
+}
+
+.developer-link {
+    text-decoration: none;
+    color: #FD5B4F;
+}
+
+.join-link {
+    text-decoration: none;
+    color: #29ABE2;
+}
+.back-svg {
+    margin-right: 0.5px;
+}

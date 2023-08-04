@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+    background: #F6F7F8;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0
+}
+
+h2,
+h3,
+h4 {
+    font-weight: 700 !important;
+}
+
+p {
+    margin: 0;
+}
+
+main {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.help-section {
+    margin: 110px 98px 50px 328px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.join-link {
+    text-decoration: none;
+    color: #29ABE2;
+}
+
+.what-is-join {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.explanation-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.explanation-div {
+    display: flex;
+    gap: 35px;
+}
+
