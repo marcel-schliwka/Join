@@ -686,7 +686,7 @@ function generateAssigendButtonHTML() {
 function generateUserAssignedHTML() {
   return `
   <div class="contact-item-container" onclick="changeCheckbox(0)">
-    <li class="contact-item">You<a onclick="changeCheckbox(0)"><img class="checkboxImg cursor-p" id="checkboxImg0" src="./img/checkbox.png"></a></li>
+    <li class="contact-item">You<a onclick="changeCheckbox(0)"><img class="checkboxImg cursor-p" onclick="changeCheckbox(0)" id="checkboxImg0" src="./img/checkbox.png"></a></li>
   </div>
   `;
 }
@@ -697,9 +697,9 @@ function renderContactsHTML(contact, i) {
     <div class="contact-item-container" onclick="changeCheckbox(${i + 1})">
       <li class="contact-item">${
         contact["name"]
-      } <a ><img class="checkboxImg cursor-p" id="checkboxImg${
+      } <a ><img class="checkboxImg cursor-p" onclick="changeCheckbox(${
     i + 1
-  }" src="./img/checkbox.png"></a></li>
+  })" id="checkboxImg${i + 1}" src="./img/checkbox.png"></a></li>
     </div>
     `;
 }

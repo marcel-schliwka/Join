@@ -277,8 +277,7 @@ function boardOpenPopUpTask(i, card) {
   taskForm.setAttribute("onsubmit", `saveEditTask(${index}, event)`);
 }
 
-function saveEditTask(taskIndex, event) {
-  event.preventDefault();
+function saveEditTask(taskIndex) {
   let titel = document.getElementById("title-input");
   let description = document.getElementById("description-input");
   let date = document.getElementById("task-date");
