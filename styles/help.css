@@ -61,3 +61,22 @@ main {
     gap: 35px;
 }
 
+@media (max-width: 760px) {
+    h1 {
+        font-size: 47px;
+    }
+    h2 {
+        font-size: 27px;
+        font-weight: 700 !important;
+    }
+
+    .help-section {
+        margin: 48px 16px 50px 16px;
+        max-width: 100%;
+    }
+    p  {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+}
