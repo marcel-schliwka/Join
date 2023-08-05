@@ -44,7 +44,7 @@ h3 {
 
 @media (max-width: 760px) {
     .legal-notice-section {
-        margin: 48px 16px 180px 16px;
+        margin: 48px 16px 120px 16px;
     }
     h1 {
         font-size: 47px !important;

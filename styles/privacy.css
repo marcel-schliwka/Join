@@ -4,7 +4,7 @@ body {
 }
 
 .privacy-section {
-    margin: 110px 96px 50px 328px;
+    margin: 110px 96px 0px 328px;
     display: flex;
     flex-direction: column;
     
@@ -70,7 +70,7 @@ main {
 
 @media (max-width: 760px) {
     .privacy-section {
-        margin: 48px 16px 200px 16px;
+        margin: 48px 16px 100px 16px;
     }
     .privacy-section h1 {
         font-size: 47px;
