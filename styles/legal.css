@@ -37,6 +37,25 @@ h3 {
     text-decoration: none;
     color: #29ABE2;
 }
+
 .back-svg {
     margin-right: 0.5px;
+}
+
+@media (max-width: 760px) {
+    .legal-notice-section {
+        margin: 48px 16px 180px 16px;
+    }
+    h1 {
+        font-size: 47px !important;
+    }
+    h2 {
+        font-size: 27px;
+    }
+    p {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        white-space: normal;
+    }
+
 }
