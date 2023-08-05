@@ -80,3 +80,18 @@ main {
         white-space: normal;
     }
 }
+
+@media(max-width: 400px) {
+    .back-svg {
+        margin-top: -35px;
+    }
+    .explanation-div {
+        gap: 20px;
+    }
+}
+
+@media(max-width: 340px) {
+    .help-section {
+        margin: 48px 8px 100px 8px;
+    }
+}
