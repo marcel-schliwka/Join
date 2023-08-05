@@ -303,7 +303,7 @@ body {
 
 .create-btn-responsive {
   display: flex;
-  height: 55px;
+  height: 57px;
   padding: 18px 15px;
   justify-content: center;
   align-items: center;
@@ -724,9 +724,9 @@ li {
 
   .create-btn-responsive {
     position: absolute;
-    top: 15px;
+    top: 11px;
     right: 25px;
-    height: 51px;
+    height: 57px;
     width: 118px;
   }
 
@@ -899,7 +899,7 @@ li {
   .create-btn-responsive {
     display: flex;
     position: absolute;
-    top: 15px;
+    top: 11px;
     right: 25px;
   }
 
@@ -1025,6 +1025,11 @@ li {
 
   #subtask-content {
     padding-bottom: 40px;
+  }
+
+  .form-btn {
+    margin-top: 50px;
+    margin-bottom: 25px;
   }
 }
 
@@ -1320,5 +1325,11 @@ li {
   .add-to-board-btn {
     left: 831px;
     bottom: 10%;
+  }
+}
+
+@media (max-width: 760px) {
+  .create-btn-responsive {
+    display: flex !important;
   }
 }
