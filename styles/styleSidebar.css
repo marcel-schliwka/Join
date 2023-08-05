@@ -272,6 +272,10 @@ header {
     gap: 4px;
     flex-shrink: 0;
   }
+  .navChild>a:hover {
+    background-color: rgba(9, 25, 49, 255);
+    cursor: pointer;
+  }
 }
 
 @media screen and (min-width: 320px) and (max-width: 420px) {

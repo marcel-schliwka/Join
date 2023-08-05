@@ -42,6 +42,19 @@ h3 {
     margin-right: 0.5px;
 }
 
+main {
+    margin-top: 32px;
+}
+
+@media (max-width: 850px) {
+    .legal-notice-section {
+        margin: 110px 60px 0px 290px;
+    }
+    .back-svg {
+        margin-top: -50px;
+    }
+}
+
 @media (max-width: 760px) {
     .legal-notice-section {
         margin: 48px 16px 120px 16px;
@@ -57,5 +70,13 @@ h3 {
         overflow-wrap: break-word;
         white-space: normal;
     }
+}
 
+@media (max-width: 370px) {
+    h1 {
+        font-size: 36px !important;
+    }
+    h2 {
+        font-size: 20px;
+    }
 }
