@@ -68,12 +68,24 @@ main {
     margin-top: 22px;
 }
 
+@media (max-width: 900px) {
+    .privacy-section {
+        margin: 110px 66px 0px 298px;
+    }
+    .privacy-svg {
+        margin-top: -30px;
+    }
+}
+
+@media(max-width: 850px) {
+    .privacy-section h1 {
+        font-size: 47px;
+    }
+}
+
 @media (max-width: 760px) {
     .privacy-section {
         margin: 48px 16px 100px 16px;
-    }
-    .privacy-section h1 {
-        font-size: 47px;
     }
     .privacy-section h2 {
         font-size: 27px;
@@ -100,5 +112,14 @@ main {
     }
     .privacy-section p {
         font-size: 16px;
+    }
+}
+
+@media (max-width: 350px) {
+    .privacy-section {
+        margin: 48px 8px 100px 8px;
+    }
+    .privacy-svg {
+        margin-top: -10px;
     }
 }
