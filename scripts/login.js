@@ -16,6 +16,7 @@ function templateForgotPassword() {
                 <input
                 class="text-input"
                 type="email"
+                id="forgotPasswordInput"
                 name="email"
                 id="email"
                 placeholder="Email"
@@ -314,7 +315,7 @@ function checkIfUserIsLoggedIn() {
   if (user === null) {
     console.info("No User was saved in local storage");
   } else {
-    // window.location.href = "summary.html";
+    window.location.href = "summary.html";
   }
 }
 
@@ -358,7 +359,12 @@ function guestLogin() {
 
 function sendPasswordMail(e) {
   e.preventDefault();
-  showTopDown("We send you an email!");
+  if (checkIfUserExists(document.getElementById("forgotPasswordInput").value)) {
+    showTopDown("We send you an email!");
+  } else {
+    showTopDown("Please Sign Up! You're E-Mail Address was not found.");
+  }
+  showLogin();
 }
 
 // Create a secure hash and stores the hash instead of the password
