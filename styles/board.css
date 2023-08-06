@@ -11,6 +11,10 @@ body {
   min-height: 300px;
 }
 
+.addTaskMobileTopBar {
+  display: none;
+}
+
 .paddingRight50Px {
   padding-right: 50px;
 }
@@ -267,6 +271,16 @@ body {
     padding-left: 50px;
     margin-top: 200px;
     max-width: 100%;
+  }
+
+  .popUpBoardTask input,
+  .popUpBoardTask textarea,
+  .category-container,
+  #renderCategorys,
+  #assigned-container,
+  .subtasks-container,
+  .prio-btn {
+    width: 80% !important;
   }
 
   .prio-btn {
