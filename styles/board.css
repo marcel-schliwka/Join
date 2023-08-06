@@ -24,9 +24,19 @@ body {
 .mobileAddTask {
   display: none;
 }
+.textOverflow {
+  max-width: 90% !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 .moveBackground {
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+.cardWidth {
+  max-width: 300px;
+  overflow-x: hidden;
 }
 
 .findTaskBtn {
@@ -82,13 +92,21 @@ body {
 
 .popUpBoardTask {
   position: relative;
-  min-height: 100px;
+  width: clamp(100px, 400px, 70%);
+  /* min-height: 100px;
   min-width: 400px;
-  max-width: 70%;
-  overflow: hidden;
+  max-width: 70%; */
+  /* overflow: hidden; */
   background-color: white;
   padding: 4em 8em;
   border-radius: 20px;
+  max-height: 70vh;
+  overflow-y: scroll;
+}
+
+.popupBoardTextOverflow {
+  max-width: 90%;
+  word-wrap: break-word;
 }
 
 .boardTaskClose {
@@ -174,13 +192,9 @@ body {
 
   .moveableCard {
     max-width: 300px;
+    overflow: hidden;
   }
 
-  .cardText {
-    overflow: hidden;
-    max-width: 90%;
-    text-overflow: ellipsis;
-  }
   .headlineBoard {
     position: relative;
     line-height: 1;

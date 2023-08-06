@@ -61,14 +61,14 @@ function getPriority(element) {
 }
 
 function htmlTemplateToDo(element, i, priority) {
-  return `<div status="to do" currentId="${i}" titel="${element["titel"]}" id="cardTodo${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)"  draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="to do" currentId="${i}" titel="${element["titel"]}" id="cardTodo${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)"  draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cardWidth bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element["categoryColor"]}">
                 ${element["category"]}
             </div>
             <div class="mt-2 mx-2 bold">
                 ${element["titel"]}
             </div>
-            <div class="cardText mx-2 my-1">
+            <div class="cardText textOverflow mx-2 my-1">
                 ${element["description"]}
             </div>
             <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4">
@@ -117,7 +117,7 @@ function addTaskByStatus(status) {
 }
 
 function htmlTemplateInProgress(element, i, priority) {
-  return `<div status="in progress" currentId="${i}" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="in progress" currentId="${i}" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cardWidth bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element["categoryColor"]}">
                 ${element["category"]}
             </div>
@@ -154,7 +154,7 @@ function renderAllAwaitingFeedback() {
 }
 
 function htmlTemplateAwaitingFeedback(element, i, priority) {
-  return `<div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cardWidth bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
         <div class="textWhite border rounded-3 px-3 m-2" style="background-color: ${element["categoryColor"]}">
             ${element["category"]}
         </div>
@@ -191,7 +191,7 @@ function renderAllDone() {
 }
 
 function htmlTemplateDone(element, i, priority) {
-  return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+  return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cardWidth cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
         <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element["categoryColor"]}">
             ${element["category"]}
         </div>
@@ -275,6 +275,7 @@ function boardOpenPopUpTask(i, card) {
       htmlTemplatePopUpMembers(element2);
   }
   taskForm.setAttribute("onsubmit", `saveEditTask(${index}, event)`);
+  positionTaskEdit();
 }
 
 function saveEditTask(taskIndex) {
@@ -320,7 +321,7 @@ function htmlTemplatePopUpTask(i, priority) {
         </div>
         <div style="background-color: ${userObj.tasks[i]["categoryColor"]}" class="textWhite px-3 rounded-2">${userObj.tasks[i].category}</div>
         <div class="size3Em bold">${userObj.tasks[i]["titel"]}</div>
-        <div class="pb-2">${userObj.tasks[i]["description"]}</div>
+        <div class="pb-2 popupBoardTextOverflow">${userObj.tasks[i]["description"]}</div>
         <div class="pb-2 d-flex">
             <div class="pe-3 bold">Due date:</div>
             <div>${userObj.tasks[i]["date"]}</div>
@@ -651,4 +652,15 @@ function checkIfElementIsValid(element) {
   if (!element.getAttribute("status")) {
     return false;
   }
+}
+
+function positionTaskEdit() {
+  let popUpBoardTask = document.querySelector(".popUpBoardTask");
+
+  popUpBoardTask.addEventListener("scroll", () => {
+    console.log("scrolled");
+    document.querySelector(
+      ".boardTaskEdit"
+    ).style.transform = `translateY(${popUpBoardTask.scrollTop}px)`;
+  });
 }
