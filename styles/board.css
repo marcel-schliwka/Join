@@ -84,7 +84,7 @@ body {
   position: relative;
   min-height: 100px;
   min-width: 400px;
-  max-width: 70%;
+  max-width: 90%;
   overflow: hidden;
   background-color: white;
   padding: 4em 8em;
@@ -207,6 +207,43 @@ body {
     flex-direction: column;
     padding-right: 0;
   }
+  .addTaskMobileTopBar {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    box-shadow: -2px 0px 6px 0px rgb(0, 0, 0, 0.2);
+  }
+
+  #addTaskMobileBtn {
+    display: flex;
+    background-color: #2a3647;
+    padding: 18px 10px;
+    gap: 4px;
+    justify-content: center;
+    color: white;
+    border: none;
+    font-weight: 700;
+    border-radius: 10px;
+  }
+
+  #addTaskMobileBtn img {
+    filter: invert();
+    object-fit: cover;
+    width: 24px;
+    height: 24px;
+  }
+
+  .addTaskMobileTopBar img {
+    object-fit: cover;
+    width: 32px;
+    height: 39px;
+  }
   .gridContainerChildBoard {
     width: 90%;
   }
@@ -220,6 +257,24 @@ body {
 
   #done {
     padding-bottom: 600px;
+  }
+
+  .popUpBoardTask {
+    padding: 0;
+    width: 100%;
+    padding-top: 300px;
+    padding-bottom: 300px;
+    padding-left: 50px;
+    margin-top: 200px;
+    max-width: 100%;
+  }
+
+  .prio-btn {
+    justify-content: flex-start;
+    min-width: 418px;
+  }
+  .addTaskHeading {
+    font-size: 3rem;
   }
 }
 

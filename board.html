@@ -59,7 +59,12 @@
     <div w3-include-html="./templates/sidebar.html"></div>
 
     <div class="modal-backdrop modal">
+
       <form onsubmit="addTask();" class="popUpBoardTask">
+        <div class="addTaskMobileTopBar">
+          <img src="./img/logo_dark.svg" alt="JOIN Logo Top Left">
+          <button id="addTaskMobileBtn">Create Task <img src="./img/check_black_icon.png" alt=""></button>
+        </div>
         <img src="./img/close.svg" alt="Close Add Task Form" class="boardTaskClose" onclick="closeModal(document.querySelector('.modal'))">
         <button onclick="getAssignedContacts()" type="submit"
         class="display-none font20 pad-18-15 create-btn create-btn-responsive">Create<svg xmlns="http://www.w3.org/2000/svg"
@@ -68,10 +73,11 @@
           <path d="M4.0166 12.1704L10.0166 18.1704L20.0166 6.17041" stroke="white" stroke-width="2"
             stroke-linecap="round" stroke-linejoin="round" />
         </svg></button>
-    
+        <h1 class="fw-bold addTaskHeading">Add Task</h1>
         <div class="top-section">
-    
           <div class="top-left">
+            
+            
             <label class="font20 label" for="title">Title</label>
             <input id="title-input" required class="w-422 h-51 font20 pad-13-21 custom-border ol-none cursor-p"
               type="text" placeholder="Enter a title">
@@ -169,6 +175,7 @@
             </div>
             <div class="geneneratedSubtasks cursor-p font20" id="subtask-content">
             </div>
+
     
             <div class="form-btn" id="form-btn-container">
               <button onclick="clearAll()" type="reset" class="font20 pad-18-10 clear-btn">Clear <svg

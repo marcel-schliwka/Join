@@ -652,3 +652,14 @@ function checkIfElementIsValid(element) {
     return false;
   }
 }
+
+function templateAddTaskButton() {
+  document.querySelector(
+    "body"
+  ).innerHTML += `      <button onclick="getAssignedContacts()" type="submit" id="addTaskBtn"
+  class="font20 pad-18-15 create-btn create-btn-web">Create Task <svg xmlns="http://www.w3.org/2000/svg"
+    width="25" height="25" viewBox="0 0 25 25" fill="none">
+    <path d="M4.0166 12.1704L10.0166 18.1704L20.0166 6.17041" stroke="white" stroke-width="2"
+      stroke-linecap="round" stroke-linejoin="round" />
+  </svg></button>`;
+}
