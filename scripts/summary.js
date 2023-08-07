@@ -15,6 +15,10 @@ function updateHTML() {
   renderTopLogo(userObj);
 }
 
+function redirect() {
+  window.location.href = 'board.html';
+}
+
 function renderDeadline() {
   findNextDeadline();
   const boardVariables = getBoardVariable();
@@ -71,7 +75,7 @@ function formateDate(dateToFormat) {
 function getDeadlineDates() {
   const tasks = userObj.tasks;
   tasks.forEach((task) => {
-    if (task["prio"] == "urgent" && checkIfDateIsValid(task["date"])) {
+    if (checkIfDateIsValid(task["date"])) {
       deadlines.push(task["date"]);
     }
   });
