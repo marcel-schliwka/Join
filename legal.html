@@ -21,15 +21,20 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/legal.css">
     <link rel="stylesheet" href="styles/bootstrap.css">
+    <script src="scripts/storage.js"></script>
     <script src="scripts/sidebar.js"></script>
     <script>
         function goBack() {
             window.history.back();
         }
+        async function initLegal() {
+            userObj = await getLoggedInUser();
+            renderTopLogo(userObj);
+        }
     </script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); initLegal()">
     <div w3-include-html="./templates/sidebar.html"></div>
 
     <div class="legal-notice-section">

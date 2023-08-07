@@ -22,14 +22,19 @@
     <link rel="stylesheet" href="styles/help.css">
     <link rel="stylesheet" href="styles/bootstrap.css">
     <script src="scripts/sidebar.js"></script>
+    <script src="scripts/storage.js"></script>
     <script>
         function goBack() {
             window.history.back();
         }
+        async function initHelp() {
+            userObj = await getLoggedInUser();
+            renderTopLogo(userObj);
+        }
     </script>
 </head>
 
-<body onload="includeHTML()">
+<body onload="includeHTML(); initHelp()">
     <div w3-include-html="./templates/sidebar.html"></div>
     <div class="help-section">
         <div class="top-section">
@@ -87,7 +92,8 @@
             </div>
             <div class="explanation-section">
                 <div>
-                    <p class="font16">Here is a step-by-step guide on how to use <a class="join-link" href="#">Join</a>:</p>
+                    <p class="font16">Here is a step-by-step guide on how to use <a class="join-link" href="#">Join</a>:
+                    </p>
                 </div>
                 <div class="explanation-div">
                     <h2 class="font27">1.</h2>
