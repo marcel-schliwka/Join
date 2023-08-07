@@ -291,6 +291,21 @@ function openContact(card) {
   dialogContact.show();
 }
 
+function showNewContact(name) {
+  let newContact = getContact(name);
+  dialogContact.show();
+  let profilePic = document.querySelector(".dialog__circle");
+  profilePic.innerHTML = getInitials(name);
+  profilePic.style.backgroundColor = `${colors[getColorSign(name)]}`;
+  debugger;
+  dialogElements.name.innerText = newContact.name;
+  dialogElements.email.innerText = newContact.email;
+  dialogElements.email.href = `mailto:${newContact.email}`;
+  dialogElements.phone.innerText = newContact.number;
+  dialogElements.phone.href = `tel:${newContact.number}`;
+
+}
+
 function getContact(searchedName) {
   let filteredContact = contacts.filter(
     (contact) => contact.name === searchedName
@@ -429,6 +444,7 @@ function addNewContact() {
   dialogBackground.classList.add("d-none");
   cancelCreateContact();
   renderContactList();
+  showNewContact(inputName);
 }
 
 /**
