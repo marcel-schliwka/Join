@@ -727,7 +727,7 @@ li {
     top: 11px;
     right: 25px;
     height: 57px;
-    width: 118px;
+    width: 130px;
   }
 
   #subtask-content {
@@ -745,6 +745,22 @@ li {
     margin-left: 20px;
   }
 }
+
+@media (max-width: 385px) {
+  .add-task-section form {
+    margin-left: 12px;
+  }
+}
+
+@media (max-width: 350px) {
+  .create-btn-responsive {
+    top: 12px;
+    right: 10px;
+    height: 55px;
+    width: 126px;
+  }
+}
+
 
 @media (max-width: 330px) {
 
@@ -868,8 +884,6 @@ li {
 }
 
 @media (max-width: 310px) {
-  @media(max-width: 340px) {
-
     .categorys,
     #render-categorys,
     #title-input,
@@ -922,7 +936,7 @@ li {
       height: 62px;
     }
   }
-}
+
 
 
 @media only screen and (max-width: 760px) and (min-width: 429px) {
@@ -1442,5 +1456,14 @@ li {
 @media (max-width: 760px) {
   .create-btn-responsive {
     display: flex !important;
+  }
+}
+
+@media(max-width: 310px) {
+  .create-btn-responsive {
+    right: 10px;
+    top: 17.8px;
+    width: 135px;
+    height: 50px;
   }
 }
