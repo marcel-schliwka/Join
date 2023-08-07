@@ -7,8 +7,13 @@ body {
     margin: 110px 96px 0px 328px;
     display: flex;
     flex-direction: column;
-    
 }
+
+.privacy-section a {
+    text-decoration: none;
+    color: #29ABE2;
+}
+
 
 .privacy-head {
     display: flex;
@@ -67,6 +72,7 @@ main {
 .privacy-svg {
     margin-top: 22px;
 }
+
 
 @media (max-width: 900px) {
     .privacy-section {
