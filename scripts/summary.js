@@ -15,6 +15,10 @@ function updateHTML() {
   renderTopLogo(userObj);
 }
 
+function redirect() {
+  window.location.href = 'board.html';
+}
+
 function renderDeadline() {
   findNextDeadline();
   const boardVariables = getBoardVariable();
