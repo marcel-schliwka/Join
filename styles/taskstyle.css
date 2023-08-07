@@ -742,8 +742,7 @@ li {
 
 @media (max-width: 400px) {
   .add-task-section form {
-    margin-left: 0;
-    align-items: center;
+    margin-left: 20px;
   }
 }
 
