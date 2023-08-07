@@ -297,13 +297,11 @@ function showNewContact(name) {
   let profilePic = document.querySelector(".dialog__circle");
   profilePic.innerHTML = getInitials(name);
   profilePic.style.backgroundColor = `${colors[getColorSign(name)]}`;
-  debugger;
   dialogElements.name.innerText = newContact.name;
   dialogElements.email.innerText = newContact.email;
   dialogElements.email.href = `mailto:${newContact.email}`;
   dialogElements.phone.innerText = newContact.number;
   dialogElements.phone.href = `tel:${newContact.number}`;
-
 }
 
 function getContact(searchedName) {
@@ -444,7 +442,15 @@ function addNewContact() {
   dialogBackground.classList.add("d-none");
   cancelCreateContact();
   renderContactList();
+  addNewContactPopup();
   showNewContact(inputName);
+  setTimeout(function () {
+    document.getElementById('contacts-btn-container').classList.add('resp-none');
+  }, 2500)
+}
+
+function addNewContactPopup() {
+  document.getElementById('contacts-btn-container').classList.remove('resp-none');
 }
 
 /**

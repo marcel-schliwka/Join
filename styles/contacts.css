@@ -22,6 +22,7 @@ body {
   align-items: center;
   justify-content: space-around;
   gap: 16px;
+  padding-top: 24px;
 }
 
 .background-dialog {
@@ -329,7 +330,7 @@ body {
 
 #contactsMain {
   padding-left: 4%;
-  padding-top: 80px;
+  padding-top: 24px;
   width: 100%;
 }
 
@@ -339,6 +340,22 @@ body {
   bottom: 20px;
 }
 
+.add-to-contacts-btn {
+  display: flex;
+  position: absolute;
+  bottom: 10%;
+  left: calc(116px + 50%);
+  transform: translateX(-50%);
+  width: 326px;
+  height: 74px;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 20px;
+  background: #2a3647;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+  color: white;
+  z-index: 10000;
+}
 /*         //          OVERLAY            //        */
 /* GENERAL STYLING */
 .pop-up-overlay {
@@ -520,6 +537,10 @@ body {
 }
 
 @media only screen and (max-width: 760px) {
+
+  .add-to-contacts-btn {
+    left: 50%;
+  }
 
   #contactsListContainer {
     width: 100%;
