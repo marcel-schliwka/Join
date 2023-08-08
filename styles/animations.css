@@ -50,3 +50,9 @@
   background: rgba(0, 0, 0, 0.5) !important;
   z-index: 999;
 }
+
+@media(max-width: 949px) {
+  .modal-backdrop {
+    display: none !important;
+  }
+}
