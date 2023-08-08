@@ -15,8 +15,8 @@ function updateHTML() {
   renderTopLogo(userObj);
 }
 
-function redirect() {
-  window.location.href = 'board.html';
+function redirect(url) {
+  window.location.href = url;
 }
 
 function renderDeadline() {
