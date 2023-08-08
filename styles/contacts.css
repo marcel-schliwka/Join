@@ -536,6 +536,16 @@ body {
   }
 }
 
+@media only screen and (max-width: 1000px) and (min-width: 760px) {
+  #createContactForm {
+    gap: 1.5em;
+    margin-top: 30px;
+  }
+  .dialog__createRightImg {
+    margin-top: 60px;
+  }
+}
+
 @media only screen and (max-width: 760px) {
 
   .add-to-contacts-btn {
@@ -744,7 +754,7 @@ body {
   }
 }
 
-@media only screen and (min-width: 760px) and (max-width: 1001px) {
+@media only screen and (min-width: 761px) and (max-width: 1001px) {
   #contactsMain {
     z-index: 1;
     background-color: #f6f7f8;
