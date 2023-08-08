@@ -700,9 +700,9 @@ body {
   #dialog__editContact,
   #dialog__createContact {
     flex-direction: column;
-    height: 76%;
-    top: 64px;
-    bottom: 203px;
+    height: 80%;
+    top: 80px;
+    bottom: 82px;
     width: 90%;
     background-color: white;
   }
@@ -725,6 +725,7 @@ body {
   .dialog__createRightImg {
     position: absolute;
     top: calc(50px - 50%);
+    margin-top: 10px;
   }
 
   .contacts-header {
@@ -751,6 +752,8 @@ body {
   .dialog__editRightForm,
   .dialog__createRightForm {
     width: 80%;
+    margin-top: 10px;
+    gap: 1.5em;
   }
 }
 
