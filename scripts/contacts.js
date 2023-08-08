@@ -369,6 +369,7 @@ function editContact() {
   editDialogElements.editDialog.classList.remove("resp-none");
   editDialogElements.editDialog.classList.add("show-edit-dialog");
   dialogBackground.classList.remove("d-none");
+  editDialogElements.inputName.value = dialogElements.name.innerText;
   editDialogElements.inputEmail.value = dialogElements.email.innerText;
   editDialogElements.inputPhone.value = dialogElements.phone.innerText;
 }
