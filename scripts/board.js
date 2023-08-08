@@ -113,6 +113,9 @@ function renderAllInProgress() {
 
 function addTaskByStatus(status) {
   saveStatusLocalstorage(status);
+  document
+    .querySelector(".popUpBoardTask")
+    .setAttribute("onsubmit", `addTask('${status}', event); return false`);
   openModal(document.querySelector(".modal"));
 }
 
