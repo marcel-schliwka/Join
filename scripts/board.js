@@ -26,6 +26,12 @@ function clearAllTasks() {
   document.getElementById("awaitingFeedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
 }
+
+let w = window.innerWidth;
+let h = window.innerHeight;
+
+console.log(w, h);
+
 // --------------- TODO --------------- \\
 function renderAllToDos() {
   let stillToDo = userObj.tasks.filter((t) => t["status"] == "to do");

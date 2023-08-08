@@ -1,8 +1,17 @@
 function openModal(modal) {
-  modal.classList.remove("out");
-  modal.classList.add("in");
-  document.querySelector(".modal-backdrop").style.display = "flex";
-  clearAll();
+  let w = window.innerWidth;
+  if (w < 950) {
+    redirect('addTask.html')
+  } else {
+    modal.classList.remove("out");
+    modal.classList.add("in");
+    document.querySelector(".modal-backdrop").style.display = "flex";
+    clearAll();
+  }
+}
+
+function redirect(url) {
+    window.location.href = url;
 }
 
 function closeModal(modal) {
