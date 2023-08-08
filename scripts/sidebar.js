@@ -26,7 +26,7 @@ function markSiteAsActive() {
     document.querySelector(".addtask-site").classList.add("activeSite");
   }
   if (siteName == "contacts") {
-    document.querySelector(".contacts-site").classList.add("activeSite");
+    document.querySelector(".contact-site").classList.add("activeSite");
   }
 }
 

@@ -398,7 +398,6 @@ function renderContacts() {
   contacts.innerHTML += generateUserAssignedHTML();
   for (let i = 0; i < userObj.contacts.length; i++) {
     const contact = userObj.contacts[i];
-    console.log(contact);
     contacts.innerHTML += renderContactsHTML(contact, i);
   }
   contacts.innerHTML += generateAddNewContact();
