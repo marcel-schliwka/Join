@@ -1,5 +1,6 @@
 // Global Variables
 const dialogContact = document.getElementById("dialogContact");
+const editDialogContact = document.getElementById('dialog__editContact');
 const dialogBackground = document.querySelector(".background-dialog");
 let userObj;
 
@@ -19,7 +20,7 @@ const editDialogElements = {
   inputPhone: document.getElementById("dialog__editPhoneInput"),
   closeDialog: document.getElementById("dialog__editClose"),
   saveBtn: document.getElementById("dialog__saveBtn"),
-  deleteBtn: document.getElementById("dialog__deleteBtn"),
+  deleteBtn: document.getElementById("dialog__editDeleteBtn"),
 };
 
 const createDialogElements = {
@@ -264,6 +265,7 @@ let startEventListener = () => {
   });
   dialogElements.deleteBtn.addEventListener("click", () => deleteContact());
   dialogElements.editBtn.addEventListener("click", () => editContact());
+  editDialogElements.deleteBtn.addEventListener('click', () => deleteContact());
   editDialogElements.closeDialog.addEventListener("click", () =>
     closeEditDialog()
   );
@@ -345,6 +347,8 @@ function changeDialogInfo(contact) {
 function deleteContact() {
   dialogElements.fromCard.remove();
   dialogContact.close();
+  editDialogContact.classList.add('resp-none');
+  dialogBackground.classList.add("d-none");
   contacts.splice(getContactIndex(dialogElements.name.innerText), 1);
   deleteInitial(dialogElements.name.innerText);
 }

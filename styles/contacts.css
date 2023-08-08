@@ -946,6 +946,9 @@ body {
 }
 
 @media only screen and (min-width: 1001px) and (max-width: 1100px) {
+  #contactsListContainer {
+    width: 383px;
+  }
 
   .contacts-header {
     gap: 16px;
@@ -971,6 +974,10 @@ body {
 }
 
 @media only screen and (min-width: 1001px) and (max-width: 1250px) {
+  #contactsListContainer {
+    width: 383px;
+  }
+
   #dialog__editContact, 
   #dialog__createContact {
     left: 20%;
