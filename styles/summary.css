@@ -119,6 +119,15 @@
 }
 
 @media screen and (max-width: 1001px) {
+  .parentDiv {
+    padding-left: 16px;
+  }
+  
+  .childDiv {
+    display: grid;
+    grid-template-columns: unset;
+  }
+
   .secondContainer {
     display: none;
   }
