@@ -62,6 +62,14 @@ function getStatusLocalStorage() {
   return statusAsText;
 }
 
+window.addEventListener('load', function () {
+  if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+    spliceStatusLocalStorage();
+  }
+});
+
+
+
 
 
 // match with memberColor
