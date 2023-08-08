@@ -232,6 +232,8 @@ body {
   margin-right: 59px;
 }
 
+
+
 #description-input {
   height: 119px;
 }
@@ -616,6 +618,12 @@ li {
 #hidden-error p {
   color: red;
   padding-left: 15px;
+}
+
+.add-task-form-bord {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (max-width: 428px) {
