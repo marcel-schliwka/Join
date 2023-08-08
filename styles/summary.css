@@ -79,6 +79,13 @@ h1 {
   border-radius: 30px;
 }
 
+.custom-border:hover {
+  cursor: pointer;
+  background-color: rgba(42, 54, 71, 255);
+  color: white;
+  transform: scale(1.05);
+}
+
 /*Main*/
 
 .summary {
