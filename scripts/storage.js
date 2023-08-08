@@ -47,6 +47,22 @@ function getColorSign(name) {
 }
 
 
+function saveStatusLocalstorage(value) {
+  let statusAsText = JSON.stringify(value);
+  localStorage.setItem('status', statusAsText);
+}
+
+function spliceStatusLocalStorage() {
+  localStorage.removeItem('status');
+}
+
+function getStatusLocalStorage() {
+  let statusAsText = JSON.parse(localStorage.getItem('status'));
+  console.log(statusAsText);
+  return statusAsText;
+}
+
+
 
 // match with memberColor
 // return colorcode memberColor[getColorSign()]

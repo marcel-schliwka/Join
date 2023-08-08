@@ -27,10 +27,6 @@ function clearAllTasks() {
   document.getElementById("done").innerHTML = "";
 }
 
-let w = window.innerWidth;
-let h = window.innerHeight;
-
-console.log(w, h);
 
 // --------------- TODO --------------- \\
 function renderAllToDos() {
@@ -116,6 +112,7 @@ function renderAllInProgress() {
 }
 
 function addTaskByStatus(status) {
+  saveStatusLocalstorage(status);
   document
     .querySelector(".popUpBoardTask")
     .setAttribute("onsubmit", `addTask('${status}', event); return false`);

@@ -103,8 +103,11 @@ function clearAssigned() {
  * the objects gets pushed into the server
  *
  */
-function addTask(status, event) {
-  if (status === undefined) {
+function addTask() {
+
+  let status = getStatusLocalStorage();
+
+  if (status === null) {
     status = "to do";
   }
   getSubtasks();

@@ -15,6 +15,7 @@ function redirect(url) {
 }
 
 function closeModal(modal) {
+  spliceStatusLocalStorage();
   modal.addEventListener("animationend", () => {
     if (modal.classList.contains("out")) {
       modal.style.display = "none";
