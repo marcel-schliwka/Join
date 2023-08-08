@@ -46,6 +46,10 @@ function getColorSign(name) {
   return colorSign;
 }
 
+function redirect(url) {
+  spliceStatusLocalStorage();
+  window.location.href = url;
+}
 
 function saveStatusLocalstorage(value) {
   let statusAsText = JSON.stringify(value);
