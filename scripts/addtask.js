@@ -116,6 +116,7 @@ function addTask() {
   setItem(userObj.email, JSON.stringify(userObj));
   clearAll();
   showBoardButton();
+  spliceStatusLocalStorage();
   setTimeout(function () {
     redirectTo("board.html");
   }, 1000);
