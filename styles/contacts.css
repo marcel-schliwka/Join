@@ -536,6 +536,16 @@ body {
   }
 }
 
+@media only screen and (max-width: 1000px) and (min-width: 760px) {
+  #createContactForm {
+    gap: 1.5em;
+    margin-top: 30px;
+  }
+  .dialog__createRightImg {
+    margin-top: 60px;
+  }
+}
+
 @media only screen and (max-width: 760px) {
 
   .add-to-contacts-btn {
@@ -690,9 +700,9 @@ body {
   #dialog__editContact,
   #dialog__createContact {
     flex-direction: column;
-    height: 76%;
-    top: 64px;
-    bottom: 203px;
+    height: 80%;
+    top: 80px;
+    bottom: 82px;
     width: 90%;
     background-color: white;
   }
@@ -715,6 +725,7 @@ body {
   .dialog__createRightImg {
     position: absolute;
     top: calc(50px - 50%);
+    margin-top: 10px;
   }
 
   .contacts-header {
@@ -741,10 +752,12 @@ body {
   .dialog__editRightForm,
   .dialog__createRightForm {
     width: 80%;
+    margin-top: 10px;
+    gap: 1.5em;
   }
 }
 
-@media only screen and (min-width: 760px) and (max-width: 1001px) {
+@media only screen and (min-width: 761px) and (max-width: 1001px) {
   #contactsMain {
     z-index: 1;
     background-color: #f6f7f8;
