@@ -208,40 +208,95 @@ function confirmPasswordIsSame(password, confirmedPassword) {
     return false;
   }
 }
+/**
+ * Registers a new user by checking the user's input and adding them to the system.
+ * @async
+ * @returns {Promise<void>}
+ */
 async function registerUser() {
-  let signupBtn = document.getElementById("signupBtn");
-  signupBtn.disabled = true;
-  let name = document.getElementById("name");
-  let email = document.getElementById("email");
-  let password = document.getElementById("password");
-  let confirmPassword = document.getElementById("confirmPassword");
+  const elements = getFormElements();
+  if (checkIfUserExists(elements.email.value))
+    return handleExistingUser(elements.signupBtn);
 
-  if (checkIfUserExists(email.value)) {
-    showLogin();
-    showTopDown("This User exists, please log in!");
-    signupBtn.disabled = false;
-    return 0;
-  }
+  const passwordsMatch = await handlePasswordMatch(elements);
+  if (!passwordsMatch) return handlePasswordMismatch(elements.signupBtn);
 
-  if (confirmPasswordIsSame(password.value, confirmPassword.value)) {
-    let hashedPwd = await hashPassword(password.value);
+  await finalizeRegistration(elements);
+}
+
+/**
+ * Retrieves form elements used in the registration process.
+ * @returns {Object} - Contains references to HTML elements.
+ */
+function getFormElements() {
+  return {
+    signupBtn: document.getElementById("signupBtn"),
+    name: document.getElementById("name"),
+    email: document.getElementById("email"),
+    password: document.getElementById("password"),
+    confirmPassword: document.getElementById("confirmPassword"),
+  };
+}
+
+/**
+ * Handles scenarios when a user already exists.
+ * @param {HTMLElement} signupBtn - The button element used for signing up.
+ * @returns {number} - Returns 0 to indicate early exit from the function.
+ */
+function handleExistingUser(signupBtn) {
+  showLogin();
+  showTopDown("This User exists, please log in!");
+  signupBtn.disabled = false;
+  return 0;
+}
+
+/**
+ * Checks if the passwords provided match and if so, adds the user to the system.
+ * @async
+ * @param {Object} elements - The form elements.
+ * @returns {Promise<boolean>} - True if the passwords match, false otherwise.
+ */
+async function handlePasswordMatch(elements) {
+  if (
+    confirmPasswordIsSame(
+      elements.password.value,
+      elements.confirmPassword.value
+    )
+  ) {
+    let hashedPwd = await hashPassword(elements.password.value);
     users.push({
-      name: name.value,
-      email: email.value,
+      name: elements.name.value,
+      email: elements.email.value,
       password: hashedPwd,
     });
     await setItem("users", JSON.stringify(users));
-  } else {
-    showTopDown("Your passwords are not similar!");
-    signupBtn.disabled = false;
-    return 0;
+    return true;
   }
+  return false;
+}
 
-  resetForm(name);
-  resetForm(email);
-  resetForm(password);
-  resetForm(confirmPassword);
+/**
+ * Handles scenarios when the passwords do not match.
+ * @param {HTMLElement} signupBtn - The button element used for signing up.
+ * @returns {number} - Returns 0 to indicate early exit from the function.
+ */
+function handlePasswordMismatch(signupBtn) {
+  showTopDown("Your passwords are not similar!");
   signupBtn.disabled = false;
+  return 0;
+}
+
+/**
+ * Finalizes the registration process, resets the form, and shows a success message.
+ * @async
+ * @param {Object} elements - The form elements.
+ * @returns {Promise<void>}
+ */
+async function finalizeRegistration(elements) {
+  ["name", "email", "password", "confirmPassword"].forEach((el) =>
+    resetForm(elements[el])
+  );
+  elements.signupBtn.disabled = false;
   showLogin();
   showTopDown("You are registered!");
 }
@@ -263,23 +318,72 @@ function getLoginFormInput() {
   return input;
 }
 
+/**
+ * Logs in a user based on form input, after validating the credentials.
+ * @async
+ * @returns {Promise<void>}
+ */
 async function login() {
-  let formInput = getLoginFormInput();
-  let user = users.find((user) => user.email === formInput.email);
-  let hashPwd = await hashPassword(formInput.password);
-  console.log(hashPwd);
-  if (user && user.password === hashPwd) {
-    localStorage.setItem("userData", JSON.stringify(user));
-    localStorage.setItem("activeUser", user.email);
-    await createUserObject(user);
-    if (formInput.remember) {
-      saveRememberMe(user);
-    }
-  } else {
-    alert("Your email or password is wrong!");
+  const formInput = getLoginFormInput();
+  const user = findUserByEmail(formInput.email);
+  const isValidLogin = await validateLogin(user, formInput.password);
+
+  if (!isValidLogin) {
+    showTopDown("Your email or password is wrong!");
     return;
   }
+
+  setLoginSession(user, formInput.remember);
   window.location.href = "summary.html";
+}
+
+/**
+ * Retrieves login form input values.
+ * @returns {Object} - Contains values of the login form fields.
+ */
+function getLoginFormInput() {
+  return {
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value,
+    remember: document.getElementById("remember").checked,
+  };
+}
+
+/**
+ * Finds a user in the system by email.
+ * @param {string} email - The email to search for.
+ * @returns {(Object|null)} - Returns the user object if found, null otherwise.
+ */
+function findUserByEmail(email) {
+  return users.find((user) => user.email === email);
+}
+
+/**
+ * Validates the login credentials against stored users.
+ * @async
+ * @param {Object|null} user - The user object.
+ * @param {string} password - The plain text password to validate.
+ * @returns {Promise<boolean>} - True if the login credentials are valid, false otherwise.
+ */
+async function validateLogin(user, password) {
+  if (!user) return false;
+
+  const hashPwd = await hashPassword(password);
+  return user.password === hashPwd;
+}
+
+/**
+ * Sets the login session and user data in local storage.
+ * @async
+ * @param {Object} user - The user object.
+ * @param {boolean} remember - Indicates whether to remember the user or not.
+ * @returns {Promise<void>}
+ */
+async function setLoginSession(user, remember) {
+  localStorage.setItem("userData", JSON.stringify(user));
+  localStorage.setItem("activeUser", user.email);
+  await createUserObject(user);
+  if (remember) saveRememberMe(user);
 }
 
 async function createUserObject(user) {
@@ -297,66 +401,56 @@ async function createUserObject(user) {
   }
 }
 
+/**
+ * Checks if a user object exists based on the email.
+ * @async
+ * @param {string} email - The email of the user to check.
+ * @returns {Promise<boolean>} - True if the user object exists, false otherwise.
+ */
 async function checkIfUserObjectExists(email) {
   try {
-    let userObject = await getItem(email);
+    await getItem(email);
+    return true;
   } catch (e) {
     return false;
   }
-  return true;
 }
 
+/**
+ * Saves the current user's data in local storage for quick access.
+ * @param {Object} user - The user object to be saved.
+ */
 function saveRememberMe(user) {
   localStorage.setItem("currentUser", JSON.stringify(user));
 }
 
+/**
+ * Checks if a user is logged in by inspecting local storage.
+ * Redirects to a summary page if a user is found.
+ */
 function checkIfUserIsLoggedIn() {
-  let user = localStorage.getItem("activeUser");
-  if (user === null) {
-    console.info("No User was saved in local storage");
-  } else {
+  const user = localStorage.getItem("activeUser");
+  if (user) {
     window.location.href = "summary.html";
-  }
-}
-
-function showTopDown(message) {
-  let popup = document.getElementById("topdownMessages");
-  popup.innerHTML = message;
-  popup.classList.add("show-topdown");
-  setTimeout(() => {
-    popup.classList.remove("show-topdown");
-  }, 5000);
-}
-
-async function guestLogin() {
-  let formInput = {
-    email: "guest@test.de",
-    password:
-      "ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae",
-    remember: false,
-  };
-  let user = users.find((user) => user.email === formInput.email);
-  if (user && user.password === formInput.password) {
-    localStorage.setItem("userData", JSON.stringify(user));
-    localStorage.setItem("activeUser", user.email);
-    await createUserObject(user);
-    if (formInput.remember) {
-      saveRememberMe(user);
-    }
   } else {
-    alert("Your email or password is wrong!");
-    return;
+    console.info("No User was saved in local storage");
   }
+}
+
+/**
+ * Logs in a guest user and redirects to a summary page.
+ * @async
+ */
+async function guestLogin() {
+  localStorage.setItem("activeUser", "guest@test.de");
   window.location.href = "summary.html";
 }
 
-/* Old version, added new version to create an userObj for guests
-function guestLogin() {
-  localStorage.setItem("activeUser", "guest");
-  window.location.href = `summary.html`;
-}
-*/
-
+/**
+ * Handles the submission of the forgot password form.
+ * Sends a password reset email if the user exists or prompts the user to sign up if not.
+ * @param {Event} e - The form submit event.
+ */
 function sendPasswordMail(e) {
   e.preventDefault();
   if (checkIfUserExists(document.getElementById("forgotPasswordInput").value)) {
@@ -367,7 +461,12 @@ function sendPasswordMail(e) {
   showLogin();
 }
 
-// Create a secure hash and stores the hash instead of the password
+/**
+ * Hashes a given password using SHA-256.
+ * @async
+ * @param {string} password - The plain text password to be hashed.
+ * @returns {Promise<string>} - The hashed password as a hexadecimal string.
+ */
 async function hashPassword(password) {
   const msgUint8 = new TextEncoder().encode(password);
   const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8);
