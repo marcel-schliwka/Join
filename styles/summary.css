@@ -124,6 +124,9 @@
   }
 }
 @media screen and (max-width: 825px) {
+  .firstContainer {
+    width: calc(75% + 30px);
+  }
   .headline-container {
     flex-direction: column;
     gap: 0;
@@ -137,12 +140,14 @@
   }
   .item-1 {
     grid-template-columns: 25% 25% 25%;
+    width: calc(75% + 30px);
   }
   .item-2 {
     width: calc(75% + 30px);
   }
   .item-3 {
     grid-template-columns: calc(37.5% + 7.5px) calc(37.5% + 7.5px);
+    width: calc(75% + 30px);
   }
 }
 
