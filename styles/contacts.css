@@ -957,7 +957,7 @@ body {
   }
 }
 
-@media only screen  and (max-width: 1250px) {
+@media only screen and (min-width: 1001px) and (max-width: 1250px) {
   #dialog__editContact, 
   #dialog__createContact {
     left: 20%;
