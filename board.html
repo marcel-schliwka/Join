@@ -59,7 +59,7 @@
   <body onload="initBoard(); includeHTML(); ">
     <div w3-include-html="./templates/sidebar.html"></div>
 
-    <div class="modal-backdrop modal">
+    <div class="modal-backdrop modal dNone">
       <form onsubmit="addTask(); return false" class="popUpBoardTask add-task-form-bord">
         <img src="./img/close.svg" alt="Close Add Task Form" class="boardTaskClose" onclick="closeModal(document.querySelector('.modal'))">
         <button onclick="getAssignedContacts()" type="submit"
@@ -195,7 +195,7 @@
       id="popUpBoard"
       class="dNone popUpBoardBackground display-flex justify-content-center align-items-center"
     ></div>
-    <div class="parentDiv paddingRight50Px">
+    <div class="parentDiv">
       <div class="d-flex justify-content-between mb-5 headline-container-board">
         <div class="size3Em bold headlineBoard">
           Board
@@ -207,7 +207,7 @@
           />
         </div>
 
-        <div class="d-flex align-items-center boardSearchBox">
+        <div class="d-flex align-items-center boardSearchBox paddingRight50Px">
           <div
             class="border ps-3 py-1 findTaskBtn d-flex justify-content-between align-items-center"
           >
