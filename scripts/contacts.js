@@ -1,34 +1,34 @@
 // Global Variables
-const dialogContact = document.getElementById("dialogContact");
+const dialogContact = document.getElementById('dialogContact');
 const editDialogContact = document.getElementById('dialog__editContact');
-const dialogBackground = document.querySelector(".background-dialog");
+const dialogBackground = document.querySelector('.background-dialog');
 let userObj;
 
 const dialogElements = {
-  name: document.getElementById("dialog__name"),
-  email: document.getElementById("dialog__email"),
-  phone: document.getElementById("dialog__phone"),
-  cardIndex: document.getElementById("dialog__cardIndex"),
-  deleteBtn: document.getElementById("dialog__deleteBtn"),
-  editBtn: document.getElementById("dialog__editBtn"),
+  name: document.getElementById('dialog__name'),
+  email: document.getElementById('dialog__email'),
+  phone: document.getElementById('dialog__phone'),
+  cardIndex: document.getElementById('dialog__cardIndex'),
+  deleteBtn: document.getElementById('dialog__deleteBtn'),
+  editBtn: document.getElementById('dialog__editBtn'),
 };
 
 const editDialogElements = {
-  editDialog: document.getElementById("dialog__editContact"),
-  inputName: document.getElementById("dialog__editNameInput"),
-  inputEmail: document.getElementById("dialog__editEmailInput"),
-  inputPhone: document.getElementById("dialog__editPhoneInput"),
-  closeDialog: document.getElementById("dialog__editClose"),
-  saveBtn: document.getElementById("dialog__saveBtn"),
-  deleteBtn: document.getElementById("dialog__editDeleteBtn"),
+  editDialog: document.getElementById('dialog__editContact'),
+  inputName: document.getElementById('dialog__editNameInput'),
+  inputEmail: document.getElementById('dialog__editEmailInput'),
+  inputPhone: document.getElementById('dialog__editPhoneInput'),
+  closeDialog: document.getElementById('dialog__editClose'),
+  saveBtn: document.getElementById('dialog__saveBtn'),
+  deleteBtn: document.getElementById('dialog__editDeleteBtn'),
 };
 
 const createDialogElements = {
-  createDialog: document.getElementById("dialog__createContact"),
-  closeDialog: document.getElementById("dialog__createClose"),
-  inputName: document.getElementById("dialog__createNameInput"),
-  inputEmail: document.getElementById("dialog__createEmailInput"),
-  inputPhone: document.getElementById("dialog__createPhoneInput"),
+  createDialog: document.getElementById('dialog__createContact'),
+  closeDialog: document.getElementById('dialog__createClose'),
+  inputName: document.getElementById('dialog__createNameInput'),
+  inputEmail: document.getElementById('dialog__createEmailInput'),
+  inputPhone: document.getElementById('dialog__createPhoneInput'),
 };
 
 /**
@@ -103,7 +103,7 @@ async function loadUserContacts() {
  * @returns void
  */
 function renderContactList() {
-  document.getElementById("contactsListContainer").innerHTML = "";
+  document.getElementById('contactsListContainer').innerHTML = '';
 
   sortInitialsGroup();
   renderInitials();
@@ -113,7 +113,7 @@ function renderContactList() {
 }
 
 function hideDialogElements() {
-  let dialogs = document.querySelectorAll("dialog");
+  let dialogs = document.querySelectorAll('dialog');
   dialogs.forEach(function (dialog) {
     dialog.close();
   });
@@ -134,7 +134,7 @@ function hideDialogElements() {
  * @function
  */
 function renderInitials() {
-  let container = document.getElementById("contactsListContainer");
+  let container = document.getElementById('contactsListContainer');
 
   for (const [key, value] of contactsSorted.entries()) {
     container.innerHTML += /*html*/ `
@@ -188,7 +188,7 @@ function generateCircleColor() {
   Object.keys(colors).forEach((key) => {
     let colorValue = colors[key];
     let colorSign = key;
-    let elements = document.querySelectorAll(".circle");
+    let elements = document.querySelectorAll('.circle');
     elements.forEach((element) => {
       if (element && element.id === colorSign) {
         element.style.backgroundColor = colorValue;
@@ -258,15 +258,15 @@ function sortContactsAlphabetically(sortedInitialsMap) {
  * @date 7/22/2023 - 3:04:10 PM
  */
 let startEventListener = () => {
-  let cards = document.querySelectorAll(".single-contact-card");
+  let cards = document.querySelectorAll('.single-contact-card');
   cards.forEach((card) => {
     let clickedCard = card;
-    card.addEventListener("click", () => openContact(clickedCard));
+    card.addEventListener('click', () => openContact(clickedCard));
   });
-  dialogElements.deleteBtn.addEventListener("click", () => deleteContact());
-  dialogElements.editBtn.addEventListener("click", () => editContact());
+  dialogElements.deleteBtn.addEventListener('click', () => deleteContact());
+  dialogElements.editBtn.addEventListener('click', () => editContact());
   editDialogElements.deleteBtn.addEventListener('click', () => deleteContact());
-  editDialogElements.closeDialog.addEventListener("click", () =>
+  editDialogElements.closeDialog.addEventListener('click', () =>
     closeEditDialog()
   );
 };
@@ -277,17 +277,17 @@ let startEventListener = () => {
  * @param {Object} card
  */
 function openContact(card) {
-  document.getElementById("contactsMain").classList.remove("contacts-none");
-  document.getElementById("contactsMain").classList.add("contacts-main");
-  document.getElementById("buttonRespBack").classList.remove("d-none");
-  const cardId = card.getAttribute("id");
+  document.getElementById('contactsMain').classList.remove("contacts-none");
+  document.getElementById('contactsMain').classList.add("contacts-main");
+  document.getElementById('buttonRespBack').classList.remove("d-none");
+  const cardId = card.getAttribute('id');
   dialogElements["fromCard"] = card;
-  dialogElements["initials"] = card.querySelector(".circle").innerText;
+  dialogElements["initials"] = card.querySelector('.circle').innerText;
   dialogElements["circleColor"] = card
     .querySelector(".circle")
     .getAttribute("style");
-  dialogElements["profilePic"] = document.querySelector(".dialog__circle");
-  const infoCardName = card.querySelector(".info__name").innerText.trim();
+  dialogElements["profilePic"] = document.querySelector('.dialog__circle');
+  const infoCardName = card.querySelector('.info__name').innerText.trim();
   let clickedContact = getContact(infoCardName);
   changeDialogInfo(clickedContact, cardId);
   dialogContact.show();
@@ -296,7 +296,7 @@ function openContact(card) {
 function showNewContact(name) {
   let newContact = getContact(name);
   dialogContact.show();
-  let profilePic = document.querySelector(".dialog__circle");
+  let profilePic = document.querySelector('.dialog__circle');
   profilePic.innerHTML = getInitials(name);
   profilePic.style.backgroundColor = `${colors[getColorSign(name)]}`;
   dialogElements.name.innerText = newContact.name;
@@ -348,7 +348,7 @@ function deleteContact() {
   dialogElements.fromCard.remove();
   dialogContact.close();
   editDialogContact.classList.add('resp-none');
-  dialogBackground.classList.add("d-none");
+  dialogBackground.classList.add('d-none');
   contacts.splice(getContactIndex(dialogElements.name.innerText), 1);
   deleteInitial(dialogElements.name.innerText);
 }
@@ -370,9 +370,9 @@ function deleteInitial(name) {
  * @function
  */
 function editContact() {
-  editDialogElements.editDialog.classList.remove("resp-none");
-  editDialogElements.editDialog.classList.add("show-edit-dialog");
-  dialogBackground.classList.remove("d-none");
+  editDialogElements.editDialog.classList.remove('resp-none');
+  editDialogElements.editDialog.classList.add('show-edit-dialog');
+  dialogBackground.classList.remove('d-none');
   editDialogElements.inputName.value = dialogElements.name.innerText;
   editDialogElements.inputEmail.value = dialogElements.email.innerText;
   editDialogElements.inputPhone.value = dialogElements.phone.innerText;
@@ -384,9 +384,9 @@ function editContact() {
  * @function
  */
 function closeEditDialog() {
-  editDialogElements.editDialog.classList.add("resp-none");
-  editDialogElements.editDialog.classList.remove("show-edit-dialog");
-  dialogBackground.classList.add("d-none");
+  editDialogElements.editDialog.classList.add('resp-none');
+  editDialogElements.editDialog.classList.remove('show-edit-dialog');
+  dialogBackground.classList.add('d-none');
 }
 
 /**
@@ -412,9 +412,9 @@ function saveEditDialog() {
  * @function
  */
 function openCreateContact() {
-  createDialogElements.createDialog.classList.remove("resp-none");
-  createDialogElements.createDialog.classList.add("show-edit-dialog");
-  dialogBackground.classList.remove("d-none");
+  createDialogElements.createDialog.classList.remove('resp-none');
+  createDialogElements.createDialog.classList.add('show-edit-dialog');
+  dialogBackground.classList.remove('d-none');
 }
 
 /**
@@ -423,9 +423,9 @@ function openCreateContact() {
  * @function
  */
 function cancelCreateContact() {
-  createDialogElements.createDialog.classList.add("resp-none");
-  createDialogElements.createDialog.classList.remove("show-edit-dialog");
-  dialogBackground.classList.add("d-none");
+  createDialogElements.createDialog.classList.add('resp-none');
+  createDialogElements.createDialog.classList.remove('show-edit-dialog');
+  dialogBackground.classList.add('d-none');
 }
 
 /**
@@ -443,8 +443,8 @@ function addNewContact() {
     email: createDialogElements.inputEmail.value.trim(),
     number: createDialogElements.inputPhone.value.trim(),
   });
-  document.getElementById("createContactForm").reset();
-  dialogBackground.classList.add("d-none");
+  document.getElementById('createContactForm').reset();
+  dialogBackground.classList.add('d-none');
   cancelCreateContact();
   renderContactList();
   addNewContactPopup();
@@ -469,9 +469,9 @@ function addNewContactPopup() {
  */
 function capitalizeFirstLetterOfEveryWord(input) {
   return input
-    .split(" ")
+    .split(' ')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+    .join(' ');
 }
 
 /**
@@ -480,10 +480,10 @@ function capitalizeFirstLetterOfEveryWord(input) {
  * @function
  */
 function closeDialog() {
-  if (editDialogElements.editDialog.classList.contains("show-edit-dialog")) {
+  if (editDialogElements.editDialog.classList.contains('show-edit-dialog')) {
     closeEditDialog();
   } else if (
-    createDialogElements.createDialog.classList.contains("show-edit-dialog")
+    createDialogElements.createDialog.classList.contains('show-edit-dialog')
   ) {
     cancelCreateContact();
   }
@@ -496,17 +496,17 @@ function closeDialog() {
  */
 function showResponsiveOptions() {
   document
-    .getElementById("responsiveOptionsContacts")
-    .classList.remove("d-none");
+    .getElementById('responsiveOptionsContacts')
+    .classList.remove('d-none');
 }
 
 function closeResponsiveOptions() {
-  document.getElementById("responsiveOptionsContacts").classList.add("d-none");
+  document.getElementById('responsiveOptionsContacts').classList.add('d-none');
 }
 
 function closeWindow() {
-  document.getElementById("contactsMain").classList.add("contacts-none");
-  document.getElementById("contactsMain").classList.remove("contacts-main");
-  document.getElementById("buttonRespBack").classList.add("d-none");
-  editDialogElements.editDialog.classList.add("resp-none");
+  document.getElementById('contactsMain').classList.add('contacts-none');
+  document.getElementById('contactsMain').classList.remove('contacts-main');
+  document.getElementById('buttonRespBack').classList.add('d-none');
+  editDialogElements.editDialog.classList.add('resp-none');
 }
