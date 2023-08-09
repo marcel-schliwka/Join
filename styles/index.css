@@ -194,11 +194,6 @@ form {
   justify-content: center;
 }
 
-.headline-container {
-  display: flex;
-  gap: 50px;
-}
-
 .footer-container {
   display: flex;
   gap: 16px;
