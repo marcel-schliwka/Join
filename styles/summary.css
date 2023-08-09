@@ -110,6 +110,7 @@ h3 {
   align-items: center;
   margin-bottom: 57px;
 }
+
 .urgent-right {
   display: flex;
   flex-direction: column;
@@ -214,6 +215,7 @@ h3 {
     margin-left: 300px;
     margin-top: 60px;
   }
+
   .sumamry-content {
     gap: 40px;
   }
@@ -224,23 +226,28 @@ h3 {
     margin-left: 280px;
     margin-top: 50px;
   }
+
   .main-top {
     gap: 20px;
   }
+
   .main-bottom {
     gap: 20px;
   }
+
   .task-board,
   .task-progress,
   .task-feedback {
     height: 150px;
     width: 150px;
   }
+
   .to-do,
   .done {
     width: 235px;
     height: 150px;
   }
+
   .main-middle {
     height: 150px;
     margin-top: 0px;
@@ -249,6 +256,7 @@ h3 {
 }
 
 @media(max-width: 1140px) {
+
   .summary-header h1,
   #task-count,
   #progress-count,
@@ -258,9 +266,11 @@ h3 {
   #done-count {
     font-size: 50px;
   }
+
   .summary-header h3 {
     font-size: 24px;
   }
+
   .task-board span,
   .task-progress span,
   .task-feedback span,
@@ -270,7 +280,7 @@ h3 {
   .deadline-text {
     font-size: 16px;
   }
-  
+
   #urgent-deadline {
     font-size: 18px;
   }
@@ -299,6 +309,7 @@ h3 {
   .summary-header h1 {
     font-size: 47px;
   }
+
   .summary-header h3 {
     font-size: 20px;
   }
@@ -311,6 +322,7 @@ h3 {
   #done-count {
     font-size: 47px;
   }
+
   .task-board span,
   .task-progress span,
   .task-feedback span,
@@ -320,9 +332,11 @@ h3 {
   .deadline-text {
     font-size: 14px;
   }
+
   #urgent-deadline {
     font-size: 16px;
   }
+
   img {
     height: 40px;
     width: 40px;
@@ -347,7 +361,6 @@ h3 {
   .summary-content {
     margin-top: -20px;
   }
-
 
 
   .summary-header svg {
@@ -420,12 +433,14 @@ h3 {
 
 
 @media (max-width: 530px) {
+
   .task-board,
   .task-progress,
   .task-feedback {
     height: 116px;
     width: 116px;
   }
+
   .to-do,
   .done {
     width: 186px;
@@ -458,7 +473,9 @@ h3 {
     height: 110px;
   }
 }
+
 @media (max-width: 410px) {
+
   #task-count,
   #progress-count,
   #feedback-count,
@@ -479,6 +496,7 @@ h3 {
     height: 100px;
     width: 100px;
   }
+
   .to-do,
   .done {
     width: 162px;
@@ -536,12 +554,14 @@ h3 {
     gap: 14px;
     height: 90px;
   }
+
   .task-board,
   .task-progress,
   .task-feedback {
     height: 90px;
     width: 90px;
   }
+
   .main-top {
     height: 90px
   }
@@ -557,6 +577,7 @@ h3 {
     width: 140px;
     height: 90px;
   }
+
   #task-count,
   #progress-count,
   #feedback-count,
@@ -566,11 +587,12 @@ h3 {
     font-size: 32px;
   }
 }
- 
+
 @media (max-height: 700px) {
   .summary {
     margin-top: 5px;
   }
+
   main {
     gap: 20px;
   }
