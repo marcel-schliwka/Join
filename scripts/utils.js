@@ -38,7 +38,7 @@ function showTopDown(message) {
       popup.style.opacity = 1 - (elapsed - 4000) / 1000;
       if (elapsed > 5000) {
         popup.remove();
-        return; // Beenden Sie die Animation, indem Sie die Funktion nicht erneut aufrufen
+        return;
       }
     }
     requestAnimationFrame(animate);

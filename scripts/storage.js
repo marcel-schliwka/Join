@@ -72,14 +72,6 @@ window.addEventListener('load', function () {
   }
 });
 
-
-
-
-
-// match with memberColor
-// return colorcode memberColor[getColorSign()]
-
-
 /** @type {Object} colors*/
 let MemberColors = {
   A: "rgba(104, 166, 148, 1)", // Light Pinkconst

@@ -3,7 +3,6 @@ body {
 }
 
 .gridContainerChildBoard {
-  /* background-color: red; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr;
@@ -169,7 +168,7 @@ body {
 
 .cardText {
   display: -webkit-box;
-  -webkit-line-clamp: 5; /* Begrenzt den Text auf 3 Zeilen */
+  -webkit-line-clamp: 5; /* Begrenzt den Text auf 5 Zeilen */
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
