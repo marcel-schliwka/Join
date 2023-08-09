@@ -499,13 +499,10 @@ function boardOpenDialog() {
 }
 
 function editTask(i) {
-  console.log(i);
   let currentTask = userObj.tasks[i];
   boardClosePopUpTask();
   openModal(document.querySelector(".modal"));
   let modalFields = getModalFields();
-  console.log(currentTask);
-  console.log(modalFields);
   modalFields.title.value = currentTask.titel;
   modalFields.description.value = currentTask.description;
   toggleCatgoryMenu();
