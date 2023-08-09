@@ -5,6 +5,7 @@ let currentTitel;
 async function initBoard() {
   userObj = await getLoggedInUser();
   updateHTML();
+  await renderTopLogo(userObj);
 }
 
 function updateHTML() {
@@ -17,7 +18,6 @@ function updateHTML() {
   renderCategorys();
   renderSubtasks();
   startTouchEventListener();
-  renderTopLogo(userObj);
 }
 
 function clearAllTasks() {
@@ -26,7 +26,6 @@ function clearAllTasks() {
   document.getElementById("awaitingFeedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
 }
-
 
 // --------------- TODO --------------- \\
 function renderAllToDos() {
@@ -81,8 +80,9 @@ function htmlTemplateToDo(element, i, priority) {
 }
 
 function htmlTemplateAssignment(element, j) {
-  return `<div class="margin-4 contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:${MemberColors[getColorSign(element["assigned"][j])]
-    }">
+  return `<div class="margin-4 contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:${
+    MemberColors[getColorSign(element["assigned"][j])]
+  }">
             ${getInitials(element["assigned"][j])}
         </div>`;
 }
@@ -358,8 +358,9 @@ function getThePriority(element) {
 }
 
 function htmlTemplatePopUpMembers(element2) {
-  return `<div class="textWhite contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${MemberColors[getColorSign(element2)]
-    }">${getInitials(element2)}</div>
+  return `<div class="textWhite contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${
+    MemberColors[getColorSign(element2)]
+  }">${getInitials(element2)}</div>
     `;
 }
 
@@ -558,10 +559,12 @@ function startTouchEventListener() {
         // Beginn des Long Press Timers
         pressTimer = window.setTimeout(function () {
           if (selectedElement && selectedElement.getAttribute("status")) {
-            selectedElement.style.left = `${initialTouchOffsetX - initialScrollLeft
-              }px`;
-            selectedElement.style.top = `${initialTouchOffsetY - initialScrollTop
-              }px`;
+            selectedElement.style.left = `${
+              initialTouchOffsetX - initialScrollLeft
+            }px`;
+            selectedElement.style.top = `${
+              initialTouchOffsetY - initialScrollTop
+            }px`;
             selectedElement.style.width = "auto";
             selectedElement.style.height = "auto";
             selectedElement.style.position = "static";
@@ -600,10 +603,12 @@ function startTouchEventListener() {
       );
 
       if (selectedElement) {
-        selectedElement.style.left = `${touch.clientX - initialTouchOffsetX + initialScrollLeft
-          }px`;
-        selectedElement.style.top = `${touch.clientY - initialTouchOffsetY + initialScrollTop
-          }px`;
+        selectedElement.style.left = `${
+          touch.clientX - initialTouchOffsetX + initialScrollLeft
+        }px`;
+        selectedElement.style.top = `${
+          touch.clientY - initialTouchOffsetY + initialScrollTop
+        }px`;
       }
     });
 
