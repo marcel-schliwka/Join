@@ -15,7 +15,6 @@
   <meta name="msapplication-config" content="/img/favicon/browserconfig.xml" />
   <meta name="theme-color" content="#ffffff" />
   <!-- FAVICON END -->
-  <link rel="stylesheet" href="./styles/bootstrap.css" />
   <link rel="stylesheet" href="./styles/fonts.css" />
   <link rel="stylesheet" href="./styles/styleSidebar.css" />
   <link rel="stylesheet" href="./styles/summary.css" />
@@ -35,7 +34,7 @@
       <svg xmlns="http://www.w3.org/2000/svg" width="4" height="63" viewBox="0 0 4 63" fill="none">
         <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
       </svg>
-      <h3 class="font-27">Everything in a nutshell</h3>
+      <h3 class="font-27">Everything in a nutshell!</h3>
     </div>
 
     <div class="summary-content">
@@ -74,9 +73,9 @@
               <path d="M1 1.48828V103.511" stroke="#D1D1D1" stroke-width="2" stroke-linecap="round" />
             </svg>
           </div>
-          <div>
+          <div class="urgent-right">
             <span class="font-21" id="urgent-deadline">October 16, 2022</span>
-            <span class="font-16">Upcoming Deadline</span>
+            <span class="font-16 deadline-text">Upcoming Deadline</span>
           </div>
         </div>
         <div class="main-bottom">
@@ -84,14 +83,14 @@
             <img id="pencil" src="./img/icon_pencil.svg" alt="pencil"/>
             <div class="to-do-content">
               <div class="font-61" id="todo-count">1</div>
-              <div class="font-20">To-do</div>
+              <span class="font-20">To-do</span>
             </div>
           </div>
           <div class="done custom-border" onclick="redirect('board.html')" onmouseover="whiteOk()" onmouseout="darkOk()">
             <img id="ok" src="./img/icon_ok.svg" alt="ok"/>+
             <div class="done-content">
               <div class="font-61" id="done-count">0</div>
-              <div class="font-20">Done</div>
+              <span class="font-20">Done</span>
             </div>
           </div>
         </div>

@@ -219,35 +219,134 @@ h3 {
 }
 
 
-
-@media (max-width: 428px) {
+@media (max-width: 760px) {
   .summary {
-    margin-left: 0;
-    padding: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: 0px;
+    margin-top: 48px;
   }
 
-  .task-board,
-  .task-progress,
-  .task-feedback {
-    width: 120px;
-    height: 120px;
+  .summary-header {
+    margin-bottom: 0;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .summary-header svg {
+    order: 1;
+    transform: rotate(90deg);
+    width: 114px;
+    height: 117px;
+    stroke-width: 3px;
+    margin-top: -47px;
+  }
+
+  .greeting {
+    display: none;
+  }
+
+  main {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  #task-count,
-  #progress-count,
-  #feedback-count {
+  .summary-content {
+    justify-content: center;
+  }
+
+  .main-middle {
+    width: 560px;
+  }
+}
+
+@media (max-width: 600px) {
+  .summary-header h1 {
     font-size: 47px;
   }
-
-  .main-top span {
-    font-size: 16px;
+  .summary-header h3 {
+    font-size: 20px;
+  }
+  .summary-header svg {
+    margin-top: -40px;
+    margin-left: 30px;
+    width: 31px;
+    height: 90px;
   }
 
+  #task-count,
+  #progress-count,
+  #feedback-count,
+  #urgent-count,
+  #todo-count,
+  #done-count {
+    font-size: 47px;
+  }
+  .task-board span,
+  .task-progress span,
+  .task-feedback span,
+  .urgent span,
+  .to-do-content span,
+  .done-content span,
+  .deadline-text {
+    font-size: 14px;
+  }
+  #urgent-deadline {
+    font-size: 16px;
+  }
+  img {
+    height: 40px;
+    width: 40px;
+  }
+
+  .urgent-right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
   .main-top {
-    justify-content: flex-start;
-    gap: 15px;
+    gap: 24px;
+  }
+  .main-middle {
+    margin-top: 10px;
+    width: 512px;
+  }
+  .main-bottom {
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .task-board,
+  .task-progress,
+  .task-feedback {
+    height: 150px;
+    width: 150px;
+  }
+  .to-do,
+  .done {
+    width: 237px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 570px) {
+  .task-board,
+  .task-progress,
+  .task-feedback {
+    height: 135px;
+    width: 135px;
+  }
+  .main-middle {
+    width: 453px;
+    gap: 20px;
+    height: 135px;
+    margin-top: -10px;
+  }
+
+  .to-do,
+  .done {
+    width: 226.5px;
+    height: 135px;
   }
 }
