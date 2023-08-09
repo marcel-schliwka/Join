@@ -11,6 +11,15 @@ body {
   min-height: 300px;
 }
 
+.parentDiv {
+  padding-left: 296px;
+  padding-top: 80px;
+}
+
+.headlineBoard {
+  font-size: 4rem;
+}
+
 .paddingRight50Px {
   padding-right: 50px;
 }
@@ -164,6 +173,12 @@ body {
   overflow: hidden;
 }
 
+@media screen and (max-width: 1630px) {
+  .popUpBoardTask {
+    max-width: 90%;
+  }
+}
+
 @media screen and (min-width: 871px) and (max-width: 1200px) {
   .grid-items {
     min-width: 0;
@@ -251,6 +266,7 @@ body {
   .parentDiv {
     flex-direction: column;
     padding-right: 0;
+    padding-left: 16px;
   }
 
   .gridContainerChildBoard {
@@ -290,11 +306,11 @@ body {
   .addTaskFormWrapper textarea,
   #category-container,
   #assigned-container,
-  #assigned-container>*,
+  #assigned-container > *,
   .subtasks-container,
-  .subtasks-container>*,
+  .subtasks-container > *,
   #contact-container,
-  #contact-container>*,
+  #contact-container > *,
   .prio-btn {
     width: 90%;
   }
