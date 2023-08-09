@@ -195,6 +195,8 @@ function getTaskPrio(button, priority) {
   currentPrio = priority;
 }
 
+
+
 /**
  * opens the add-task template
  */
@@ -239,30 +241,24 @@ document.addEventListener("coloris:change", (event) => {
 function checkIfCategoryInputExists() {
   return document.getElementById("generatedInput");
 }
+
 function addNewCategory() {
   try {
     const categoryVar = getCategoryVaraible();
-    if (categoryVar.input == "" && categoryVar.color == "") {
-      categoryVar.hiddenError.innerText = "Oops.. something went wrong";
-      categoryVar.hiddenError.classList.remove("display-none");
-    } else if (categoryVar.input == "") {
-      categoryVar.hiddenError.innerText = "You need to type a new category";
-      categoryVar.hiddenError.classList.remove("display-none");
-    } else if (categoryVar.color == "") {
-      categoryVar.hiddenError.innerText = "You need to pick a color";
-      categoryVar.hiddenError.classList.remove("display-none");
+    const { input, color, hiddenError, category, categoryBtn } = categoryVar;
+    if (!input || !color) {
+      hiddenError.innerText = !input && !color ? "Oops.. something went wrong" :
+        !input ? "You need to type a new category" :
+          "You need to pick a color";
+      hiddenError.classList.remove("display-none");
     } else {
-      categoryVar.hiddenError.innerText = "";
-      categoryVar.hiddenError.classList.add("display-none");
-      categorys.push({
-        name: categoryVar.input,
-        color: categoryVar.color,
-      });
+      hiddenError.innerText = "";
+      hiddenError.classList.add("display-none");
+      categorys.push({ name: input, color });
       renderCategorys();
-      categoryVar.category.innerHTML = generateBasicCategoryInputHTML();
-      categoryVar.categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
-      let index = categorys.length;
-      categoryVar.category.innerHTML = generateSelectedCategoryHTML(categorys, index - 1);
+      category.innerHTML = generateBasicCategoryInputHTML();
+      categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
+      category.innerHTML = generateSelectedCategoryHTML(categorys, categorys.length - 1);
     }
   } catch (error) {
     return false;
@@ -279,7 +275,7 @@ function getCategoryVaraible() {
   const category = document.getElementById("category-input");
   const categoryBtn = document.getElementById("category-button");
   const hiddenError = document.getElementById("hidden-error");
-  return {input, color, category, categoryBtn, hiddenError}
+  return { input, color, category, categoryBtn, hiddenError }
 }
 
 /**
@@ -288,26 +284,21 @@ function getCategoryVaraible() {
  * adds an eventListener, when the user clicks outside of the element, the dropdown gets closed
  *
  */
-function toggleCatgoryMenu() {
-  let category = document.getElementById("renderCategorys");
-  let categoryContainer = document.getElementById("category-container");
-  let input = document.querySelector(".category-input input");
-  category.classList.toggle("display-none");
-  category.classList.toggle("category-custom-border");
+function toggleCategoryMenu() {
+  const category = document.getElementById("renderCategorys");
+  const categoryContainer = document.getElementById("category-container");
+  const input = document.querySelector(".category-input input");
+  category.classList.toggle("display-none category-custom-border");
   categoryContainer.classList.toggle("remove-border");
-  if (input !== null) {
-    categoryContainer.classList.remove("remove-border");
-    category.classList.add("display-none");
-  } else {
-    document.addEventListener("click", (event) => {
+  if (input === null) {
+    document.addEventListener("click", event => {
       if (!categoryContainer.contains(event.target)) {
         addNewCategory();
         category.classList.add("display-none");
-        addNewCategory();
         categoryContainer.classList.remove("remove-border");
       }
     });
-    category.addEventListener("click", (event) => {
+    category.addEventListener("click", event => {
       event.stopPropagation();
     });
   }
@@ -357,15 +348,12 @@ function useCategory(i) {
  *
  */
 function toggleAssigndMenu() {
-  let contacts = document.getElementById("contact-container");
-  let contactContainer = document.getElementById("assigned-container");
-  let input = document.querySelector(".assigned-input input");
+  const contacts = document.getElementById("contact-container");
+  const contactContainer = document.getElementById("assigned-container");
+  const input = document.querySelector(".assigned-input input");
   contacts.classList.toggle("display-none");
   contactContainer.classList.toggle("remove-border");
-  if (input !== null) {
-    contacts.classList.add("display-none");
-    contactContainer.classList.remove("remove-border");
-  } else {
+  if (!input) {
     document.addEventListener("click", (event) => {
       if (!contactContainer.contains(event.target)) {
         contacts.classList.add("display-none");
@@ -579,23 +567,18 @@ function changeCheckbox(i) {
  *
  */
 function clearAll() {
-  document.getElementById("title-input").value = "";
-  document.getElementById("description-input").value = "";
-  document.getElementById("task-date").value = "";
-  const categoryContainer = document.getElementById("category-input");
-  const categoryBtn = document.getElementById("category-button");
-  document.getElementById("urgentBtn").classList.remove("urgent-active");
-  document.getElementById("mediumBtn").classList.remove("medium-active");
-  document.getElementById("lowBtn").classList.remove("low-active");
-  document.getElementById("lowImg").src = "./img/prio_low_color.png";
-  document.getElementById("mediumImg").src = "./img/prio_medium_color.png";
-  document.getElementById("urgentImg").src = "./img/prio_urgent_color.png";
-  categoryContainer.innerHTML = generateBasicCategoryInputHTML();
-  categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
+  const inputFields = ["title-input", "description-input", "task-date"];
+  inputFields.forEach(field => document.getElementById(field).value = "");
+  const priorityButtons = ["urgentBtn", "mediumBtn", "lowBtn"];
+  priorityButtons.forEach(button => document.getElementById(button).classList.remove(`${button}-active`));
+  const priorityImages = ["lowImg", "mediumImg", "urgentImg"];
+  priorityImages.forEach(image => document.getElementById(image).src = `./img/prio_${image.replace("Img", "").toLowerCase()}_color.png`);
+  document.getElementById("category-input").innerHTML = generateBasicCategoryInputHTML();
+  document.getElementById("category-button").innerHTML = generateBasicCategoryButtonHTML();
   currentPrio = undefined;
   subtasks = [];
   newSubtasks = [];
-  currentCategory;
+  currentCategory = undefined;
   renderCategorys();
   renderSubtasks();
 }
@@ -723,13 +706,10 @@ function generateUserAssignedHTML() {
 function renderContactsHTML(contact, i) {
   return `
     <div class="contact-item-container" onclick="changeCheckbox(${i + 1})">
-      <li class="contact-item">${
-        contact["name"]
-      } <a onclick="changeCheckbox(${
-        i + 1
-      })"><img class="checkboxImg cursor-p" onclick="changeCheckbox(${
-    i + 1
-  })" id="checkboxImg${i + 1}" src="./img/checkbox.png"></a></li>
+      <li class="contact-item">${contact["name"]
+    } <a onclick="changeCheckbox(${i + 1
+    })"><img class="checkboxImg cursor-p" onclick="changeCheckbox(${i + 1
+    })" id="checkboxImg${i + 1}" src="./img/checkbox.png"></a></li>
     </div>
     `;
 }
