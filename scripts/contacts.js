@@ -359,7 +359,7 @@ function deleteInitial(name) {
   if (initialDiv && initialDiv.children.length === 0) {
     initialDiv.remove();
   }
-  // renderContactList();
+  renderContactList();
 }
 
 // Edit Contact
@@ -449,9 +449,6 @@ function addNewContact() {
   renderContactList();
   showTopDown('Contact created!')
   showNewContact(inputName);
-  setTimeout(function () {
-    document.getElementById('contacts-btn-container').classList.add('resp-none');
-  }, 2500)
 }
 
 /**
