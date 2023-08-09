@@ -101,11 +101,11 @@
         <img src="./img/create_contact_frame.svg" alt="no user photo" />
       </div>
       <form id="createContactForm" class="dialog__createRightForm" onsubmit="return false;">
-        <input type="text" placeholder="Name" class="dialog__createInput" id="dialog__createNameInput" />
+        <input required type="text" placeholder="Name" class="dialog__createInput" id="dialog__createNameInput" />
         <input type="text" placeholder="Email" class="dialog__createInput" id="dialog__createEmailInput" />
         <input type="text" placeholder="Phone" class="dialog__createInput" id="dialog__createPhoneInput" />
         <div class="dialog__createRightBtn">
-          <button class="custom-btn-white btn-hover" id="dialog__createDeleteBtn" onclick="cancelCreateContact()">
+          <button type="button" class="custom-btn-white btn-hover" id="dialog__createDeleteBtn" onclick="cancelCreateContact()">
             Cancel X
           </button>
           <button class="custom-btn btn-hover btn-save" id="dialog__createSaveBtn" onclick="addNewContact()">

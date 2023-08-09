@@ -1,157 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- FAVICON -->
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="./img/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="./img/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="./img/favicon/favicon-16x16.png"
-    />
-    <link rel="manifest" href="./img/favicon/site.webmanifest" />
-    <link
-      rel="mask-icon"
-      href="./img/favicon/safari-pinned-tab.svg"
-      color="#5bbad5"
-    />
-    <link rel="shortcut icon" href="./img/favicon/favicon.ico" />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta
-      name="msapplication-config"
-      content="/img/favicon/browserconfig.xml"
-    />
-    <meta name="theme-color" content="#ffffff" />
-    <!-- FAVICON END -->
-    <link rel="stylesheet" href="./styles/bootstrap.css" />
-    <link rel="stylesheet" href="./styles/fonts.css" />
-    <link rel="stylesheet" href="./styles/styleSidebar.css" />
-    <link rel="stylesheet" href="./styles/summary.css" />
-    <script src="./scripts/summary.js"></script>
-    <script src="./scripts/sidebar.js"></script>
-    <script src="./scripts/bootstrap.js"></script>
-    <script src="scripts/storage.js"></script>
 
-    <title>Summary</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- FAVICON -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="./img/favicon/site.webmanifest" />
+  <link rel="mask-icon" href="./img/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+  <link rel="shortcut icon" href="./img/favicon/favicon.ico" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="msapplication-config" content="/img/favicon/browserconfig.xml" />
+  <meta name="theme-color" content="#ffffff" />
+  <!-- FAVICON END -->
+  <link rel="stylesheet" href="styles/bootstrap.css">
+  <link rel="stylesheet" href="styles/fonts.css" />
+  <link rel="stylesheet" href="styles/styleSidebar.css" />
+  <link rel="stylesheet" href="styles/summary.css" />
+  <script src="scripts/summary.js"></script>
+  <script src="scripts/sidebar.js"></script>
+  <script src="scripts/storage.js"></script>
 
-  <body onload="includeHTML(); initSummary()">
-    <div w3-include-html="./templates/sidebar.html"></div>
-    <div class="parentDiv flex-column">
-      <div class="pb-3 headline-container">
-        <div
-          class="size3Em bold pe-4 border-3 borderColorBlue summaryHeadlineText"
-        >
-          Summary
-        </div>
-        <div class="size2Em headline-nutshell">Everything in a nutshell!</div>
-        <span class="blue-line"></span>
-      </div>
-      <div class="childDiv">
-        <div class="firstContainer">
-          <div class="item-1">
-            <div onclick="redirect('board.html')"
-              class="bgWhite border py-3 px-5 rounded-5 d-flex flex-column align-items-center justify-content-center text-center"
-            >
-              <div id="task-count" class="size3Em bold">0</div>
-              <div>
-                <div class="noWrapWords">Tasks in</div>
-                <div>Board</div>
-              </div>
+  <title>Summary</title>
+</head>
+
+<body onload="includeHTML(); initSummary()">
+  <div w3-include-html="./templates/sidebar.html"></div>
+
+  <div class="summary">
+    <div class="summary-header">
+      <h1 class="font-61">Summary</h1>
+      <svg xmlns="http://www.w3.org/2000/svg" width="4" height="63" viewBox="0 0 4 63" fill="none">
+        <path d="M2 2V61" stroke="#29ABE2" stroke-width="3" stroke-linecap="round" />
+      </svg>
+      <h3 class="font-27">Everything in a nutshell!</h3>
+    </div>
+
+    <div class="summary-content">
+      <main>
+        <div class="main-top">
+          <div class="task-board custom-border" onclick="redirect('board.html')">
+            <div class="font-64" id="task-count">
+              0
             </div>
-            <div onclick="redirect('board.html')"
-              class="bgWhite border py-3 px-5 rounded-5 d-flex flex-column align-items-center justify-content-center text-center"
-            >
-              <div id="progress-count" class="size3Em bold">0</div>
-              <div>
-                <div class="noWrapWords">Tasks in</div>
-                <div>Progress</div>
-              </div>
-            </div>
-            <div onclick="redirect('board.html')"
-              class="bgWhite border py-3 px-5 rounded-5 d-flex flex-column align-items-center justify-content-center text-center"
-            >
-              <div id="feedback-count" class="size3Em bold">0</div>
-              <div>
-                <div>Awaiting</div>
-                <div>Feedback</div>
-              </div>
-            </div>
+            <span class="font-20">Tasks in</span>
+            <span class="font-20">Board</span>
           </div>
-
-          <div onclick="redirect('board.html')" class="bgWhite border py-3 rounded-5 item-2">
-            <div class="border-end border-3 d-flex justify-content-center">
-              <div class="d-flex align-items-center">
-                <img src="./img/prio_urgent.svg" alt="urgent" />
-              </div>
-              <div
-                class="d-flex flex-column align-items-center justify-content-center text-center ps-3"
-              >
-                <div class="size3Em bold" id="urgent-count">0</div>
-                <div>Urgent</div>
-              </div>
+          <div class="task-progress custom-border" onclick="redirect('board.html')">
+            <div class="font-64" id="progress-count">
+              0
             </div>
-            <div class="d-flex flex-column justify-content-center">
-              <div id="urgent-deadline" class="bold pb-2 text-center"></div>
-              <div class="size08Em text-center">Upcoming Deadline</div>
-            </div>
+            <span class="font-20">Tasks in</span>
+            <span class="font-20">Progress</span>
           </div>
-
-          <div class="item-3">
-            <div onclick="redirect('board.html')"
-              onmouseover="whitePencil()"
-              onmouseout="darkPencil()"
-              class="bgWhite border py-3 px-5 rounded-5 d-flex justify-content-center"
-            >
-              <div class="d-flex align-items-center">
-                <img id="pencil" src="./img/icon_pencil.svg" alt="pencil" />
-              </div>
-              <div
-                class="d-flex flex-column align-items-center justify-content-center ps-3"
-              >
-                <div class="size3Em bold" id="todo-count">0</div>
-                <div class="noWrapWords">To-do</div>
-              </div>
-            </div>
-            <div onclick="redirect('board.html')"
-              onmouseover="whiteOk()"
-              onmouseout="darkOk()"
-              class="bgWhite border py-3 px-5 rounded-5 d-flex justify-content-center"
-            >
-              <div class="d-flex align-items-center">
-                <img id="ok" src="./img/icon_ok.svg" alt="ok" />
-              </div>
-              <div
-                class="d-flex flex-column align-items-center justify-content-center ps-3"
-              >
-                <div class="size3Em bold" id="done-count">0</div>
-                <div>Done</div>
-              </div>
-            </div>
+          <div class="task-feedback custom-border" onclick="redirect('board.html')">
+            <div class="font-64" id="feedback-count">2</div>
+            <span class="font-20">Awaiting</span>
+            <span class="font-20">Feedback</span>
           </div>
         </div>
-
-        <div class="secondContainer ps-5">
+        <div class="main-middle custom-border" onclick="redirect('board.html')">
+          <div class="urgent-left">
+            <img src="./img/prio_urgent.svg" alt="urgent">
+            <div class="urgent">
+              <div class="font-64" id="urgent-count">1</div>
+              <span class="font-16">Urgent</span>
+            </div>
+          </div>
           <div>
-            <div id="whichHour" class="size2Em">Good morning,</div>
-            <div class="size3Em bold fontColorBlue" id="welcome-user">
-              Guest
+            <svg xmlns="http://www.w3.org/2000/svg" width="2" height="105" viewBox="0 0 2 105" fill="none">
+              <path d="M1 1.48828V103.511" stroke="#D1D1D1" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="urgent-right">
+            <span class="font-21" id="urgent-deadline">October 16, 2022</span>
+            <span class="font-16 deadline-text">Upcoming Deadline</span>
+          </div>
+        </div>
+        <div class="main-bottom">
+          <div class="to-do custom-border" onclick="redirect('board.html')" onmouseover="whitePencil()" onmouseout="darkPencil()">
+            <img id="pencil" src="./img/icon_pencil.svg" alt="pencil"/>
+            <div class="to-do-content">
+              <div class="font-61" id="todo-count">1</div>
+              <span class="font-20">To-do</span>
+            </div>
+          </div>
+          <div class="done custom-border" onclick="redirect('board.html')" onmouseover="whiteOk()" onmouseout="darkOk()">
+            <img id="ok" src="./img/icon_ok.svg" alt="ok"/>
+            <div class="done-content">
+              <div class="font-61" id="done-count">0</div>
+              <span class="font-20">Done</span>
             </div>
           </div>
         </div>
+      </main>
+      <div class="greeting">
+        <span id="whichHour" class="font-47">Good morning,</span>
+        <span id="welcome-user" class="greeting-name">Guest</span>
       </div>
     </div>
-  </body>
+  </div>
+
+</body>
+
 </html>

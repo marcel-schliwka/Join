@@ -675,7 +675,7 @@ function generateBasicAssignedButtonHTML() {
 function generateAssignedInputHTML() {
   return `
   <div>
-    <input "type="email" id="generatedInput" placeholder="Contact email" class="ol-none b-none">
+    <input required "type="email" id="generatedInput" placeholder="Contact email" class="ol-none b-none">
   </div>
   `;
 }

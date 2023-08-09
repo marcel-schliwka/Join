@@ -356,10 +356,10 @@ function deleteContact() {
 function deleteInitial(name) {
   let initial = name.trim().charAt(0).toUpperCase();
   let initialDiv = document.getElementById(`containerLetter${initial}`);
-  if (initialDiv.children.length == 0) {
+  if (initialDiv && initialDiv.children.length === 0) {
     initialDiv.remove();
   }
-  renderContactList();
+  // renderContactList();
 }
 
 // Edit Contact
@@ -397,9 +397,9 @@ function closeEditDialog() {
 function saveEditDialog() {
   let index = getContactIndex(dialogElements.name.innerText);
   /* changing values in contacts array at the index with the values from input field */
-  contacts[index].name = editDialogElements.inputName.value;
-  contacts[index].email = editDialogElements.inputEmail.value;
-  contacts[index].number = editDialogElements.inputPhone.value;
+  contacts[index].name = capitalizeFirstLetterOfEveryWord(editDialogElements.inputName.value);
+  contacts[index].email = editDialogElements.inputEmail.value.trim();
+  contacts[index].number = editDialogElements.inputPhone.value.trim();
   renderContactList();
   changeDialogInfo(contacts[index]);
   closeEditDialog();
