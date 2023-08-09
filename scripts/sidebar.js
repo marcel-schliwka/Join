@@ -30,12 +30,6 @@ function markSiteAsActive() {
   }
 }
 
-function renderTopLogo(userObj) {
-  let initials = getInitials(userObj.name);
-  document.getElementById("logo-text-initials").innerText = initials;
-  return initials;
-}
-
 function toggleHiddenDropdown() {
   let menu = document.getElementById("sidebarDropdown");
   menu.classList.remove("display-none");

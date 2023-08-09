@@ -46,3 +46,10 @@ function showTopDown(message) {
 
   requestAnimationFrame(animate);
 }
+function renderTopLogo(userObj) {
+  setTimeout(() => {
+    let initials = getInitials(userObj.name);
+    document.getElementById("logo-text-initials").innerText = initials;
+    return initials;
+  }, 10);
+}

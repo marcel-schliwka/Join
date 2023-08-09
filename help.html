@@ -1,145 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Help</title>
     <!-- FAVICON -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./img/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./img/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="./img/favicon/favicon-16x16.png"
+    />
     <link rel="manifest" href="./img/favicon/site.webmanifest" />
-    <link rel="mask-icon" href="./img/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+    <link
+      rel="mask-icon"
+      href="./img/favicon/safari-pinned-tab.svg"
+      color="#5bbad5"
+    />
     <link rel="shortcut icon" href="./img/favicon/favicon.ico" />
     <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="msapplication-config" content="/img/favicon/browserconfig.xml" />
+    <meta
+      name="msapplication-config"
+      content="/img/favicon/browserconfig.xml"
+    />
     <meta name="theme-color" content="#ffffff" />
     <!-- FAVICON END -->
     <link rel="stylesheet" href="styles/styleSidebar.css" />
     <link rel="stylesheet" href="styles/fonts.css" />
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/help.css">
-    <link rel="stylesheet" href="styles/bootstrap.css">
-    <script src="scripts/sidebar.js"></script>
-    <script src="scripts/storage.js"></script>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/help.css" />
+    <link rel="stylesheet" href="styles/bootstrap.css" />
+    <script defer src="./scripts/utils.js"></script>
+    <script defer src="scripts/sidebar.js"></script>
+    <script defer src="scripts/storage.js"></script>
     <script>
-        function goBack() {
-            window.history.back();
-        }
-        async function initHelp() {
-            userObj = await getLoggedInUser();
-            renderTopLogo(userObj);
-        }
+      function goBack() {
+        window.history.back();
+      }
+      async function initHelp() {
+        userObj = await getLoggedInUser();
+        renderTopLogo(userObj);
+      }
     </script>
-</head>
+  </head>
 
-<body onload="includeHTML(); initHelp()">
+  <body onload="includeHTML(); initHelp()">
     <div w3-include-html="./templates/sidebar.html"></div>
     <div class="help-section">
-        <div class="top-section">
-            <div>
-                <h1 class="font61">Help</h1>
-            </div>
-            <div>
-                <svg class="back-svg" onclick="goBack()" xmlns="http://www.w3.org/2000/svg" width="33" height="33"
-                    viewBox="0 0 33 33" fill="none">
-                    <path
-                        d="M10.9373 15.1667H25.8333C26.5696 15.1667 27.1666 15.7636 27.1666 16.5C27.1666 17.2364 26.5696 17.8333 25.8333 17.8333H10.9373L17.1466 24.0427C17.6672 24.5633 17.6672 25.4074 17.1466 25.928C16.626 26.4486 15.7819 26.4486 15.2613 25.928L7.24746 17.9142C6.46642 17.1332 6.46642 15.8668 7.24747 15.0858L15.2613 7.072C15.7819 6.55138 16.626 6.55138 17.1466 7.072C17.6672 7.59262 17.6672 8.43671 17.1466 8.95733L10.9373 15.1667Z"
-                        fill="#29ABE2" />
-                </svg>
-            </div>
+      <div class="top-section">
+        <div>
+          <h1 class="font61">Help</h1>
+        </div>
+        <div>
+          <svg
+            class="back-svg"
+            onclick="goBack()"
+            xmlns="http://www.w3.org/2000/svg"
+            width="33"
+            height="33"
+            viewBox="0 0 33 33"
+            fill="none"
+          >
+            <path
+              d="M10.9373 15.1667H25.8333C26.5696 15.1667 27.1666 15.7636 27.1666 16.5C27.1666 17.2364 26.5696 17.8333 25.8333 17.8333H10.9373L17.1466 24.0427C17.6672 24.5633 17.6672 25.4074 17.1466 25.928C16.626 26.4486 15.7819 26.4486 15.2613 25.928L7.24746 17.9142C6.46642 17.1332 6.46642 15.8668 7.24747 15.0858L15.2613 7.072C15.7819 6.55138 16.626 6.55138 17.1466 7.072C17.6672 7.59262 17.6672 8.43671 17.1466 8.95733L10.9373 15.1667Z"
+              fill="#29ABE2"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <main>
+        <div>
+          <p class="font16">
+            Welcome to the help page for <a class="join-link" href="#">Join</a>,
+            your guide to using our kanban project management tool. Here, we'll
+            provide an overview of what
+            <a class="join-link" href="#">Join</a> is, how it can benefit you,
+            and how to use it.
+          </p>
         </div>
 
-        <main>
+        <div class="what-is-join">
+          <h2>What is Join?</h2>
+          <div>
+            <p class="font16">
+              <a class="join-link" href="#">Join</a> is a kanban-based project
+              management tool designed and built by a group of dedicated
+              students as part of their web development bootcamp at the
+              Developer Akademie.
+            </p>
+            <br />
+            <p class="font16">
+              Kanban, a Japanese term meaning "billboard", is a highly effective
+              method to visualize work, limit work-in-progress, and maximize
+              efficiency (or flow). <a class="join-link" href="#">Join</a>
+              leverages the principles of kanban to help users manage their
+              tasks and projects in an intuitive, visual interface.
+            </p>
+            <br />
+            <p class="font16">
+              It is important to note that
+              <a class="join-link" href="#">Join</a> is designed as an
+              educational exercise and is not intended for extensive business
+              usage. While we strive to ensure the best possible user
+              experience, we cannot guarantee consistent availability,
+              reliability, accuracy, or other aspects of quality regarding
+              <a class="join-link" href="#">Join</a>.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font27">How to use it</h2>
+        </div>
+        <div class="explanation-section">
+          <div>
+            <p class="font16">
+              Here is a step-by-step guide on how to use
+              <a class="join-link" href="#">Join</a>:
+            </p>
+          </div>
+          <div class="explanation-div">
+            <h2 class="font27">1.</h2>
             <div>
-                <p class="font16">Welcome to the help page for <a class="join-link" href="#">Join</a>, your guide to
-                    using our kanban project management tool. Here,
-                    we'll provide an overview of what <a class="join-link" href="#">Join</a> is, how it can benefit you,
-                    and how to use it.</p>
+              <h4 class="font20">Exploring the Board</h4>
+              <p class="font16">
+                When you log in to <a class="join-link" href="#">Join</a>,
+                you'll find a default board. This board represents your project
+                and contains four default lists: "To Do", "In Progress", “Await
+                feedback” and "Done".
+              </p>
             </div>
-
-            <div class="what-is-join">
-                <h2>What is Join?</h2>
-                <div>
-                    <p class="font16">
-                        <a class="join-link" href="#">Join</a> is a kanban-based project management tool designed and
-                        built by a group of dedicated students
-                        as
-                        part of their web development bootcamp at the Developer Akademie.
-                    </p>
-                    <br>
-                    <p class="font16">
-                        Kanban, a Japanese term meaning "billboard", is a highly effective method to visualize work,
-                        limit
-                        work-in-progress, and maximize efficiency (or flow). <a class="join-link" href="#">Join</a>
-                        leverages the principles of kanban to help
-                        users manage their tasks and projects in an intuitive, visual interface.
-                    </p>
-                    <br>
-                    <p class="font16">
-                        It is important to note that <a class="join-link" href="#">Join</a> is designed as an
-                        educational exercise and is not intended for
-                        extensive business usage. While we strive to ensure the best possible user experience, we cannot
-                        guarantee consistent availability, reliability, accuracy, or other aspects of quality regarding
-                        <a class="join-link" href="#">Join</a>.
-                    </p>
-                </div>
-            </div>
-
+          </div>
+          <div class="explanation-div">
+            <h2 class="font27">2.</h2>
             <div>
-                <h2 class="font27">How to use it</h2>
+              <h4 class="font20">Creating Contacts</h4>
+              <p class="font16">
+                In <a class="join-link" href="#">Join</a>, you can add contacts
+                to collaborate on your projects. Go to the "Contacts" section,
+                click on "New contact", and fill in the required information.
+                Once added, these contacts can be assigned tasks and they can
+                interact with the tasks on the board.
+              </p>
             </div>
-            <div class="explanation-section">
-                <div>
-                    <p class="font16">Here is a step-by-step guide on how to use <a class="join-link" href="#">Join</a>:
-                    </p>
-                </div>
-                <div class="explanation-div">
-                    <h2 class="font27">1.</h2>
-                    <div>
-                        <h4 class="font20">Exploring the Board</h4>
-                        <p class="font16">When you log in to <a class="join-link" href="#">Join</a>, you'll find a
-                            default board. This board represents your project and
-                            contains four default lists: "To Do", "In Progress", “Await feedback” and "Done".</p>
-                    </div>
-                </div>
-                <div class="explanation-div">
-                    <h2 class="font27">2.</h2>
-                    <div>
-                        <h4 class="font20">Creating Contacts</h4>
-                        <p class="font16">In <a class="join-link" href="#">Join</a>, you can add contacts to collaborate
-                            on your projects. Go to the "Contacts" section,
-                            click on "New contact", and fill in the required information. Once added, these contacts can
-                            be assigned tasks and they can interact with the tasks on the board.</p>
-                    </div>
-                </div>
-                <div class="explanation-div">
-                    <h2 class="font27">3.</h2>
-                    <div>
-                        <h4 class="font20">Adding Cards</h4>
-                        <p class="font16">Now that you've added your contacts, you can start adding cards. Cards
-                            represent individual
-                            tasks. Click the "+" button under the appropriate list to create a new card. Fill in the
-                            task details in the card, like task name, description, due date, assignees, etc.</p>
-                    </div>
-                </div>
-                <div class="explanation-div">
-                    <h2 class="font27">4.</h2>
-                    <div>
-                        <h4 class="font20">Moving Cards</h4>
-                        <p class="font16">As the task moves from one stage to another, you can reflect that on the board
-                            by dragging
-                            and dropping the card from one list to another.</p>
-                    </div>
-                </div>
+          </div>
+          <div class="explanation-div">
+            <h2 class="font27">3.</h2>
+            <div>
+              <h4 class="font20">Adding Cards</h4>
+              <p class="font16">
+                Now that you've added your contacts, you can start adding cards.
+                Cards represent individual tasks. Click the "+" button under the
+                appropriate list to create a new card. Fill in the task details
+                in the card, like task name, description, due date, assignees,
+                etc.
+              </p>
             </div>
-
-        </main>
-
-
-
+          </div>
+          <div class="explanation-div">
+            <h2 class="font27">4.</h2>
+            <div>
+              <h4 class="font20">Moving Cards</h4>
+              <p class="font16">
+                As the task moves from one stage to another, you can reflect
+                that on the board by dragging and dropping the card from one
+                list to another.
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
-</body>
-
+  </body>
 </html>
