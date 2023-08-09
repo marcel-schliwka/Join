@@ -433,7 +433,7 @@ function checkIfUserIsLoggedIn() {
   if (user) {
     window.location.href = "summary.html";
   } else {
-    console.info("No User was saved in local storage");
+    return;
   }
 }
 
