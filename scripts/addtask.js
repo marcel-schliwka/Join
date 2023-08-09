@@ -21,9 +21,6 @@ let categorys = [
   },
 ];
 
-async function loadTask() {
-  getId = await getItem("guest_task");
-}
 
 async function setItem(key, value) {
   const PAYLOAD = { key, value, token: STORAGE_TOKEN };
@@ -34,7 +31,12 @@ async function setItem(key, value) {
 }
 
 
-
+/**
+ * 
+ * gets the user Object from the logged-in user
+ * then it renders the contacts, categorys, subtasks and the initials (top right)
+ * 
+ */
 async function init() {
   userObj = await getLoggedInUser();
   renderContacts();
@@ -43,10 +45,19 @@ async function init() {
   renderTopLogo(userObj);
 }
 
+
+/**
+ * 
+ * When this function is called, the user gets redirected
+ * @param {string} url 
+ */
 function redirectTo(url) {
   window.location.href = url;
 }
 
+/**
+ * Shows a button ("Added to Board"), when a Task is generated
+ */
 function showBoardButton() {
   const boardBtn = document.getElementById("board-btn-container");
   boardBtn.classList.remove("display-none");
@@ -116,6 +127,13 @@ function addTask() {
   }, 1000);
 }
 
+
+/**
+ * 
+ * Gets the variable from the html and returns them
+ * @param {string} status 
+ * @returns variables
+ */
 function getAddTaskVariables(status) {
   let titel = document.getElementById("title-input");
   let description = document.getElementById("description-input");
