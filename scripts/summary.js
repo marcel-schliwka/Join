@@ -13,6 +13,13 @@ async function initSummary() {
   updateHTML();
 }
 
+/**
+ * Updates various HTML elements on the page with the latest information.
+ * Calls functions to set the time-based greeting, render task count,
+ * render deadline, and render the top logo using user information.
+ * 
+ * @returns {void} This function does not return a value.
+ */
 function updateHTML() {
   setTime();
   renderTaskCount();
@@ -20,10 +27,22 @@ function updateHTML() {
   renderTopLogo(userObj);
 }
 
+/**
+ * Redirects the user to a specified URL.
+ * 
+ * @param {string} url - The URL to which the user should be redirected.
+ * @returns {void} This function does not return a value.
+ */
 function redirect(url) {
   window.location.href = url;
 }
 
+/**
+ * Renders the upcoming deadline information on the board.
+ * Updates the urgent task count and displays the next deadline date.
+ * 
+ * @returns {void} This function does not return a value.
+ */
 function renderDeadline() {
   findNextDeadline();
   const boardVariables = getBoardVariable();
@@ -33,11 +52,23 @@ function renderDeadline() {
   boardVariables.deadline.innerText = deadlineDate;
 }
 
+/**
+ * Finds and prepares the next upcoming deadline date.
+ * Retrieves and processes deadline dates using related functions.
+ * 
+ * @returns {void} This function does not return a value.
+ */
 function findNextDeadline() {
   getDeadlineDates();
   returnNextDeadline();
 }
 
+/**
+ * Returns the formatted next upcoming deadline date.
+ * If there are no deadline dates, it returns a message indicating no deadline set.
+ * 
+ * @returns {string} The formatted next upcoming deadline date or a "No deadline set" message.
+ */
 function returnNextDeadline() {
   const deadlineDates = deadlines;
   if (deadlineDates.length !== 0) {
@@ -51,32 +82,28 @@ function returnNextDeadline() {
   }
 }
 
+/**
+ * Formats a date string into a more human-readable format.
+ * 
+ * @param {string} dateToFormat - The date string to be formatted (YYYY-MM-DD).
+ * @returns {string} The formatted date in the format: Month Day, Year (e.g., "January 01, 2023").
+ */
 function formateDate(dateToFormat) {
-  const date = dateToFormat;
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
   ];
-  const year = date.substring(0, 4);
-  const month = date.substring(6, 7);
-  const day = date.substring(9, 10);
-
-  let formatedMonth = months[month - 1];
-  let formatedDay = day.toString().padStart(2, "0");
-  let formatedDate = formatedMonth + " " + formatedDay + ", " + year;
-  return formatedDate;
+  const [year, month, day] = dateToFormat.split("-").map(Number);
+  const formattedMonth = months[month - 1];
+  const formattedDay = day.toString().padStart(2, "0");
+  return `${formattedMonth} ${formattedDay}, ${year}`;
 }
 
+/**
+ * Retrieves valid deadline dates from user tasks and populates the 'deadlines' array.
+ * 
+ * @returns {void} This function does not return a value.
+ */
 function getDeadlineDates() {
   const tasks = userObj.tasks;
   tasks.forEach((task) => {
@@ -86,11 +113,23 @@ function getDeadlineDates() {
   });
 }
 
+/**
+ * Checks if a given date string is in the valid "YYYY-MM-DD" format.
+ * 
+ * @param {string} date - The date string to be validated.
+ * @returns {boolean} Returns true if the date is in valid format, otherwise false.
+ */
 function checkIfDateIsValid(date) {
   let dateRegex = /^\d{4}-\d{2}-\d{2}$/;
   return dateRegex.test(date);
 }
 
+/**
+ * Updates the task count displayed on the board for different status categories.
+ * Retrieves task counts and board variables to update the UI elements.
+ * 
+ * @returns {void} This function does not return a value.
+ */
 function renderTaskCount() {
   taskcount = countStatus();
   const boardVariables = getBoardVariable();
@@ -102,6 +141,20 @@ function renderTaskCount() {
   boardVariables.user.innerText = userObj.name;
 }
 
+
+/**
+ * Retrieves references to various board-related HTML elements.
+ * 
+ * @returns {Object} An object containing references to different board-related HTML elements.
+ * @property {HTMLElement} tasks - The element displaying the total task count.
+ * @property {HTMLElement} progress - The element displaying the "In Progress" task count.
+ * @property {HTMLElement} feedback - The element displaying the "Awaiting Feedback" task count.
+ * @property {HTMLElement} urgent - The element displaying the "Urgent" task count.
+ * @property {HTMLElement} todo - The element displaying the "To Do" task count.
+ * @property {HTMLElement} done - The element displaying the "Done" task count.
+ * @property {HTMLElement} user - The element displaying the welcome message for the user.
+ * @property {HTMLElement} deadline - The element displaying the upcoming deadline date.
+ */
 function getBoardVariable() {
   const tasks = document.getElementById("task-count");
   const progress = document.getElementById("progress-count");
@@ -114,6 +167,16 @@ function getBoardVariable() {
   return { tasks, progress, feedback, urgent, todo, done, user, deadline };
 }
 
+/**
+ * Counts the number of tasks in different status categories.
+ * Iterates through user tasks and tallies the tasks for each status.
+ * 
+ * @returns {Object} An object containing the count of tasks for each status category.
+ * @property {number} to do - The count of tasks marked as "To Do".
+ * @property {number} in progress - The count of tasks marked as "In Progress".
+ * @property {number} awaiting feedback - The count of tasks marked as "Awaiting Feedback".
+ * @property {number} done - The count of tasks marked as "Done".
+ */
 function countStatus() {
   let tasks = userObj.tasks;
   const statusCount = {
@@ -131,6 +194,13 @@ function countStatus() {
   return statusCount;
 }
 
+/**
+ * Counts the number of tasks with urgent priority.
+ * Iterates through user tasks and tallies tasks with "urgent" priority.
+ * 
+ * @returns {Object} An object containing the count of tasks with "urgent" priority.
+ * @property {number} urgent - The count of tasks marked with "urgent" priority.
+ */
 function countUrgentPrio() {
   const tasks = userObj.tasks;
   const urgentCount = {
@@ -145,6 +215,12 @@ function countUrgentPrio() {
   return urgentCount;
 }
 
+/**
+ * Sets a time-based greeting on the page based on the current hour.
+ * Uses the current hour to display a suitable greeting message.
+ * 
+ * @returns {void} This function does not return a value.
+ */
 function setTime() {
   if (currentHour() < 10) {
     document.getElementById("whichHour").innerHTML = `Good morning,`;
@@ -157,60 +233,52 @@ function setTime() {
   }
 }
 
+/**
+ * Retrieves the current hour of the day.
+ * 
+ * @returns {number} The current hour of the day (0-23).
+ */
 function currentHour() {
   let date = new Date();
   return date.getHours();
 }
 
-function currentDay() {
-  return date.getDate();
-}
-
-function currentMonth() {
-  let month = date.getMonth();
-  if (month == 0) {
-    return "January";
-  } else if (month == 1) {
-    return "February";
-  } else if (month == 2) {
-    return "March";
-  } else if (month == 3) {
-    return "April";
-  } else if (month == 4) {
-    return "May";
-  } else if (month == 5) {
-    return "June";
-  } else if (month == 6) {
-    return "July";
-  } else if (month == 7) {
-    return "August";
-  } else if (month == 8) {
-    return "September";
-  } else if (month == 9) {
-    return "October";
-  } else if (month == 10) {
-    return "November";
-  } else if (month == 11) {
-    return "December";
-  }
-}
-
-function currentYear() {
-  return date.getFullYear();
-}
-
+/**
+ * Changes the source of an image to display a white pencil icon.
+ * Updates the source of an image element to display a white pencil icon image.
+ * 
+ * @returns {void} This function does not return a value.
+ */
 function whitePencil() {
   document.getElementById("pencil").src = "./img/whitePencil.svg";
 }
 
+/**
+ * Changes the source of an image to display a dark pencil icon.
+ * Updates the source of an image element to display a dark pencil icon image.
+ * 
+ * @returns {void} This function does not return a value.
+ */
 function darkPencil() {
   document.getElementById("pencil").src = "./img/icon_pencil.svg";
 }
 
+/**
+ * Changes the source of an image to display a white checkmark icon.
+ * Updates the source of an image element to display a white checkmark icon image.
+ * 
+ * @returns {void} This function does not return a value.
+ */
 function whiteOk() {
   document.getElementById("ok").src = "./img/whiteOk.svg";
 }
 
+/**
+ * Changes the source of an image to display a dark checkmark icon.
+ * Updates the source of an image element to display a dark checkmark icon image.
+ * 
+ * @returns {void} This function does not return a value.
+ */
 function darkOk() {
   document.getElementById("ok").src = "./img/icon_ok.svg";
 }
