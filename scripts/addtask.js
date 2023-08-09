@@ -292,7 +292,8 @@ function toggleCategoryMenu() {
   const category = document.getElementById("renderCategorys");
   const categoryContainer = document.getElementById("category-container");
   const input = document.querySelector(".category-input input");
-  category.classList.toggle("display-none category-custom-border");
+  category.classList.toggle("display-none");
+  category.classList.toggle("category-custom-border");
   categoryContainer.classList.toggle("remove-border");
   if (input === null) {
     document.addEventListener("click", event => {
