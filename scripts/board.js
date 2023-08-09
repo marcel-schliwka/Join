@@ -538,11 +538,11 @@ function htmlTemplatePopUpTask(i, priority) {
             <img class="cursorPointer heightWidth35Px" src="./img/editButton.svg" alt="edit" onclick="editTask(${i})">
         </div>
         <div style="background-color: ${userObj.tasks[i]["categoryColor"]}" class="textWhite px-3 rounded-2">${userObj.tasks[i].category}</div>
-        <div class="size3Em bold">${userObj.tasks[i]["titel"]}</div>
-        <div class="pb-2">${userObj.tasks[i]["description"]}</div>
+        <div class="size3Em bold font-61">${userObj.tasks[i]["titel"]}</div>
+        <div class="pb-2 max-size">${userObj.tasks[i]["description"]}</div>
         <div class="pb-2 d-flex">
             <div class="pe-3 bold">Due date:</div>
-            <div>${userObj.tasks[i]["date"]}</div>
+            <div class="bold">${userObj.tasks[i]["date"]}</div>
         </div>
         <div class="pb-2 d-flex align-items-center">
             <div class="pe-3 bold">Priority:</div>
@@ -550,7 +550,7 @@ function htmlTemplatePopUpTask(i, priority) {
         </div>
         <div>
             <div class="pb-3 bold">Assigned to:</div>
-            <div id="boardTasksMembers"></div>
+            <div id="boardTasksMembers" class="d-flex flex-column"></div>
         </div>
     </div>`;
 }
@@ -603,9 +603,9 @@ function getThePriority(element) {
  * @returns {string} HTML markup for the member icon.
  */
 function htmlTemplatePopUpMembers(element2) {
-  return `<div class="textWhite contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${
+  return `<div class="d-flex flex-row"><div class="textWhite contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${
     MemberColors[getColorSign(element2)]
-  }">${getInitials(element2)}</div>
+  }">${getInitials(element2)}</div><div class="bold boardMember-margin">${element2}</div><div>
     `;
 }
 
