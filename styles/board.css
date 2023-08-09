@@ -84,7 +84,7 @@ body {
   position: relative;
   min-height: 100px;
   min-width: 400px;
-  max-width: 75%;
+  max-width: 60%;
   overflow: hidden;
   background-color: white;
   padding: 4em 8em;
@@ -155,6 +155,13 @@ body {
 
 #clr-picker {
   z-index: 1200;
+}
+
+.cardText {
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Begrenzt den Text auf 3 Zeilen */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @media screen and (min-width: 871px) and (max-width: 1200px) {
