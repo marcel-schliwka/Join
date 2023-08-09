@@ -89,14 +89,29 @@ function returnNextDeadline() {
  * @returns {string} The formatted date in the format: Month Day, Year (e.g., "January 01, 2023").
  */
 function formateDate(dateToFormat) {
+  const date = dateToFormat;
   const months = [
-    "January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
-  const [year, month, day] = dateToFormat.split("-").map(Number);
-  const formattedMonth = months[month - 1];
-  const formattedDay = day.toString().padStart(2, "0");
-  return `${formattedMonth} ${formattedDay}, ${year}`;
+  const year = date.substring(0, 4);
+  const month = date.substring(6, 7);
+  const day = date.substring(9, 10);
+
+  let formatedMonth = months[month - 1];
+  let formatedDay = day.toString().padStart(2, "0");
+  let formatedDate = formatedMonth + " " + formatedDay + ", " + year;
+  return formatedDate;
 }
 
 /**
