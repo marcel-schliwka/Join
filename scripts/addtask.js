@@ -1,29 +1,11 @@
 let getContacts;
 let userObj;
-
-// async function loadUserContacts() {
-//   getContacts = await getItem("guest_contacts");
-// }
-
-async function loadTask() {
-  getId = await getItem("guest_task");
-}
-
-async function setItem(key, value) {
-  const PAYLOAD = { key, value, token: STORAGE_TOKEN };
-  return fetch(STORAGE_URL, {
-    method: "POST",
-    body: JSON.stringify(PAYLOAD),
-  }).then((res) => res.json());
-}
-
 let assigned = [];
 let newSubtasks = [];
 let subtasks = [];
 let currentCategory;
 let currentPrio;
 let tasks = [];
-
 let categorys = [
   {
     name: "Sales",
@@ -38,6 +20,20 @@ let categorys = [
     color: "#FFC701",
   },
 ];
+
+async function loadTask() {
+  getId = await getItem("guest_task");
+}
+
+async function setItem(key, value) {
+  const PAYLOAD = { key, value, token: STORAGE_TOKEN };
+  return fetch(STORAGE_URL, {
+    method: "POST",
+    body: JSON.stringify(PAYLOAD),
+  }).then((res) => res.json());
+}
+
+
 
 async function init() {
   userObj = await getLoggedInUser();
@@ -63,7 +59,7 @@ function showBoardButton() {
  */
 window.addEventListener("DOMContentLoaded", function () {
   const taskDateInput = document.getElementById("task-date");
-  
+
   function formatDate(date) {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -104,9 +100,7 @@ function clearAssigned() {
  *
  */
 function addTask() {
-
   let status = getStatusLocalStorage();
-
   if (status === null) {
     status = "to do";
   }
@@ -228,39 +222,46 @@ function checkIfCategoryInputExists() {
   return document.getElementById("generatedInput");
 }
 function addNewCategory() {
-
+  const categoryVar = getCategoryVaraible()
   try {
-    let input = document.getElementById("generatedInput").value;
-    let color = document.querySelector(".colorpicker").value;
-    let category = document.getElementById("category-input");
-    let categoryBtn = document.getElementById("category-button");
-    let hiddenError = document.getElementById("hidden-error");
-
-    if (input == "" && color == "") {
-      hiddenError.innerText = "Oops.. something went wrong";
-      hiddenError.classList.remove("display-none");
-    } else if (input == "") {
-      hiddenError.innerText = "You need to type a new category";
-      hiddenError.classList.remove("display-none");
-    } else if (color == "") {
-      hiddenError.innerText = "You need to pick a color";
-      hiddenError.classList.remove("display-none");
+    if (categoryVar.input == "" && categoryVar.color == "") {
+      categoryVar.hiddenError.innerText = "Oops.. something went wrong";
+      categoryVar.hiddenError.classList.remove("display-none");
+    } else if (categoryVar.input == "") {
+      categoryVar.hiddenError.innerText = "You need to type a new category";
+      categoryVar.hiddenError.classList.remove("display-none");
+    } else if (categoryVar.color == "") {
+      categoryVar.hiddenError.innerText = "You need to pick a color";
+      categoryVar.hiddenError.classList.remove("display-none");
     } else {
-      hiddenError.innerText = "";
-      hiddenError.classList.add("display-none");
+      categoryVar.hiddenError.innerText = "";
+      categoryVar.hiddenError.classList.add("display-none");
       categorys.push({
-        name: input,
-        color: color,
+        name: categoryVar.input,
+        color: categoryVar.color,
       });
       renderCategorys();
-      category.innerHTML = generateBasicCategoryInputHTML();
-      categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
+      categoryVar.category.innerHTML = generateBasicCategoryInputHTML();
+      categoryVar.categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
       let index = categorys.length;
-      category.innerHTML = generateSelectedCategoryHTML(categorys, index - 1);
+      categoryVar.category.innerHTML = generateSelectedCategoryHTML(categorys, index - 1);
     }
   } catch (error) {
     return false;
   }
+}
+
+/**
+ * Gets the input fields from html
+ * @returns variables
+ */
+function getCategoryVaraible() {
+  const input = document.getElementById("generatedInput").value;
+  const color = document.querySelector(".colorpicker").value;
+  const category = document.getElementById("category-input");
+  const categoryBtn = document.getElementById("category-button");
+  const hiddenError = document.getElementById("hidden-error");
+  return {input, color, category, categoryBtn, hiddenError}
 }
 
 /**
@@ -302,7 +303,6 @@ function renderCategorys() {
   let category = document.getElementById("renderCategorys");
   category.innerHTML = "";
   category.innerHTML = generateAddNewCategoryHTML();
-
   for (let i = 0; i < categorys.length; i++) {
     const cat = categorys[i];
     category.innerHTML += renderCategorysHTML(i, cat);
