@@ -3,6 +3,11 @@ let userObj;
 let taskcount;
 let deadlines = [];
 
+
+/**
+ * gets the logged-in user and gets the user object
+ * then it updates the html accordingly
+ */
 async function initSummary() {
   userObj = await getLoggedInUser();
   updateHTML();
