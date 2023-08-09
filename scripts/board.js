@@ -2,12 +2,25 @@ let currentDraggedElement;
 let currentStatus;
 let currentTitel;
 
+/**
+ * Initializes the board by fetching the logged-in user, updating the HTML, and rendering the top logo.
+ * @async
+ * @function
+ */
 async function initBoard() {
   userObj = await getLoggedInUser();
   updateHTML();
   await renderTopLogo(userObj);
 }
 
+/**
+ * Updates the HTML content of the board by performing a series of operations:
+ * - Clearing all tasks
+ * - Rendering all to-dos, in-progress tasks, tasks awaiting feedback, and done tasks
+ * - Rendering contacts, categories, and subtasks
+ * - Starting touch event listeners
+ * @function
+ */
 function updateHTML() {
   clearAllTasks();
   renderAllToDos();
@@ -20,6 +33,10 @@ function updateHTML() {
   startTouchEventListener();
 }
 
+/**
+ * Clears all tasks from the board. The tasks are cleared by setting the innerHTML of their respective containers to an empty string.
+ * @function
+ */
 function clearAllTasks() {
   document.getElementById("todo").innerHTML = "";
   document.getElementById("inProgress").innerHTML = "";
@@ -27,12 +44,38 @@ function clearAllTasks() {
   document.getElementById("done").innerHTML = "";
 }
 
-// --------------- TODO --------------- \\
-function renderAllToDos() {
-  let stillToDo = userObj.tasks.filter((t) => t["status"] == "to do");
+function renderTasksByStatus(status, templateFunction, containerId) {
+  const tasksByStatus = userObj.tasks.filter((t) => t["status"] === status);
 
-  for (let i = 0; i < stillToDo.length; i++) {
-    const element = stillToDo[i];
+  tasksByStatus.forEach((element, i) => {
+    document.getElementById(containerId).innerHTML += templateFunction(
+      element,
+      i,
+      getPriority(element)
+    );
+
+    let idAssigned = document.getElementById(
+      `assigned${
+        containerId.charAt(0).toUpperCase() + containerId.slice(1)
+      }${i}`
+    );
+    idAssigned.innerHTML = element["assigned"]
+      .map((_, j) => htmlTemplateAssignment(element, j))
+      .join("");
+  });
+}
+
+/**
+ * Renders all tasks with the status "to do" to the DOM.
+ * For each task, the function generates the HTML template for the task and its assigned members.
+ * It uses the `htmlTemplateToDo` for the task and `htmlTemplateAssignment` for each assigned member.
+ * @function
+ * @global
+ */
+function renderAllToDos() {
+  let stillToDo = userObj.tasks.filter((t) => t["status"] === "to do");
+
+  stillToDo.forEach((element, i) => {
     document.getElementById("todo").innerHTML += htmlTemplateToDo(
       element,
       i,
@@ -40,15 +83,19 @@ function renderAllToDos() {
     );
 
     let idAssigned = document.getElementById(`assignedToDo${i}`);
-
-    idAssigned.innerHTML = "";
-
-    for (let j = 0; j < element["assigned"].length; j++) {
-      idAssigned.innerHTML += htmlTemplateAssignment(element, j);
-    }
-  }
+    idAssigned.innerHTML = element["assigned"]
+      .map((_, j) => htmlTemplateAssignment(element, j))
+      .join("");
+  });
 }
 
+/**
+ * Determines the priority of a given task element and returns the corresponding HTML string for its icon.
+ *
+ * @function
+ * @param {Object} element - The task object which has a "prio" property indicating its priority.
+ * @returns {string} HTML string representing the priority icon based on the task's priority. Possible icons are "prioUrgent", "prioMedium", and "prioLow".
+ */
 function getPriority(element) {
   let priority;
   if (element["prio"] == "urgent") {
@@ -61,6 +108,15 @@ function getPriority(element) {
   return priority;
 }
 
+/**
+ * Generates the HTML template for a given task element for the "to do" category.
+ *
+ * @function
+ * @param {Object} element - The task object containing details like title, description, category, category color, etc.
+ * @param {number} i - The index or identifier for the task, used to generate unique IDs for DOM elements.
+ * @param {string} priority - The HTML string representing the priority icon for the task.
+ * @returns {string} HTML template string for the task, which includes details like category, title, description, and assigned members.
+ */
 function htmlTemplateToDo(element, i, priority) {
   return `<div status="to do" currentId="${i}" titel="${element["titel"]}" id="cardTodo${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)"  draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
@@ -79,6 +135,14 @@ function htmlTemplateToDo(element, i, priority) {
         </div>`;
 }
 
+/**
+ * Generates the HTML template for a given assignment element, typically representing a member assigned to a task.
+ *
+ * @function
+ * @param {Object} element - The task object containing an "assigned" property which is an array of member names.
+ * @param {number} j - The index of the member in the "assigned" array, used to fetch the specific member.
+ * @returns {string} HTML template string for the assigned member, which includes the member's initials set against a background color.
+ */
 function htmlTemplateAssignment(element, j) {
   return `<div class="margin-4 contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:${
     MemberColors[getColorSign(element["assigned"][j])]
@@ -88,12 +152,21 @@ function htmlTemplateAssignment(element, j) {
 }
 
 // --------------- IN PROGRESS --------------- \\
+
+/**
+ * Renders all tasks with the status "in progress" to the DOM.
+ * For each task, the function generates the HTML template for the task and its assigned members.
+ * It uses the `htmlTemplateInProgress` for the task and `htmlTemplateAssignment` for each assigned member.
+ *
+ * @function
+ * @global
+ */
 function renderAllInProgress() {
   let stillInProgress = userObj.tasks.filter(
-    (t) => t["status"] == "in progress"
+    (t) => t["status"] === "in progress"
   );
-  for (let i = 0; i < stillInProgress.length; i++) {
-    const element = stillInProgress[i];
+
+  stillInProgress.forEach((element, i) => {
     document.getElementById("inProgress").innerHTML += htmlTemplateInProgress(
       element,
       i,
@@ -101,15 +174,20 @@ function renderAllInProgress() {
     );
 
     let idAssigned = document.getElementById(`assignedInProgress${i}`);
-
-    idAssigned.innerHTML = "";
-
-    for (let j = 0; j < element["assigned"].length; j++) {
-      idAssigned.innerHTML += htmlTemplateAssignment(element, j);
-    }
-  }
+    idAssigned.innerHTML = element["assigned"]
+      .map((_, j) => htmlTemplateAssignment(element, j))
+      .join("");
+  });
 }
 
+/**
+ * Prepares the modal form to add a new task with a specified status.
+ * The function saves the task status to local storage, updates the "onsubmit" attribute of the form
+ * to add the task with the specified status, and then opens the modal.
+ *
+ * @function
+ * @param {string} status - The status of the task to be added (e.g., "to do", "in progress").
+ */
 function addTaskByStatus(status) {
   saveStatusLocalstorage(status);
   document
@@ -118,6 +196,15 @@ function addTaskByStatus(status) {
   openModal(document.querySelector(".modal"));
 }
 
+/**
+ * Generates the HTML template for a given task element for the "in progress" category.
+ *
+ * @function
+ * @param {Object} element - The task object containing details like title, description, category, category color, etc.
+ * @param {number} i - The index or identifier for the task, used to generate unique IDs for DOM elements.
+ * @param {string} priority - The HTML string representing the priority icon for the task.
+ * @returns {string} HTML template string for the task, which includes details like category, title, description, and assigned members.
+ */
 function htmlTemplateInProgress(element, i, priority) {
   return `<div status="in progress" currentId="${i}" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
             <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
