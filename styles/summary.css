@@ -110,6 +110,11 @@ h3 {
   align-items: center;
   margin-bottom: 57px;
 }
+.urgent-right {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
 .main-top {
   display: flex;
@@ -204,25 +209,131 @@ h3 {
 
 /*Media Queries*/
 
-@media (max-height: 900px) {
+@media (max-width: 1320px) {
   .summary {
-    margin-top: 50px;
+    margin-left: 300px;
+    margin-top: 60px;
+  }
+  .sumamry-content {
+    gap: 40px;
   }
 }
 
-@media (max-width: 1140px) {
+@media (max-width: 1200px) {
   .summary {
     margin-left: 280px;
+    margin-top: 50px;
+  }
+  .main-top {
+    gap: 20px;
+  }
+  .main-bottom {
+    gap: 20px;
+  }
+  .task-board,
+  .task-progress,
+  .task-feedback {
+    height: 150px;
+    width: 150px;
+  }
+  .to-do,
+  .done {
+    width: 235px;
+    height: 150px;
+  }
+  .main-middle {
+    height: 150px;
+    margin-top: 0px;
+    width: 490px;
   }
 }
+
+@media(max-width: 1140px) {
+  .summary-header h1,
+  #task-count,
+  #progress-count,
+  #feedback-count,
+  #urgent-count,
+  #todo-count,
+  #done-count {
+    font-size: 50px;
+  }
+  .summary-header h3 {
+    font-size: 24px;
+  }
+  .task-board span,
+  .task-progress span,
+  .task-feedback span,
+  .urgent span,
+  .to-do-content span,
+  .done-content span,
+  .deadline-text {
+    font-size: 16px;
+  }
+  
+  #urgent-deadline {
+    font-size: 18px;
+  }
+
+  .main-middle {
+    gap: 45px;
+  }
+}
+
+
+@media(max-width: 1080px) {
+  .summary {
+    margin-left: 260px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .greeting {
+    display: none;
+  }
+}
+
 
 
 @media (max-width: 760px) {
+  .summary-header h1 {
+    font-size: 47px;
+  }
+  .summary-header h3 {
+    font-size: 20px;
+  }
+
+  #task-count,
+  #progress-count,
+  #feedback-count,
+  #urgent-count,
+  #todo-count,
+  #done-count {
+    font-size: 47px;
+  }
+  .task-board span,
+  .task-progress span,
+  .task-feedback span,
+  .urgent span,
+  .to-do-content span,
+  .done-content span,
+  .deadline-text {
+    font-size: 14px;
+  }
+  #urgent-deadline {
+    font-size: 16px;
+  }
+  img {
+    height: 40px;
+    width: 40px;
+  }
+
+
   .summary {
     padding-left: 16px;
     padding-right: 16px;
     margin-left: 0px;
-    margin-top: 48px;
+    margin-top: 20px;
     margin-bottom: 100px;
   }
 
@@ -232,6 +343,11 @@ h3 {
     gap: 8px;
     align-items: flex-start;
   }
+
+  .summary-content {
+    margin-top: -20px;
+  }
+
 
 
   .summary-header svg {
@@ -262,12 +378,6 @@ h3 {
 
 
 @media (max-width: 600px) {
-  .summary-header h1 {
-    font-size: 47px;
-  }
-  .summary-header h3 {
-    font-size: 20px;
-  }
   .summary-header svg {
     margin-top: -40px;
     margin-left: 30px;
@@ -275,55 +385,32 @@ h3 {
     height: 90px;
   }
 
-  #task-count,
-  #progress-count,
-  #feedback-count,
-  #urgent-count,
-  #todo-count,
-  #done-count {
-    font-size: 47px;
+  .summary-content {
+    margin-top: 20px;
   }
-  .task-board span,
-  .task-progress span,
-  .task-feedback span,
-  .urgent span,
-  .to-do-content span,
-  .done-content span,
-  .deadline-text {
-    font-size: 14px;
-  }
-  #urgent-deadline {
-    font-size: 16px;
-  }
-  img {
-    height: 40px;
-    width: 40px;
-  }
-
-  .urgent-right {
-    display: flex;
-  }
-
-  
 
   .main-top {
     gap: 24px;
   }
+
   .main-middle {
     margin-top: 10px;
     width: 512px;
     height: 140px
   }
+
   .main-bottom {
     gap: 24px;
     margin-top: 24px;
   }
+
   .task-board,
   .task-progress,
   .task-feedback {
     height: 150px;
     width: 150px;
   }
+
   .to-do,
   .done {
     width: 237px;
@@ -370,7 +457,7 @@ h3 {
     margin-top: 0;
     height: 110px;
   }
-
+}
 @media (max-width: 410px) {
   #task-count,
   #progress-count,
@@ -421,6 +508,30 @@ h3 {
   .main-top {
     gap: 12px;
   }
+
+  #task-count,
+  #progress-count,
+  #feedback-count,
+  #urgent-count,
+  #todo-count,
+  #done-count {
+    font-size: 28px;
+  }
+
+  .task-board span,
+  .task-progress span,
+  .task-feedback span,
+  .urgent span,
+  .to-do-content span,
+  .done-content span,
+  .deadline-text {
+    font-size: 14px;
+  }
+
+  #urgent-deadline {
+    font-size: 16px;
+  }
+
   .main-bottom {
     gap: 14px;
     height: 90px;
