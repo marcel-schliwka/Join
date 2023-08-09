@@ -469,6 +469,14 @@ function boardOpenPopUpTask(i, card) {
       htmlTemplatePopUpMembers(element2);
   }
   taskForm.setAttribute("onsubmit", `saveEditTask(${index}, event)`);
+  let subtaskContainer = document.getElementById('boardTasksSubtasks');
+  if (element['subtasks'].length > 0) {
+    subtaskContainer.innerHTML += generateSubtaskHeader();
+    for (let k = 0; k < element['subtasks'].length; k++) {
+      const element3 = element['subtasks'][k];
+      subtaskContainer.innerHTML += generateBordSubtaskHTML(element3, k);
+    }
+  }
 }
 
 /**
@@ -552,7 +560,24 @@ function htmlTemplatePopUpTask(i, priority) {
             <div class="pb-3 bold">Assigned to:</div>
             <div id="boardTasksMembers" class="d-flex flex-column"></div>
         </div>
+        <div id="boardTasksSubtasks"></div>
     </div>`;
+}
+
+
+function generateBordSubtaskHTML(element3, k) {
+  return `
+  <div class="d-flex align-items-center mb-1 ps-3">
+  <div><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${k}" src="./img/checkbox.png"></div>
+  <div class="ms-4 bold">${element3}</div>
+  </div>
+  `;
+}
+
+function generateSubtaskHeader() {
+  return `
+  <div class="pb-3 bold">Subtasks:</div>
+  `;
 }
 
 /**
