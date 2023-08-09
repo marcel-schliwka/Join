@@ -67,7 +67,7 @@ body {
   background-color: white;
 }
 
-.heightWidth45Px {
+.contact-icon {
   height: 40px;
   width: 40px;
 }
@@ -172,12 +172,12 @@ body {
     font-size: small;
   }
 
-  .heightWidth45Px {
+  .contact-icon {
     height: 30px;
     width: 30px;
   }
 
-  .height40Px {
+  .prio-icon {
     height: 30px;
   }
 

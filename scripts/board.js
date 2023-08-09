@@ -53,11 +53,11 @@ function renderAllToDos() {
 function getPriority(element) {
   let priority;
   if (element["prio"] == "urgent") {
-    priority = '<img class="height40Px" src="./img/prioUrgent.svg">';
+    priority = '<img class="prio-icon" src="./img/prioUrgent.svg">';
   } else if (element["prio"] == "medium") {
-    priority = '<img class="height40Px" src="./img/prioMedium.svg">';
+    priority = '<img class="prio-icon" src="./img/prioMedium.svg">';
   } else {
-    priority = '<img class="height40Px" src="./img/prioLow.svg">';
+    priority = '<img class="prio-icon" src="./img/prioLow.svg">';
   }
   return priority;
 }
@@ -81,9 +81,8 @@ function htmlTemplateToDo(element, i, priority) {
 }
 
 function htmlTemplateAssignment(element, j) {
-  return `<div class="margin-4 heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:${
-    MemberColors[getColorSign(element["assigned"][j])]
-  }">
+  return `<div class="margin-4 contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:${MemberColors[getColorSign(element["assigned"][j])]
+    }">
             ${getInitials(element["assigned"][j])}
         </div>`;
 }
@@ -359,9 +358,8 @@ function getThePriority(element) {
 }
 
 function htmlTemplatePopUpMembers(element2) {
-  return `<div class="textWhite heightWidth45Px d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${
-    MemberColors[getColorSign(element2)]
-  }">${getInitials(element2)}</div>
+  return `<div class="textWhite contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${MemberColors[getColorSign(element2)]
+    }">${getInitials(element2)}</div>
     `;
 }
 
@@ -560,12 +558,10 @@ function startTouchEventListener() {
         // Beginn des Long Press Timers
         pressTimer = window.setTimeout(function () {
           if (selectedElement && selectedElement.getAttribute("status")) {
-            selectedElement.style.left = `${
-              initialTouchOffsetX - initialScrollLeft
-            }px`;
-            selectedElement.style.top = `${
-              initialTouchOffsetY - initialScrollTop
-            }px`;
+            selectedElement.style.left = `${initialTouchOffsetX - initialScrollLeft
+              }px`;
+            selectedElement.style.top = `${initialTouchOffsetY - initialScrollTop
+              }px`;
             selectedElement.style.width = "auto";
             selectedElement.style.height = "auto";
             selectedElement.style.position = "static";
@@ -604,12 +600,10 @@ function startTouchEventListener() {
       );
 
       if (selectedElement) {
-        selectedElement.style.left = `${
-          touch.clientX - initialTouchOffsetX + initialScrollLeft
-        }px`;
-        selectedElement.style.top = `${
-          touch.clientY - initialTouchOffsetY + initialScrollTop
-        }px`;
+        selectedElement.style.left = `${touch.clientX - initialTouchOffsetX + initialScrollLeft
+          }px`;
+        selectedElement.style.top = `${touch.clientY - initialTouchOffsetY + initialScrollTop
+          }px`;
       }
     });
 
