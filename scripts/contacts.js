@@ -447,15 +447,11 @@ function addNewContact() {
   dialogBackground.classList.add('d-none');
   cancelCreateContact();
   renderContactList();
-  addNewContactPopup();
+  showTopDown('Contact created!')
   showNewContact(inputName);
   setTimeout(function () {
     document.getElementById('contacts-btn-container').classList.add('resp-none');
   }, 2500)
-}
-
-function addNewContactPopup() {
-  document.getElementById('contacts-btn-container').classList.remove('resp-none');
 }
 
 /**
