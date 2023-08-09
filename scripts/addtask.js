@@ -22,20 +22,9 @@ let categorys = [
 ];
 
 
-async function setItem(key, value) {
-  const PAYLOAD = { key, value, token: STORAGE_TOKEN };
-  return fetch(STORAGE_URL, {
-    method: "POST",
-    body: JSON.stringify(PAYLOAD),
-  }).then((res) => res.json());
-}
-
-
 /**
- * 
- * gets the user Object from the logged-in user
- * then it renders the contacts, categorys, subtasks and the initials (top right)
- * 
+ * Initialization function. Gets the logged-in user object and renders the contacts, categories, subtasks, and the initials.
+ * @function
  */
 async function init() {
   userObj = await getLoggedInUser();
@@ -47,16 +36,16 @@ async function init() {
 
 
 /**
- * 
- * When this function is called, the user gets redirected
- * @param {string} url 
+ * Redirects the user to a given URL.
+ * @function
+ * @param {string} url - The URL to redirect to.
  */
 function redirectTo(url) {
   window.location.href = url;
 }
 
 /**
- * Shows a button ("Added to Board"), when a Task is generated
+ * Displays the board button by removing the "display-none" class.
  */
 function showBoardButton() {
   const boardBtn = document.getElementById("board-btn-container");
@@ -64,13 +53,21 @@ function showBoardButton() {
 }
 
 /**
- * adds an eventListener that the document gets onload the current date
- * then it gives the date the calender-selector as a min so that no previous days can be selected
- *
+ * Event listener that runs when the DOM content is loaded.
+ * It initializes the taskDateInput element.
+ * 
+ * @event DOMContentLoaded
  */
 window.addEventListener("DOMContentLoaded", function () {
   const taskDateInput = document.getElementById("task-date");
 
+  
+/**
+ * Formats a given date into a string in "YYYY-MM-DD" format.
+ * 
+ * @param {Date} date - The date object to be formatted.
+ * @returns {string} The formatted date string.
+ */
   function formatDate(date) {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -82,8 +79,7 @@ window.addEventListener("DOMContentLoaded", function () {
 });
 
 /**
- *
- * add and remove classlists to hide the assignedto dropdown menu
+ * Hides the assigned-to dropdown and removes its border.
  */
 function hideAssignedToDropdown() {
   let assignedContainer = document.getElementById("contact-container");
@@ -93,9 +89,7 @@ function hideAssignedToDropdown() {
 }
 
 /**
- *
- * onclick on cancel button inside the assigned input
- * the input gets cleared and the basic html gets generated
+ * Clears the assigned contacts input and resets the assigned contacts button.
  */
 function clearAssigned() {
   let assignedInput = document.getElementById("assigned-input");
@@ -105,10 +99,7 @@ function clearAssigned() {
 }
 
 /**
- *
- * onsubmit: gets all selected and added content inside the tasks and pushes them into an object
- * the objects gets pushed into the server
- *
+ * Adds a new task to the user's tasks list and redirects to the board page.
  */
 function addTask() {
   let status = getStatusLocalStorage();
@@ -129,10 +120,9 @@ function addTask() {
 
 
 /**
- * 
- * Gets the variable from the html and returns them
- * @param {string} status 
- * @returns variables
+ * Retrieves task-related variables to create a new task object.
+ * @param {string} status - The status of the new task ("to do", "in progress", "awaiting feedback", or "done").
+ * @returns {Object} - The new task object containing task details.
  */
 function getAddTaskVariables(status) {
   let titel = document.getElementById("title-input");
@@ -164,14 +154,11 @@ function getAddTaskVariables(status) {
 }
 
 /**
- *
- * @param {id} button
- * @param {string} priority
- * onclick the clicked button gets the class priority-active
- * on all other buttons the class -active gets removed
- * pushes the selected priority into the variable currentPrio
- *
+ * Updates the task priority and visuals based on the provided button and priority.
+ * @param {HTMLElement} button - The button element representing the selected priority.
+ * @param {string} priority - The priority value ("low", "medium", or "urgent").
  */
+
 function getTaskPrio(button, priority) {
   const buttons = document.querySelectorAll(".prioBtn");
   let images = {
@@ -196,9 +183,8 @@ function getTaskPrio(button, priority) {
 }
 
 
-
 /**
- * opens the add-task template
+ * Shows the task modal by removing the "display-none" class and adding the "add-task-template" class.
  */
 function showTaskModal() {
   let modal = document.getElementById("addTaskModal");
@@ -211,6 +197,10 @@ function showTaskModal() {
  *
  */
 
+
+/**
+ * Clears the selected category input and button content.
+ */
 function clearCategory() {
   let category = document.getElementById("category-input");
   let categoryBtn = document.getElementById("category-button");
@@ -219,29 +209,44 @@ function clearCategory() {
 }
 
 /**
- * This eventslistener change the color inside the HTML when a color gets selected
+ * Event listener that updates the background color of the color picker element
+ * when a color is picked.
+ *
+ * @param {Event} event The color pick event.
  */
 document.addEventListener("coloris:pick", (event) => {
   document.querySelector(".colorpicker").style.backgroundColor =
     event.detail.color;
 });
 
+/**
+ * Event listener that updates the background color of the color picker element
+ * when the color changes.
+ *
+ * @param {Event} event The color change event.
+ */
 document.addEventListener("coloris:change", (event) => {
   document.querySelector(".colorpicker").style.backgroundColor =
     event.detail.color;
 });
 
 /**
+ * Checks if the category input element exists in the DOM.
  *
- * This function gets called, when the task gets generated
- * it pushes the color value && the selected category into the category-object
- *
+ * @returns {HTMLElement|null} Returns the category input element if found, otherwise returns null.
  */
 
 function checkIfCategoryInputExists() {
   return document.getElementById("generatedInput");
 }
 
+
+/**
+ * Adds a new category to the list of categories.
+ * Validates input and color, updates UI, and displays error messages if needed.
+ *
+ * @returns {boolean} Returns false if an error occurs during execution.
+ */
 function addNewCategory() {
   try {
     const categoryVar = getCategoryVaraible();
@@ -266,8 +271,9 @@ function addNewCategory() {
 }
 
 /**
- * Gets the input fields from html
- * @returns variables
+ * Retrieves various category-related variables from the DOM.
+ *
+ * @returns {Object} An object containing input, color, category, categoryBtn, and hiddenError elements.
  */
 function getCategoryVaraible() {
   const input = document.getElementById("generatedInput").value;
@@ -279,10 +285,8 @@ function getCategoryVaraible() {
 }
 
 /**
- *
- * toggles the dropdown menu with adding and removing classes
- * adds an eventListener, when the user clicks outside of the element, the dropdown gets closed
- *
+ * Toggles the display of the category menu.
+ * Manages the visibility of the category menu and handles click events to hide the menu when clicking outside.
  */
 function toggleCategoryMenu() {
   const category = document.getElementById("renderCategorys");
@@ -305,8 +309,8 @@ function toggleCategoryMenu() {
 }
 
 /**
- * gets all aviable categorys and renders them inside the dropdown menu
- *
+ * Renders the list of categories on the page.
+ * Clears and replaces the content of the category container with generated category items.
  */
 function renderCategorys() {
   let category = document.getElementById("renderCategorys");
@@ -319,13 +323,10 @@ function renderCategorys() {
 }
 
 /**
+ * Selects a category and updates the category input field.
+ * Updates the selected category in the input field, hides the category menu, and removes the border from the category container.
  *
- * @param {id} i
- *
- * If a category gets selected it closes the dropdown menu
- * and takes the selected text and generate it inside the category input
- * the selected category gets pushed into the variable currentCategory
- *
+ * @param {number} i - Index of the selected category in the category list.
  */
 function useCategory(i) {
   let selection = document.querySelector(".category-input");
@@ -342,10 +343,8 @@ function useCategory(i) {
  */
 
 /**
- *
- * onclick the function toggles the dropdown menu
- * adds an eventListener, that if the user clicks outside of the dropdown it gets closed
- *
+ * Toggles the display of the assigned contacts menu.
+ * Manages the visibility of the assigned contacts menu and handles click events to hide the menu when clicking outside.
  */
 function toggleAssigndMenu() {
   const contacts = document.getElementById("contact-container");
@@ -367,13 +366,8 @@ function toggleAssigndMenu() {
 }
 
 /**
- *
- * gets all checkboxes from the assigned dropdown menu
- * checks all checkboxes, if they are checked
- * if the checkbox is the user one it pushes the username
- * otherwise it pushes the name from the contact into the array assigned
- *
- *
+ * Collects assigned contacts based on checked checkboxes.
+ * Gathers the names of assigned contacts based on checked checkbox images.
  */
 function getAssignedContacts() {
   let test = document.querySelectorAll(".checkboxImg");
@@ -392,12 +386,8 @@ function getAssignedContacts() {
 }
 
 /**
- *
- * gets the assigned to (contacts) container
- * inside the container it first renders the user (you)
- * then it renders the aviable contacts
- * after the contacts are rendert it adds another line that allows the user to add a new contact
- *
+ * Renders the list of contacts on the page.
+ * Clears and replaces the content of the contacts container with generated contact items.
  */
 function renderContacts() {
   let contacts = document.getElementById("renderContacts");
@@ -414,12 +404,11 @@ function renderContacts() {
  * SUBTASKS
  */
 
+
 /**
- *
- * Gets the input from the generated subtasks and pushes them into an array.
- * Then render the subtasks
- * After that it generates the basic (initial html) field.
- *
+ * Adds a new subtask to the subtasks array and re-renders the subtask list.
+ * Retrieves the input value, adds it to the subtasks array, and updates the rendered subtask list.
+ * Resets the subtask input container and button to their basic state.
  */
 function addSubtask() {
   let input = document.getElementById("generatedSubtaskInput").value;
@@ -434,10 +423,8 @@ function addSubtask() {
 }
 
 /**
- *
- * render the generated subtasks inside the subtask-container
- * subtracts margin from the buttons under them to stay on the same point
- *
+ * Renders the list of subtasks on the page.
+ * Clears and replaces the content of the subtask container with generated subtask items.
  */
 function renderSubtasks() {
   let content = document.getElementById("subtask-content");
@@ -456,10 +443,8 @@ function renderSubtasks() {
 }
 
 /**
- *
- * If the cancel symbol gets clicked inside the subtask input
- * the basic subtask-field (from initial html) gets shown
- *
+ * Switches subtask container and button to basic subtask input and button.
+ * Clears and replaces the content of subtask input container and button with basic elements.
  */
 function changeToSubtask() {
   let subtasksInput = document.getElementById("subtasks-input");
@@ -469,11 +454,10 @@ function changeToSubtask() {
 }
 
 /**
+ * Toggles the state of a subtask checkbox image between checked and unchecked.
+ * Changes the image source and attribute of the checkbox based on its current state.
  *
- * @param {id} i
- * gets the id from the clicked checkbox
- * onclick it gets the attribute checked and changes the image to a checked checkbox
- * if already checked it gets unchecked
+ * @param {number} i - The index of the subtask checkbox image.
  */
 function changeSubtaskCheckbox(i) {
   let checkboxImg = document.getElementById(`subtask-checkbox${i}`);
@@ -487,11 +471,8 @@ function changeSubtaskCheckbox(i) {
 }
 
 /**
- *
- * This function gets all Checkboxes from the generated subtasks
- * Then it checks if the checkbox has the attribute checked and is active
- * Then it takes the Text from the subtask and push them into the Array newSubtasks
- *
+ * Collects selected subtask values from checkboxes.
+ * Gathers the text values of selected subtasks based on checked checkboxes.
  */
 function getSubtasks() {
   let subtaskCheckboxes = document.querySelectorAll(".subtaskCheckboxImg");
@@ -509,12 +490,11 @@ function getSubtasks() {
  */
 
 /**
+ * Switches a container and button to input elements.
+ * Clears and replaces the content of a container and button based on their IDs.
  *
- * @param {id} containerId
- * @param {id} buttonId
- * This function gets the id from the input-container && button-container
- * according to the clicked container the new input field & buttons get generated
- *
+ * @param {string} containerId - The ID of the container element to switch to an input.
+ * @param {string} buttonId - The ID of the button element associated with the container.
  */
 function changeToInput(containerId, buttonId) {
   let cId = document.getElementById(containerId);
@@ -535,11 +515,10 @@ function changeToInput(containerId, buttonId) {
 }
 
 /**
+ * Clears the value of an input element.
+ * Clears the value of the input element associated with the given button element.
  *
- * This function gets the id from an input-field and gets called via onclick
- * onclick the input field gets emptied
- *
- * @param {id} element
+ * @param {HTMLElement} element - The button element triggering the input clearing.
  */
 function clearInput(element) {
   let input = element.parentNode.parentNode.parentNode.querySelector("input");
@@ -547,10 +526,10 @@ function clearInput(element) {
 }
 
 /**
+ * Toggles the state of a checkbox image between checked and unchecked.
+ * Changes the image source of the checkbox based on its current state.
  *
- * This function gets the id from the checkbox-images.
- * Onclick the src gets changed to show a checked checkbox
- * @param {integer} i
+ * @param {number} i - The index of the checkbox image.
  */
 function changeCheckbox(i) {
   let checkboxImg = document.getElementById(`checkboxImg${i}`);
@@ -562,9 +541,9 @@ function changeCheckbox(i) {
 }
 
 /**
- * This function gets called, when clicked on the Clear-Button
- * If clicked, it clears the Arrays Subtasks and deletes the current Category
- *
+ * Clears all input fields and resets priority, subtasks, and category.
+ * Clears the values of input fields, resets priority selection, subtasks, and category selection.
+ * Also updates the category input and button elements, and triggers rendering of categories and subtasks.
  */
 function clearAll() {
   const inputFields = ["title-input", "description-input", "task-date"];
@@ -590,7 +569,12 @@ function clearAll() {
  * @returns Category HTML-templates
  */
 
-//Generates the input field, when clicked on "Add new Category"
+/**
+ * Generates HTML markup for a category input element.
+ * Creates HTML markup for an input element to enter a new category.
+ *
+ * @returns {string} The generated HTML markup for the category input element.
+ */
 function generateCategoryInputHTML() {
   return `
   <div>
@@ -599,7 +583,10 @@ function generateCategoryInputHTML() {
   `;
 }
 
-//Generates the new buttons, when clicked on "Add new Category"
+/**
+ * Generates the button elements for the category section.
+ * @returns {string} HTML template for the category buttons.
+ */
 function generateCategoryButtonHTML() {
   return `
   <div class="generated-Btn-Container">
@@ -612,7 +599,10 @@ function generateCategoryButtonHTML() {
   </div>`;
 }
 
-//Generates the dropdown menu option "Add new category" before the aviable categorys gets renderd
+/**
+ * Generates the dropdown menu option "Add new category" before available categories are rendered.
+ * @returns {string} HTML template for the "Add new category" option.
+ */
 function generateAddNewCategoryHTML() {
   return `
   <div onclick="changeToInput('category-input', 'category-button')" class="category-generated-list font20">
@@ -621,7 +611,14 @@ function generateAddNewCategoryHTML() {
   `;
 }
 
-//Generates new HTML for rendering the aviable categorys + the newly added one
+/**
+ * Generates HTML markup for rendering a task category in the category dropdown.
+ * Creates HTML markup for a container displaying a task category name along with a colored circle.
+ *
+ * @param {number} i - The index of the task category.
+ * @param {Object} cat - The task category object containing category information.
+ * @returns {string} The generated HTML markup for the task category in the category dropdown.
+ */
 function renderCategorysHTML(i, cat) {
   return `<div class="category-dropdown-items" onclick="useCategory(${i})">
   <li class="font20 category-li-item"">${cat["name"]} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
@@ -630,7 +627,14 @@ function renderCategorysHTML(i, cat) {
   </div>`;
 }
 
-//If a Category gets selected, the category gets written in the innerText from the category dropdown menu
+/**
+ * Generates HTML markup for a selected task category with color circle.
+ * Creates HTML markup for displaying a selected task category name along with a colored circle.
+ *
+ * @param {Array} categorys - The array of task categories.
+ * @param {number} i - The index of the selected category.
+ * @returns {string} The generated HTML markup for the selected task category with color circle.
+ */
 function generateSelectedCategoryHTML(categorys, i) {
   return `<div>
   ${categorys[i]["name"]} <svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none">
@@ -639,14 +643,24 @@ function generateSelectedCategoryHTML(categorys, i) {
   </div>`;
 }
 
-//Generates the basic input field for categorys, from the HTML
+/**
+ * Generates HTML markup for a basic category selection input placeholder.
+ * Creates HTML markup for a placeholder text to indicate selecting a task category.
+ *
+ * @returns {string} The generated HTML markup for the basic category selection input placeholder.
+ */
 function generateBasicCategoryInputHTML() {
   return `
   <div class="category-input cursor-p" id="category-input">
   <span>Select task category</span>`;
 }
 
-//Generates the basic button for categorys, from the HTML
+/**
+ * Generates HTML markup for a basic category selection button.
+ * Creates HTML markup for a button to open the category selection dropdown.
+ *
+ * @returns {string} The generated HTML markup for the basic category selection button.
+ */
 function generateBasicCategoryButtonHTML() {
   return `
   <button type="button"><img src="./img/arrow_down.png"></button>
@@ -660,10 +674,22 @@ function generateBasicCategoryButtonHTML() {
  * @returns Assigned HTML-templates
  */
 
+/**
+ * Generates HTML markup for a basic assigned contact input placeholder.
+ * Creates HTML markup for a placeholder text to indicate selecting contacts for assignment.
+ *
+ * @returns {string} The generated HTML markup for the basic assigned contact input placeholder.
+ */
 function generateBasicAssignedInputHTML() {
   return `<span>Select contacts to assign</span>`;
 }
 
+/**
+ * Generates HTML markup for a basic assigned contact button container.
+ * Creates HTML markup for a container containing a button to open the assigned contacts dropdown.
+ *
+ * @returns {string} The generated HTML markup for the basic assigned contact button container.
+ */
 function generateBasicAssignedButtonHTML() {
   return `
   <div class="assigned-button-container" id="assigned-button">
@@ -672,7 +698,12 @@ function generateBasicAssignedButtonHTML() {
   `;
 }
 
-//Generates the input field, when clicked on "Invite new contact"
+/**
+ * Generates HTML markup for an assigned contact input element.
+ * Creates HTML markup for an input element to enter a contact's email for assignment.
+ *
+ * @returns {string} The generated HTML markup for the assigned contact input element.
+ */
 function generateAssignedInputHTML() {
   return `
   <div>
@@ -681,7 +712,12 @@ function generateAssignedInputHTML() {
   `;
 }
 
-//Generates the buttons, when clicked on "Invite new contact"
+/**
+ * Generates HTML markup for assigned contacts action buttons.
+ * Creates HTML markup for buttons used to interact with assigned contacts (cancel and confirm).
+ *
+ * @returns {string} The generated HTML markup for the assigned contacts action buttons.
+ */
 function generateAssigendButtonHTML() {
   return `
   <div class="generated-Btn-Container">
@@ -693,7 +729,12 @@ function generateAssigendButtonHTML() {
   </div>`;
 }
 
-//Generates the User option, when the dropdown menu "Assigned to" (You) gets opend
+/**
+ * Generates HTML markup for rendering the user's own assigned status.
+ * Creates HTML markup for a container displaying the user's own assigned status and checkbox.
+ *
+ * @returns {string} The generated HTML markup for the user's assigned status.
+ */
 function generateUserAssignedHTML() {
   return `
   <div class="contact-item-container" onclick="changeCheckbox(0)">
@@ -702,7 +743,14 @@ function generateUserAssignedHTML() {
   `;
 }
 
-//Generates new HTML for rendering the aviable contacts + the newly added one
+/**
+ * Generates HTML markup for rendering a contact item.
+ * Creates HTML markup for a container displaying a contact's name and checkbox.
+ *
+ * @param {Object} contact - The contact object containing contact information.
+ * @param {number} i - The index of the contact.
+ * @returns {string} The generated HTML markup for the contact item.
+ */
 function renderContactsHTML(contact, i) {
   return `
     <div class="contact-item-container" onclick="changeCheckbox(${i + 1})">
@@ -714,7 +762,12 @@ function renderContactsHTML(contact, i) {
     `;
 }
 
-//Generates the input field, when clicked on "Invite new contact" to insert a new User Mail
+/**
+ * Generates HTML markup to add a new contact item.
+ * Creates HTML markup for a list item to invite a new contact.
+ *
+ * @returns {string} The generated HTML markup for the new contact item.
+ */
 function generateAddNewContact() {
   return `
   <div>
@@ -730,7 +783,12 @@ function generateAddNewContact() {
  * @returns Subtask HTML-templates
  */
 
-//Generates the input field, when clicked on "Add new subtask"
+/**
+ * Generates HTML markup for a subtask input element.
+ * Creates HTML markup for an input element to enter a new subtask.
+ *
+ * @returns {string} The generated HTML markup for the subtask input element.
+ */
 function generateSubtaskInputHTML() {
   return `
     <div>
@@ -739,7 +797,12 @@ function generateSubtaskInputHTML() {
     `;
 }
 
-//Generates the new buttons inside the input field, when clicked on "Add new subtask"
+/**
+ * Generates HTML markup for subtask action buttons.
+ * Creates HTML markup for buttons used to interact with subtasks (cancel and confirm).
+ *
+ * @returns {string} The generated HTML markup for the subtask action buttons.
+ */
 function generateSubtaskButtonHTML() {
   return `
     <div class="generated-Btn-Container">
@@ -751,7 +814,12 @@ function generateSubtaskButtonHTML() {
     </div>`;
 }
 
-//Generates the basic-styled "Add new subtask" input field (from html), when new subtask was added
+/**
+ * Generates HTML markup for a basic subtask input element.
+ * Creates HTML markup for an input element to add new subtasks.
+ *
+ * @returns {string} The generated HTML markup for the subtask input element.
+ */
 function generateBasicSubtaskInputHTML() {
   return `
   <input onclick="changeToInput('subtasks-input', 'subtasks-button')" class="subtask-input  ol-none" type="text"
@@ -759,7 +827,12 @@ function generateBasicSubtaskInputHTML() {
   `;
 }
 
-//Generates the basic-styled "Add new subtask" buttons (from html), when new subtask was added
+/**
+ * Generates HTML markup for a basic subtask button container.
+ * Creates HTML markup for a container containing a button to add new subtasks.
+ *
+ * @returns {string} The generated HTML markup for the subtask button container.
+ */
 function generateBasicSubtaskButtonHTML() {
   return `
   <div onclick="changeToInput('subtasks-input', 'subtasks-button')" class="subtasks-button-container" id="subtasks-button">
@@ -768,7 +841,14 @@ function generateBasicSubtaskButtonHTML() {
   `;
 }
 
-//Generates new HTML for rendering the newly added subtasks
+/**
+ * Generates HTML markup for a new subtask container.
+ * Creates HTML markup for a container displaying a subtask checkbox and text.
+ *
+ * @param {number} i - The index of the subtask.
+ * @param {string} subt - The text of the subtask.
+ * @returns {string} The generated HTML markup for the subtask container.
+ */
 function generateNewSubtaskHTML(i, subt) {
   return `
     <div class="generated-subtask-container w-422">
