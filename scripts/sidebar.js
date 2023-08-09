@@ -1,3 +1,11 @@
+/**
+ * Asynchronously loads and includes HTML content from external files into the main document.
+ * Elements that are meant to include external HTML content should have the attribute "w3-include-html" set to the path of the external file.
+ * If the file is found and loaded successfully, the content will replace the innerHTML of the element.
+ * If the file is not found, "Page not found" will be set as the innerHTML of the element.
+ * @async
+ * @function
+ */
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
   for (let i = 0; i < includeElements.length; i++) {
@@ -13,6 +21,11 @@ async function includeHTML() {
   }
 }
 
+/**
+ * Marks the current site as active by adding the "activeSite" class to the appropriate element based on the site's name.
+ * The site name is determined by parsing the current window's location.
+ * @function
+ */
 function markSiteAsActive() {
   let url = window.location.href;
   let siteName = url.split("/")[3].split(".")[0];
@@ -30,11 +43,21 @@ function markSiteAsActive() {
   }
 }
 
+/**
+ * Displays the hidden dropdown menu by removing the "display-none" class from the "sidebarDropdown" element.
+ * @function
+ */
 function toggleHiddenDropdown() {
   let menu = document.getElementById("sidebarDropdown");
   menu.classList.remove("display-none");
 }
 
+/**
+ * Closes the hidden dropdown menu if a click event occurs outside the dropdown or the sidebar menu.
+ * The menu is hidden by adding the "display-none" class to the "sidebarDropdown" element.
+ * @param {Event} event - The DOM event triggered by the user's click.
+ * @function
+ */
 function closeHiddenDropdown(event) {
   let dropdown = document.getElementById("sidebarDropdown");
   let menu = document.getElementById("hiddenSidebarMenu");
@@ -44,33 +67,13 @@ function closeHiddenDropdown(event) {
   }
 }
 
+/**
+ * Logs out the user by removing the "activeUser" item from the local storage and redirects to "index.html".
+ * @function
+ */
 function logout() {
   localStorage.removeItem("activeUser");
   window.location.href = "index.html";
 }
 
 document.addEventListener("click", closeHiddenDropdown);
-/*
-function activeSite() {
-    const fullUrl = window.location.href;
-
-    // Split the URL by the forward slash '/'
-    const urlParts = fullUrl.split('/');
-
-    // Get the last part of the array, which is the file name
-    const siteName = urlParts[urlParts.length - 1];
-
-    if (siteName == 'contacts.html') {
-        document.getElementById('linkContacts').classList.add('activeSite');
-    };
-    if (siteName == 'summary.html') {
-        document.getElementById('linkSummary').classList.add('activeSite');
-    };
-    if (siteName == 'board.html') {
-        document.getElementById('linkBoard').classList.add('activeSite');
-    };
-    if (siteName == 'addtask.html') {
-        document.getElementById('linkBoard').classList.add('activeSite');
-    }
-}
-*/
