@@ -240,8 +240,8 @@ function checkIfCategoryInputExists() {
   return document.getElementById("generatedInput");
 }
 function addNewCategory() {
-  const categoryVar = getCategoryVaraible()
   try {
+    const categoryVar = getCategoryVaraible();
     if (categoryVar.input == "" && categoryVar.color == "") {
       categoryVar.hiddenError.innerText = "Oops.. something went wrong";
       categoryVar.hiddenError.classList.remove("display-none");
