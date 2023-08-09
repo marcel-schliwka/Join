@@ -124,11 +124,13 @@ body {
 .display-flex {
   display: flex;
 }
+
 .left-dialog {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
+
 .closeAddTask {
   position: absolute;
   right: 20px;
@@ -150,8 +152,38 @@ body {
   position: absolute;
   border-radius: 30px;
 }
+
 #clr-picker {
   z-index: 1200;
+}
+
+@media screen and (min-width: 871px) and (max-width: 1200px) {
+  .grid-items {
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .task-headline {
+    font-size: smaller;
+    align-self: center;
+  }
+
+  .sub-headline {
+    font-size: small;
+  }
+
+  .heightWidth45Px {
+    height: 30px;
+    width: 30px;
+  }
+
+  .height40Px {
+    height: 30px;
+  }
+
+  .cardText {
+    font-size: small;
+  }
 }
 
 @media screen and (max-width: 870px) {
@@ -159,6 +191,7 @@ body {
     display: flex;
     flex-direction: column;
   }
+
   .gridContainerChildBoard .dropArea {
     min-height: 300px;
   }
@@ -166,6 +199,7 @@ body {
   .addTaskBoardBtn {
     display: none;
   }
+
   .headline-container-board {
     display: flex;
     flex-direction: column;
@@ -181,11 +215,13 @@ body {
     max-width: 90%;
     text-overflow: ellipsis;
   }
+
   .headlineBoard {
     position: relative;
     line-height: 1;
     margin-bottom: 20px;
   }
+
   .mobileAddTask {
     display: block;
     cursor: pointer;
@@ -193,10 +229,12 @@ body {
     right: 0;
     bottom: 0;
   }
+
   .findTaskBtn,
   .findTaskBtn input {
     width: 100%;
   }
+
   .boardCategoryHeadline {
     font-size: 1.25rem;
   }
@@ -207,12 +245,15 @@ body {
     flex-direction: column;
     padding-right: 0;
   }
+
   .gridContainerChildBoard {
     width: 90%;
   }
+
   .dropArea {
     min-height: 100px !important;
   }
+
   .headline-container-board {
     align-self: flex-start;
     margin-left: 20px;
@@ -229,9 +270,11 @@ body {
     height: 100% !important;
     border-radius: 0;
   }
+
   #form-btn-container {
     display: none !important;
   }
+
   .addTaskHeadline {
     margin-top: 50px;
   }
@@ -240,13 +283,12 @@ body {
   .addTaskFormWrapper textarea,
   #category-container,
   #assigned-container,
-  #assigned-container > *,
+  #assigned-container>*,
   .subtasks-container,
-  .subtasks-container > *,
+  .subtasks-container>*,
   #contact-container,
-  #contact-container > *,
+  #contact-container>*,
   .prio-btn {
     width: 90%;
   }
 }
-

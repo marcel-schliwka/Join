@@ -64,16 +64,16 @@ function getPriority(element) {
 
 function htmlTemplateToDo(element, i, priority) {
   return `<div status="to do" currentId="${i}" titel="${element["titel"]}" id="cardTodo${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)"  draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-            <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element["categoryColor"]}">
+            <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
                 ${element["category"]}
             </div>
-            <div class="mt-2 mx-2 bold">
+            <div class="mt-2 mx-2 bold sub-headline">
                 ${element["titel"]}
             </div>
             <div class="cardText mx-2 my-1">
                 ${element["description"]}
             </div>
-            <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4">
+            <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
                 <div class="d-flex textWhite" id="assignedToDo${i}"></div>
                 <div>${priority}</div>
             </div>
@@ -121,16 +121,16 @@ function addTaskByStatus(status) {
 
 function htmlTemplateInProgress(element, i, priority) {
   return `<div status="in progress" currentId="${i}" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-            <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element["categoryColor"]}">
+            <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
                 ${element["category"]}
             </div>
-            <div class="mt-2 mx-2 bold">
+            <div class="mt-2 mx-2 bold sub-headline">
                 ${element["titel"]}
             </div>
-            <div class="mx-2 my-1">
+            <div class="cardText mx-2 my-1">
                 ${element["description"]}
             </div>
-            <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4">
+            <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
                 <div class="d-flex textWhite" id="assignedInProgress${i}"></div>
                 <div>${priority}</div>
             </div>
@@ -158,16 +158,16 @@ function renderAllAwaitingFeedback() {
 
 function htmlTemplateAwaitingFeedback(element, i, priority) {
   return `<div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-        <div class="textWhite border rounded-3 px-3 m-2" style="background-color: ${element["categoryColor"]}">
+        <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color: ${element["categoryColor"]}">
             ${element["category"]}
         </div>
-        <div class="mt-2 mx-2 bold">
+        <div class="mt-2 mx-2 bold sub-headline">
             ${element["titel"]}
         </div>
-        <div class="mx-2 my-1">
+        <div class="cardText mx-2 my-1">
             ${element["description"]}
         </div>
-        <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4">
+        <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
             <div class="d-flex textWhite" id="assignedAwaitingFeedback${i}"></div>
             <div>${priority}</div>
         </div>
@@ -195,16 +195,16 @@ function renderAllDone() {
 
 function htmlTemplateDone(element, i, priority) {
   return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-        <div class="textWhite border rounded-3 px-3 m-2" style="background-color:${element["categoryColor"]}">
+        <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
             ${element["category"]}
         </div>
-        <div class="mt-2 mx-2 bold">
+        <div class="mt-2 mx-2 bold sub-headline">
             ${element["titel"]}
         </div>
-        <div class="mx-2 my-1">
+        <div class="cardText mx-2 my-1">
             ${element["description"]}
         </div>
-        <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4">
+        <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
             <div class="d-flex textWhite" id="assignedDone${i}"></div>
             <div>${priority}</div>
         </div>
