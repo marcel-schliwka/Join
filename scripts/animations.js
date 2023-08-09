@@ -3,6 +3,7 @@ function openModal(modal) {
   if (w < 950) {
     redirect('addTask.html')
   } else {
+    modal.classList.remove("dNone");
     modal.classList.remove("out");
     modal.classList.add("in");
     document.querySelector(".modal-backdrop").style.display = "flex";

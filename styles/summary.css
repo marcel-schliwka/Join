@@ -134,12 +134,12 @@ h3 {
   flex-shrink: 0;
 }
 
+
 .task-boad:hover,
 .task-progress:hover,
 .task-feedback:hover {
   background-color: rgba(42, 54, 71, 255);
 }
-
 
 .main-middle {
   display: flex;
@@ -233,6 +233,7 @@ h3 {
     align-items: flex-start;
   }
 
+
   .summary-header svg {
     order: 1;
     transform: rotate(90deg);
@@ -258,6 +259,7 @@ h3 {
 
 
 }
+
 
 @media (max-width: 600px) {
   .summary-header h1 {
@@ -300,9 +302,10 @@ h3 {
 
   .urgent-right {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
   }
+
+  
+
   .main-top {
     gap: 24px;
   }
@@ -342,6 +345,7 @@ h3 {
     height: 110px;
   }
 
+
   main {
     gap: 24px;
   }
@@ -361,11 +365,11 @@ h3 {
     height: 68px;
   }
 
+
   .main-bottom {
     margin-top: 0;
     height: 110px;
   }
-}
 
 @media (max-width: 410px) {
   #task-count,
@@ -376,6 +380,7 @@ h3 {
   #done-count {
     font-size: 36px;
   }
+
 
   .urgent-left {
     gap: 8px
@@ -392,7 +397,6 @@ h3 {
     width: 162px;
     height: 100px;
   }
-
 
   .main-top {
     height: 100px
