@@ -44,27 +44,6 @@ function clearAllTasks() {
   document.getElementById("done").innerHTML = "";
 }
 
-function renderTasksByStatus(status, templateFunction, containerId) {
-  const tasksByStatus = userObj.tasks.filter((t) => t["status"] === status);
-
-  tasksByStatus.forEach((element, i) => {
-    document.getElementById(containerId).innerHTML += templateFunction(
-      element,
-      i,
-      getPriority(element)
-    );
-
-    let idAssigned = document.getElementById(
-      `assigned${
-        containerId.charAt(0).toUpperCase() + containerId.slice(1)
-      }${i}`
-    );
-    idAssigned.innerHTML = element["assigned"]
-      .map((_, j) => htmlTemplateAssignment(element, j))
-      .join("");
-  });
-}
-
 /**
  * Renders all tasks with the status "to do" to the DOM.
  * For each task, the function generates the HTML template for the task and its assigned members.
@@ -224,24 +203,58 @@ function htmlTemplateInProgress(element, i, priority) {
 }
 
 // --------------- AWAITING FEEDBACK --------------- \\
+/**
+ * Renders all tasks that are awaiting feedback.
+ *
+ * For each task that is awaiting feedback, this function:
+ * 1. Appends the task to the awaiting feedback container.
+ * 2. Renders all assigned users for the task.
+ *
+ * @function
+ * @global
+ * @requires userObj: An object containing user tasks, where each task has a status and assigned property.
+ * @requires htmlTemplateAwaitingFeedback: A function that returns HTML markup for a task awaiting feedback.
+ * @requires getPriority: A function that determines the priority of a task.
+ * @requires htmlTemplateAssignment: A function that returns HTML markup for a task assignment.
+ */
 function renderAllAwaitingFeedback() {
-  let stillAwaitingFeedback = userObj.tasks.filter(
-    (t) => t["status"] == "awaiting feedback"
+  const awaitingFeedbackTasks = userObj.tasks.filter(
+    (task) => task.status === "awaiting feedback"
   );
-  for (let i = 0; i < stillAwaitingFeedback.length; i++) {
-    const element = stillAwaitingFeedback[i];
+
+  awaitingFeedbackTasks.forEach((task, index) => {
+    const { assigned } = task;
+
+    // Append task to the awaiting feedback container
     document.getElementById("awaitingFeedback").innerHTML +=
-      htmlTemplateAwaitingFeedback(element, i, getPriority(element));
+      htmlTemplateAwaitingFeedback(task, index, getPriority(task));
 
-    let idAssigned = document.getElementById(`assignedAwaitingFeedback${i}`);
-    idAssigned.innerHTML = "";
-
-    for (let j = 0; j < element["assigned"].length; j++) {
-      idAssigned.innerHTML += htmlTemplateAssignment(element, j);
-    }
-  }
+    // Render all assigned users for the task
+    const idAssigned = document.getElementById(
+      `assignedAwaitingFeedback${index}`
+    );
+    idAssigned.innerHTML = assigned
+      .map((assignee, assigneeIndex) =>
+        htmlTemplateAssignment(task, assigneeIndex)
+      )
+      .join("");
+  });
 }
 
+/**
+ * Generates and returns the HTML markup for a task that's awaiting feedback.
+ *
+ * @function
+ * @param {Object} element - The task object.
+ * @param {number} i - The index or ID of the task.
+ * @param {string} priority - The priority of the task.
+ * @returns {string} HTML markup for the task.
+ *
+ * @property {string} element.titel - The title of the task.
+ * @property {string} element.categoryColor - The background color for the category label.
+ * @property {string} element.category - The category name of the task.
+ * @property {string} element.description - A brief description of the task.
+ */
 function htmlTemplateAwaitingFeedback(element, i, priority) {
   return `<div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
         <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color: ${element["categoryColor"]}">
@@ -261,24 +274,57 @@ function htmlTemplateAwaitingFeedback(element, i, priority) {
 }
 
 // --------------- DONE --------------- \\
+/**
+ * Renders all tasks that are marked as "done".
+ *
+ * For each task that is marked as "done", this function:
+ * 1. Appends the task to the "done" container.
+ * 2. Renders all assigned users for the task.
+ *
+ * @function
+ * @global
+ * @requires userObj: An object containing user tasks, where each task has a status and assigned property.
+ * @requires htmlTemplateDone: A function that returns HTML markup for a task that's marked as "done".
+ * @requires getPriority: A function that determines the priority of a task.
+ * @requires htmlTemplateAssignment: A function that returns HTML markup for a task assignment.
+ */
 function renderAllDone() {
-  let isDone = userObj.tasks.filter((t) => t["status"] == "done");
-  for (let i = 0; i < isDone.length; i++) {
-    const element = isDone[i];
+  const doneTasks = userObj.tasks.filter((task) => task.status === "done");
+
+  doneTasks.forEach((task, index) => {
+    const { assigned } = task;
+
+    // Append task to the done container
     document.getElementById("done").innerHTML += htmlTemplateDone(
-      element,
-      i,
-      getPriority(element)
+      task,
+      index,
+      getPriority(task)
     );
 
-    let idAssigned = document.getElementById(`assignedDone${i}`);
-    idAssigned.innerHTML = "";
-    for (let j = 0; j < element["assigned"].length; j++) {
-      idAssigned.innerHTML += htmlTemplateAssignment(element, j);
-    }
-  }
+    // Render all assigned users for the task
+    const idAssigned = document.getElementById(`assignedDone${index}`);
+    idAssigned.innerHTML = assigned
+      .map((assignee, assigneeIndex) =>
+        htmlTemplateAssignment(task, assigneeIndex)
+      )
+      .join("");
+  });
 }
 
+/**
+ * Generates and returns the HTML markup for a task that's marked as "done".
+ *
+ * @function
+ * @param {Object} element - The task object.
+ * @param {number} i - The index or ID of the task.
+ * @param {string} priority - The priority of the task.
+ * @returns {string} HTML markup for the task.
+ *
+ * @property {string} element.titel - The title of the task.
+ * @property {string} element.categoryColor - The background color for the category label.
+ * @property {string} element.category - The category name of the task.
+ * @property {string} element.description - A brief description of the task.
+ */
 function htmlTemplateDone(element, i, priority) {
   return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
         <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
@@ -297,6 +343,17 @@ function htmlTemplateDone(element, i, priority) {
     </div>`;
 }
 
+/**
+ * Toggles the visibility of the task addition window based on the provided state.
+ *
+ * @function
+ * @param {string} state - The desired state for the task window; either "close" or any other value to show the modal.
+ * @returns {void} - No return value.
+ *
+ * @description
+ * If the state is "close", the function will hide the task addition window.
+ * Otherwise, it will display the task addition window.
+ */
 function addTaskWindow(state) {
   let taskForm = document.getElementById("add-task-form");
   let taskContainer = document.querySelector(".add-task-container");
@@ -305,6 +362,17 @@ function addTaskWindow(state) {
     : taskContainer.classList.add("show-modal");
 }
 
+/**
+ * Initializes the dragging operation for a card.
+ *
+ * @function
+ * @param {string} id - The ID of the dragged element.
+ * @param {HTMLElement} card - The HTML element representing the card being dragged.
+ * @global
+ * @requires currentDraggedElement: A global variable to hold the ID of the dragged element.
+ * @requires currentStatus: A global variable to hold the current status of the dragged element.
+ * @requires currentTitel: A global variable to hold the title of the dragged element.
+ */
 function startDragging(id, card) {
   currentDraggedElement = id;
   currentStatus = card.getAttribute("status");
@@ -312,15 +380,41 @@ function startDragging(id, card) {
   card.classList.add("cardMove");
 }
 
+/**
+ * Allows a drop operation to take place and highlights the drop area.
+ *
+ * @function
+ * @param {Event} ev - The event object.
+ * @param {HTMLElement} element - The element representing the drop area.
+ */
 function allowDrop(ev, element) {
   element.classList.add("moveBackground");
   ev.preventDefault();
 }
 
+/**
+ * Removes the highlight from the drop area when dragging is over.
+ *
+ * @function
+ * @param {HTMLElement} element - The element representing the drop area.
+ */
 function leaveDropArea(element) {
   element.classList.remove("moveBackground");
 }
 
+/**
+ * Moves a task to a new status category after a drag-and-drop operation.
+ *
+ * @function
+ * @param {string} status - The new status to assign to the task.
+ * @param {HTMLElement} element - The drop area element.
+ * @global
+ * @requires userObj: An object containing user tasks.
+ * @requires currentStatus: A global variable holding the current status of the dragged element.
+ * @requires currentTitel: A global variable holding the title of the dragged element.
+ * @requires setItem: A function that sets a new item in local storage.
+ * @returns {number} 0 if there's an issue with the element or status, or if the task isn't found.
+ */
 function moveTo(status, element) {
   // Prüfe, ob das Element oder der Status nicht definiert sind
   if (!element || !status) {
@@ -342,6 +436,17 @@ function moveTo(status, element) {
   }
 }
 
+/**
+ * Opens a popup with details of a task on the board.
+ *
+ * @function
+ * @param {number} i - The index or ID of the task.
+ * @param {HTMLElement} card - The HTML element representing the task card.
+ * @global
+ * @requires currentStatus: A global variable holding the current status of the task.
+ * @requires currentTitel: A global variable holding the title of the task.
+ * @requires userObj: An object containing user tasks.
+ */
 function boardOpenPopUpTask(i, card) {
   let taskForm = document.querySelector(".popUpBoardTask");
   currentStatus = card.getAttribute("status");
@@ -366,6 +471,15 @@ function boardOpenPopUpTask(i, card) {
   taskForm.setAttribute("onsubmit", `saveEditTask(${index}, event)`);
 }
 
+/**
+ * Saves the edited details of a task.
+ *
+ * @function
+ * @param {number} taskIndex - The index or ID of the task being edited.
+ * @global
+ * @requires userObj: An object containing user tasks.
+ * @requires setItem: A function that sets a new item in local storage.
+ */
 function saveEditTask(taskIndex) {
   let titel = document.getElementById("title-input");
   let description = document.getElementById("description-input");
@@ -396,10 +510,26 @@ function saveEditTask(taskIndex) {
   setItem(userObj.email, JSON.stringify(userObj));
 }
 
+/**
+ * Closes the task detail popup on the board.
+ *
+ * @function
+ */
 function boardClosePopUpTask() {
   document.getElementById("popUpBoard").classList.add("dNone");
 }
 
+/**
+ * Generates and returns the HTML markup for a task detail popup on the board.
+ *
+ * @function
+ * @param {number} i - The index or ID of the task.
+ * @param {string} priority - The priority of the task.
+ * @returns {string} HTML markup for the task detail popup.
+ *
+ * @global
+ * @requires userObj: An object containing user tasks.
+ */
 function htmlTemplatePopUpTask(i, priority) {
   return `<div class="popUpBoardTask px-4 pt-4 pb-1 rounded-4 d-flex flex-column align-items-start">
         <img onclick="boardClosePopUpTask()" class="boardTaskClose cursorPointer" src="./img/closeIt.svg" alt="close">
@@ -425,6 +555,16 @@ function htmlTemplatePopUpTask(i, priority) {
     </div>`;
 }
 
+/**
+ * Deletes a task based on its index and updates the UI.
+ *
+ * @function
+ * @param {number} i - The index of the task to be deleted.
+ * @global
+ * @requires userObj: An object containing user tasks.
+ * @requires setItem: A function that sets a new item in local storage.
+ * @requires updateHTML: A function that updates the HTML representation of tasks.
+ */
 function deleteTask(i) {
   boardClosePopUpTask();
   userObj.tasks.splice(i, 1);
@@ -432,6 +572,13 @@ function deleteTask(i) {
   updateHTML();
 }
 
+/**
+ * Determines and returns the priority image based on the task's priority.
+ *
+ * @function
+ * @param {Object} element - The task object.
+ * @returns {string} HTML markup of the priority image.
+ */
 function getThePriority(element) {
   let priority;
   if (element["prio"] == "urgent") {
@@ -444,6 +591,17 @@ function getThePriority(element) {
   return priority;
 }
 
+/**
+ * Generates and returns the HTML markup for the member icon in a popup.
+ *
+ * @function
+ * @param {Object} element2 - The member object.
+ * @global
+ * @requires MemberColors: An object mapping member names to their respective colors.
+ * @requires getColorSign: A function that gets the color sign for a member.
+ * @requires getInitials: A function that gets the initials of a member's name.
+ * @returns {string} HTML markup for the member icon.
+ */
 function htmlTemplatePopUpMembers(element2) {
   return `<div class="textWhite contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${
     MemberColors[getColorSign(element2)]
@@ -451,11 +609,16 @@ function htmlTemplatePopUpMembers(element2) {
     `;
 }
 
-// searchInput.addEventListener("input", (e) => {
-//     const value = e.target.value;
-//     console.log(value);
-// })
-
+/**
+ * Searches for tasks based on a search term and updates the UI.
+ *
+ * @function
+ * @global
+ * @requires renderSearchTodo: A function that filters and renders "to do" tasks.
+ * @requires renderSearchInProgress: A function that filters and renders "in progress" tasks.
+ * @requires renderSearchAwaitingFeedback: A function that filters and renders "awaiting feedback" tasks.
+ * @requires renderSearchDone: A function that filters and renders "done" tasks.
+ */
 function searchTask() {
   let search = document.getElementById("boardInput").value;
   search = search.toLowerCase();
@@ -465,6 +628,10 @@ function searchTask() {
   renderSearchDone(search);
 }
 
+/**
+ * Renders tasks that match the search query within the "to do" status.
+ * @param {string} search - The search query.
+ */
 function renderSearchTodo(search) {
   let stillToDo = userObj.tasks.filter((t) => t["status"] == "to do");
   document.getElementById("todo").innerHTML = "";
@@ -494,6 +661,10 @@ function renderSearchTodo(search) {
   }
 }
 
+/**
+ * Renders tasks that match the search query within the "in progress" status.
+ * @param {string} search - The search query.
+ */
 function renderSearchInProgress(search) {
   let stillInProgress = userObj.tasks.filter(
     (t) => t["status"] == "in progress"
@@ -525,6 +696,10 @@ function renderSearchInProgress(search) {
   }
 }
 
+/**
+ * Renders tasks that match the search query within the "awaiting feedback" status.
+ * @param {string} search - The search query.
+ */
 function renderSearchAwaitingFeedback(search) {
   let stillAwaitingFeedback = userObj.tasks.filter(
     (t) => t["status"] == "awaiting feedback"
@@ -552,6 +727,10 @@ function renderSearchAwaitingFeedback(search) {
   }
 }
 
+/**
+ * Renders tasks that match the search query within the "done" status.
+ * @param {string} search - The search query.
+ */
 function renderSearchDone(search) {
   let isDone = userObj.tasks.filter((t) => t["status"] == "done");
   document.getElementById("done").innerHTML = "";
@@ -580,11 +759,18 @@ function renderSearchDone(search) {
   }
 }
 
+/**
+ * Opens the board dialog.
+ */
 function boardOpenDialog() {
   let openDialog = document.getElementById("boardOpenDialog");
   openDialog.show();
 }
 
+/**
+ * Edits a specified task.
+ * @param {number} i - The index of the task to be edited.
+ */
 function editTask(i) {
   let currentTask = userObj.tasks[i];
   boardClosePopUpTask();
@@ -596,6 +782,10 @@ function editTask(i) {
   modalFields.category.innertText = currentTask.category;
 }
 
+/**
+ * Retrieves the input fields from the modal.
+ * @returns {Object} An object containing references to the modal input fields.
+ */
 function getModalFields() {
   const modalFields = {
     title: document.getElementById("title-input"),
@@ -604,137 +794,4 @@ function getModalFields() {
     date: document.getElementById("task-date"),
   };
   return modalFields;
-}
-
-// Drag and Drop for mobile devices with touch events
-
-let startTouchElement;
-let moveTouchElement;
-let endedOnTouchElement;
-let currentTouchId;
-let selectedElement = null;
-let pressTimer = null;
-let initialTouchOffsetX, initialTouchOffsetY;
-let initialScrollLeft, initialScrollTop;
-
-function startTouchEventListener() {
-  document.querySelectorAll(".moveableCard").forEach((card) => {
-    card.addEventListener(
-      "touchstart",
-      (e) => {
-        e.preventDefault();
-        startTouchElement = e.target.closest(".moveableCard");
-        selectedElement = startTouchElement;
-        let rect = startTouchElement.getBoundingClientRect();
-        initialTouchOffsetX = e.touches[0].clientX - rect.left;
-        initialTouchOffsetY = e.touches[0].clientY - rect.top;
-        initialScrollLeft = window.scrollX;
-        initialScrollTop = window.scrollY;
-
-        checkIfElementIsValid(startTouchElement);
-
-        currentStatus = startTouchElement.getAttribute("status");
-        currentTitel = startTouchElement.getAttribute("titel");
-        currentTouchId = startTouchElement.getAttribute("currentId");
-        if (selectedElement) {
-          selectedElement.style.transform = "scale(1.1) rotate(5deg)";
-          selectedElement.style.transition = "transform 125ms ease-in-out";
-        }
-        // Beginn des Long Press Timers
-        pressTimer = window.setTimeout(function () {
-          if (selectedElement && selectedElement.getAttribute("status")) {
-            selectedElement.style.left = `${
-              initialTouchOffsetX - initialScrollLeft
-            }px`;
-            selectedElement.style.top = `${
-              initialTouchOffsetY - initialScrollTop
-            }px`;
-            selectedElement.style.width = "auto";
-            selectedElement.style.height = "auto";
-            selectedElement.style.position = "static";
-            selectedElement.style.transform = "none";
-            selectedElement.style.pointerEvents = "auto";
-            selectedElement = null;
-          }
-          boardOpenPopUpTask(currentTouchId, startTouchElement);
-        }, 1000);
-      },
-      false
-    );
-
-    card.addEventListener("touchmove", (e) => {
-      e.preventDefault();
-
-      if (pressTimer !== null) {
-        window.clearTimeout(pressTimer);
-        pressTimer = null;
-      }
-
-      if (selectedElement && selectedElement.getAttribute("status")) {
-        selectedElement.style.width = `${selectedElement.offsetWidth}px`;
-        selectedElement.style.height = `${selectedElement.offsetHeight}px`;
-        selectedElement.style.position = "absolute";
-        selectedElement.style.pointerEvents = "none";
-      }
-      let touch = e.touches[0];
-      let touchY = touch.clientY;
-      if (touchY > window.innerHeight - 500) {
-        window.scrollBy(0, 20);
-      }
-      moveTouchElement = document.elementFromPoint(
-        touch.clientX,
-        touch.clientY
-      );
-
-      if (selectedElement) {
-        selectedElement.style.left = `${
-          touch.clientX - initialTouchOffsetX + initialScrollLeft
-        }px`;
-        selectedElement.style.top = `${
-          touch.clientY - initialTouchOffsetY + initialScrollTop
-        }px`;
-      }
-    });
-
-    card.addEventListener(
-      "touchend",
-      (e) => {
-        e.preventDefault();
-
-        if (pressTimer !== null) {
-          window.clearTimeout(pressTimer);
-          pressTimer = null;
-        }
-
-        let touch = e.changedTouches[0];
-        endedOnTouchElement = document.elementFromPoint(
-          touch.clientX,
-          touch.clientY
-        );
-
-        if (selectedElement) {
-          selectedElement.style.pointerEvents = "auto";
-        }
-
-        selectedElement = null;
-        moveElementToNewColumn();
-      },
-      false
-    );
-  });
-}
-
-function moveElementToNewColumn() {
-  let dropStatus = endedOnTouchElement.getAttribute("status");
-  if (!dropStatus) {
-    updateHTML();
-    return 0;
-  }
-  moveTo(dropStatus, startTouchElement);
-}
-
-function checkIfElementIsValid(element) {
-  if (!element.getAttribute("status")) {
-    return false;
-  }
 }
