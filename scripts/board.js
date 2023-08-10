@@ -590,28 +590,25 @@ function generateBordSubtaskHTML(element3, k) {
 }
 
 
-
- async function changeToCheckbox(k) {
-  let checkbox = document.getElementById(`subtask-checkbox${k}`);
-  let index = userObj.tasks.findIndex(
-    (task) => task.status == currentStatus && task.titel == currentTitel
+function changeToCheckbox(k) {
+  const checkbox = document.getElementById(`subtask-checkbox${k}`);
+  const index = userObj.tasks.findIndex(
+    task => task.status === currentStatus && task.titel === currentTitel
   );
-  let element = userObj.tasks[index];
-  
   if (checkbox.getAttribute("src") === './img/checkbox.png') {
     checkbox.src = './img/checkbox_checked.png';
-    const subtaskIndex = parseInt(checkbox.id.match(/\d+$/)[0]);
-    if (subtaskIndex >= 0 && subtaskIndex < element.subtasks.length) {
-      element.subtasks[subtaskIndex].property = 'checked';
-    }
+    toggleSubtaskProperty(checkbox, 'checked', index);
   } else if (checkbox.getAttribute("src") === './img/checkbox_checked.png') {
     checkbox.src = './img/checkbox.png';
-    const subtaskIndex = parseInt(checkbox.id.match(/\d+$/)[0]);
-    if (subtaskIndex >= 0 && subtaskIndex < element.subtasks.length) {
-      element.subtasks[subtaskIndex].property = 'unchecked';
-    }
+    toggleSubtaskProperty(checkbox, 'unchecked', index);
   }
+}
 
+function toggleSubtaskProperty(checkbox, newProperty, taskIndex) {
+  const subtaskIndex = parseInt(checkbox.id.match(/\d+$/)[0]);
+  if (subtaskIndex >= 0 && taskIndex >= 0) {
+    userObj.tasks[taskIndex].subtasks[subtaskIndex].property = newProperty;
+  }
 }
 
 
