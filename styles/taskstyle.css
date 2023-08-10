@@ -112,6 +112,7 @@ input:-webkit-autofill:active {
 body {
   background: #f6f7f8;
   max-width: 100%;
+  overflow: scroll !important;
 }
 
 .custom-border {
@@ -546,6 +547,7 @@ li {
 
 ::-webkit-scrollbar {
   width: 0px;
+  height: 0px;;
 }
 
 #renderContacts {
@@ -631,6 +633,10 @@ li {
   margin-left: -20px;
   width: 100% !important;
   height: 45px !important;
+}
+
+.w-230 {
+  width: 230px
 }
 
 @media (max-width: 428px) {
@@ -844,7 +850,6 @@ li {
 }
 
 .subtask-buttons {
-  padding-left: 220px;
   display: flex;
   align-items: center;
 }
@@ -852,6 +857,16 @@ li {
 .geneneratedSubtasks:hover {
   background: #d1d1d3;
   border-radius: 10px;
+}
+
+.ov-scroll {
+  overflow-x: scroll;
+}
+
+@media (max-width: 1115px) {
+  .subtask-item {
+    width: 200px;
+  }
 }
 
 
@@ -884,6 +899,10 @@ li {
   .add-to-board-btn {
     width: 250px;
   }
+.subtask-item {
+  width: 150px;
+}
+
 }
 
 @media(max-width: 340px) {
@@ -911,6 +930,9 @@ li {
     padding: 18px 21px;
     align-items: center;
     font-size: 14px;
+  }
+  .subtask-item {
+    width: 120px;
   }
 }
 
@@ -1175,7 +1197,7 @@ li {
   }
 
   .form-btn {
-    margin-top: 50px;
+    margin-top: 50px !important;
     margin-bottom: 25px;
   }
 }
@@ -1498,3 +1520,4 @@ li {
     height: 50px;
   }
 }
+
