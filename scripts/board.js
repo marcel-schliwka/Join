@@ -489,6 +489,7 @@ function boardOpenPopUpTask(i, card) {
       const element3 = element['subtasks'][k]['title'];
       subtaskContainer.innerHTML += generateBordSubtaskHTML(element3, k);
     }
+    getProperty(element, i);
   }
 }
 
@@ -589,7 +590,14 @@ function generateBordSubtaskHTML(element3, k) {
 
 function changeToCheckbox(index) {
   let checkbox = document.getElementById(`subtask-checkbox${index}`);
-
+  console.log(checkbox);
+  console.log(checkbox.getAttribute('src'));
+  
+  if (checkbox.getAttribute("src") === './img/checkbox.png') {
+    checkbox.src = './img/checkbox_checked.png';
+  } else if (checkbox.getAttribute("src") === './img/checkbox_checked.png') {
+    checkbox.src = './img/checkbox.png';
+  }
 }
 
 function getProperty(element, index) {
