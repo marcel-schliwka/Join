@@ -294,7 +294,7 @@ body {
   align-items: flex-start;
   justify-content: center;
   margin-left: 35px;
-  width: 250px;
+  width: 200px;
 }
 
 .circle {
@@ -485,12 +485,16 @@ body {
 /* RESPONSIVE */
 @media only screen and (min-width: 300px) and (max-width: 419px) {
   #contactsMain {
-    padding-left: 72px;
+    /* padding-left: 72px; */
     padding-top: 32px;
   }
 
   .single-contact-card {
-    padding: 0;
+    padding: 8px;
+  }
+
+  .info {
+    width: 200px;
   }
 
   #contactsListContainer {
@@ -577,7 +581,7 @@ body {
     display: block;
     position: absolute;
     right: 5%;
-    bottom: 16%;
+    bottom: 12%;
     border: unset;
     height: 80px;
     width: 80px;
@@ -598,9 +602,9 @@ body {
   }
 
   .btn-resp-menu-contacts {
+    z-index: 20;
     position: absolute;
-    bottom: 166px;
-    bottom: 160px;
+    bottom: 88px;
     right: 30px;
     display: block;
     border: unset;
@@ -645,7 +649,7 @@ body {
   }
 
   .resp-show-options-background {
-    bottom: 95px;
+    bottom: 72px;
     height: 25%;
     width: 100%;
     z-index: 20;
@@ -663,7 +667,7 @@ body {
     bottom: 4px;
     background-color: white;
     width: 133px;
-    height: 55%;
+    height: 103%;
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -808,6 +812,7 @@ body {
   }
 
   .btn-resp-menu-contacts {
+    z-index: 20;
     position: absolute;
     bottom: 90px;
     right: 30px;
