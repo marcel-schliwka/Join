@@ -6,3 +6,10 @@ jsdoc.json
 package-lock.json 
 package.json 
 remote-token
+playwright.config.js 
+
+/tests/
+/tests-examples/
+/test-results/
+/playwright-report/
+/playwright/.cache/
