@@ -3,175 +3,6 @@ let users = [];
 let loginForm = document.getElementById("loginForm");
 let loginBox = document.querySelector(".login-box");
 
-// Templates
-function templateForgotPassword() {
-  return `
-        <img onclick="showLogin();" src="./img/arrow-left-line.svg" class="arrow-back" />
-        <h1>I forgot my password</h1>
-        <span class="login-line"></span>
-        <p class="mt-5">Don't worry! We will send you an email with the instructions to reset your password.</p>
-    
-        <form onsubmit="sendPasswordMail(event);">
-            <div class="input-container reset-password-input">
-                <input
-                class="text-input"
-                type="email"
-                id="forgotPasswordInput"
-                name="email"
-                id="email"
-                placeholder="Email"
-                required
-                />
-                <img
-                src="./img/mail.svg"
-                alt="Small Mail Symbol"
-                class="input-icons"
-                />
-            </div>
-            <button type="submit" class="signup-btn reset-password-btn">Send me the email</button>
-        </form>
-    `;
-}
-
-function templateLogin() {
-  return `
-  <form onsubmit="login(); return false;" id="loginForm">
-  <h1 class="">Log in</h1>
-  <span class="login-line"></span>
-  <div class="input-container">
-    <input
-      class="text-input"
-      type="email"
-      name="email"
-      id="email"
-      placeholder="Email"
-      required
-    />
-    <img
-      src="./img/mail.svg"
-      alt="Small Mail Symbol"
-      class="input-icons"
-    />
-  </div>
-  <div class="input-container">
-    <input
-      class="text-input"
-      type="password"
-      name="password"
-      placeholder="Password"
-      id="password"
-      required
-    />
-    <img
-      src="./img/lock.svg"
-      alt="Small Lock Symbol"
-      class="input-icons"
-    />
-  </div>
-  <div class="checkbox-container">
-    <div class="remember-me-container">
-      <input
-        class="remember-checkbox"
-        type="checkbox"
-        name="remember"
-        id="remember"
-      />
-      <span>Remember me</span>
-    </div>
-    <a onclick="forgotMyPassword();" class="forgot-link"
-      >Forgot my password</a
-    >
-  </div>
-  <div class="login-btn-container">
-    <button class="signup-btn">Log in</button>
-    <button
-      class="signup-btn guest-login-btn"
-      type="button"
-      onclick="guestLogin();"
-    >
-      Guest Log in
-    </button>
-  </div>
-</form>
-    `;
-}
-
-function templateSignUp() {
-  return `
-    <form onsubmit="registerUser(); return false;" id="loginForm">
-
-    <img onclick="showLogin();" src="./img/arrow-left-line.svg" class="arrow-back" />
-    <h1 class="">Sign up</h1>
-
-    
-    <span class="login-line"></span>
-    <div class="input-container">
-        <input
-            class="text-input"
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Name"
-            required
-        />
-        <img
-            src="./img/person.svg"
-            alt="Small Person Symbol"
-            class="input-icons"
-        />
-    </div>
-    <div class="input-container">
-      <input
-        class="text-input"
-        type="email"
-        name="email"
-        id="email"
-        placeholder="Email"
-        required
-      />
-      <img
-        src="./img/mail.svg"
-        alt="Small Mail Symbol"
-        class="input-icons"
-      />
-    </div>
-    <div class="input-container">
-      <input
-        class="text-input"
-        type="password"
-        name="password"
-        placeholder="Password"
-        id="password"
-        required
-      />
-      <img
-        src="./img/lock.svg"
-        alt="Small Lock Symbol"
-        class="input-icons"
-      />
-    </div>
-    <div class="input-container">
-      <input
-        class="text-input"
-        type="password"
-        name="confirmPassword"
-        placeholder="Confirm Password"
-        id="confirmPassword"
-        required
-      />
-      <img
-        src="./img/lock.svg"
-        alt="Small Lock Symbol"
-        class="input-icons"
-      />
-    </div>
-    <div class="signup-btn-container">
-      <button id="signupBtn" onclick="registerUser();" class="signup-btn">Sign up</button>
-    </div>
-  </form>
-    `;
-}
-
 function forgotMyPassword() {
   let loginBox = document.querySelector(".login-box");
   loginBox.innerHTML = "";
@@ -197,7 +28,7 @@ async function loadUsers() {
   try {
     users = await getItem("users");
   } catch (e) {
-    console.error("Loading error:", e);
+    console.info("No users found.");
   }
 }
 
@@ -220,8 +51,18 @@ async function registerUser() {
 
   const passwordsMatch = await handlePasswordMatch(elements);
   if (!passwordsMatch) return handlePasswordMismatch(elements.signupBtn);
-
+  let hashedPassword = await hashPassword(elements.password.value);
   await finalizeRegistration(elements);
+}
+
+function addRegisteredUserToUsersArray(username, email, hashedPassword) {
+  let newUser = {
+    name: username,
+    email: email,
+    password: hashedPassword,
+  };
+  users.push(newUser);
+  return newUser;
 }
 
 /**
@@ -240,13 +81,11 @@ function getFormElements() {
 
 /**
  * Handles scenarios when a user already exists.
- * @param {HTMLElement} signupBtn - The button element used for signing up.
  * @returns {number} - Returns 0 to indicate early exit from the function.
  */
 function handleExistingUser(signupBtn) {
   showLogin();
   showTopDown("This User exists, please log in!");
-  signupBtn.disabled = false;
   return 0;
 }
 
@@ -270,6 +109,12 @@ async function handlePasswordMatch(elements) {
       password: hashedPwd,
     });
     await setItem("users", JSON.stringify(users));
+    await createUserObject(
+      elements.name.value,
+      elements.email.value,
+      hashedPwd
+    );
+
     return true;
   }
   return false;
@@ -332,8 +177,7 @@ async function login() {
     showTopDown("Your email or password is wrong!");
     return;
   }
-
-  setLoginSession(user, formInput.remember);
+  localStorage.setItem("activeUser", formInput.email);
   window.location.href = "summary.html";
 }
 
@@ -372,32 +216,17 @@ async function validateLogin(user, password) {
   return user.password === hashPwd;
 }
 
-/**
- * Sets the login session and user data in local storage.
- * @async
- * @param {Object} user - The user object.
- * @param {boolean} remember - Indicates whether to remember the user or not.
- * @returns {Promise<void>}
- */
-async function setLoginSession(user, remember) {
-  localStorage.setItem("userData", JSON.stringify(user));
-  localStorage.setItem("activeUser", user.email);
-  await createUserObject(user);
-  if (remember) saveRememberMe(user);
-}
-
-async function createUserObject(user) {
-  let password = await hashPassword(user.password);
-  if (await checkIfUserObjectExists(user.email)) {
+async function createUserObject(username, email, hashedPassword) {
+  if (await checkIfUserObjectExists(email)) {
   } else {
     let userObj = {
-      name: user.name,
-      email: user.email,
-      password: password,
+      name: username,
+      email: email,
+      password: hashedPassword,
       tasks: [],
       contacts: [],
     };
-    await setItem(user.email, JSON.stringify(userObj));
+    await setItem(email, JSON.stringify(userObj));
   }
 }
 
@@ -459,20 +288,4 @@ function sendPasswordMail(e) {
     showTopDown("Please Sign Up! You're E-Mail Address was not found.");
   }
   showLogin();
-}
-
-/**
- * Hashes a given password using SHA-256.
- * @async
- * @param {string} password - The plain text password to be hashed.
- * @returns {Promise<string>} - The hashed password as a hexadecimal string.
- */
-async function hashPassword(password) {
-  const msgUint8 = new TextEncoder().encode(password);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashedPassword = hashArray
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
-  return hashedPassword;
 }
