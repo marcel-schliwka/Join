@@ -626,6 +626,13 @@ li {
   align-items: center;
 }
 
+.custom-contact-button-task {
+  margin-bottom: 5px;
+  margin-left: -20px;
+  width: 100% !important;
+  height: 45px !important;
+}
+
 @media (max-width: 428px) {
   .add-task-section h1 {
     margin-left: 33px;

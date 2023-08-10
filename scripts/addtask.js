@@ -522,6 +522,32 @@ function changeToInput(containerId, buttonId) {
   }
 }
 
+/*function addNewContactToTask() {
+  const contacts = document.getElementById("contact-container");
+  const contactContainer = document.getElementById("assigned-container");
+  const input = document.querySelector(".assigned-input input");
+  const errorText = document.getElementById('hiddenAssignedError');
+  const validateButton = document.getElementById('validateButton');
+  contacts.classList.toggle("display-none");
+  contactContainer.classList.toggle("remove-border");
+
+  validateButton.addEventListener("click", () => {
+    const emailValue = input.value;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailRegex.test(emailValue)) {
+        errorText.textContent = "Invalid email format.";
+    } else {
+        errorText.textContent = "";
+        userObj.contacts.push({
+          name: '',
+          email: emailValue,
+          number: '',
+        });
+        clearAssigned();
+        renderContacts();
+    }
+});
+}*/
 
 /**
  * Clears the value of an input element.
