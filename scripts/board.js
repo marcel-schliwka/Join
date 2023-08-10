@@ -117,7 +117,6 @@ function htmlTemplateToDo(element, i, priority) {
 
 function calculateProgressBar(i) {
   const subtasks = userObj.tasks[i]['subtasks'].length;
-
   if (subtasks == 0) {
     return 0;
   } else {
@@ -610,7 +609,6 @@ function toggleSubtaskProperty(checkbox, newProperty, taskIndex) {
     userObj.tasks[taskIndex].subtasks[subtaskIndex].property = newProperty;
   }
 }
-
 
 
 function getProperty(element, index) {
