@@ -1,8 +1,10 @@
 // Global Variables
+let userObj;
+const contactsMain = document.getElementById('contactsMain');
 const dialogContact = document.getElementById('dialogContact');
 const editDialogContact = document.getElementById('dialog__editContact');
 const dialogBackground = document.querySelector('.background-dialog');
-let userObj;
+
 
 const dialogElements = {
   name: document.getElementById('dialog__name'),
@@ -137,17 +139,7 @@ function renderInitials() {
   let container = document.getElementById('contactsListContainer');
 
   for (const [key, value] of contactsSorted.entries()) {
-    container.innerHTML += /*html*/ `
-            <div id="containerLetter${key}">
-              <div class="container-letter initial">
-                <span>${key}</span>
-              </div>
-                      
-                <div>
-                    <img src="./img/vectorContacts.png">
-                </div>
-            </div>
-            `;
+    container.innerHTML += generateInitialsContainer (key);
     renderContactsInContainer(key, value);
   }
 }
@@ -164,18 +156,7 @@ function renderContactsInContainer(initials, contacts) {
     let groupContainer = document.getElementById(`containerLetter${initial}`);
 
     for (let c = 0; c < contacts.length; c++) {
-      groupContainer.innerHTML += /*html*/ `
-        <div class="single-contact-card" id="card${c}">
-            <div class="circle" id="${getColorSign(contacts[c]["name"])}">
-              ${getInitials(contacts[c]["name"])}
-            </div>
-
-            <div class="info">
-                <h4 class="info__name">${contacts[c]["name"]}</h4>
-                 <p>${contacts[c]["email"]}</p>
-            </div>
-         </div>
-      `;
+      groupContainer.innerHTML += generateContactCard(contacts[c], c);
     }
   }
 }
@@ -277,8 +258,8 @@ let startEventListener = () => {
  * @param {Object} card
  */
 function openContact(card) {
-  document.getElementById('contactsMain').classList.remove("contacts-none");
-  document.getElementById('contactsMain').classList.add("contacts-main");
+  contactsMain.classList.remove("contacts-none");
+  contactsMain.classList.add("contacts-main");
   document.getElementById('buttonRespBack').classList.remove("d-none");
   const cardId = card.getAttribute('id');
   dialogElements["fromCard"] = card;
@@ -396,7 +377,6 @@ function closeEditDialog() {
  */
 function saveEditDialog() {
   let index = getContactIndex(dialogElements.name.innerText);
-  /* changing values in contacts array at the index with the values from input field */
   contacts[index].name = capitalizeFirstLetterOfEveryWord(editDialogElements.inputName.value);
   contacts[index].email = editDialogElements.inputEmail.value.trim();
   contacts[index].number = editDialogElements.inputPhone.value.trim();
@@ -498,8 +478,8 @@ function closeResponsiveOptions() {
 }
 
 function closeWindow() {
-  document.getElementById('contactsMain').classList.add('contacts-none');
-  document.getElementById('contactsMain').classList.remove('contacts-main');
+  contactsMain.classList.add('contacts-none');
+  contactsMain.classList.remove('contacts-main');
   document.getElementById('buttonRespBack').classList.add('d-none');
   editDialogElements.editDialog.classList.add('resp-none');
 }
