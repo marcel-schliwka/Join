@@ -863,7 +863,7 @@ function editTask(i) {
   let modalFields = getModalFields();
   modalFields.title.value = currentTask.titel;
   modalFields.description.value = currentTask.description;
-  toggleCatgoryMenu();
+  toggleCategoryMenu();
   modalFields.category.innertText = currentTask.category;
 }
 
