@@ -474,7 +474,6 @@ function boardOpenPopUpTask(i, card) {
   document.getElementById("popUpBoard").innerHTML = "";
   document.getElementById("popUpBoard").innerHTML = htmlTemplatePopUpTask(
     index,
-    getThePriority(element)
   );
   document.getElementById("boardTasksMembers").innerHTML = "";
   for (let j = 0; j < element["assigned"].length; j++) {
@@ -590,10 +589,30 @@ function generateBordSubtaskHTML(element3, k) {
 
 function changeToCheckbox(index) {
   let checkbox = document.getElementById(`subtask-checkbox${index}`);
-  
+
 }
 
-
+function getProperty(element, index) {
+  const checkbox = document.getElementById(`subtask-checkbox${index}`);
+  const images = [
+    {
+      'property': 'unchecked',
+      'image': './img/checkbox.png'
+    },
+    {
+      'property': 'checked',
+      'image': './img/checkbox_checked.png'
+    }
+  ];
+  let subtasks = element['subtasks'];
+  subtasks.forEach((subtask) => {
+    if (subtask['property'] === 'unchecked') {
+      checkbox.src = images[0].image;
+    } else if (subtask['property'] === 'checked') {
+      checkbox.src = images[1].image;
+    }
+  });
+}
 
 
 function generateSubtaskHeader() {
