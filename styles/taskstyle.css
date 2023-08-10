@@ -832,6 +832,11 @@ li {
   color: white;
 }
 
+.subtask-padding {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 @media (max-width: 370px) {
 
   .categorys,
