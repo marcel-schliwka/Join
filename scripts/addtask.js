@@ -59,12 +59,12 @@ function showBoardButton() {
 window.addEventListener("DOMContentLoaded", function () {
   const taskDateInput = document.getElementById("task-date");
 
-/**
- * Formats a given date into a string in "YYYY-MM-DD" format.
- * 
- * @param {Date} date - The date object to be formatted.
- * @returns {string} The formatted date string.
- */
+  /**
+   * Formats a given date into a string in "YYYY-MM-DD" format.
+   * 
+   * @param {Date} date - The date object to be formatted.
+   * @returns {string} The formatted date string.
+   */
   function formatDate(date) {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -481,27 +481,23 @@ function changeToInput(containerId, buttonId) {
   let bId = document.getElementById(buttonId);
   cId.innerHTML = "";
   bId.innerHTML = "";
-  let inputHTML = "";
-  let buttonHTML = "";
   if (cId.id.includes("category-input")) {
-    inputHTML = generateCategoryInputHTML();
-    buttonHTML = generateCategoryButtonHTML();
+    cId.innerHTML += generateCategoryInputHTML();
+    bId.innerHTML += generateCategoryButtonHTML();
     document.querySelector(".colorpicker").click();
   } else if (cId.id.includes("assigned-input")) {
-    inputHTML = generateAssignedInputHTML();
-    buttonHTML = generateAssigendButtonHTML();
+    cId.innerHTML += generateAssignedInputHTML();
+    bId.innerHTML += generateAssigendButtonHTML();
   } else {
-    buttonHTML = generateSubtaskButtonHTML();
-    inputHTML = generateSubtaskInputHTML();
-  }
-  
-  cId.innerHTML = inputHTML;
-  bId.innerHTML = buttonHTML; 
-  let generatedInput = document.getElementById("generatedSubtaskInput"); // Change the ID accordingly
-  if (generatedInput) {
-    generatedInput.focus();
+    bId.innerHTML += generateSubtaskButtonHTML();
+    cId.innerHTML += generateSubtaskInputHTML();
+    let generatedInput = document.getElementById("generatedSubtaskInput"); // Change the ID accordingly
+    if (generatedInput) {
+      generatedInput.focus();
+    }
   }
 }
+
 
 /**
  * Clears the value of an input element.
