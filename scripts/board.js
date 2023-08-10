@@ -487,7 +487,7 @@ function boardOpenPopUpTask(i, card) {
   if (element['subtasks'].length > 0) {
     subtaskContainer.innerHTML += generateSubtaskHeader();
     for (let k = 0; k < element['subtasks'].length; k++) {
-      const element3 = element['subtasks'][k];
+      const element3 = element['subtasks'][k]['title'];
       subtaskContainer.innerHTML += generateBordSubtaskHTML(element3, k);
     }
   }
@@ -582,11 +582,19 @@ function htmlTemplatePopUpTask(i, priority) {
 function generateBordSubtaskHTML(element3, k) {
   return `
   <div class="d-flex align-items-center mb-1 ps-3">
-  <div><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${k}" src="./img/checkbox.png"></div>
+  <div onclick="changeToCheckbox(${k})"><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${k}" src="./img/checkbox.png"></div>
   <div class="ms-4 bold">${element3}</div>
   </div>
   `;
 }
+
+function changeToCheckbox(index) {
+  let checkbox = document.getElementById(`subtask-checkbox${index}`);
+  
+}
+
+
+
 
 function generateSubtaskHeader() {
   return `
