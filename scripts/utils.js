@@ -53,3 +53,19 @@ function renderTopLogo(userObj) {
     return initials;
   }, 10);
 }
+
+/**
+ * Hashes a given password using SHA-256.
+ * @async
+ * @param {string} password - The plain text password to be hashed.
+ * @returns {Promise<string>} - The hashed password as a hexadecimal string.
+ */
+async function hashPassword(password) {
+  const msgUint8 = new TextEncoder().encode(password);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", msgUint8);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  const hashedPassword = hashArray
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+  return hashedPassword;
+}
