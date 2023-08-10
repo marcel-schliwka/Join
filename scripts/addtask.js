@@ -508,10 +508,14 @@ function changeToInput(containerId, buttonId) {
   } else if (cId.id.includes("assigned-input")) {
     cId.innerHTML += generateAssignedInputHTML();
     bId.innerHTML += generateAssigendButtonHTML();
+    let generatedInput = document.getElementById("generatedInput"); 
+    if (generatedInput) {
+      generatedInput.focus();
+    }
   } else {
     bId.innerHTML += generateSubtaskButtonHTML();
     cId.innerHTML += generateSubtaskInputHTML();
-    let generatedInput = document.getElementById("generatedSubtaskInput"); // Change the ID accordingly
+    let generatedInput = document.getElementById("generatedSubtaskInput"); 
     if (generatedInput) {
       generatedInput.focus();
     }
