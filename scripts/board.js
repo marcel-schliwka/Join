@@ -34,6 +34,132 @@ function updateHTML() {
 }
 
 /**
+ * Renders all tasks with the status "to do" to the DOM.
+ * For each task, the function generates the HTML template for the task and its assigned members.
+ * It uses the `htmlTemplateToDo` for the task and `htmlTemplateAssignment` for each assigned member.
+ * @function
+ * @global
+ */
+function renderAllToDos() {
+  let stillToDo = userObj.tasks.filter((t) => t["status"] === "to do");
+
+  stillToDo.forEach((element, i) => {
+    document.getElementById("todo").innerHTML += htmlTemplateToDo(
+      element,
+      i,
+      getPriority(element)
+    );
+
+    let idAssigned = document.getElementById(`assignedToDo${i}`);
+    idAssigned.innerHTML = element["assigned"]
+      .map((_, j) => htmlTemplateAssignment(element, j))
+      .join("");
+  });
+}
+
+/**
+ * Renders all tasks with the status "in progress" to the DOM.
+ * For each task, the function generates the HTML template for the task and its assigned members.
+ * It uses the `htmlTemplateInProgress` for the task and `htmlTemplateAssignment` for each assigned member.
+ *
+ * @function
+ * @global
+ */
+function renderAllInProgress() {
+  let stillInProgress = userObj.tasks.filter(
+    (t) => t["status"] === "in progress"
+  );
+
+  stillInProgress.forEach((element, i) => {
+    document.getElementById("inProgress").innerHTML += htmlTemplateInProgress(
+      element,
+      i,
+      getPriority(element)
+    );
+
+    let idAssigned = document.getElementById(`assignedInProgress${i}`);
+    idAssigned.innerHTML = element["assigned"]
+      .map((_, j) => htmlTemplateAssignment(element, j))
+      .join("");
+  });
+}
+
+/**
+ * Renders all tasks that are awaiting feedback.
+ *
+ * For each task that is awaiting feedback, this function:
+ * 1. Appends the task to the awaiting feedback container.
+ * 2. Renders all assigned users for the task.
+ *
+ * @function
+ * @global
+ * @requires userObj: An object containing user tasks, where each task has a status and assigned property.
+ * @requires htmlTemplateAwaitingFeedback: A function that returns HTML markup for a task awaiting feedback.
+ * @requires getPriority: A function that determines the priority of a task.
+ * @requires htmlTemplateAssignment: A function that returns HTML markup for a task assignment.
+ */
+function renderAllAwaitingFeedback() {
+  const awaitingFeedbackTasks = userObj.tasks.filter(
+    (task) => task.status === "awaiting feedback"
+  );
+
+  awaitingFeedbackTasks.forEach((task, index) => {
+    const { assigned } = task;
+
+    // Append task to the awaiting feedback container
+    document.getElementById("awaitingFeedback").innerHTML +=
+      htmlTemplateAwaitingFeedback(task, index, getPriority(task));
+
+    // Render all assigned users for the task
+    const idAssigned = document.getElementById(
+      `assignedAwaitingFeedback${index}`
+    );
+    idAssigned.innerHTML = assigned
+      .map((assignee, assigneeIndex) =>
+        htmlTemplateAssignment(task, assigneeIndex)
+      )
+      .join("");
+  });
+}
+
+/**
+ * Renders all tasks that are marked as "done".
+ *
+ * For each task that is marked as "done", this function:
+ * 1. Appends the task to the "done" container.
+ * 2. Renders all assigned users for the task.
+ *
+ * @function
+ * @global
+ * @requires userObj: An object containing user tasks, where each task has a status and assigned property.
+ * @requires htmlTemplateDone: A function that returns HTML markup for a task that's marked as "done".
+ * @requires getPriority: A function that determines the priority of a task.
+ * @requires htmlTemplateAssignment: A function that returns HTML markup for a task assignment.
+ */
+function renderAllDone() {
+  const doneTasks = userObj.tasks.filter((task) => task.status === "done");
+
+  doneTasks.forEach((task, index) => {
+    const { assigned } = task;
+
+    // Append task to the done container
+    document.getElementById("done").innerHTML += htmlTemplateDone(
+      task,
+      index,
+      getPriority(task)
+    );
+
+    // Render all assigned users for the task
+    const idAssigned = document.getElementById(`assignedDone${index}`);
+    idAssigned.innerHTML = assigned
+      .map((assignee, assigneeIndex) =>
+        htmlTemplateAssignment(task, assigneeIndex)
+      )
+      .join("");
+  });
+}
+
+/**
  * Clears all tasks from the board. The tasks are cleared by setting the innerHTML of their respective containers to an empty string.
  * @function
  */
@@ -215,6 +341,11 @@ function htmlTemplateInProgress(element, i, priority) {
         </div>`;
 }
 
+
+function renderAllTasks(params) {
+  
+}
+
 // --------------- AWAITING FEEDBACK --------------- \\
 /**
  * Renders all tasks that are awaiting feedback.
@@ -287,42 +418,7 @@ function htmlTemplateAwaitingFeedback(element, i, priority) {
 }
 
 // --------------- DONE --------------- \\
-/**
- * Renders all tasks that are marked as "done".
- *
- * For each task that is marked as "done", this function:
- * 1. Appends the task to the "done" container.
- * 2. Renders all assigned users for the task.
- *
- * @function
- * @global
- * @requires userObj: An object containing user tasks, where each task has a status and assigned property.
- * @requires htmlTemplateDone: A function that returns HTML markup for a task that's marked as "done".
- * @requires getPriority: A function that determines the priority of a task.
- * @requires htmlTemplateAssignment: A function that returns HTML markup for a task assignment.
- */
-function renderAllDone() {
-  const doneTasks = userObj.tasks.filter((task) => task.status === "done");
 
-  doneTasks.forEach((task, index) => {
-    const { assigned } = task;
-
-    // Append task to the done container
-    document.getElementById("done").innerHTML += htmlTemplateDone(
-      task,
-      index,
-      getPriority(task)
-    );
-
-    // Render all assigned users for the task
-    const idAssigned = document.getElementById(`assignedDone${index}`);
-    idAssigned.innerHTML = assigned
-      .map((assignee, assigneeIndex) =>
-        htmlTemplateAssignment(task, assigneeIndex)
-      )
-      .join("");
-  });
-}
 
 /**
  * Generates and returns the HTML markup for a task that's marked as "done".
