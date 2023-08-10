@@ -42,6 +42,7 @@
   <script defer src="./scripts/templateFunctions/contacts-template.js"></script>
   <script defer src="./scripts/contacts.js"></script>
   <script defer src="./scripts/sidebar.js"></script>
+  <script defer src="./scripts/bootstrap.js"></script>
   <script defer src="./scripts/authenticate.js"></script>
   <script defer src="./scripts/storage.js"></script>
   <script defer src="./scripts/utils.js"></script>
@@ -70,8 +71,8 @@
       </div>
       <form class="dialog__editRightForm" onsubmit="return false;">
         <input type="text" placeholder="Name" class="dialog__editInput" id="dialog__editNameInput" />
-        <input type="text" placeholder="Email" class="dialog__editInput" id="dialog__editEmailInput" />
-        <input type="text" placeholder="Phone" class="dialog__editInput" id="dialog__editPhoneInput" />
+        <input type="email" placeholder="Email" class="dialog__editInput" id="dialog__editEmailInput" />
+        <input type="tel" placeholder="Phone" class="dialog__editInput" id="dialog__editPhoneInput" />
         <div class="dialog__editRightBtn">
           <button class="custom-btn-white btn-hover" id="dialog__editDeleteBtn">
             Delete
@@ -218,9 +219,7 @@
 
   </div>
 
-  <script src="./scripts/contacts.js"></script>
-  <script src="./scripts/contactsHTML.js"></script>
-  <script src="./scripts/bootstrap.js"></script>
+
 </body>
 
 </html>
