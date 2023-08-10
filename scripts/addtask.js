@@ -1,37 +1,4 @@
 let getContacts;
-
-const contactsMain = document.getElementById('contactsMain');
-const dialogContact = document.getElementById('dialogContact');
-const editDialogContact = document.getElementById('dialog__editContact');
-const dialogBackground = document.querySelector('.background-dialog');
-
-
-const dialogElements = {
-  name: document.getElementById('dialog__name'),
-  email: document.getElementById('dialog__email'),
-  phone: document.getElementById('dialog__phone'),
-  cardIndex: document.getElementById('dialog__cardIndex'),
-  deleteBtn: document.getElementById('dialog__deleteBtn'),
-  editBtn: document.getElementById('dialog__editBtn'),
-};
-
-const editDialogElements = {
-  editDialog: document.getElementById('dialog__editContact'),
-  inputName: document.getElementById('dialog__editNameInput'),
-  inputEmail: document.getElementById('dialog__editEmailInput'),
-  inputPhone: document.getElementById('dialog__editPhoneInput'),
-  closeDialog: document.getElementById('dialog__editClose'),
-  saveBtn: document.getElementById('dialog__saveBtn'),
-  deleteBtn: document.getElementById('dialog__editDeleteBtn'),
-};
-
-const createDialogElements = {
-  createDialog: document.getElementById('dialog__createContact'),
-  closeDialog: document.getElementById('dialog__createClose'),
-  inputName: document.getElementById('dialog__createNameInput'),
-  inputEmail: document.getElementById('dialog__createEmailInput'),
-  inputPhone: document.getElementById('dialog__createPhoneInput'),
-};
 let userObj;
 let assigned = [];
 let subtasks = [];
@@ -52,48 +19,6 @@ let categorys = [
     color: "#FFC701",
   },
 ];
-
-
-
-
-
-function openCreateContact() {
-  createDialogElements.createDialog.classList.remove('resp-none');
-  createDialogElements.createDialog.classList.add('show-edit-dialog');
-  dialogBackground.classList.remove('d-none');
-}
-
-function cancelCreateContact() {
-  createDialogElements.createDialog.classList.add('resp-none');
-  createDialogElements.createDialog.classList.remove('show-edit-dialog');
-  dialogBackground.classList.add('d-none');
-}
-
-
-function addNewContact(e) {
-  e.preventDefault();
-  let inputName = createDialogElements.inputName.value.trim();
-  inputName = capitalizeFirstLetterOfEveryWord(inputName);
-  dialogBackground.classList.add('d-none');
-  cancelCreateContact();
-  showTopDown('Contact created!');
-  userObj.contacts.push({
-    name: inputName,
-    email: createDialogElements.inputEmail.value.trim(),
-    number: createDialogElements.inputPhone.value.trim(),
-  });
-  setItem(userObj.email, JSON.stringify(userObj));
-  document.getElementById('createContactForm').reset();
-  renderContacts();
-}
-
-
-function capitalizeFirstLetterOfEveryWord(input) {
-  return input
-    .split(' ')
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ');
-}
 
 /**
  * Initialization function. Gets the logged-in user object and renders the contacts, categories, subtasks, and the initials.
@@ -596,33 +521,6 @@ function changeToInput(containerId, buttonId) {
   }
 }
 
-/*function addNewContactToTask() {
-  const contacts = document.getElementById("contact-container");
-  const contactContainer = document.getElementById("assigned-container");
-  const input = document.querySelector(".assigned-input input");
-  const errorText = document.getElementById('hiddenAssignedError');
-  const validateButton = document.getElementById('validateButton');
-  contacts.classList.toggle("display-none");
-  contactContainer.classList.toggle("remove-border");
-
-  validateButton.addEventListener("click", () => {
-    const emailValue = input.value;
-    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    if (!emailRegex.test(emailValue)) {
-        errorText.textContent = "Invalid email format.";
-    } else {
-        errorText.textContent = "";
-        userObj.contacts.push({
-          name: '',
-          email: emailValue,
-          number: '',
-        });
-        clearAssigned();
-        renderContacts();
-    }
-});
-}*/
-
 /**
  * Clears the value of an input element.
  * Clears the value of the input element associated with the given button element.
@@ -665,7 +563,6 @@ function clearAll() {
   document.getElementById("category-button").innerHTML = generateBasicCategoryButtonHTML();
   currentPrio = undefined;
   subtasks = [];
-  newSubtasks = [];
   currentCategory = undefined;
   renderCategorys();
   renderSubtasks();
