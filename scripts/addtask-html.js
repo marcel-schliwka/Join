@@ -221,7 +221,6 @@ function generateAddNewContact() {
     </button>
   </div>
   `;
-
 }
 
 /**

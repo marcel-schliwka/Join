@@ -1,7 +1,39 @@
 let getContacts;
+
+const contactsMain = document.getElementById('contactsMain');
+const dialogContact = document.getElementById('dialogContact');
+const editDialogContact = document.getElementById('dialog__editContact');
+const dialogBackground = document.querySelector('.background-dialog');
+
+
+const dialogElements = {
+  name: document.getElementById('dialog__name'),
+  email: document.getElementById('dialog__email'),
+  phone: document.getElementById('dialog__phone'),
+  cardIndex: document.getElementById('dialog__cardIndex'),
+  deleteBtn: document.getElementById('dialog__deleteBtn'),
+  editBtn: document.getElementById('dialog__editBtn'),
+};
+
+const editDialogElements = {
+  editDialog: document.getElementById('dialog__editContact'),
+  inputName: document.getElementById('dialog__editNameInput'),
+  inputEmail: document.getElementById('dialog__editEmailInput'),
+  inputPhone: document.getElementById('dialog__editPhoneInput'),
+  closeDialog: document.getElementById('dialog__editClose'),
+  saveBtn: document.getElementById('dialog__saveBtn'),
+  deleteBtn: document.getElementById('dialog__editDeleteBtn'),
+};
+
+const createDialogElements = {
+  createDialog: document.getElementById('dialog__createContact'),
+  closeDialog: document.getElementById('dialog__createClose'),
+  inputName: document.getElementById('dialog__createNameInput'),
+  inputEmail: document.getElementById('dialog__createEmailInput'),
+  inputPhone: document.getElementById('dialog__createPhoneInput'),
+};
 let userObj;
 let assigned = [];
-//let newSubtasks = [];
 let subtasks = [];
 let currentCategory;
 let currentPrio;
@@ -21,12 +53,58 @@ let categorys = [
   },
 ];
 
+
+
+
+
+function openCreateContact() {
+  createDialogElements.createDialog.classList.remove('resp-none');
+  createDialogElements.createDialog.classList.add('show-edit-dialog');
+  dialogBackground.classList.remove('d-none');
+}
+
+function cancelCreateContact() {
+  createDialogElements.createDialog.classList.add('resp-none');
+  createDialogElements.createDialog.classList.remove('show-edit-dialog');
+  dialogBackground.classList.add('d-none');
+}
+
+async function loadUserContacts() {
+  contacts = userObj.contacts;
+}
+
+let contacts; 
+function addNewContact(e) {
+  e.preventDefault();
+  let inputName = createDialogElements.inputName.value.trim();
+  inputName = capitalizeFirstLetterOfEveryWord(inputName);
+  contacts.push({
+    name: inputName,
+    email: createDialogElements.inputEmail.value.trim(),
+    number: createDialogElements.inputPhone.value.trim(),
+  });
+  document.getElementById('createContactForm').reset();
+  dialogBackground.classList.add('d-none');
+  cancelCreateContact();
+  showTopDown('Contact created!');
+  renderContacts();
+}
+
+
+function capitalizeFirstLetterOfEveryWord(input) {
+  return input
+    .split(' ')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 /**
  * Initialization function. Gets the logged-in user object and renders the contacts, categories, subtasks, and the initials.
  * @function
  */
 async function init() {
   userObj = await getLoggedInUser();
+  await loadUserContacts();
   renderContacts();
   renderCategorys();
   renderSubtasks();
