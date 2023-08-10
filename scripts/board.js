@@ -263,6 +263,7 @@ function boardOpenPopUpTask(i, card) {
   }
 }
 
+
 /**
  * Saves the edited details of a task.
  *
@@ -467,7 +468,7 @@ function editTask(i) {
   toggleCategoryMenu();
   modalFields.category.innertText = currentTask.category;
 }
-
+ 
 /**
  * Retrieves the input fields from the modal.
  * @returns {Object} An object containing references to the modal input fields.
