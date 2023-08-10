@@ -512,7 +512,6 @@ body {
   }
 
   .btn-resp-add {
-    z-index: 999;
     height: 72px;
     width: 72px;
   }
@@ -575,7 +574,6 @@ body {
   }
 
   .btn-resp-add {
-    z-index: 999;
     display: block;
     position: absolute;
     right: 5%;
@@ -787,7 +785,6 @@ body {
   }
 
   .btn-resp-add {
-    z-index: 999;
     display: block;
     position: absolute;
     right: 5%;
