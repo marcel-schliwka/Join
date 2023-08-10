@@ -833,13 +833,20 @@ li {
 }
 
 .subtask-padding {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 40px;
 }
 
-.ml-240 {
-  margin-left: 240px;
+.subtask-buttons {
+  padding-left: 220px;
+  display: flex;
+  align-items: center;
 }
+
+.geneneratedSubtasks:hover {
+  background: #d1d1d3;
+  border-radius: 10px;
+}
+
 
 @media (max-width: 370px) {
 

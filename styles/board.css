@@ -189,6 +189,10 @@ body {
   margin-top: 8px;
 }
 
+.geneneratedSubtasks li {
+  padding: 5px;
+}
+
 @media screen and (max-width: 1630px) {
   .popUpBoardTask {
     max-width: 90%;

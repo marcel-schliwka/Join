@@ -300,10 +300,10 @@ function generateBasicSubtaskButtonHTML() {
 
 function generateNewSubtaskHTML(i, subt) {
   return `<li>
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-content-between align-items-center">
     <div class="font16" id="subtask${i}">${subt}</div>
-    <div class="ml-240>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <div class="subtask-buttons">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none">
         <mask id="mask0_71421_3311" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
         <rect width="24" height="24" fill="#D9D9D9"></rect>
         </mask>
@@ -312,11 +312,11 @@ function generateNewSubtaskHTML(i, subt) {
         </g>
     </svg>
 
-    <svg class="btn-seperator" xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
+    <svg class="btn-seperator" xmlns="http://www.w3.org/2000/svg" width="2" height="22" viewBox="0 0 2 31" fill="none">
     <path d="M1 0V31" stroke="#D1D1D1"></path>
     </svg>
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none">
       <mask id="mask0_71421_4770" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
         <rect width="24" height="24" fill="#D9D9D9"></rect>
         </mask>
