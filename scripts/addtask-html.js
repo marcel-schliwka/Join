@@ -285,6 +285,8 @@ function generateBasicSubtaskButtonHTML() {
  * @param {string} subt - The text of the subtask.
  * @returns {string} The generated HTML markup for the subtask container.
  */
+
+
 /*function generateNewSubtaskHTML(i, subt) {
   return `
     <div class="generated-subtask-container w-422">
@@ -295,9 +297,10 @@ function generateBasicSubtaskButtonHTML() {
 }*/
 
 function generateNewSubtaskHTML(i, subt) {
-  return `<li class="d-flex justify-content-between">
+  return `<li>
+  <div class="d-flex justify-content-between">
     <div class="font16" id="subtask${i}">${subt}</div>
-    <div>
+    <div class="ml-240>
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
         <mask id="mask0_71421_3311" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
         <rect width="24" height="24" fill="#D9D9D9"></rect>
@@ -320,6 +323,7 @@ function generateNewSubtaskHTML(i, subt) {
         </g>
     </svg>
     </div>
+    <div>
     </li>`
 }
 

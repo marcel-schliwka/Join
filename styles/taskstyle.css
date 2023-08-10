@@ -837,6 +837,10 @@ li {
   padding-right: 20px;
 }
 
+.ml-240 {
+  margin-left: 240px;
+}
+
 @media (max-width: 370px) {
 
   .categorys,
