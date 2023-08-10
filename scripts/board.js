@@ -115,6 +115,17 @@ function htmlTemplateToDo(element, i, priority) {
         </div>`;
 }
 
+function calculateProgressBar(i) {
+  const subtasks = userObj.tasks[i]['subtasks'].length;
+
+  if (subtasks == 0) {
+    return 0;
+  } else {
+    const completedSubtasks = '#'; // Hier muss eine Filter-Funktion eingebaut werden
+    const progressPercentage = (completedSubtasks / subtasks) * 100;
+    return progressPercentage;
+  }
+}
 
 
 /**

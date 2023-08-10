@@ -1,7 +1,7 @@
 let getContacts;
 let userObj;
 let assigned = [];
-let newSubtasks = [];
+//let newSubtasks = [];
 let subtasks = [];
 let currentCategory;
 let currentPrio;
@@ -126,7 +126,13 @@ function getAddTaskVariables(status) {
   let date = document.getElementById("task-date");
   let category = document.querySelector(".category-input");
   let assignedTo = assigned;
-  let selectedSubtasks = newSubtasks;
+  let subtaskTexts = getSubtasks();
+  let newSubtasks = subtaskTexts.map(subtaskTitle => ({
+    title: subtaskTitle,
+    property: "unchecked"
+  }));
+
+
   let prio = currentPrio;
   let color = document
     .querySelector(".category-input circle")
@@ -143,7 +149,7 @@ function getAddTaskVariables(status) {
     assigned: assignedTo,
     date: date.value,
     prio: prio,
-    subtasks: selectedSubtasks,
+    subtasks: newSubtasks,
     id: userObj.tasks.length,
   };
   return newTask;
@@ -454,6 +460,8 @@ function changeSubtaskCheckbox(i) {
  * Collects selected subtask values from checkboxes.
  * Gathers the text values of selected subtasks based on checked checkboxes.
  */
+
+/*
 function getSubtasks() {
   let subtaskCheckboxes = document.querySelectorAll(".subtaskCheckboxImg");
   for (let i = 0; i < subtaskCheckboxes.length; i++) {
@@ -463,6 +471,18 @@ function getSubtasks() {
       newSubtasks.push(subCb.parentNode.parentNode.children[1].innerText);
     }
   }
+}*/
+
+
+function getSubtasks() {
+  const subtaskItems = document.querySelectorAll('#subtask-content li');
+  const subtaskTexts = [];
+
+  subtaskItems.forEach(item => {
+    const text = item.innerText.trim();
+    subtaskTexts.push(text);
+  });
+  return subtaskTexts;
 }
 
 /**

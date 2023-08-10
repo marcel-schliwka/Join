@@ -296,6 +296,8 @@ function generateBasicSubtaskButtonHTML() {
     `;
 }*/
 
+
+
 function generateNewSubtaskHTML(i, subt) {
   return `<li>
   <div class="d-flex justify-content-between">
