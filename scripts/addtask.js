@@ -69,24 +69,21 @@ function cancelCreateContact() {
   dialogBackground.classList.add('d-none');
 }
 
-async function loadUserContacts() {
-  contacts = userObj.contacts;
-}
 
-let contacts; 
 function addNewContact(e) {
   e.preventDefault();
   let inputName = createDialogElements.inputName.value.trim();
   inputName = capitalizeFirstLetterOfEveryWord(inputName);
-  contacts.push({
+  dialogBackground.classList.add('d-none');
+  cancelCreateContact();
+  showTopDown('Contact created!');
+  userObj.contacts.push({
     name: inputName,
     email: createDialogElements.inputEmail.value.trim(),
     number: createDialogElements.inputPhone.value.trim(),
   });
+  setItem(userObj.email, JSON.stringify(userObj));
   document.getElementById('createContactForm').reset();
-  dialogBackground.classList.add('d-none');
-  cancelCreateContact();
-  showTopDown('Contact created!');
   renderContacts();
 }
 
@@ -104,7 +101,6 @@ function capitalizeFirstLetterOfEveryWord(input) {
  */
 async function init() {
   userObj = await getLoggedInUser();
-  await loadUserContacts();
   renderContacts();
   renderCategorys();
   renderSubtasks();
