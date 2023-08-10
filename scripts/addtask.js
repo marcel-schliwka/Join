@@ -460,19 +460,6 @@ function changeSubtaskCheckbox(i) {
  * Gathers the text values of selected subtasks based on checked checkboxes.
  */
 
-/*
-function getSubtasks() {
-  let subtaskCheckboxes = document.querySelectorAll(".subtaskCheckboxImg");
-  for (let i = 0; i < subtaskCheckboxes.length; i++) {
-    const subCb = subtaskCheckboxes[i];
-    const subCbValidation = subCb.getAttribute("checked");
-    if (subCbValidation == "true") {
-      newSubtasks.push(subCb.parentNode.parentNode.children[1].innerText);
-    }
-  }
-}*/
-
-
 function getSubtasks() {
   const subtaskItems = document.querySelectorAll('#subtask-content li');
   const subtaskTexts = [];
@@ -483,10 +470,6 @@ function getSubtasks() {
   });
   return subtaskTexts;
 }
-
-/**
- * Helper function Section
- */
 
 /**
  * Switches a container and button to input elements.
