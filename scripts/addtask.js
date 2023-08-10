@@ -481,16 +481,25 @@ function changeToInput(containerId, buttonId) {
   let bId = document.getElementById(buttonId);
   cId.innerHTML = "";
   bId.innerHTML = "";
+  let inputHTML = "";
+  let buttonHTML = "";
   if (cId.id.includes("category-input")) {
-    cId.innerHTML += generateCategoryInputHTML();
-    bId.innerHTML += generateCategoryButtonHTML();
+    inputHTML = generateCategoryInputHTML();
+    buttonHTML = generateCategoryButtonHTML();
     document.querySelector(".colorpicker").click();
   } else if (cId.id.includes("assigned-input")) {
-    cId.innerHTML += generateAssignedInputHTML();
-    bId.innerHTML += generateAssigendButtonHTML();
+    inputHTML = generateAssignedInputHTML();
+    buttonHTML = generateAssigendButtonHTML();
   } else {
-    bId.innerHTML += generateSubtaskButtonHTML();
-    cId.innerHTML += generateSubtaskInputHTML();
+    buttonHTML = generateSubtaskButtonHTML();
+    inputHTML = generateSubtaskInputHTML();
+  }
+  
+  cId.innerHTML = inputHTML;
+  bId.innerHTML = buttonHTML; 
+  let generatedInput = document.getElementById("generatedSubtaskInput"); // Change the ID accordingly
+  if (generatedInput) {
+    generatedInput.focus();
   }
 }
 
