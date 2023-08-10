@@ -42,7 +42,7 @@ function getInitials(name) {
 }
 
 function getColorSign(name) {
-  const colorSign = name.split(' ').pop().charAt(0).toUpperCase();
+  const colorSign = name.split(" ").pop().charAt(0).toUpperCase();
   return colorSign;
 }
 
@@ -53,20 +53,20 @@ function redirect(url) {
 
 function saveStatusLocalstorage(value) {
   let statusAsText = JSON.stringify(value);
-  localStorage.setItem('status', statusAsText);
+  localStorage.setItem("status", statusAsText);
 }
 
 function spliceStatusLocalStorage() {
-  localStorage.removeItem('status');
+  localStorage.removeItem("status");
 }
 
 function getStatusLocalStorage() {
-  let statusAsText = JSON.parse(localStorage.getItem('status'));
+  let statusAsText = JSON.parse(localStorage.getItem("status"));
   console.log(statusAsText);
   return statusAsText;
 }
 
-window.addEventListener('load', function () {
+window.addEventListener("load", function () {
   if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
     spliceStatusLocalStorage();
   }

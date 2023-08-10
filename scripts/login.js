@@ -55,16 +55,6 @@ async function registerUser() {
   await finalizeRegistration(elements);
 }
 
-function addRegisteredUserToUsersArray(username, email, hashedPassword) {
-  let newUser = {
-    name: username,
-    email: email,
-    password: hashedPassword,
-  };
-  users.push(newUser);
-  return newUser;
-}
-
 /**
  * Retrieves form elements used in the registration process.
  * @returns {Object} - Contains references to HTML elements.
@@ -217,17 +207,14 @@ async function validateLogin(user, password) {
 }
 
 async function createUserObject(username, email, hashedPassword) {
-  if (await checkIfUserObjectExists(email)) {
-  } else {
-    let userObj = {
-      name: username,
-      email: email,
-      password: hashedPassword,
-      tasks: [],
-      contacts: [],
-    };
-    await setItem(email, JSON.stringify(userObj));
-  }
+  let userObj = {
+    name: username,
+    email: email,
+    password: hashedPassword,
+    tasks: [],
+    contacts: [],
+  };
+  await setItem(email, JSON.stringify(userObj));
 }
 
 /**
@@ -241,6 +228,7 @@ async function checkIfUserObjectExists(email) {
     await getItem(email);
     return true;
   } catch (e) {
+    console.info("User does not exist!");
     return false;
   }
 }
