@@ -580,23 +580,41 @@ function htmlTemplatePopUpTask(i, priority) {
 }
 
 
-function generateBordSubtaskHTML(element3, k, element) {
+function generateBordSubtaskHTML(element3, k) {
   return `
   <div class="d-flex align-items-center mb-1 ps-3">
-  <div onclick="changeToCheckbox(${k, element})"><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${k}" src="./img/checkbox.png"></div>
+  <div onclick="changeToCheckbox(${k})"><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${k}" src="./img/checkbox.png"></div>
   <div class="ms-4 bold">${element3}</div>
   </div>
   `;
 }
 
-function changeToCheckbox(k) {
+
+
+ async function changeToCheckbox(k) {
   let checkbox = document.getElementById(`subtask-checkbox${k}`);
+  let index = userObj.tasks.findIndex(
+    (task) => task.status == currentStatus && task.titel == currentTitel
+  );
+  let element = userObj.tasks[index];
+  
   if (checkbox.getAttribute("src") === './img/checkbox.png') {
     checkbox.src = './img/checkbox_checked.png';
+    const subtaskIndex = parseInt(checkbox.id.match(/\d+$/)[0]);
+    if (subtaskIndex >= 0 && subtaskIndex < element.subtasks.length) {
+      element.subtasks[subtaskIndex].property = 'checked';
+    }
   } else if (checkbox.getAttribute("src") === './img/checkbox_checked.png') {
     checkbox.src = './img/checkbox.png';
+    const subtaskIndex = parseInt(checkbox.id.match(/\d+$/)[0]);
+    if (subtaskIndex >= 0 && subtaskIndex < element.subtasks.length) {
+      element.subtasks[subtaskIndex].property = 'unchecked';
+    }
   }
+
 }
+
+
 
 function getProperty(element, index) {
   const checkbox = document.getElementById(`subtask-checkbox${index}`);
