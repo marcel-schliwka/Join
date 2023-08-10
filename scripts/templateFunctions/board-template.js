@@ -51,7 +51,7 @@ function htmlTemplateInProgress(element, i, priority) {
                   <div>${priority}</div>
               </div>
           </div>`;
-  }
+}
 
 
 
@@ -65,26 +65,26 @@ function htmlTemplateInProgress(element, i, priority) {
  */
 function htmlTemplateAssignment(element, j) {
     return `<div class="margin-4 contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:${MemberColors[getColorSign(element["assigned"][j])]
-      }">
+        }">
               ${getInitials(element["assigned"][j])}
           </div>`;
-  }
-  
+}
 
-  /**
- * Generates and returns the HTML markup for a task that's awaiting feedback.
- *
- * @function
- * @param {Object} element - The task object.
- * @param {number} i - The index or ID of the task.
- * @param {string} priority - The priority of the task.
- * @returns {string} HTML markup for the task.
- *
- * @property {string} element.titel - The title of the task.
- * @property {string} element.categoryColor - The background color for the category label.
- * @property {string} element.category - The category name of the task.
- * @property {string} element.description - A brief description of the task.
- */
+
+/**
+* Generates and returns the HTML markup for a task that's awaiting feedback.
+*
+* @function
+* @param {Object} element - The task object.
+* @param {number} i - The index or ID of the task.
+* @param {string} priority - The priority of the task.
+* @returns {string} HTML markup for the task.
+*
+* @property {string} element.titel - The title of the task.
+* @property {string} element.categoryColor - The background color for the category label.
+* @property {string} element.category - The category name of the task.
+* @property {string} element.description - A brief description of the task.
+*/
 function htmlTemplateAwaitingFeedback(element, i, priority) {
     return `<div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
           <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color: ${element["categoryColor"]}">
@@ -101,24 +101,24 @@ function htmlTemplateAwaitingFeedback(element, i, priority) {
               <div>${priority}</div>
           </div>
       </div>`;
-  }
+}
 
 
 
-  /**
- * Generates and returns the HTML markup for a task that's marked as "done".
- *
- * @function
- * @param {Object} element - The task object.
- * @param {number} i - The index or ID of the task.
- * @param {string} priority - The priority of the task.
- * @returns {string} HTML markup for the task.
- *
- * @property {string} element.titel - The title of the task.
- * @property {string} element.categoryColor - The background color for the category label.
- * @property {string} element.category - The category name of the task.
- * @property {string} element.description - A brief description of the task.
- */
+/**
+* Generates and returns the HTML markup for a task that's marked as "done".
+*
+* @function
+* @param {Object} element - The task object.
+* @param {number} i - The index or ID of the task.
+* @param {string} priority - The priority of the task.
+* @returns {string} HTML markup for the task.
+*
+* @property {string} element.titel - The title of the task.
+* @property {string} element.categoryColor - The background color for the category label.
+* @property {string} element.category - The category name of the task.
+* @property {string} element.description - A brief description of the task.
+*/
 function htmlTemplateDone(element, i, priority) {
     return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
           <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
@@ -135,10 +135,10 @@ function htmlTemplateDone(element, i, priority) {
               <div>${priority}</div>
           </div>
       </div>`;
-  }
+}
 
-  
-  
+
+
 /**
  * Generates and returns the HTML markup for a task detail popup on the board.
  *
@@ -174,31 +174,31 @@ function htmlTemplatePopUpTask(i, priority) {
           </div>
           <div id="boardTasksSubtasks"></div>
       </div>`;
-  }
-  
-  
-  function generateBordSubtaskHTML(element3, k) {
+}
+
+
+function generateBordSubtaskHTML(element3, k) {
     return `
     <div class="d-flex align-items-center mb-1 ps-3">
     <div onclick="changeToCheckbox(${k})"><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${k}" src="./img/checkbox.png"></div>
     <div class="ms-4 bold">${element3}</div>
     </div>
     `;
-  }
+}
 
-  /**
- * Generates and returns the HTML markup for the member icon in a popup.
- *
- * @function
- * @param {Object} element2 - The member object.
- * @global
- * @requires MemberColors: An object mapping member names to their respective colors.
- * @requires getColorSign: A function that gets the color sign for a member.
- * @requires getInitials: A function that gets the initials of a member's name.
- * @returns {string} HTML markup for the member icon.
- */
+/**
+* Generates and returns the HTML markup for the member icon in a popup.
+*
+* @function
+* @param {Object} element2 - The member object.
+* @global
+* @requires MemberColors: An object mapping member names to their respective colors.
+* @requires getColorSign: A function that gets the color sign for a member.
+* @requires getInitials: A function that gets the initials of a member's name.
+* @returns {string} HTML markup for the member icon.
+*/
 function htmlTemplatePopUpMembers(element2) {
     return `<div class="d-flex flex-row"><div class="textWhite contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${MemberColors[getColorSign(element2)]
-      }">${getInitials(element2)}</div><div class="bold boardMember-margin">${element2}</div><div>
+        }">${getInitials(element2)}</div><div class="bold boardMember-margin">${element2}</div><div>
       `;
-  }
+}
