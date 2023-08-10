@@ -474,6 +474,7 @@ function boardOpenPopUpTask(i, card) {
   document.getElementById("popUpBoard").innerHTML = "";
   document.getElementById("popUpBoard").innerHTML = htmlTemplatePopUpTask(
     index,
+    getThePriority(element)
   );
   document.getElementById("boardTasksMembers").innerHTML = "";
   for (let j = 0; j < element["assigned"].length; j++) {
@@ -487,7 +488,7 @@ function boardOpenPopUpTask(i, card) {
     subtaskContainer.innerHTML += generateSubtaskHeader();
     for (let k = 0; k < element['subtasks'].length; k++) {
       const element3 = element['subtasks'][k]['title'];
-      subtaskContainer.innerHTML += generateBordSubtaskHTML(element3, k);
+      subtaskContainer.innerHTML += generateBordSubtaskHTML(element3, k, element);
     }
     getProperty(element, i);
   }
@@ -579,20 +580,17 @@ function htmlTemplatePopUpTask(i, priority) {
 }
 
 
-function generateBordSubtaskHTML(element3, k) {
+function generateBordSubtaskHTML(element3, k, element) {
   return `
   <div class="d-flex align-items-center mb-1 ps-3">
-  <div onclick="changeToCheckbox(${k})"><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${k}" src="./img/checkbox.png"></div>
+  <div onclick="changeToCheckbox(${k, element})"><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${k}" src="./img/checkbox.png"></div>
   <div class="ms-4 bold">${element3}</div>
   </div>
   `;
 }
 
-function changeToCheckbox(index) {
-  let checkbox = document.getElementById(`subtask-checkbox${index}`);
-  console.log(checkbox);
-  console.log(checkbox.getAttribute('src'));
-  
+function changeToCheckbox(k) {
+  let checkbox = document.getElementById(`subtask-checkbox${k}`);
   if (checkbox.getAttribute("src") === './img/checkbox.png') {
     checkbox.src = './img/checkbox_checked.png';
   } else if (checkbox.getAttribute("src") === './img/checkbox_checked.png') {
