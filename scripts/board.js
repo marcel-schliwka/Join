@@ -43,7 +43,7 @@ function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
     const { assigned } = task;
     document.getElementById(containerId).innerHTML +=
     htmlTemplateByStatus(task, index, getPriority(task), status);
-    renderSubtasks(task);
+    checkSubtasks(task);
     const idAssigned = document.getElementById(`${assignmentIdPrefix}${index}`);
     idAssigned.innerHTML = assigned
       .map((assignee, assigneeIndex) =>
@@ -54,7 +54,7 @@ function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
 }
 
 
-function renderSubtasks(task) {;
+function checkSubtasks(task) {;
   let subtasks = task['subtasks'].length
   if (subtasks > 0 ) {
     count = countProperty(task);
