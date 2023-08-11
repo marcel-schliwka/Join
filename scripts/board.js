@@ -265,8 +265,6 @@ function boardOpenPopUpTask(i, card) {
   }
   taskForm.setAttribute("onsubmit", `saveEditTask(${index}, event)`);
   let subtaskContainer = document.getElementById("boardTasksSubtasks");
-  console.log(element["subtasks"]);
-  console.log(element["subtasks"].length);
   if (element["subtasks"].length > 0) {
     subtaskContainer.innerHTML += generateSubtaskHeader();
     for (let k = 0; k < element["subtasks"].length; k++) {
@@ -279,6 +277,12 @@ function boardOpenPopUpTask(i, card) {
     }
     getProperty(element, i);
   }
+}
+
+
+
+function name(params) {
+  
 }
 
 /**
@@ -496,22 +500,57 @@ function boardOpenDialog() {
  * Edits a specified task.
  * @param {number} i - The index of the task to be edited.
  */
+
 function editTask(i) {
   let currentTask = userObj.tasks[i];
-  boardClosePopUpTask();
   openModal(document.querySelector(".modal"));
-  let modalFields = getModalFields();
-  modalFields.title.value = currentTask.titel;
-  modalFields.description.value = currentTask.description;
-  toggleCategoryMenu();
-  modalFields.category.innertText = currentTask.category;
+  document.getElementById('title-input').value = currentTask['titel'];
+  document.getElementById('description-input').value = currentTask['description'];
+  document.getElementById('task-date').value = currentTask['date'];
+  let currentButton =  document.getElementById(`${currentTask['prio'] + 'Btn'}`);
+  let currentButtonImage = document.getElementById(`${currentTask['prio'] + 'Img'}`)
+  currentButton.classList.add(`${currentTask['prio'] + '-active'}`);
+  currentButtonImage.src = `./img/prio_${currentTask['prio']}.png`;
+  categorys.push({ name: currentTask['category'], color: currentTask['categoryColor']});
+  let category = document.getElementById('category-container');
+  let categoryBtn = document.getElementById('category-button');
+  renderCategorys();
+  category.innerHTML = generateBasicCategoryInputHTML();
+  categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
+  category.innerHTML = generateSelectedCategoryHTML(
+        categorys,
+        categorys.length - 1
+      );
+    renderBoardSubtasks(currentTask);
+    assigned.push(currentTask['assigned'])
+    console.log(assigned);
 }
+
+
+function renderBoardSubtasks(currentTask) {
+  let content = document.getElementById("subtask-content");
+  let buttonContainer = document.getElementById("form-btn-container");
+  content.innerHTML = "";
+  for (let i = 0; i < currentTask['subtasks'].length; i++) {
+    const subt = currentTask['subtasks'][i]['title'];
+    content.innerHTML += generateNewSubtaskHTML(i, subt);
+    let margin = 150;
+    let calculatedMargin = margin - 29 * [i + 1];
+    margin = calculatedMargin;
+    if (margin > 39) {
+      buttonContainer.style.marginTop = margin;
+    }
+  }
+}
+
 
 /**
  * Retrieves the input fields from the modal.
  * @returns {Object} An object containing references to the modal input fields.
  */
-function getModalFields() {
+
+
+/*function getModalFields() {
   const modalFields = {
     title: document.getElementById("title-input"),
     description: document.getElementById("description-input"),
@@ -519,4 +558,4 @@ function getModalFields() {
     date: document.getElementById("task-date"),
   };
   return modalFields;
-}
+}*/
