@@ -27,8 +27,7 @@ async function includeHTML() {
  * @function
  */
 function markSiteAsActive() {
-  let url = window.location.href;
-  let siteName = url.split("/")[3].split(".")[0];
+  let siteName = getSiteName();
   if (siteName == "summary") {
     document.querySelector(".summary-site").classList.add("activeSite");
   }
@@ -41,6 +40,11 @@ function markSiteAsActive() {
   if (siteName == "contacts") {
     document.querySelector(".contact-site").classList.add("activeSite");
   }
+}
+
+function getSiteName() {
+  let url = window.location.href;
+  return url.split("/")[3].split(".")[0];
 }
 
 /**
