@@ -26,7 +26,6 @@ function updateHTML() {
   renderTasks();
   renderContacts();
   renderCategorys();
-  renderSubtasks();
   startTouchEventListener();
 }
 
@@ -39,12 +38,12 @@ function renderTasks() {
 
 
 function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
-
   const filteredTasks = userObj['tasks'].filter((task) => task.status === status);
   filteredTasks.forEach((task, index) => {
     const { assigned } = task;
     document.getElementById(containerId).innerHTML +=
     htmlTemplateByStatus(task, index, getPriority(task), status);
+    renderSubtasks(task);
     const idAssigned = document.getElementById(`${assignmentIdPrefix}${index}`);
     idAssigned.innerHTML = assigned
       .map((assignee, assigneeIndex) =>
@@ -55,6 +54,34 @@ function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
 }
 
 
+function renderSubtasks(task) {;
+  let subtasks = task['subtasks'].length
+  if (subtasks > 0 ) {
+    count = countProperty(task);
+    calculateProgressBar(count)
+  } else {
+  }
+}
+
+
+function countProperty(task) {
+  let checkedCount = 0;
+  let uncheckedCount = 0;
+  for (let i = 0; i < task['subtasks'].length; i++) {
+    const subtasks = task['subtasks'][i];
+    if (subtasks.property === "checked") {
+      checkedCount++;
+    } else if (subtasks.property === "unchecked") {
+      uncheckedCount++;
+    }
+  }
+  return { checked: checkedCount, unchecked: uncheckedCount };
+}
+
+
+function calculateProgressBar(count) {
+  console.log(count);
+}
 
 
 
@@ -92,16 +119,7 @@ function getPriority(element) {
 
 
 
-function calculateProgressBar(i) {
-  const subtasks = userObj.tasks[i]['subtasks'].length;
-  if (subtasks == 0) {
-    return 0;
-  } else {
-    const completedSubtasks = '#'; // Hier muss eine Filter-Funktion eingebaut werden
-    const progressPercentage = (completedSubtasks / subtasks) * 100;
-    return progressPercentage;
-  }
-}
+
 
 
 
