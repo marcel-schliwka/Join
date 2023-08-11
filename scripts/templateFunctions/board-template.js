@@ -33,7 +33,7 @@ function htmlTemplateToDo(element, i, priority) {
               </div>
               <div class="progress-section">
                 <div id="subtask-progress${i}" class="progress">
-                    ${htmlTemplateProgress(checkSubtasks(element))}
+                    ${htmlTemplateProgress(checkSubtasks(element, i))}
                 </div>
                 <div class="d-flex progress-count">
                 ${htmlTemplateProgressCount(countProperty(element))}
