@@ -43,7 +43,7 @@ function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
     const { assigned } = task;
     document.getElementById(containerId).innerHTML +=
       htmlTemplateByStatus(task, index, getPriority(task), status);
-    checkSubtasks(task);
+    // checkSubtasks(task);
     const idAssigned = document.getElementById(`${assignmentIdPrefix}${index}`);
     idAssigned.innerHTML = assigned
       .map((assignee, assigneeIndex) =>
@@ -58,8 +58,8 @@ function checkSubtasks(task, id) {
   let subtasks = task['subtasks'].length
   if (subtasks === 0) {
     console.log('does not count percentage');
-    // let div = document.getElementById(`subtask-progress${id}`);
-    // div.style.display = 'none';
+   let div = document.getElementById(`subtask-progress${id}`);
+   div.style.display = 'none';
     return;
   } else {
     count = countProperty(task);
