@@ -47,7 +47,7 @@ body {
   background-color: #2a3647;
   padding: 0;
   top: 25%;
-  z-index: 15;
+  z-index: 999;
   display: flex;
   justify-content: space-between;
   overflow: hidden;
