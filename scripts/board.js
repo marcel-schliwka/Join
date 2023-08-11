@@ -30,19 +30,28 @@ function updateHTML() {
 }
 
 function renderTasks() {
-  renderTasksByStatus('to do', 'todo', 'assignedToDo');
-  renderTasksByStatus("in progress", "inProgress", 'assignedInProgress');
-  renderTasksByStatus("awaiting feedback", 'awaitingFeedback', 'assignedAwaitingFeedback');
-  renderTasksByStatus("done", 'done', 'assignedDone');
+  renderTasksByStatus("to do", "todo", "assignedToDo");
+  renderTasksByStatus("in progress", "inProgress", "assignedInProgress");
+  renderTasksByStatus(
+    "awaiting feedback",
+    "awaitingFeedback",
+    "assignedAwaitingFeedback"
+  );
+  renderTasksByStatus("done", "done", "assignedDone");
 }
 
-
 function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
-  const filteredTasks = userObj['tasks'].filter((task) => task.status === status);
+  const filteredTasks = userObj["tasks"].filter(
+    (task) => task.status === status
+  );
   filteredTasks.forEach((task, index) => {
     const { assigned } = task;
-    document.getElementById(containerId).innerHTML +=
-      htmlTemplateByStatus(task, index, getPriority(task), status);
+    document.getElementById(containerId).innerHTML += htmlTemplateByStatus(
+      task,
+      index,
+      getPriority(task),
+      status
+    );
     // checkSubtasks(task);
     const idAssigned = document.getElementById(`${assignmentIdPrefix}${index}`);
     idAssigned.innerHTML = assigned
@@ -53,26 +62,24 @@ function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
   });
 }
 
-
 function checkSubtasks(task) {
-  let subtasks = task['subtasks'].length
+  let subtasks = task["subtasks"].length;
   if (subtasks === 0) {
-    console.log('does not count percentage');
+    console.log("does not count percentage");
     //  let div = document.getElementById(`subtask-progress${id}`);
     //  div.style.display = 'none';
     return -1;
   } else {
     count = countProperty(task);
-    return calculateProgressBar(count)
+    return calculateProgressBar(count);
   }
 }
-
 
 function countProperty(task) {
   let checkedCount = 0;
   let uncheckedCount = 0;
-  for (let i = 0; i < task['subtasks'].length; i++) {
-    const subtasks = task['subtasks'][i];
+  for (let i = 0; i < task["subtasks"].length; i++) {
+    const subtasks = task["subtasks"][i];
     if (subtasks.property === "checked") {
       checkedCount++;
     } else if (subtasks.property === "unchecked") {
@@ -82,14 +89,11 @@ function countProperty(task) {
   return { checked: checkedCount, unchecked: uncheckedCount };
 }
 
-
 function calculateProgressBar(count) {
-  let propertyLength = count['checked'] + count['unchecked'];
-  let percentage = (count['checked'] * 100) / propertyLength;
+  let propertyLength = count["checked"] + count["unchecked"];
+  let percentage = (count["checked"] * 100) / propertyLength;
   return Math.round(percentage);
 }
-
-
 
 /*
 /**
@@ -102,7 +106,6 @@ function clearAllTasks() {
   document.getElementById("awaitingFeedback").innerHTML = "";
   document.getElementById("done").innerHTML = "";
 }
-
 
 /**
  * Determines the priority of a given task element and returns the corresponding HTML string for its icon.
@@ -123,14 +126,6 @@ function getPriority(element) {
   return priority;
 }
 
-
-
-
-
-
-
-
-
 /**
  * Prepares the modal form to add a new task with a specified status.
  * The function saves the task status to local storage, updates the "onsubmit" attribute of the form
@@ -146,10 +141,6 @@ function addTaskByStatus(status) {
     .setAttribute("onsubmit", `addTask('${status}', event); return false`);
   openModal(document.querySelector(".modal"));
 }
-
-
-
-
 
 /**
  * Toggles the visibility of the task addition window based on the provided state.
@@ -276,19 +267,22 @@ function boardOpenPopUpTask(i, card) {
       htmlTemplatePopUpMembers(element2);
   }
   taskForm.setAttribute("onsubmit", `saveEditTask(${index}, event)`);
-  let subtaskContainer = document.getElementById('boardTasksSubtasks');
-  console.log(element['subtasks'])
-  console.log(element['subtasks'].length);
-  if (element['subtasks'].length > 0) {
+  let subtaskContainer = document.getElementById("boardTasksSubtasks");
+  console.log(element["subtasks"]);
+  console.log(element["subtasks"].length);
+  if (element["subtasks"].length > 0) {
     subtaskContainer.innerHTML += generateSubtaskHeader();
-    for (let k = 0; k < element['subtasks'].length; k++) {
-      const element3 = element['subtasks'][k]['title'];
-      subtaskContainer.innerHTML += generateBordSubtaskHTML(element3, k, element);
+    for (let k = 0; k < element["subtasks"].length; k++) {
+      const element3 = element["subtasks"][k]["title"];
+      subtaskContainer.innerHTML += generateBordSubtaskHTML(
+        element3,
+        k,
+        element
+      );
     }
     getProperty(element, i);
   }
 }
-
 
 /**
  * Saves the edited details of a task.
@@ -299,7 +293,8 @@ function boardOpenPopUpTask(i, card) {
  * @requires userObj: An object containing user tasks.
  * @requires setItem: A function that sets a new item in local storage.
  */
-function saveEditTask(taskIndex) {
+function saveEditTask(taskIndex, e) {
+  e.preventDefault();
   let titel = document.getElementById("title-input");
   let description = document.getElementById("description-input");
   let date = document.getElementById("task-date");
@@ -340,19 +335,17 @@ function boardClosePopUpTask() {
   renderTasks();
 }
 
-
-
 async function changeToCheckbox(k) {
   const checkbox = document.getElementById(`subtask-checkbox${k}`);
   const index = userObj.tasks.findIndex(
-    task => task.status === currentStatus && task.titel === currentTitel
+    (task) => task.status === currentStatus && task.titel === currentTitel
   );
-  if (checkbox.getAttribute("src") === './img/checkbox.png') {
-    checkbox.src = './img/checkbox_checked.png';
-    toggleSubtaskProperty(checkbox, 'checked', index);
-  } else if (checkbox.getAttribute("src") === './img/checkbox_checked.png') {
-    checkbox.src = './img/checkbox.png';
-    toggleSubtaskProperty(checkbox, 'unchecked', index);
+  if (checkbox.getAttribute("src") === "./img/checkbox.png") {
+    checkbox.src = "./img/checkbox_checked.png";
+    toggleSubtaskProperty(checkbox, "checked", index);
+  } else if (checkbox.getAttribute("src") === "./img/checkbox_checked.png") {
+    checkbox.src = "./img/checkbox.png";
+    toggleSubtaskProperty(checkbox, "unchecked", index);
   }
   await setItem(userObj.email, JSON.stringify(userObj));
 }
@@ -364,31 +357,29 @@ function toggleSubtaskProperty(checkbox, newProperty, taskIndex) {
   }
 }
 
-
 function getProperty(element, index) {
-  let properties = element['subtasks'];
+  let properties = element["subtasks"];
   const images = [
     {
-      'property': 'unchecked',
-      'image': './img/checkbox.png'
+      property: "unchecked",
+      image: "./img/checkbox.png",
     },
     {
-      'property': 'checked',
-      'image': './img/checkbox_checked.png'
-    }
+      property: "checked",
+      image: "./img/checkbox_checked.png",
+    },
   ];
   for (let i = 0; i < properties.length; i++) {
-    const property = properties[i]['property'];
+    const property = properties[i]["property"];
     const checkbox = document.getElementById(`subtask-checkbox${i}`);
-    if (property == 'unchecked') {
+    if (property == "unchecked") {
       checkbox.src = images[0].image;
     }
-    if (property == 'checked') {
+    if (property == "checked") {
       checkbox.src = images[1].image;
     }
   }
 }
-
 
 function generateSubtaskHeader() {
   return `
@@ -432,28 +423,47 @@ function getThePriority(element) {
   return priority;
 }
 
-
-
-
 function searchTask() {
   let search = document.getElementById("boardInput").value;
   search = search.toLowerCase();
-  renderSearchTasksByStatus(search, 'to do', 'todo', 'assignedToDo');
-  renderSearchTasksByStatus(search, "in progress", "inProgress", 'assignedInProgress');
-  renderSearchTasksByStatus(search, "awaiting feedback", 'awaitingFeedback', 'assignedAwaitingFeedback');
-  renderSearchTasksByStatus(search, "done", 'done', 'assignedDone');
+  renderSearchTasksByStatus(search, "to do", "todo", "assignedToDo");
+  renderSearchTasksByStatus(
+    search,
+    "in progress",
+    "inProgress",
+    "assignedInProgress"
+  );
+  renderSearchTasksByStatus(
+    search,
+    "awaiting feedback",
+    "awaitingFeedback",
+    "assignedAwaitingFeedback"
+  );
+  renderSearchTasksByStatus(search, "done", "done", "assignedDone");
 }
 
-function renderSearchTasksByStatus(search, status, containerId, assignmentIdPrefix) {
+function renderSearchTasksByStatus(
+  search,
+  status,
+  containerId,
+  assignmentIdPrefix
+) {
   const filteredTasks = userObj.tasks.filter((t) => t["status"] === status);
   document.getElementById(containerId).innerHTML = "";
   for (let i = 0; i < filteredTasks.length; i++) {
     let title = filteredTasks[i].titel;
     let description = filteredTasks[i].description;
-    if (title.toLowerCase().includes(search) || description.toLowerCase().includes(search)) {
+    if (
+      title.toLowerCase().includes(search) ||
+      description.toLowerCase().includes(search)
+    ) {
       const element = filteredTasks[i];
-      document.getElementById(containerId).innerHTML +=
-        htmlTemplateByStatus(element, i, getPriority(element), status);
+      document.getElementById(containerId).innerHTML += htmlTemplateByStatus(
+        element,
+        i,
+        getPriority(element),
+        status
+      );
       let idAssigned = document.getElementById(`${assignmentIdPrefix}${i}`);
       idAssigned.innerHTML = element["assigned"]
         .map((_, j) => htmlTemplateAssignment(element, j))
