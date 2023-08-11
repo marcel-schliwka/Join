@@ -853,10 +853,24 @@ li {
   padding-left: 40px;
 }
 
-.subtask-buttons {
+.generatedSubtasks:hover .subtask-buttons {
   display: flex;
+}
+
+.generatedSubtask:active .subtask-buttons {
+  display: flex;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f6f7f8 !important;
+}
+
+.subtask-buttons {
+  display: none;
   align-items: center;
 }
+
+
 
 .geneneratedSubtasks:hover {
   background: #d1d1d3;
