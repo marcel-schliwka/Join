@@ -177,13 +177,8 @@ function htmlTemplateDone(element, i, priority) {
               ${element["description"]}
           </div>
           <div class="progress-section">
-          <div id="subtask-progress${i}" class="progress">
-              ${htmlTemplateProgress(checkSubtasks(element))}
-          </div>
-          <div class="d-flex progress-count">
-          ${htmlTemplateProgressCount(countProperty(element))}
-          </div>
-      </div>
+            ${htmlTemplateProgressSection(checkSubtasks(element), i, element)}
+        </div>
           <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
               <div class="d-flex textWhite" id="assignedDone${i}"></div>
               <div>${priority}</div>

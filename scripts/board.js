@@ -65,9 +65,6 @@ function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
 function checkSubtasks(task) {
   let subtasks = task["subtasks"].length;
   if (subtasks === 0) {
-    console.log("does not count percentage");
-    //  let div = document.getElementById(`subtask-progress${id}`);
-    //  div.style.display = 'none';
     return -1;
   } else {
     count = countProperty(task);
