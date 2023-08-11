@@ -193,6 +193,13 @@ body {
   padding: 5px;
 }
 
+.progress {
+  width: 60%;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  height: 5px;
+}
+
 @media screen and (max-width: 1630px) {
   .popUpBoardTask {
     max-width: 90%;

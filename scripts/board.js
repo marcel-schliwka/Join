@@ -339,7 +339,6 @@ function toggleSubtaskProperty(checkbox, newProperty, taskIndex) {
 
 function getProperty(element, index) {
   let properties = element['subtasks'];
-  console.log(properties.length);
   const images = [
     {
       'property': 'unchecked',
@@ -350,7 +349,6 @@ function getProperty(element, index) {
       'image': './img/checkbox_checked.png'
     }
   ];
-  
   for (let i = 0; i < properties.length; i++) {
     const property = properties[i]['property'];
     const checkbox = document.getElementById(`subtask-checkbox${i}`);

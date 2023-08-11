@@ -1,3 +1,10 @@
+function htmlTemplateProgress() {
+    return `
+    <div class="progress">
+        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>`;
+}
+
 /**
  * Generates the HTML template for a given task element for the "to do" category.
  *
@@ -96,6 +103,7 @@ function htmlTemplateAwaitingFeedback(element, i, priority) {
           <div class="cardText mx-2 my-1">
               ${element["description"]}
           </div>
+
           <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
               <div class="d-flex textWhite" id="assignedAwaitingFeedback${i}"></div>
               <div>${priority}</div>
