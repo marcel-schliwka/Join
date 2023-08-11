@@ -32,7 +32,7 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 12;
+  z-index: 999;
 }
 
 .icon-dialog:hover .my-path,
@@ -47,7 +47,7 @@ body {
   background-color: #2a3647;
   padding: 0;
   top: 25%;
-  z-index: 999;
+  z-index: 1000;
   display: flex;
   justify-content: space-between;
   overflow: hidden;

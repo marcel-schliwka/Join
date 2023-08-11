@@ -639,6 +639,10 @@ li {
   width: 230px
 }
 
+#dialog__createContact {
+  left: 0 !important;
+}
+
 @media (max-width: 428px) {
   .add-task-section h1 {
     margin-left: 33px;
