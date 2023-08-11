@@ -53,9 +53,9 @@ function handleKeyPress(event, f1, f2) {
 
 function editSubtask(index) {
   let subtask = document.getElementById(`subtask-text${index}`);
-  let btnContainer = document.querySelector(".subtask-buttons");
-  let container = document.querySelector(".generatedSubtasks li");
-  let subtaskCircle = document.querySelector('.subtask-circle');
+  let btnContainer = document.getElementById(`subtaskButtonsContainer${index}`);
+  let container = document.getElementById(`listItem${index}`);
+  let subtaskCircle = document.getElementById(`subtaskCircle${index}`);
   container.classList.toggle("no-hover");
   subtaskCircle.classList.add('display-none')
   btnContainer.style.display =
