@@ -41,10 +41,9 @@ function redirectTo(url) {
   window.location.href = url;
 }
 
-
 function handleKeyPress(event, f1, f2) {
   if (event.key === "Enter") {
-    f1()
+    f1();
     event.preventDefault();
   } else if (event.key === "Escape") {
     f2();
@@ -62,11 +61,10 @@ function deleteSubtask(index) {
 }
 
 function acceptEditedSubtask(index) {
-  let input = document.getElementById(`editedSubtask-input${index}`)
+  let input = document.getElementById(`editedSubtask-input${index}`);
   subtasks[index] = input.value;
   renderSubtasks();
 }
-
 
 /**
  * Displays the board button by removing the "display-none" class.
@@ -79,7 +77,7 @@ function showBoardButton() {
 /**
  * Event listener that runs when the DOM content is loaded.
  * It initializes the taskDateInput element.
- * 
+ *
  * @event DOMContentLoaded
  */
 window.addEventListener("DOMContentLoaded", function () {
@@ -87,7 +85,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   /**
    * Formats a given date into a string in "YYYY-MM-DD" format.
-   * 
+   *
    * @param {Date} date - The date object to be formatted.
    * @returns {string} The formatted date string.
    */
@@ -124,7 +122,7 @@ function clearAssigned() {
 /**
  * Adds a new task to the user's tasks list and redirects to the board page.
  */
-function addTask() {
+function addTask(e) {
   let status = getStatusLocalStorage();
   if (status === null) {
     status = "to do";
@@ -153,11 +151,10 @@ function getAddTaskVariables(status) {
   let category = document.querySelector(".category-input");
   let assignedTo = assigned;
   let subtaskTexts = getSubtasks();
-  let newSubtasks = subtaskTexts.map(subtaskTitle => ({
+  let newSubtasks = subtaskTexts.map((subtaskTitle) => ({
     title: subtaskTitle,
-    property: "unchecked"
+    property: "unchecked",
   }));
-
 
   let prio = currentPrio;
   let color = document
@@ -272,9 +269,12 @@ function addNewCategory() {
     const categoryVar = getCategoryVaraible();
     const { input, color, hiddenError, category, categoryBtn } = categoryVar;
     if (!input || !color) {
-      hiddenError.innerText = !input && !color ? "Oops.. something went wrong" :
-        !input ? "You need to type a new category" :
-          "You need to pick a color";
+      hiddenError.innerText =
+        !input && !color
+          ? "Oops.. something went wrong"
+          : !input
+          ? "You need to type a new category"
+          : "You need to pick a color";
       hiddenError.classList.remove("display-none");
     } else {
       hiddenError.innerText = "";
@@ -283,7 +283,10 @@ function addNewCategory() {
       renderCategorys();
       category.innerHTML = generateBasicCategoryInputHTML();
       categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
-      category.innerHTML = generateSelectedCategoryHTML(categorys, categorys.length - 1);
+      category.innerHTML = generateSelectedCategoryHTML(
+        categorys,
+        categorys.length - 1
+      );
     }
   } catch (error) {
     return false;
@@ -301,7 +304,7 @@ function getCategoryVaraible() {
   const category = document.getElementById("category-input");
   const categoryBtn = document.getElementById("category-button");
   const hiddenError = document.getElementById("hidden-error");
-  return { input, color, category, categoryBtn, hiddenError }
+  return { input, color, category, categoryBtn, hiddenError };
 }
 
 /**
@@ -316,14 +319,14 @@ function toggleCategoryMenu() {
   category.classList.toggle("category-custom-border");
   categoryContainer.classList.toggle("remove-border");
   if (input === null) {
-    document.addEventListener("click", event => {
+    document.addEventListener("click", (event) => {
       if (!categoryContainer.contains(event.target)) {
         addNewCategory();
         category.classList.add("display-none");
         categoryContainer.classList.remove("remove-border");
       }
     });
-    category.addEventListener("click", event => {
+    category.addEventListener("click", (event) => {
       event.stopPropagation();
     });
   }
@@ -488,10 +491,10 @@ function changeSubtaskCheckbox(i) {
  */
 
 function getSubtasks() {
-  const subtaskItems = document.querySelectorAll('#subtask-content li');
+  const subtaskItems = document.querySelectorAll("#subtask-content li");
   const subtaskTexts = [];
 
-  subtaskItems.forEach(item => {
+  subtaskItems.forEach((item) => {
     const text = item.innerText.trim();
     subtaskTexts.push(text);
   });
@@ -517,14 +520,14 @@ function changeToInput(containerId, buttonId) {
   } else if (cId.id.includes("assigned-input")) {
     cId.innerHTML += generateAssignedInputHTML();
     bId.innerHTML += generateAssigendButtonHTML();
-    let generatedInput = document.getElementById("generatedInput"); 
+    let generatedInput = document.getElementById("generatedInput");
     if (generatedInput) {
       generatedInput.focus();
     }
   } else {
     bId.innerHTML += generateSubtaskButtonHTML();
     cId.innerHTML += generateSubtaskInputHTML();
-    let generatedInput = document.getElementById("generatedSubtaskInput"); 
+    let generatedInput = document.getElementById("generatedSubtaskInput");
     if (generatedInput) {
       generatedInput.focus();
     }
@@ -564,17 +567,25 @@ function changeCheckbox(i) {
  */
 function clearAll() {
   const inputFields = ["title-input", "description-input", "task-date"];
-  inputFields.forEach(field => document.getElementById(field).value = "");
+  inputFields.forEach((field) => (document.getElementById(field).value = ""));
   const priorityButtons = ["urgentBtn", "mediumBtn", "lowBtn"];
-  priorityButtons.forEach(button => document.getElementById(button).classList.remove(`${button}-active`));
+  priorityButtons.forEach((button) =>
+    document.getElementById(button).classList.remove(`${button}-active`)
+  );
   const priorityImages = ["lowImg", "mediumImg", "urgentImg"];
-  priorityImages.forEach(image => document.getElementById(image).src = `./img/prio_${image.replace("Img", "").toLowerCase()}_color.png`);
-  document.getElementById("category-input").innerHTML = generateBasicCategoryInputHTML();
-  document.getElementById("category-button").innerHTML = generateBasicCategoryButtonHTML();
+  priorityImages.forEach(
+    (image) =>
+      (document.getElementById(image).src = `./img/prio_${image
+        .replace("Img", "")
+        .toLowerCase()}_color.png`)
+  );
+  document.getElementById("category-input").innerHTML =
+    generateBasicCategoryInputHTML();
+  document.getElementById("category-button").innerHTML =
+    generateBasicCategoryButtonHTML();
   currentPrio = undefined;
   subtasks = [];
   currentCategory = undefined;
   renderCategorys();
   renderSubtasks();
 }
-
