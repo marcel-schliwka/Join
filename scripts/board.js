@@ -54,13 +54,13 @@ function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
 }
 
 
-function checkSubtasks(task, id) {
+function checkSubtasks(task) {
   let subtasks = task['subtasks'].length
   if (subtasks === 0) {
     console.log('does not count percentage');
-   let div = document.getElementById(`subtask-progress${id}`);
-   div.style.display = 'none';
-    return;
+    //  let div = document.getElementById(`subtask-progress${id}`);
+    //  div.style.display = 'none';
+    return -1;
   } else {
     count = countProperty(task);
     return calculateProgressBar(count)
@@ -86,7 +86,7 @@ function countProperty(task) {
 function calculateProgressBar(count) {
   let propertyLength = count['checked'] + count['unchecked'];
   let percentage = (count['checked'] * 100) / propertyLength;
-  return Math.round(percentage); 
+  return Math.round(percentage);
 }
 
 

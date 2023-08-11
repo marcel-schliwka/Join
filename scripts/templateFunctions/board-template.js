@@ -1,4 +1,4 @@
-function htmlTemplateProgress(percentage) {
+function htmlTemplateProgressBar(percentage) {
     return `
             <div class="progress-bar" style="width:${percentage}%" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100"></div>
         `;
@@ -9,6 +9,22 @@ function htmlTemplateProgressCount(element) {
     return `
     <div class="d-flex">${element['checked']}/${element['unchecked'] + element['checked']} Subtasks</div>
     `;
+}
+
+function htmlTemplateProgressSection(percentage, id, task) {
+    if (percentage == -1) {
+        return ""
+    } else {
+        return /*html*/`
+            <div id="subtask-progress${id}" class="progress">
+                ${htmlTemplateProgressBar(percentage)}
+            </div>
+            <div class="d-flex progress-count">
+                ${htmlTemplateProgressCount(countProperty(task))}
+            </div>
+
+        `;
+    }
 }
 
 /**
@@ -31,14 +47,9 @@ function htmlTemplateToDo(element, i, priority) {
               <div class="cardText mx-2 my-1">
                   ${element["description"]}
               </div>
-              <div class="progress-section">
-                <div id="subtask-progress${i}" class="progress">
-                    ${htmlTemplateProgress(checkSubtasks(element, i))}
+                <div class="progress-section">
+                    ${htmlTemplateProgressSection(checkSubtasks(element), i, element)}
                 </div>
-                <div class="d-flex progress-count">
-                ${htmlTemplateProgressCount(countProperty(element))}
-                </div>
-            </div>
               <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
                   <div class="d-flex textWhite" id="assignedToDo${i}"></div>
                   <div>${priority}</div>
@@ -56,29 +67,31 @@ function htmlTemplateToDo(element, i, priority) {
  * @returns {string} HTML template string for the task, which includes details like category, title, description, and assigned members.
  */
 function htmlTemplateInProgress(element, i, priority) {
-    return `<div status="in progress" currentId="${i}" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-              <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
-                  ${element["category"]}
-              </div>
-              <div class="mt-2 mx-2 bold sub-headline">
-                  ${element["titel"]}
-              </div>
-              <div class="cardText mx-2 my-1">
-                  ${element["description"]}
-              </div>
-              <div class="progress-section">
-                <div id="subtask-progress${i}" class="progress">
-                    ${htmlTemplateProgress(checkSubtasks(element, i))}
-                </div>
-                <div class="d-flex progress-count">
-                ${htmlTemplateProgressCount(countProperty(element))}
-                </div>
+    return `
+        <div status="in progress" currentId="${i}" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+            <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
+                ${element["category"]}
             </div>
-              <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
-                  <div class="d-flex textWhite" id="assignedInProgress${i}"></div>
-                  <div>${priority}</div>
-              </div>
-          </div>`;
+
+            <div class="mt-2 mx-2 bold sub-headline">
+                ${element["titel"]}
+            </div>
+
+            <div class="cardText mx-2 my-1">
+                ${element["description"]}
+            </div>
+
+            <div class="progress-section">
+                ${htmlTemplateProgressSection(checkSubtasks(element), i, element)}
+            </div>
+
+            <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
+                <div class="d-flex textWhite" id="assignedInProgress${i}"></div>
+                <div>${priority}</div>
+            </div>
+
+        </div>
+    `;
 }
 
 
@@ -114,29 +127,26 @@ function htmlTemplateAssignment(element, j) {
 * @property {string} element.description - A brief description of the task.
 */
 function htmlTemplateAwaitingFeedback(element, i, priority) {
-    return `<div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-          <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color: ${element["categoryColor"]}">
-              ${element["category"]}
-          </div>
-          <div class="mt-2 mx-2 bold sub-headline">
-              ${element["titel"]}
-          </div>
-          <div class="cardText mx-2 my-1">
+    return `
+    <div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+        <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color: ${element["categoryColor"]}">
+            ${element["category"]}
+        </div>
+        <div class="mt-2 mx-2 bold sub-headline">
+            ${element["titel"]}
+        </div>
+        <div class="cardText mx-2 my-1">
               ${element["description"]}
-          </div>
-          <div class="progress-section">
-          <div id="subtask-progress${i}" class="progress">
-                ${htmlTemplateProgress(checkSubtasks(element, i))}
-          </div>
-          <div class="d-flex progress-count">
-          ${htmlTemplateProgressCount(countProperty(element))}
-          </div>
-      </div>
-          <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
-              <div class="d-flex textWhite" id="assignedAwaitingFeedback${i}"></div>
-              <div>${priority}</div>
-          </div>
-      </div>`;
+        </div>
+        <div class="progress-section">
+            ${htmlTemplateProgressSection(checkSubtasks(element), i, element)}
+        </div>
+        <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
+            <div class="d-flex textWhite" id="assignedAwaitingFeedback${i}"></div>
+            <div>${priority}</div>
+        </div>
+    </div>
+    `;
 }
 
 
