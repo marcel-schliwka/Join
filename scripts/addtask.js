@@ -41,6 +41,24 @@ function redirectTo(url) {
   window.location.href = url;
 }
 
+
+function editSubtask(index) {
+  let subtask = document.getElementById(`subtask-text${index}`);
+  subtask.innerHTML = generateEditSubtaskInput(subtask.innerText, index);
+}
+
+function deleteSubtask(index) {
+  subtasks.splice(index, 1);
+  renderSubtasks();
+}
+
+function acceptEditedSubtask(index) {
+  let input = document.getElementById(`editedSubtask-input${index}`)
+  subtasks[index] = input.value;
+  renderSubtasks();
+}
+
+
 /**
  * Displays the board button by removing the "display-none" class.
  */

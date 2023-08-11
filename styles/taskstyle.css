@@ -864,7 +864,8 @@ li {
 
 .generatedSubtasks li:hover,
 .generatedSubtasks li:hover .subtask-buttons {
-  background-color: rgb(201, 197, 197);
+  background: #d1d1d3;
+  border-radius: 10px;
   display: flex;
 }
 
@@ -881,15 +882,17 @@ li {
   margin-left: 10px;
 }
 
-
-
-.geneneratedSubtasks:hover {
-  background: #d1d1d3;
-  border-radius: 10px;
-}
-
 .ov-scroll {
   overflow-x: scroll;
+}
+
+.subtask-edit-input {
+  height: 32px;
+  width: auto;
+  padding: 4px 16px;
+  border-bottom: 1px solid #005DFF;
+  background: #FFF;
+  outline: none;
 }
 
 @media (max-width: 1115px) {
