@@ -42,7 +42,7 @@ function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
   filteredTasks.forEach((task, index) => {
     const { assigned } = task;
     document.getElementById(containerId).innerHTML +=
-    htmlTemplateByStatus(task, index, getPriority(task), status);
+      htmlTemplateByStatus(task, index, getPriority(task), status);
     checkSubtasks(task);
     const idAssigned = document.getElementById(`${assignmentIdPrefix}${index}`);
     idAssigned.innerHTML = assigned
@@ -54,12 +54,14 @@ function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
 }
 
 
-function checkSubtasks(task) {;
+function checkSubtasks(task) {
+  ;
   let subtasks = task['subtasks'].length
-  if (subtasks > 0 ) {
+  if (subtasks > 0) {
     count = countProperty(task);
-    calculateProgressBar(count)
+    return calculateProgressBar(count)
   } else {
+    console.log('does not count percentage');
   }
 }
 
@@ -82,8 +84,7 @@ function countProperty(task) {
 function calculateProgressBar(count) {
   let propertyLength = count['checked'] + count['unchecked'];
   let percentage = (count['checked'] * 100) / propertyLength;
-  let formatedPercent = percentage.toFixed(2);
-  console.log(formatedPercent);
+  return Math.round(percentage); 
 }
 
 
@@ -492,7 +493,7 @@ function editTask(i) {
   toggleCategoryMenu();
   modalFields.category.innertText = currentTask.category;
 }
- 
+
 /**
  * Retrieves the input fields from the modal.
  * @returns {Object} An object containing references to the modal input fields.

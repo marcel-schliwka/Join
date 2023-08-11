@@ -1,9 +1,9 @@
-function htmlTemplateProgress() {
+function htmlTemplateProgress(percentage) {
     return `
-    <div class="progress">
-        <div class="progress-bar w-75" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-    </div>`;
+            <div class="progress-bar" style="width:${percentage}%" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100"></div>
+        `;
 }
+
 
 /**
  * Generates the HTML template for a given task element for the "to do" category.
@@ -25,7 +25,9 @@ function htmlTemplateToDo(element, i, priority) {
               <div class="cardText mx-2 my-1">
                   ${element["description"]}
               </div>
-              <div id="subtask-progress${i}"></div>
+              <div id="subtask-progress${i}" class="progress">
+                ${htmlTemplateProgress(checkSubtasks(element))}
+              </div>
               <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
                   <div class="d-flex textWhite" id="assignedToDo${i}"></div>
                   <div>${priority}</div>
@@ -52,6 +54,9 @@ function htmlTemplateInProgress(element, i, priority) {
               </div>
               <div class="cardText mx-2 my-1">
                   ${element["description"]}
+              </div>
+              <div id="subtask-progress${i}" class="progress">
+                ${htmlTemplateProgress(checkSubtasks(element))}
               </div>
               <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
                   <div class="d-flex textWhite" id="assignedInProgress${i}"></div>
@@ -103,7 +108,9 @@ function htmlTemplateAwaitingFeedback(element, i, priority) {
           <div class="cardText mx-2 my-1">
               ${element["description"]}
           </div>
-
+          <div id="subtask-progress${i}" class="progress">
+          ${htmlTemplateProgress(checkSubtasks(element))}
+        </div>
           <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
               <div class="d-flex textWhite" id="assignedAwaitingFeedback${i}"></div>
               <div>${priority}</div>
