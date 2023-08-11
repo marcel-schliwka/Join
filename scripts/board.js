@@ -314,7 +314,7 @@ function boardClosePopUpTask() {
 
 
 
-function changeToCheckbox(k) {
+async function changeToCheckbox(k) {
   const checkbox = document.getElementById(`subtask-checkbox${k}`);
   const index = userObj.tasks.findIndex(
     task => task.status === currentStatus && task.titel === currentTitel
@@ -326,6 +326,7 @@ function changeToCheckbox(k) {
     checkbox.src = './img/checkbox.png';
     toggleSubtaskProperty(checkbox, 'unchecked', index);
   }
+  await setItem(userObj.email, JSON.stringify(userObj));
 }
 
 function toggleSubtaskProperty(checkbox, newProperty, taskIndex) {
@@ -337,7 +338,8 @@ function toggleSubtaskProperty(checkbox, newProperty, taskIndex) {
 
 
 function getProperty(element, index) {
-  const checkbox = document.getElementById(`subtask-checkbox${index}`);
+  let properties = element['subtasks'];
+  console.log(properties.length);
   const images = [
     {
       'property': 'unchecked',
@@ -348,14 +350,17 @@ function getProperty(element, index) {
       'image': './img/checkbox_checked.png'
     }
   ];
-  let subtasks = element['subtasks'];
-  subtasks.forEach((subtask) => {
-    if (subtask['property'] === 'unchecked') {
+  
+  for (let i = 0; i < properties.length; i++) {
+    const property = properties[i]['property'];
+    const checkbox = document.getElementById(`subtask-checkbox${i}`);
+    if (property == 'unchecked') {
       checkbox.src = images[0].image;
-    } else if (subtask['property'] === 'checked') {
+    }
+    if (property == 'checked') {
       checkbox.src = images[1].image;
     }
-  });
+  }
 }
 
 
