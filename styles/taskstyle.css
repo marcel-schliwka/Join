@@ -406,14 +406,18 @@ body {
   border: none;
 }
 
+.ml-35 {
+  margin-left: 35px;
+}
+
 .contact-item {
   padding-right: 22px;
   display: flex;
   justify-content: space-between;
   width: 415px;
   text-decoration: none;
-  margin-left: -27px;
-  padding-left: 18px;
+  margin-left: -5px;
+  padding-left: 22px;
   padding-top: 5px;
   padding-bottom: 8px;
   overflow-x: hidden;
@@ -553,7 +557,7 @@ li {
 
 ::-webkit-scrollbar {
   width: 0px;
-  height: 0px;;
+  height: 0px;
 }
 
 #renderContacts {
