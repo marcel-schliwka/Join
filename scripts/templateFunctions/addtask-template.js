@@ -7,7 +7,7 @@
 function generateCategoryInputHTML() {
   return `
     <div>
-      <input id="generatedInput" placeholder="Enter new category" class="ol-none b-none">
+      <input onkeydown="handleKeyPress(event, clearCategory, addNewCategory) id="generatedInput" placeholder="Enter new category" class="ol-none b-none">
     </div>
     `;
 }
@@ -218,7 +218,7 @@ function generateAddNewContact() {
 function generateSubtaskInputHTML() {
   return `
       <div>
-        <input id="generatedSubtaskInput" placeholder="Enter a new subtask" class="ol-none b-none">
+        <input onkeydown="handleKeyPress(event, addSubtask, changeToSubtask)" id="generatedSubtaskInput" placeholder="Enter a new subtask" class="ol-none b-none">
       </div>
       `;
 }

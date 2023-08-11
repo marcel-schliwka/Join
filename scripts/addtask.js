@@ -42,6 +42,15 @@ function redirectTo(url) {
 }
 
 
+function handleKeyPress(event, f1, f2) {
+  if (event.key === "Enter") {
+    f1()
+    event.preventDefault();
+  } else if (event.key === "Escape") {
+    f2();
+    event.target.value = "";
+  }
+}
 function editSubtask(index) {
   let subtask = document.getElementById(`subtask-text${index}`);
   subtask.innerHTML = generateEditSubtaskInput(subtask.innerText, index);
