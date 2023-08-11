@@ -41,6 +41,7 @@ function redirectTo(url) {
   window.location.href = url;
 }
 
+
 function handleKeyPress(event, f1, f2) {
   if (event.key === "Enter") {
     f1();
@@ -50,9 +51,16 @@ function handleKeyPress(event, f1, f2) {
     event.target.value = "";
   }
 }
+
 function editSubtask(index) {
   let subtask = document.getElementById(`subtask-text${index}`);
+  let btnContainer = document.querySelector('.subtask-buttons');
+  let container = document.querySelector('.generatedSubtasks li')
+  container.classList.toggle('no-hover');
+  btnContainer.style.display = btnContainer.style.display === 'none' ? 'flex' : 'none';
   subtask.innerHTML = generateEditSubtaskInput(subtask.innerText, index);
+
+
 }
 
 function deleteSubtask(index) {
@@ -131,12 +139,13 @@ function addTask(e) {
   const task = getAddTaskVariables(status);
   userObj.tasks.push(task);
   setItem(userObj.email, JSON.stringify(userObj));
+  spliceStatusLocalStorage();
   clearAll();
   showBoardButton();
-  spliceStatusLocalStorage();
   setTimeout(function () {
     redirectTo("board.html");
   }, 1000);
+
 }
 
 /**
