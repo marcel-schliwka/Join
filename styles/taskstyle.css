@@ -876,6 +876,15 @@ li {
   display: flex;
 }
 
+.generatedSubtasks.no-hover li,
+.generatedSubtasks.no-hover li .subtask-buttons {
+  background: none;
+  border-radius: 0;
+}
+
+.generatedSubtasks.no-hover li .subtask-buttons {
+  display: none;
+}
 
 
 .subtask-buttons {
@@ -890,6 +899,14 @@ li {
 .ov-scroll {
   overflow-x: scroll;
 }
+
+.subtask-edit-input-svg {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 3px;
+}
+
 
 .subtask-edit-input {
   height: 32px;
