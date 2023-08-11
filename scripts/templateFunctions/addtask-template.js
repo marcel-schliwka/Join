@@ -190,18 +190,12 @@ function renderContactsHTML(contact, i) {
  *
  * @returns {string} The generated HTML markup for the new contact item.
  */
-/*function generateAddNewContact() {
-  return `
-    <div>
-      <li onclick="changeToInput('assigned-input', 'assigned-button'); hideAssignedToDropdown()" class="contact-item">Invite new contact <img id="contact-img" class="cursor-p"src="./img/contacts_black.png"></li>
-    </div>
-    `;
-}*/
+
 
 function generateAddNewContact() {
   return `
   <div class="d-flex justify-content-center custom-contact-button-task">
-    <button type="button" class="fw-bold custom-lh-120 custom-btn d-flex align-items-center w-100 ml-35" onclick="openCreateContact()">
+    <button type="button" class="fw-bold custom-lh-120 custom-btn d-flex align-items-center w-100 ml-35 h-48" onclick="openCreateContact()">
       <span class="custom-fs-21">New contact</span>
       <img src="./img/icon_add_contact.png" alt="">
     </button>
@@ -284,7 +278,7 @@ function generateNewSubtaskHTML(i, subt) {
       <div class="font16 w-230 ov-scroll subtask-item" id="subtask${i}">
       
         <div class="d-flex align-items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+          <svg class="subtask-circle" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
             <circle cx="5" cy="5" r="5" fill="black" />
           </svg>
           <div id="subtask-text${i}" class="ml-15">${subt}</div>

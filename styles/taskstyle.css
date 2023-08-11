@@ -892,6 +892,10 @@ li {
   align-items: center;
 }
 
+.h-48 {
+  height: 48px !important;
+}
+
 .ml-10 {
   margin-left: 10px;
 }
