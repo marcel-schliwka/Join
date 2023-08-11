@@ -80,7 +80,10 @@ function countProperty(task) {
 
 
 function calculateProgressBar(count) {
-  console.log(count);
+  let propertyLength = count['checked'] + count['unchecked'];
+  let percentage = (count['checked'] * 100) / propertyLength;
+  let formatedPercent = percentage.toFixed(2);
+  console.log(formatedPercent);
 }
 
 
