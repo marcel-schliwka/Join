@@ -275,6 +275,8 @@ function boardOpenPopUpTask(i, card) {
   }
   taskForm.setAttribute("onsubmit", `saveEditTask(${index}, event)`);
   let subtaskContainer = document.getElementById('boardTasksSubtasks');
+  console.log(element['subtasks'])
+  console.log(element['subtasks'].length);
   if (element['subtasks'].length > 0) {
     subtaskContainer.innerHTML += generateSubtaskHeader();
     for (let k = 0; k < element['subtasks'].length; k++) {
