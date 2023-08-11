@@ -22,6 +22,16 @@ async function getItem(key) {
     });
 }
 
+function handleKeyPress(event, f1, f2) {
+  if (event.key === "Enter") {
+    f1()
+    event.preventDefault();
+  } else if (event.key === "Escape") {
+    f2();
+    event.target.value = "";
+  }
+}
+
 async function getLoggedInUser() {
   const activeUser = localStorage.getItem("activeUser");
   if (!activeUser) {
