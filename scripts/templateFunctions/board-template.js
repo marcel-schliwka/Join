@@ -26,7 +26,7 @@ function htmlTemplateToDo(element, i, priority) {
                   ${element["description"]}
               </div>
               <div id="subtask-progress${i}" class="progress">
-                ${htmlTemplateProgress(checkSubtasks(element))}
+                ${htmlTemplateProgress(checkSubtasks(element, i))}
               </div>
               <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
                   <div class="d-flex textWhite" id="assignedToDo${i}"></div>
