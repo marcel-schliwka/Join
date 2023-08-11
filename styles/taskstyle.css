@@ -860,6 +860,9 @@ li {
 .subtask-item {
   padding: 5px;
   transition: background-color 0.3s ease;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .generatedSubtasks li:hover,
@@ -895,12 +898,6 @@ li {
   outline: none;
 }
 
-@media (max-width: 1115px) {
-  .subtask-item {
-    width: 200px;
-  }
-}
-
 
 @media (max-width: 370px) {
 
@@ -931,9 +928,6 @@ li {
   .add-to-board-btn {
     width: 250px;
   }
-.subtask-item {
-  width: 150px;
-}
 
 }
 
@@ -962,9 +956,6 @@ li {
     padding: 18px 21px;
     align-items: center;
     font-size: 14px;
-  }
-  .subtask-item {
-    width: 120px;
   }
 }
 
