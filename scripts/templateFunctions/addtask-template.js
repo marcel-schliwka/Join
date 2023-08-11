@@ -279,7 +279,13 @@ function generateBasicSubtaskButtonHTML() {
 function generateNewSubtaskHTML(i, subt) {
   return `<li>
   <div class="d-flex justify-content-between align-items-center">
-    <div class="font16 w-230 ov-scroll subtask-item" id="subtask${i}">${subt}</div>
+    <div class="font16 w-230 ov-scroll subtask-item" id="subtask${i}">
+    <div class="d-flex align-items-center">
+      <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+      <circle cx="5" cy="5" r="5" fill="black" />
+      </svg><div class="ml-15">
+      <div>${subt}</div>
+    </div>
     <div class="subtask-buttons">
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none">
         <mask id="mask0_71421_3311" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
@@ -302,7 +308,7 @@ function generateNewSubtaskHTML(i, subt) {
     </svg>
     </div>
     <div>
-    </li>`
+    </li>`;
 }
 
 

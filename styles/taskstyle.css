@@ -449,6 +449,8 @@ body {
 
 ul {
   margin-bottom: 0rem !important;
+  list-style: none;
+  padding-left: 0;
 }
 
 .categorys {
@@ -457,6 +459,10 @@ ul {
   border-bottom-left-radius: 10px;
   background: #fff;
   border-top: none;
+}
+
+.ml-15 {
+  margin-left: 15px;
 }
 
 .categorys ul {
@@ -849,15 +855,16 @@ li {
   color: white;
 }
 
-.subtask-padding {
-  padding-left: 40px;
+
+
+.subtask-item {
+  padding: 5px;
+  transition: background-color 0.3s ease;
 }
 
-.generatedSubtasks:hover .subtask-buttons {
-  display: flex;
-}
-
-.generatedSubtask:active .subtask-buttons {
+.generatedSubtasks li:hover,
+.generatedSubtasks li:hover .subtask-buttons {
+  background-color: rgb(201, 197, 197);
   display: flex;
 }
 
@@ -868,6 +875,10 @@ li {
 .subtask-buttons {
   display: none;
   align-items: center;
+}
+
+.ml-10 {
+  margin-left: 10px;
 }
 
 
