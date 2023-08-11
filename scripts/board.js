@@ -54,14 +54,16 @@ function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
 }
 
 
-function checkSubtasks(task) {
-  ;
+function checkSubtasks(task, id) {
   let subtasks = task['subtasks'].length
-  if (subtasks > 0) {
+  if (subtasks === 0) {
+    console.log('does not count percentage');
+    // let div = document.getElementById(`subtask-progress${id}`);
+    // div.style.display = 'none';
+    return;
+  } else {
     count = countProperty(task);
     return calculateProgressBar(count)
-  } else {
-    console.log('does not count percentage');
   }
 }
 
