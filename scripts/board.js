@@ -332,6 +332,7 @@ function saveEditTask(taskIndex) {
  */
 function boardClosePopUpTask() {
   document.getElementById("popUpBoard").classList.add("dNone");
+  clearAllTasks();
   renderTasks();
 }
 
