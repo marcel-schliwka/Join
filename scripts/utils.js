@@ -48,10 +48,17 @@ function showTopDown(message) {
 }
 function renderTopLogo(userObj) {
   setTimeout(() => {
-    let initials = getInitials(userObj.name);
+    let initials = capitalizeFirstLetterOfEveryWord(getInitials(userObj.name));
     document.getElementById("logo-text-initials").innerText = initials;
     return initials;
   }, 10);
+}
+
+function capitalizeFirstLetterOfEveryWord(input) {
+  return input
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
 }
 
 /**
