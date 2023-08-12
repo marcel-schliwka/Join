@@ -223,15 +223,15 @@
 
         <label for="edit-subtasks" class="font20 label">Subtasks</label>
         <div class="subtasks-container font20 w-422 h-51 custom-border pad-18-21">
-          <div class="subtasks-input" id="editSubtasksInput">
-            <input onclick="changeToInput('editSubtasksInput', 'editSubtasksButton')" class="subtask-input  ol-none"
+          <div class="subtasks-input">
+            <input id="editSubtasksInput" onclick="editChangeToInput('editSubtasksInput', 'editSubtasksButton')" class="subtask-input  ol-none"
               type="text" placeholder="Add new subtask">
           </div>
           <div class="subtasks-button-container" id="editSubtasksButton">
             <button type="button"><img src="./img/plus_icon.png"></button>
           </div>
         </div>
-        <ul class="generatedSubtasks cursor-p font20 subtask-padding" id="editSubtaskList">
+        <ul class="generatedSubtasks cursor-p font20 subtask-padding" id="editDialogSubtaskList">
         </ul>
         <div class="edit-ok-btn">
           <button id="editOkBtn" type="submit" class="display-none editTaskBoardBtn">
