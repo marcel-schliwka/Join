@@ -252,6 +252,14 @@ function htmlTemplatePopUpMembers(element2) {
       `;
 }
 
+function htmlTemplateEditContactIcon(contact) {
+    return /*html*/`
+       <span class="textWhite contact-icon d-flex justify-content-center align-items-center rounded-circle" 
+       style="background-color:${MemberColors[getColorSign(contact)]}">
+       ${getInitials(contact)}
+       </span>
+    `;
+}
 
 function generateTemplateSubtasks(st, j) {
     return `
