@@ -251,3 +251,12 @@ function htmlTemplatePopUpMembers(element2) {
         }">${getInitials(element2)}</div><div class="bold boardMember-margin">${element2}</div><div>
       `;
 }
+
+function htmlTemplateEditContactIcon(contact) {
+    return /*html*/`
+       <span class="textWhite contact-icon d-flex justify-content-center align-items-center rounded-circle" 
+       style="background-color:${MemberColors[getColorSign(contact)]}">
+       ${getInitials(contact)}
+       </span>
+    `;
+}
