@@ -83,6 +83,7 @@ body {
 .contact-icon {
   height: 40px;
   width: 40px;
+  margin-right: 4px;
 }
 
 .popUpBoardBackground {
@@ -239,6 +240,7 @@ body {
   .contact-icon {
     height: 30px;
     width: 30px;
+    margin-right: 4px;
   }
 
   .prio-icon {
