@@ -328,9 +328,30 @@ function saveEditTask(taskIndex, e) {
   const status = userObj['tasks'][taskIndex]['status'];
   const id = userObj['tasks'][taskIndex]['id'];
   const variable = getEditedVaraible(status, id, taskIndex);
+  resetPrioButtons();
   console.log(variable);
-
 }
+
+function resetPrioButtons() {
+  const images = {
+    low: document.getElementById("lowImg"),
+    medium: document.getElementById("mediumImg"),
+    urgent: document.getElementById("urgentImg"),
+  };
+  const buttons = {
+    low: document.getElementById('lowBtn'),
+    medium: document.getElementById('mediumBtn'),
+    urgent: document.getElementById('urgentBtn'),
+  }
+  images['low']. src = './img/prio_low_color.png';
+  images['medium']. src = './img/prio_medium_color.png';
+  images['urgent']. src = './img/prio_urgent_color.png';
+  
+  buttons['low'].classList.remove('low-active');
+  buttons['medium'].classList.remove('medium-active');
+  buttons['urgent'].classList.remove('urgent-active');
+}
+
 
 
 
