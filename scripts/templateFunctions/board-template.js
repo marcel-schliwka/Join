@@ -38,12 +38,12 @@ function htmlTemplateProgressSection(percentage, id, task) {
  */
 function htmlTemplateToDo(element, i, priority) {
     return `<div status="to do" currentId="${i}" titel="${element["titel"]}" id="cardTodo${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)"  draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-              <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
-                  ${element["category"]}
-              <div class="mt-2 mx-2 bold sub-headline">   </div>
-           
-                  ${element["titel"]}
-              </div>
+            <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
+                ${element["category"]}
+            </div>
+            <div class="mt-2 mx-2 bold sub-headline">
+            ${element["titel"]}
+            </div>
               <div class="cardText mx-2 my-1">
                   ${element["description"]}
               </div>
