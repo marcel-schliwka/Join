@@ -281,10 +281,6 @@ function boardOpenPopUpTask(i, card) {
 
 
 
-function name(params) {
-
-}
-
 /**
  * Saves the edited details of a task.
  *
@@ -294,7 +290,7 @@ function name(params) {
  * @requires userObj: An object containing user tasks.
  * @requires setItem: A function that sets a new item in local storage.
  */
-function saveEditTask(taskIndex, e) {
+/*function saveEditTask(taskIndex, e) {
   e.preventDefault();
   let titel = document.getElementById("title-input");
   let description = document.getElementById("description-input");
@@ -324,6 +320,64 @@ function saveEditTask(taskIndex, e) {
   userObj.tasks[taskIndex] = newTask;
   setItem(userObj.email, JSON.stringify(userObj));
 }
+*/
+
+
+function saveEditTask(taskIndex, e) {
+  e.preventDefault();
+  const status = userObj['tasks'][taskIndex]['status'];
+  const id = userObj['tasks'][taskIndex]['id'];
+  const variable = getEditedVaraible(status, id, taskIndex);
+  console.log(variable);
+
+}
+
+
+
+function getEditedVaraible(status, id, taskIndex) {
+  let titel = document.getElementById("title-input");
+  let description = document.getElementById("description-input");
+  let date = document.getElementById("task-date");
+  let categoryElement = document.querySelector(".category-input");
+  let category;
+  if (categoryElement) {
+    category = categoryElement.innerText;
+  } else {
+    category = userObj['tasks'][taskIndex]['category'];
+  }
+  let assignedTo = assigned;
+  let subtaskTexts = getSubtasks();
+  let newSubtasks = subtaskTexts.map((subtaskTitle) => ({
+    title: subtaskTitle,
+    property: "unchecked",
+  }));
+  let prio = currentPrio;
+  const categoryInputCircle = document.querySelector(".category-input circle");
+  let color;
+  if (categoryInputCircle) {
+    color = categoryInputCircle.getAttribute("fill");
+  } else {
+    color = userObj['tasks'][taskIndex]['categoryColor'];
+  }
+  if (prio == undefined) {
+    prio = "low";
+  }
+  let newTask = {
+    titel: titel.value,
+    description: description.value,
+    status: status,
+    category: category,
+    categoryColor: color,
+    assigned: assignedTo,
+    date: date.value,
+    prio: prio,
+    subtasks: newSubtasks,
+    id: id,
+  };
+  return newTask;
+}
+
+
 
 /**
  * Closes the task detail popup on the board.
