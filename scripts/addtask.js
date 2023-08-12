@@ -581,10 +581,13 @@ function clearAll() {
         .replace("Img", "")
         .toLowerCase()}_color.png`)
   );
-  document.getElementById("category-input").innerHTML =
-    generateBasicCategoryInputHTML();
-  document.getElementById("category-button").innerHTML =
-    generateBasicCategoryButtonHTML();
+  const categoryInput = document.getElementById("category-input");
+  const categoryButton = document.getElementById("category-button");
+  
+  if (categoryInput && categoryButton) {
+    categoryInput.innerHTML = generateBasicCategoryInputHTML();
+    categoryButton.innerHTML = generateBasicCategoryButtonHTML();
+  }
   currentPrio = undefined;
   subtasks = [];
   currentCategory = undefined;

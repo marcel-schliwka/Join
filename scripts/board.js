@@ -504,6 +504,9 @@ function boardOpenDialog() {
 function editTask(i) {
   let currentTask = userObj.tasks[i];
   openModal(document.querySelector(".modal"));
+  document.getElementById('clear-btn').classList.add('d-none');
+  document.getElementById('create-btn').classList.add('d-none');
+  document.getElementById('ok-btn').classList.remove('d-none');
   document.getElementById('title-input').value = currentTask['titel'];
   document.getElementById('description-input').value = currentTask['description'];
   document.getElementById('task-date').value = currentTask['date'];
@@ -515,8 +518,10 @@ function editTask(i) {
   let category = document.getElementById('category-container');
   let categoryBtn = document.getElementById('category-button');
   renderCategorys();
-  category.innerHTML = generateBasicCategoryInputHTML();
-  categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
+  if (category && categoryBtn) {
+    category.innerHTML = generateBasicCategoryInputHTML();
+    categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
+  }
   category.innerHTML = generateSelectedCategoryHTML(
     categorys,
     categorys.length - 1
