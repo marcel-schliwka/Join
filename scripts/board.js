@@ -282,7 +282,7 @@ function boardOpenPopUpTask(i, card) {
 
 
 function name(params) {
-  
+
 }
 
 /**
@@ -507,25 +507,34 @@ function editTask(i) {
   document.getElementById('title-input').value = currentTask['titel'];
   document.getElementById('description-input').value = currentTask['description'];
   document.getElementById('task-date').value = currentTask['date'];
-  let currentButton =  document.getElementById(`${currentTask['prio'] + 'Btn'}`);
+  let currentButton = document.getElementById(`${currentTask['prio'] + 'Btn'}`);
   let currentButtonImage = document.getElementById(`${currentTask['prio'] + 'Img'}`)
   currentButton.classList.add(`${currentTask['prio'] + '-active'}`);
   currentButtonImage.src = `./img/prio_${currentTask['prio']}.png`;
-  categorys.push({ name: currentTask['category'], color: currentTask['categoryColor']});
+  categorys.push({ name: currentTask['category'], color: currentTask['categoryColor'] });
   let category = document.getElementById('category-container');
   let categoryBtn = document.getElementById('category-button');
   renderCategorys();
   category.innerHTML = generateBasicCategoryInputHTML();
   categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
   category.innerHTML = generateSelectedCategoryHTML(
-        categorys,
-        categorys.length - 1
-      );
-    renderBoardSubtasks(currentTask);
-    assigned.push(currentTask['assigned'])
-    console.log(assigned);
+    categorys,
+    categorys.length - 1
+  );
+  renderBoardSubtasks(currentTask);
+  const checkboxImages = document.querySelectorAll('.checkboxImg');
+  const assignedContacts = currentTask['assigned'];
+  for (let i = 0; i < checkboxImages.length; i++) {
+    const checkboxImg = checkboxImages[i];
+    const listItem = checkboxImg.closest(".contact-item-container");
+    if (listItem) {
+      const contactName = listItem.querySelector(".contact-item").textContent.trim();
+      if (assignedContacts.includes(contactName)) {
+        checkboxImg.src = "./img/checkbox_checked.png";
+      }
+    }
+  }
 }
-
 
 function renderBoardSubtasks(currentTask) {
   let content = document.getElementById("subtask-content");
@@ -542,20 +551,3 @@ function renderBoardSubtasks(currentTask) {
     }
   }
 }
-
-
-/**
- * Retrieves the input fields from the modal.
- * @returns {Object} An object containing references to the modal input fields.
- */
-
-
-/*function getModalFields() {
-  const modalFields = {
-    title: document.getElementById("title-input"),
-    description: document.getElementById("description-input"),
-    category: document.getElementById("category-input"),
-    date: document.getElementById("task-date"),
-  };
-  return modalFields;
-}*/

@@ -25,4 +25,5 @@ function closeModal(modal) {
   modal.classList.remove("in");
   modal.classList.add("out");
   document.querySelector(".modal-backdrop").style.display = "none";
+  
 }
