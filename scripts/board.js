@@ -497,10 +497,13 @@ function boardOpenDialog() {
 }
 
 /**
- * Edits a specified task.
- * @param {number} i - The index of the task to be edited.
+ *
+ * Code: Whats my misson?
+ * Me: Your task is to become a sphagetti.
+ * Code: Oh my god...
+ * 
+ * Follow me for more types of pasta 
  */
-
 function editTask(i) {
   let currentTask = userObj.tasks[i];
   openModal(document.querySelector(".modal"));
