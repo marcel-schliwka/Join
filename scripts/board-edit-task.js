@@ -35,12 +35,8 @@ function saveEditTask(taskIndex, e) {
     let description = document.getElementById("description-input");
     let date = document.getElementById("task-date");
     let categoryElement = document.querySelector(".category-input");
-    let category;
-    if (categoryElement) {
-      category = categoryElement.innerText;
-    } else {
-      category = userObj['tasks'][taskIndex]['category'];
-    }
+    let category = userObj['tasks'][taskIndex]['category'];
+  
     let assignedTo = assigned;
     let subtaskTexts = getSubtasks();
     let newSubtasks = subtaskTexts.map((subtaskTitle) => ({
@@ -48,13 +44,7 @@ function saveEditTask(taskIndex, e) {
       property: "unchecked",
     }));
     let prio = currentPrio;
-    const categoryInputCircle = document.querySelector(".category-input circle");
-    let color;
-    if (categoryInputCircle) {
-      color = categoryInputCircle.getAttribute("fill");
-    } else {
-      color = userObj['tasks'][taskIndex]['categoryColor'];
-    }
+    let color = userObj['tasks'][taskIndex]['categoryColor'];
     if (prio == undefined) {
       prio = "low";
     }
@@ -123,19 +113,38 @@ function editTask(i) {
     }
   }
 
+
   function renderBoardSubtasks(currentTask) {
-    let content = document.getElementById("subtask-content");
-    let buttonContainer = document.getElementById("form-btn-container");
-    content.innerHTML = "";
+    const content = document.getElementById('subtask-content');
+    const buttonContainer = document.getElementById('form-btn-container');
+    content.innerHTML = '';
+
     for (let i = 0; i < currentTask['subtasks'].length; i++) {
-      const subt = currentTask['subtasks'][i]['title'];
-      content.innerHTML += generateNewSubtaskHTML(i, subt);
-      let margin = 150;
-      let calculatedMargin = margin - 29 * [i + 1];
-      margin = calculatedMargin;
-      if (margin > 39) {
-        buttonContainer.style.marginTop = margin;
+      const subtaskTitle = currentTask['subtasks'][i]['title'];
+      const subtaskProperty = currentTask['subtasks'][i]['property'];
+      subtasks.push({
+        title: subtaskTitle,
+        property: subtaskProperty,
+
+      });
+      for (let j = 0; j < subtasks.length; j++) {
+        const st = subtasks[j];
+        content.innerHTML += generateTemplateSubtasks(st, j);
+        console.log(currentTask, st, j);
       }
     }
   }
-  
+
+
+  function addEditedSubtask() {
+    const input = document.getElementById('generatedSubtaskInput');
+    if(input.value !== '') {
+      subtasks.push({
+        title: input.value,
+        property: 'unchecked'
+      });
+      renderBoardSubtasks()
+
+    }
+  }
+
