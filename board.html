@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="./styles/styleSidebar.css" />
   <link rel="stylesheet" href="./styles/animations.css" />
   <link rel="stylesheet" href="./styles/board.css" />
+  <link rel="stylesheet" href="./styles/boardEditTask.css" />
   <link rel="stylesheet" href="./styles/contacts.css" />
   <link rel="stylesheet" href="./styles/coloris.min.css" />
   <script defer src="./scripts/storage.js"></script>
@@ -161,23 +162,88 @@
                   d="M12.0174 12.1705L17.2604 17.4135M6.77441 17.4135L12.0174 12.1705L6.77441 17.4135ZM17.2604 6.92749L12.0164 12.1705L17.2604 6.92749ZM12.0164 12.1705L6.77441 6.92749L12.0164 12.1705Z"
                   stroke="#2A3647" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
               </svg></button>
-            <button type="submit" id="create-btn"
-              class="font20 pad-18-15 create-btn create-btn-web">Create Task <svg xmlns="http://www.w3.org/2000/svg"
-                width="25" height="25" viewBox="0 0 25 25" fill="none">
+            <button type="submit" id="create-btn" class="font20 pad-18-15 create-btn create-btn-web">Create Task <svg
+                xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
                 <path d="M4.0166 12.1704L10.0166 18.1704L20.0166 6.17041" stroke="white" stroke-width="2"
                   stroke-linecap="round" stroke-linejoin="round" />
-              </svg></button>
-              <button type="submit" id="ok-btn"
-              class="font20 pad-18-15 create-btn">Ok<svg xmlns="http://www.w3.org/2000/svg"
-                width="25" height="25" viewBox="0 0 25 25" fill="none">
-                <path d="M4.0166 12.1704L10.0166 18.1704L20.0166 6.17041" stroke="white" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round" />
-              </svg></button>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
   </div>
   </form>
+  </div>
+
+  <div id="openEditModal" class="modal-backdrop modal dNone">
+    <div>
+      <form onsubmit="saveEditTask(taskIndex, e)" class="edit-task-form-board popUpBoardEditTask">
+        <img src="./img/close.svg" alt="Close Add Task Form" class="boardTaskClose"
+          onclick="closeEditModal(document.getElementById('openEditModal')); resetPrioButtons();">
+        <label for="edit-title" class="font20 label">Title</label>
+        <input id="editTitle" name="edit-title" type="text"
+          class="w-422 h-51 font20 pad-13-21 custom-border ol-none cursor-p">
+        <label for="edit-description" class="font20 label">Description</label>
+        <input id="editDescription" name="edit-description" type="text" cols="30" rows="10"
+          class="w-422 font20 pad-18-21 custom-border ol-none cursor-p">
+        <label for="edit-date" class="font20 label">Due date</label>
+        <input id="editDate" name="edit-date" type="date"
+          class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p">
+        <label for="edit-priority" class="font20 label"><b>Priority</b></label>
+        <div class="prio-btn">
+          <button id="editUrgentBtn" onclick="getTaskPrio(this, 'urgent')"
+            class="font20 pad-18-10 urgent-btn custom-border shadow prioBtn" type="button">
+            Urgent
+            <img id="editUrgentImg" src="./img/prio_urgent_color.png">
+          </button>
+          <button id="editMediumBtn" onclick="getTaskPrio(this, 'medium')"
+            class="font20 pad-18-10 medium-btn custom-border shadow prioBtn" type="button">
+            Medium
+            <img id="editMediumImg" src="./img/prio_medium_color.png">
+          </button>
+          <button id="editLowBtn" onclick="getTaskPrio(this, 'low')"
+            class="font20 pad-18-10 low-btn custom-border shadow prioBtn" type="button">Low
+            <img id="editLowImg" src="./img/prio_low_color.png">
+          </button>
+        </div>
+        <label for="edit-assigned" class="font20 label">Assigned To</label>
+        <div onclick="editToggleAssignedMenu()" class="assigned-container font20 cursor-p" id="assigned-container">
+          <div class="assigned-input" id="editAssignedInput">
+            <span>Select contacts to assign</span>
+          </div>
+          <div class="assigned-button-container" id="editAssignedBtn">
+            <button type="button"><img src="./img/arrow_down.png"></button>
+          </div>
+        </div>
+        <div class="contacts font20 display-none" id="contact-container">
+          <ul id="editRenderContacts">
+          </ul>
+        </div>
+        <div id="editContactContainerList" class="d-flex flex-row justify-start"> </div>
+
+        <label for="edit-subtasks" class="font20 label">Subtasks</label>
+        <div class="subtasks-container font20 w-422 h-51 custom-border pad-18-21">
+          <div class="subtasks-input" id="editSubtasksInput">
+            <input onclick="changeToInput('editSubtasksInput', 'editSubtasksButton')" class="subtask-input  ol-none"
+              type="text" placeholder="Add new subtask">
+          </div>
+          <div class="subtasks-button-container" id="editSubtasksButton">
+            <button type="button"><img src="./img/plus_icon.png"></button>
+          </div>
+        </div>
+        <ul class="generatedSubtasks cursor-p font20 subtask-padding" id="editSubtaskList">
+        </ul>
+        <div class="edit-ok-btn">
+          <button id="editOkBtn" type="submit" class="display-none editTaskBoardBtn">
+            Ok
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+              <path d="M4.0166 12.1704L10.0166 18.1704L20.0166 6.17041" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
   </div>
 
   <div id="popUpBoard" class="dNone popUpBoardBackground display-flex justify-content-center align-items-center"></div>
@@ -259,11 +325,13 @@
         <img src="./img/create_contact_frame.svg" alt="no user photo" />
       </div>
       <form id="createContactForm" class="dialog__createRightForm" onsubmit="addNewContact(event); return false;">
-        <input required minlength="1" type="text" placeholder="Name" class="dialog__createInput" id="dialog__createNameInput" />
+        <input required minlength="1" type="text" placeholder="Name" class="dialog__createInput"
+          id="dialog__createNameInput" />
         <input required type="email" placeholder="Email" class="dialog__createInput" id="dialog__createEmailInput" />
         <input type="number" placeholder="Phone" class="dialog__createInput" id="dialog__createPhoneInput" />
         <div class="dialog__createRightBtn">
-          <button type="button" class="custom-btn-white btn-hover" id="dialog__createDeleteBtn" onclick="cancelCreateContact()">
+          <button type="button" class="custom-btn-white btn-hover" id="dialog__createDeleteBtn"
+            onclick="cancelCreateContact()">
             Cancel X
           </button>
           <button type="submit" class="custom-btn btn-hover btn-save" id="dialog__createSaveBtn">
@@ -278,7 +346,7 @@
     </div>
   </dialog>
 
-  <div class="background-dialog d-none" onclick="closeDialog(); closeResponsiveOptions()">
+  <div id="backgroundDialog" class="background-dialog d-none" onclick="closeDialog(); closeResponsiveOptions()">
   </div>
 
 
