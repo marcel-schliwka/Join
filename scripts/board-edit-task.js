@@ -129,6 +129,7 @@ function getEditedVaraible(status, id, taskIndex) {
 
 function editTask(i) {
   let currentTask = userObj.tasks[i];
+  // console.log(currentTask);
   openEditModal(document.getElementById('openEditModal'))
   document.getElementById('editOkBtn').classList.remove('display-none');
   document.getElementById('editTitle').value = currentTask['titel'];
@@ -146,8 +147,9 @@ function editTask(i) {
     const contact = assignedContacts[c];
     document.getElementById('editContactContainerList').innerHTML +=
       htmlTemplateEditContactIcon(contact);
-    console.log(contact);
   }
+  // console.log(currentTask['subtasks']);
+  renderSubtasksEditDialog(currentTask['subtasks'], i);
 
   for (let i = 0; i < checkboxImages.length; i++) {
     const checkboxImg = checkboxImages[i];
@@ -159,6 +161,29 @@ function editTask(i) {
       }
     }
   }
+}
+
+function renderSubtasksEditDialog(subtasks, i) {
+  for (let s = 0; s < subtasks.length; s++) {
+    const sub = subtasks[s];
+    document.getElementById('editDialogSubtaskList').innerHTML += renderSubtaskListForEditDialog(sub, i);
+  }
+}
+function editChangeToInput(inputId, buttonId) {
+  let input = document.getElementById(inputId);
+  let button = document.getElementById(buttonId);
+  input.innerHTML = '';
+  button.innerHTML = '';
+
+  if (input.id.includes('editSubtasksInput')) {
+    button.innerHTML += generateEditSubtasksButtonHTML();
+    input.innerHTML += generateEditSubtaskInputHTML();
+    // let generatedInput = document.getElementById("generatedSubtaskInput");
+    // if (generatedInput) {
+    //   generatedInput.focus();
+    // }
+  }
+
 }
 
   function renderBoardSubtasks(currentTask) {
@@ -184,13 +209,13 @@ function editTask(i) {
 
 
   function addEditedSubtask() {
-    const input = document.getElementById('generatedSubtaskInput');
+    const input = document.getElementById('editSubtasksInput');
     if(input.value !== '') {
       subtasks.push({
         title: input.value,
         property: 'unchecked'
       });
-      renderBoardSubtasks()
+      // renderBoardSubtasks()
 
     }
   }
