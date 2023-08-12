@@ -37,7 +37,7 @@ async function init() {
  * @function
  * @param {string} url - The URL to redirect to.
  */
-function redirectTo(url) {ask
+function redirectTo(url) {
   window.location.href = url;
 }
 
