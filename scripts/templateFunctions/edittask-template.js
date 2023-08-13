@@ -74,7 +74,7 @@ function generateEditSubtaskHTML(i, subtask) {
 function generateEditUserAssignedHTML() {
   return `
     <div class="contact-item-container" onclick="changeEditCheckbox(0)">
-      <li class="contact-item">You<a onclick="changeEditCheckbox(0)"><img class="checkboxImg cursor-p" onclick="changeEditCheckbox(0)" id="checkboxEditImg0" src="./img/checkbox.png"></a></li>
+      <li class="edit-contact-item">You<a onclick="changeEditCheckbox(0)"><img class="checkboxImg cursor-p" onclick="changeEditCheckbox(0)" id="checkboxEditImg0" src="./img/checkbox.png"></a></li>
     </div>
     `;
 }
@@ -82,7 +82,7 @@ function generateEditUserAssignedHTML() {
 function renderEditContactsHTML(contact, i) {
   return `
         <div class="contact-item-container" onclick="changeEditCheckbox(${i + 1})">
-          <li class="contact-item">${contact["name"]
+          <li class="edit-contact-item">${contact["name"]
     } <a onclick="changeEditCheckbox(${i + 1
     })"><img class="checkboxImg cursor-p" onclick="changeEditCheckbox(${i + 1
     })" id="checkboxEditImg${i + 1}" src="./img/checkbox.png"></a></li>

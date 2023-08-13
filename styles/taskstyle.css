@@ -412,6 +412,7 @@ body {
   margin-left: 35px;
 }
 
+.edit-contact-item,
 .contact-item {
   padding-right: 22px;
   display: flex;
@@ -585,6 +586,16 @@ li {
   border-top-right-radius: 0px;
 }
 
+.edit-contact-item {
+  padding-right: 13px;
+
+}
+
+.edit-contacts {
+  padding-top: 10px;
+}
+
+
 .color-container button {
   border-radius: 50% !important;
   height: 16px !important;
@@ -654,6 +665,15 @@ li {
 
 #dialog__createContact {
   left: 0 !important;
+}
+
+#edit-assigned-container {
+  padding: 26px 21px;
+}
+
+#editRenderContacts {
+  max-height: 200px;
+  overflow-y: scroll;
 }
 
 @media (max-width: 428px) {
