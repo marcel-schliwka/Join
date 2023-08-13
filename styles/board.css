@@ -267,6 +267,9 @@ body {
     display: flex;
     flex-direction: column;
   }
+  #popUpBoard {
+    left: 15%;
+  }
 
   .gridContainerChildBoard .dropArea {
     min-height: 300px;
@@ -317,6 +320,14 @@ body {
 }
 
 @media screen and (max-width: 760px) {
+  #popUpBoard {
+    left: 0;
+  }
+
+  .popUpBoardTask {
+    min-width: 90%;
+  }
+
   .parentDiv {
     flex-direction: column;
     padding-right: 16px;
