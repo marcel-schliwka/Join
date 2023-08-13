@@ -204,14 +204,18 @@ function editChangeToInput(inputId, buttonId) {
     }
   }
 
-  function addSubtask() {
-    let input = document.getElementById("generatedSubtaskInput").value;
+
+  function addEditedSubtask() {
+    let input = document.getElementById("editSubtasksInput").value;
     if (input !== "") {
-      subtasks.push(input);
+      subtasks.push({
+        title: input,
+        property: 'unchecked'
+      });
     }
     renderSubtasks();
-    let subtasksInput = document.getElementById("subtasks-input");
-    let subtasksBtn = document.getElementById("subtasks-button");
+    let subtasksInput = document.getElementById("editSubtasksInput");
+    let subtasksBtn = document.getElementById("editSubtasksButton");
     subtasksInput.innerHTML = generateBasicSubtaskInputHTML();
     subtasksBtn.innerHTML = generateBasicSubtaskButtonHTML();
   }
