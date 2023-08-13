@@ -60,12 +60,10 @@
           <label class="font20 label" for="title">Title</label>
           <input id="title-input" required class="w-422 h-51 font20 pad-13-21 custom-border ol-none cursor-p"
             type="text" placeholder="Enter a title">
-
           <label class="font20 label" for="description">Description</label>
           <textarea required class="w-422 font20 pad-18-21 custom-border ol-none cursor-p" name="description"
             id="description-input" cols="30" rows="10" placeholder="Enter a Description"></textarea>
         </div>
-
         <div class="top-seperator">
           <div class="seperator">
             <svg xmlns="http://www.w3.org/2000/svg" width="2" height="276.5" viewBox="0 0 2 553" fill="none">
@@ -73,12 +71,10 @@
             </svg>
           </div>
         </div>
-
         <div class="top-right">
           <label required class="font20 date-label label" for="date">Due date</label>
           <input id="task-date" class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p" type="date" min=""
             placeholder="dd/mm/yyyy">
-
           <label class="font20 label prio-label" for="prio">Prio</label>
           <div class="prio-btn">
             <button id="urgentBtn" onclick="getTaskPrio(this, 'urgent')"
@@ -93,9 +89,7 @@
           </div>
         </div>
       </div>
-
       <div class="bottom-section">
-
         <div class="bottom-left">
           <label class="font20 label" for="category">Category</label>
           <div onclick="toggleCategoryMenu()" class="category-container font20" id="category-container">
@@ -116,7 +110,6 @@
           <div class="display-none" id="hidden-error">
             <p class="font12 hidden-error">You need to pick a color</p>
           </div>
-
           <label class="font20 label" for="assigned">Assigned to</label>
           <div onclick="toggleAssigndMenu()" class="assigned-container font20 cursor-p" id="assigned-container">
             <div class="assigned-input" id="assigned-input">
@@ -131,7 +124,6 @@
             </ul>
           </div>
         </div>
-
         <div class="bottom-seperator">
           <div class="seperator">
             <svg xmlns="http://www.w3.org/2000/svg" width="2" height="276.5" viewBox="0 0 2 553" fill="none">
@@ -139,7 +131,6 @@
             </svg>
           </div>
         </div>
-
         <div class="bottom-right">
           <label class="font20 label" for="subtasks">Subtasks</label>
           <div class="subtasks-container font20 w-422 h-51 custom-border pad-18-21">
@@ -154,7 +145,6 @@
           </div>
           <ul class="generatedSubtasks cursor-p font20 subtask-padding" id="subtask-content">
           </ul>
-
           <div class="form-btn" id="form-btn-container">
             <button onclick="clearAll()" type="reset" class="font20 pad-18-10 clear-btn" id="clear-btn">Clear <svg
                 xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
@@ -175,76 +165,8 @@
   </form>
   </div>
 
-  <div id="openEditModal" class="modal-backdrop modal dNone">
-    <div>
-      <form onsubmit="saveEditTask(taskIndex, e)" class="edit-task-form-board popUpBoardEditTask">
-        <img src="./img/close.svg" alt="Close Add Task Form" class="boardTaskClose"
-          onclick="closeEditModal(document.getElementById('openEditModal')); resetPrioButtons();">
-        <label for="edit-title" class="font20 label">Title</label>
-        <input id="editTitle" name="edit-title" type="text"
-          class="w-422 h-51 font20 pad-13-21 custom-border ol-none cursor-p">
-        <label for="edit-description" class="font20 label">Description</label>
-        <input id="editDescription" name="edit-description" type="text" cols="30" rows="10"
-          class="w-422 font20 pad-18-21 custom-border ol-none cursor-p">
-        <label for="edit-date" class="font20 label">Due date</label>
-        <input id="editDate" name="edit-date" type="date"
-          class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p">
-        <label for="edit-priority" class="font20 label"><b>Priority</b></label>
-        <div class="prio-btn">
-          <button id="edit-urgent-btn" onclick="getEditTaskPrio(this, 'urgent')"
-            class="font20 pad-18-10 urgent-btn custom-border shadow prioBtn" type="button">
-            Urgent
-            <img id="edit-urgent-img" src="./img/prio_urgent_color.png">
-          </button>
-          <button id="edit-medium-btn" onclick="getEditTaskPrio(this, 'medium')"
-            class="font20 pad-18-10 medium-btn custom-border shadow prioBtn" type="button">
-            Medium
-            <img id="edit-medium-img" src="./img/prio_medium_color.png">
-          </button>
-          <button id="edit-low-btn" onclick="getEditTaskPrio(this, 'low')"
-            class="font20 pad-18-10 low-btn custom-border shadow prioBtn" type="button">Low
-            <img id="edit-low-img" src="./img/prio_low_color.png">
-          </button>
-        </div>
-        <label for="edit-assigned" class="font20 label">Assigned To</label>
-        <div onclick="toggleEditAssignedMenu()" class="assigned-container font20 cursor-p" id="edit-assigned-container">
-          <div class="assigned-input" id="editAssignedInput">
-            <span>Select contacts to assign</span>
-          </div>
-          <div class="assigned-button-container" id="editAssignedBtn">
-            <button type="button"><img src="./img/arrow_down.png"></button>
-          </div>
-        </div>
-        <div class="contacts font20 display-none" id="edit-contact-container">
-          <ul id="editRenderContacts">
-          </ul>
-        </div>
-        <div id="editContactContainerList" class="d-flex flex-row justify-start"> </div>
-
-        <label for="edit-subtasks" class="font20 label">Subtasks</label>
-        <div class="subtasks-container font20 w-422 h-51 custom-border pad-18-21">
-          <div class="subtasks-input">
-            <input id="editSubtasksInput" onclick="editChangeToInput('editSubtasksInput', 'editSubtasksButton')" class="subtask-input  ol-none"
-              type="text" placeholder="Add new subtask">
-          </div>
-          <div class="subtasks-button-container" id="editSubtasksButton">
-            <button type="button"><img src="./img/plus_icon.png"></button>
-          </div>
-        </div>
-        <ul class="generatedSubtasks cursor-p font20 subtask-padding" id="editDialogSubtaskList">
-        </ul>
-        <div class="edit-ok-btn">
-          <button id="editOkBtn" type="submit" class="display-none editTaskBoardBtn">
-            Ok
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-              <path d="M4.0166 12.1704L10.0166 18.1704L20.0166 6.17041" stroke="white" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+  <div w3-include-html="./templates/editModal.html"></div>
+  
 
   <div id="popUpBoard" class="dNone popUpBoardBackground display-flex justify-content-center align-items-center"></div>
   <div class="parentDiv">
@@ -308,43 +230,9 @@
     </div>
   </div>
 
-  <dialog class="resp-none" id="dialog__createContact">
-    <button class="btn-resp-x" onclick="cancelCreateContact()">
-      <img src="./img/responsive_close_X_white.svg" alt="close dialog window">
-    </button>
-    <div class="dialog__createLeftSide">
-      <img src="./img/logo_white.svg" alt="White Join Logo" />
-      <h2>Add contact</h2>
-      <span class="dialog__blue-line"></span>
-      <h4>Tasks are better with a team!</h3>
-    </div>
-    <div class="dialog__createRightSide">
-      <img src="./img/close.svg" alt="Close the Dialog Windows" id="dialog__createClose"
-        onclick="cancelCreateContact()" />
-      <div class="dialog__createRightImg">
-        <img src="./img/create_contact_frame.svg" alt="no user photo" />
-      </div>
-      <form id="createContactForm" class="dialog__createRightForm" onsubmit="addNewContact(event); return false;">
-        <input required minlength="1" type="text" placeholder="Name" class="dialog__createInput"
-          id="dialog__createNameInput" />
-        <input required type="email" placeholder="Email" class="dialog__createInput" id="dialog__createEmailInput" />
-        <input type="number" placeholder="Phone" class="dialog__createInput" id="dialog__createPhoneInput" />
-        <div class="dialog__createRightBtn">
-          <button type="button" class="custom-btn-white btn-hover" id="dialog__createDeleteBtn"
-            onclick="cancelCreateContact()">
-            Cancel X
-          </button>
-          <button type="submit" class="custom-btn btn-hover btn-save" id="dialog__createSaveBtn">
-            Save
-          </button>
-          <button type="submit" class="btn-resp-create custom-btn">
-            <span>Create Contact</span>
-            <img src="./img/icon_check.png" alt="check">
-          </button>
-        </div>
-      </form>
-    </div>
-  </dialog>
+
+  <div w3-include-html="./templates/addContact.html"></div>
+
 
   <div id="backgroundDialog" class="background-dialog d-none" onclick="closeDialog(); closeResponsiveOptions()">
   </div>

@@ -28,11 +28,6 @@ function getEditedVaraible(status, id, taskIndex) {
   let date = document.getElementById("task-date");
   let category = userObj['tasks'][taskIndex]['category'];
   let assignedTo = assigned;
-  let subtaskTexts = getSubtasks();
-  let newSubtasks = subtaskTexts.map((subtaskTitle) => ({
-    title: subtaskTitle,
-    property: "unchecked",
-  }));
   let prio = currentPrio;
   let color = userObj['tasks'][taskIndex]['categoryColor'];
   if (prio == undefined) {
@@ -57,6 +52,7 @@ function getEditedVaraible(status, id, taskIndex) {
 function editTask(i) {
   renderUserContacts();
   let currentTask = userObj.tasks[i];
+  pushSubtasks(currentTask);
   openEditModal(document.getElementById('openEditModal'))
   document.getElementById('editOkBtn').classList.remove('display-none');
   document.getElementById('editTitle').value = currentTask['titel'];
@@ -144,88 +140,45 @@ function toggleEditAssignedMenu() {
   }
 }
 
+let newSubtasks = [];
 
 
+function renderEditSubtasks() {
+  let content = document.getElementById('editDialogSubtaskList');
+  content.innerHTML = '';
 
-
-
-
-
-
-
-
-
-
-
-function changeToSubtask() {
-  let subtasksInput = document.getElementById("editSubtasksInput");
-  let subtasksBtn = document.getElementById("editSubtasksButton");
-  subtasksInput.innerHTML = generateBasicSubtaskInputHTML();
-  subtasksBtn.innerHTML = generateBasicSubtaskButtonHTML();
-}
-
-function renderSubtasksEditDialog(subtasks, i) {
-  for (let s = 0; s < subtasks.length; s++) {
-    const sub = subtasks[s];
-    document.getElementById('editDialogSubtaskList').innerHTML += renderSubtaskListForEditDialog(sub, i);
-  }
-}
-function editChangeToInput(inputId, buttonId) {
-  let input = document.getElementById(inputId);
-  let button = document.getElementById(buttonId);
-  input.innerHTML = '';
-  button.innerHTML = '';
-
-  if (input.id.includes('editSubtasksInput')) {
-    button.innerHTML += generateEditSubtasksButtonHTML();
-    input.innerHTML += generateEditSubtaskInputHTML();
-
+  for (let i = 0; i < newSubtasks.length; i++) {
+    const subtask = newSubtasks[i]['title'];
+    // In html rendern
   }
 }
 
-function addEditedSubtask() {
-  let input = document.getElementById("editSubtasksInput").value;
-  if (input !== "") {
-    subtasks.push({
+
+function pushSubtasks(currentTask) {
+  for (let i = 0; i < currentTask['subtasks'].length; i++) {
+    const subT = currentTask['subtasks'][i];
+    newSubtasks.push({
+      title: subT['title'],
+      property: subT['property']
+    })
+  }
+}
+
+
+function addNewEditSubtask() {
+  let input = document.getElementById('Container einsetzen').value;
+  if (input !== '') {
+    newSubtasks.push({
       title: input,
       property: 'unchecked'
     });
   }
-  renderSubtasksEditDialog();
-  let subtasksInput = document.getElementById("editSubtasksInput");
-  let subtasksBtn = document.getElementById("editSubtasksButton");
-  subtasksInput.innerHTML = generateBasicSubtaskInputHTML();
-  subtasksBtn.innerHTML = generateBasicSubtaskButtonHTML();
+  renderEditSubtasks();
 }
 
-function addSubtask() {
-  let input = document.getElementById("generatedSubtaskInput").value;
-  if (input !== "") {
-    subtasks.push(input);
-  }
-  renderSubtasks();
-  let subtasksInput = document.getElementById("subtasks-input");
-  let subtasksBtn = document.getElementById("subtasks-button");
-  subtasksInput.innerHTML = generateBasicSubtaskInputHTML();
-  subtasksBtn.innerHTML = generateBasicSubtaskButtonHTML();
+
+function deleteEditSubtask(index) {
+  newSubtasks.splice(i, 1);
+  renderEditSubtasks();
 }
 
-function renderBoardSubtasks(currentTask) {
-  const content = document.getElementById('subtask-content');
-  const buttonContainer = document.getElementById('form-btn-container');
-  content.innerHTML = '';
-
-  for (let i = 0; i < currentTask['subtasks'].length; i++) {
-    const subtaskTitle = currentTask['subtasks'][i]['title'];
-    const subtaskProperty = currentTask['subtasks'][i]['property'];
-    subtasks.push({
-      title: subtaskTitle,
-      property: subtaskProperty,
-
-    });
-    for (let j = 0; j < subtasks.length; j++) {
-      const st = subtasks[j];
-      content.innerHTML += generateTemplateSubtasks(st, j);
-    }
-  }
-}
