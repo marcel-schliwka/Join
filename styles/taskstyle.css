@@ -374,7 +374,8 @@ body {
 
 .category-container,
 .assigned-container,
-.subtasks-container {
+.subtasks-container,
+.edit-subtasks-container {
   font-size: 20px;
   display: flex;
   justify-content: space-between;
@@ -387,7 +388,8 @@ body {
   padding: 18px 21px;
 }
 
-.subtasks-container input {
+.subtasks-container input,
+.edit-subtasks-container input {
   border: none;
 }
 
