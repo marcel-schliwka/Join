@@ -1,21 +1,22 @@
 function htmlTemplateProgressBar(percentage) {
-    return `
+  return `
             <div class="progress-bar" style="width:${percentage}%" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100"></div>
         `;
 }
 
-
 function htmlTemplateProgressCount(element) {
-    return `
-    <div class="d-flex">${element['checked']}/${element['unchecked'] + element['checked']} Subtasks</div>
+  return `
+    <div class="d-flex">${element["checked"]}/${
+    element["unchecked"] + element["checked"]
+  } Subtasks</div>
     `;
 }
 
 function htmlTemplateProgressSection(percentage, id, task) {
-    if (percentage == -1) {
-        return ""
-    } else {
-        return /*html*/`
+  if (percentage == -1) {
+    return "";
+  } else {
+    return /*html*/ `
             <div id="subtask-progress${id}" class="progress">
                 ${htmlTemplateProgressBar(percentage)}
             </div>
@@ -24,7 +25,13 @@ function htmlTemplateProgressSection(percentage, id, task) {
             </div>
 
         `;
-    }
+  }
+}
+
+function htmlTemplateEmptyDropArea(text) {
+  return /*html*/ `
+    <div class="emptyDropArea">${text}</div>
+    `;
 }
 
 /**
@@ -37,8 +44,12 @@ function htmlTemplateProgressSection(percentage, id, task) {
  * @returns {string} HTML template string for the task, which includes details like category, title, description, and assigned members.
  */
 function htmlTemplateToDo(element, i, priority) {
-    return `<div status="to do" currentId="${i}" titel="${element["titel"]}" id="cardTodo${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)"  draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-            <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
+  return `<div status="to do" currentId="${i}" titel="${
+    element["titel"]
+  }" id="cardTodo${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)"  draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+            <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${
+              element["categoryColor"]
+            }">
                 ${element["category"]}
             </div>
             <div class="mt-2 mx-2 bold sub-headline">
@@ -48,7 +59,11 @@ function htmlTemplateToDo(element, i, priority) {
                   ${element["description"]}
               </div>
                 <div class="progress-section">
-                    ${htmlTemplateProgressSection(checkSubtasks(element), i, element)}
+                    ${htmlTemplateProgressSection(
+                      checkSubtasks(element),
+                      i,
+                      element
+                    )}
                 </div>
               <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
                   <div class="d-flex textWhite" id="assignedToDo${i}"></div>
@@ -67,9 +82,13 @@ function htmlTemplateToDo(element, i, priority) {
  * @returns {string} HTML template string for the task, which includes details like category, title, description, and assigned members.
  */
 function htmlTemplateInProgress(element, i, priority) {
-    return `
-        <div status="in progress" currentId="${i}" titel="${element["titel"]}" id="cardInProgress${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-            <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
+  return `
+        <div status="in progress" currentId="${i}" titel="${
+    element["titel"]
+  }" id="cardInProgress${i}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+            <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${
+              element["categoryColor"]
+            }">
                 ${element["category"]}
             </div>
 
@@ -82,7 +101,11 @@ function htmlTemplateInProgress(element, i, priority) {
             </div>
 
             <div class="progress-section">
-                ${htmlTemplateProgressSection(checkSubtasks(element), i, element)}
+                ${htmlTemplateProgressSection(
+                  checkSubtasks(element),
+                  i,
+                  element
+                )}
             </div>
 
             <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
@@ -94,8 +117,6 @@ function htmlTemplateInProgress(element, i, priority) {
     `;
 }
 
-
-
 /**
  * Generates the HTML template for a given assignment element, typically representing a member assigned to a task.
  *
@@ -105,31 +126,35 @@ function htmlTemplateInProgress(element, i, priority) {
  * @returns {string} HTML template string for the assigned member, which includes the member's initials set against a background color.
  */
 function htmlTemplateAssignment(element, j) {
-    return `<div class="margin-4 contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:${MemberColors[getColorSign(element["assigned"][j])]
-        }">
+  return `<div class="margin-4 contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2" style="background-color:${
+    MemberColors[getColorSign(element["assigned"][j])]
+  }">
               ${getInitials(element["assigned"][j])}
           </div>`;
 }
 
-
 /**
-* Generates and returns the HTML markup for a task that's awaiting feedback.
-*
-* @function
-* @param {Object} element - The task object.
-* @param {number} i - The index or ID of the task.
-* @param {string} priority - The priority of the task.
-* @returns {string} HTML markup for the task.
-*
-* @property {string} element.titel - The title of the task.
-* @property {string} element.categoryColor - The background color for the category label.
-* @property {string} element.category - The category name of the task.
-* @property {string} element.description - A brief description of the task.
-*/
+ * Generates and returns the HTML markup for a task that's awaiting feedback.
+ *
+ * @function
+ * @param {Object} element - The task object.
+ * @param {number} i - The index or ID of the task.
+ * @param {string} priority - The priority of the task.
+ * @returns {string} HTML markup for the task.
+ *
+ * @property {string} element.titel - The title of the task.
+ * @property {string} element.categoryColor - The background color for the category label.
+ * @property {string} element.category - The category name of the task.
+ * @property {string} element.description - A brief description of the task.
+ */
 function htmlTemplateAwaitingFeedback(element, i, priority) {
-    return `
-    <div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-        <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color: ${element["categoryColor"]}">
+  return `
+    <div status="awaiting feedback" currentId="${i}" id="cardAwaitingFeedback${i}" titel="${
+    element["titel"]
+  }" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard bgWhite2 cursorPointer boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+        <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color: ${
+          element["categoryColor"]
+        }">
             ${element["category"]}
         </div>
         <div class="mt-2 mx-2 bold sub-headline">
@@ -149,25 +174,27 @@ function htmlTemplateAwaitingFeedback(element, i, priority) {
     `;
 }
 
-
-
 /**
-* Generates and returns the HTML markup for a task that's marked as "done".
-*
-* @function
-* @param {Object} element - The task object.
-* @param {number} i - The index or ID of the task.
-* @param {string} priority - The priority of the task.
-* @returns {string} HTML markup for the task.
-*
-* @property {string} element.titel - The title of the task.
-* @property {string} element.categoryColor - The background color for the category label.
-* @property {string} element.category - The category name of the task.
-* @property {string} element.description - A brief description of the task.
-*/
+ * Generates and returns the HTML markup for a task that's marked as "done".
+ *
+ * @function
+ * @param {Object} element - The task object.
+ * @param {number} i - The index or ID of the task.
+ * @param {string} priority - The priority of the task.
+ * @returns {string} HTML markup for the task.
+ *
+ * @property {string} element.titel - The title of the task.
+ * @property {string} element.categoryColor - The background color for the category label.
+ * @property {string} element.category - The category name of the task.
+ * @property {string} element.description - A brief description of the task.
+ */
 function htmlTemplateDone(element, i, priority) {
-    return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${element["titel"]}" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
-          <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${element["categoryColor"]}">
+  return `<div status="done" id="cardDone${i}" currentId="${i}" titel="${
+    element["titel"]
+  }" onclick="boardOpenPopUpTask(this.getAttribute('currentId'), this)" draggable="true" ondragstart="startDragging(this.getAttribute('currentId'), this)" class="moveableCard cursorPointer bgWhite2 boxShadow border rounded-5 p-2 my-3 d-flex flex-column align-items-start">
+          <div class="textWhite border rounded-3 px-3 m-2 task-headline" style="background-color:${
+            element["categoryColor"]
+          }">
               ${element["category"]}
           </div>
           <div class="mt-2 mx-2 bold sub-headline">
@@ -186,8 +213,6 @@ function htmlTemplateDone(element, i, priority) {
       </div>`;
 }
 
-
-
 /**
  * Generates and returns the HTML markup for a task detail popup on the board.
  *
@@ -200,7 +225,7 @@ function htmlTemplateDone(element, i, priority) {
  * @requires userObj: An object containing user tasks.
  */
 function htmlTemplatePopUpTask(i, priority) {
-    return `<div class="popUpBoardTask px-4 pt-4 pb-1 rounded-4 d-flex flex-column align-items-start">
+  return `<div class="popUpBoardTask px-4 pt-4 pb-1 rounded-4 d-flex flex-column align-items-start">
           <img onclick="boardClosePopUpTask()" class="boardTaskClose cursorPointer" src="./img/closeIt.svg" alt="close">
           <div class="boardTaskEdit d-flex">
               <img class="cursorPointer heightWidth35Px" src="./img/deleteButton.svg" alt="delete" onclick="deleteTask(${i})">
@@ -226,7 +251,7 @@ function htmlTemplatePopUpTask(i, priority) {
 }
 
 function generateEditSubtasksButtonHTML() {
-    return `
+  return `
       <div class="generated-Btn-Container">
       <button onclick="clearInput(this); changeToSubtask()" type="button"><img src="./img/cancel_icon.png"></button>
       <svg class="btn-seperator" xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
@@ -237,16 +262,15 @@ function generateEditSubtasksButtonHTML() {
 }
 
 function generateEditSubtaskInputHTML() {
-    return /*html*/`
+  return /*html*/ `
         <div>
             <input onkeydown="handleKeyPress(event, addEditedSubtask, changeToSubtask)" id="editedSubtaskInput" placeholder="Enter a new subtask" class="ol-none b-none">
         </div>
     `;
 }
 
-
 function generateBordSubtaskHTML(element3, k) {
-    return `
+  return `
     <div class="d-flex align-items-center mb-1 ps-3">
     <div onclick="changeToCheckbox(${k})"><img checked="false" class="subtaskCheckboxImg" id="subtask-checkbox${k}" src="./img/checkbox.png"></div>
     <div class="ms-4 bold">${element3}</div>
@@ -255,24 +279,27 @@ function generateBordSubtaskHTML(element3, k) {
 }
 
 /**
-* Generates and returns the HTML markup for the member icon in a popup.
-*
-* @function
-* @param {Object} element2 - The member object.
-* @global
-* @requires MemberColors: An object mapping member names to their respective colors.
-* @requires getColorSign: A function that gets the color sign for a member.
-* @requires getInitials: A function that gets the initials of a member's name.
-* @returns {string} HTML markup for the member icon.
-*/
+ * Generates and returns the HTML markup for the member icon in a popup.
+ *
+ * @function
+ * @param {Object} element2 - The member object.
+ * @global
+ * @requires MemberColors: An object mapping member names to their respective colors.
+ * @requires getColorSign: A function that gets the color sign for a member.
+ * @requires getInitials: A function that gets the initials of a member's name.
+ * @returns {string} HTML markup for the member icon.
+ */
 function htmlTemplatePopUpMembers(element2) {
-    return `<div class="d-flex flex-row"><div class="textWhite contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${MemberColors[getColorSign(element2)]
-        }">${getInitials(element2)}</div><div class="bold boardMember-margin">${element2}</div><div>
+  return `<div class="d-flex flex-row"><div class="textWhite contact-icon d-flex justify-content-center align-items-center border rounded-circle p-2 mb-3" style="background-color:${
+    MemberColors[getColorSign(element2)]
+  }">${getInitials(
+    element2
+  )}</div><div class="bold boardMember-margin">${element2}</div><div>
       `;
 }
 
 function htmlTemplateEditContactIcon(contact) {
-    return /*html*/`
+  return /*html*/ `
        <span class="textWhite contact-icon d-flex justify-content-center align-items-center rounded-circle" 
        style="background-color:${MemberColors[getColorSign(contact)]}">
        ${getInitials(contact)}
@@ -281,7 +308,7 @@ function htmlTemplateEditContactIcon(contact) {
 }
 
 function renderSubtaskListForEditDialog(sub, taskIndex) {
-    return /*html*/`
+  return /*html*/ `
     <li id="listItem${taskIndex}">
       <div class="d-flex justify-content-between align-items-center w-100">
         <div class="font16 w-230 ov-scroll subtask-item" id="subtask${taskIndex}">
@@ -289,7 +316,7 @@ function renderSubtaskListForEditDialog(sub, taskIndex) {
             <svg id="subtaskCircle${taskIndex}" class="subtask-circle" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
               <circle cx="5" cy="5" r="5" fill="black" />
             </svg>
-            <div id="subtask-text${taskIndex}" class="ml-15">${sub['title']}</div>
+            <div id="subtask-text${taskIndex}" class="ml-15">${sub["title"]}</div>
           </div>
           <div id="subtaskButtonsContainer${taskIndex}" class="subtask-buttons">
             <svg onclick="editSubtask(${taskIndex})" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -317,7 +344,7 @@ function renderSubtaskListForEditDialog(sub, taskIndex) {
 }
 
 function generateTemplateSubtasks(st, j) {
-    return `
+  return `
     <li id="listItem${j}">
       <div class="d-flex justify-content-between align-items-center w-100">
         <div class="font16 w-230 ov-scroll subtask-item" id="subtask${j}">
@@ -325,7 +352,7 @@ function generateTemplateSubtasks(st, j) {
             <svg id="subtaskCircle${j}" class="subtask-circle" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
               <circle cx="5" cy="5" r="5" fill="black" />
             </svg>
-            <div id="subtask-text${j}" class="ml-15">${st['title']}</div>
+            <div id="subtask-text${j}" class="ml-15">${st["title"]}</div>
           </div>
           <div id="subtaskButtonsContainer${j}" class="subtask-buttons">
             <svg onclick="editSubtask(${j})" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none">

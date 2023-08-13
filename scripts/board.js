@@ -24,6 +24,7 @@ async function initBoard() {
 function updateHTML() {
   clearAllTasks();
   renderTasks();
+  checkIfDropAreaEmpty();
   renderContacts();
   renderCategorys();
   startTouchEventListener();
@@ -279,12 +280,31 @@ function boardOpenPopUpTask(i, card) {
   }
 }
 
+function checkIfDropAreaEmpty() {
+  document.querySelectorAll(".dropArea").forEach((area) => {
+    if (!area.hasChildNodes()) {
+      if (area.id == "todo") {
+        area.innerHTML = htmlTemplateEmptyDropArea("No task To do");
+      }
+      if (area.id == "inProgress") {
+        area.innerHTML = htmlTemplateEmptyDropArea("No task in progress");
+      }
+      if (area.id == "awaitingFeedback") {
+        area.innerHTML = htmlTemplateEmptyDropArea("No task awaiting Feedback");
+      }
+      if (area.id == "done") {
+        area.innerHTML = htmlTemplateEmptyDropArea("No task done");
+      }
+    }
+  });
+}
 
-
-
-
-
-
+function emptyTaskText(element) {
+  let parentId = element.parentNode.id;
+  if (parentId == "todo") {
+    return "No task To Do";
+  }
+}
 
 /**
  * Closes the task detail popup on the board.
@@ -456,6 +476,3 @@ function boardOpenDialog() {
   let openDialog = document.getElementById("boardOpenDialog");
   openDialog.show();
 }
-
-
-

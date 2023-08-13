@@ -94,6 +94,17 @@ body {
   background-color: rgb(0, 0, 0, 0.2);
 }
 
+.emptyDropArea {
+  text-align: center;
+  margin-top: 10px;
+  border: 1px dashed var(--icon, #a8a8a8);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
+  padding: 10px;
+  border-radius: 10px;
+  color: #a8a8a8;
+  background-color: #e7e7e7;
+}
+
 .popUpBoardTask {
   position: relative;
   min-height: 100px;
@@ -203,18 +214,17 @@ body {
 }
 
 .progress-section {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .progress-count {
   font-size: 9px;
-    font-weight: bold;
-    font-family: Inter;
+  font-weight: bold;
+  font-family: Inter;
 }
-
 
 @media screen and (max-width: 1630px) {
   .popUpBoardTask {
@@ -350,11 +360,11 @@ body {
   .addTaskFormWrapper textarea,
   #category-container,
   #assigned-container,
-  #assigned-container>*,
+  #assigned-container > *,
   .subtasks-container,
-  .subtasks-container>*,
+  .subtasks-container > *,
   #contact-container,
-  #contact-container>*,
+  #contact-container > *,
   .prio-btn {
     width: 90%;
   }
