@@ -9,14 +9,14 @@ function saveEditTask(taskIndex, e) {
 
 function resetPrioButtons() {
   const images = {
-    low: document.getElementById("lowImg"),
-    medium: document.getElementById("mediumImg"),
-    urgent: document.getElementById("urgentImg"),
+    low: document.getElementById("edit-low-img"),
+    medium: document.getElementById("edit-medium-img"),
+    urgent: document.getElementById("edit-urgent-img"),
   };
   const buttons = {
-    low: document.getElementById('lowBtn'),
-    medium: document.getElementById('mediumBtn'),
-    urgent: document.getElementById('urgentBtn'),
+    low: document.getElementById('edit-low-btn'),
+    medium: document.getElementById('edit-medium-btn'),
+    urgent: document.getElementById('edit-urgent-btn'),
   }
   images['low'].src = './img/prio_low_color.png';
   images['medium'].src = './img/prio_medium_color.png';
@@ -135,10 +135,11 @@ function editTask(i) {
   document.getElementById('editTitle').value = currentTask['titel'];
   document.getElementById('editDescription').value = currentTask['description'];
   document.getElementById('editDate').value = currentTask['date'];
-  let currentButton = document.getElementById('edit' + `${currentTask['prio'].charAt(0).toUpperCase() + currentTask['prio'].slice(1)} + 'Btn'`);
-  let currentButtonImage = document.getElementById('edit' + `${currentTask['prio'].charAt(0).toUpperCase() + currentTask['prio'].slice(1)} + 'Img'`);
-  // currentButton.classList.add(`${currentTask['prio'] + '-active'}`);
-  // currentButtonImage.src = `./img/prio_${currentTask['prio']}.png`;
+  let currentButton = document.getElementById(`${'edit-' + currentTask['prio'] + '-btn'}`);
+  let currentButtonImage = document.getElementById(`${'edit-' + currentTask['prio'] + '-img'}`);
+  console.log(currentButton, currentButtonImage);
+  currentButton.classList.add(`${currentTask['prio'] + '-active'}`);
+  currentButtonImage.src = `./img/prio_${currentTask['prio']}.png`;
   renderBoardSubtasks(currentTask);
   const checkboxImages = document.querySelectorAll('.checkboxImg');
   const assignedContacts = currentTask['assigned'];
@@ -207,7 +208,21 @@ function editChangeToInput(inputId, buttonId) {
     }
   }
 
+  function addSubtask() {
+    let input = document.getElementById("generatedSubtaskInput").value;
+    if (input !== "") {
+      subtasks.push(input);
+    }
+    renderSubtasks();
+    let subtasksInput = document.getElementById("subtasks-input");
+    let subtasksBtn = document.getElementById("subtasks-button");
+    subtasksInput.innerHTML = generateBasicSubtaskInputHTML();
+    subtasksBtn.innerHTML = generateBasicSubtaskButtonHTML();
+  }
 
+
+
+  /*
   function addEditedSubtask() {
     const input = document.getElementById('editSubtasksInput');
     if(input.value !== '') {
@@ -219,4 +234,30 @@ function editChangeToInput(inputId, buttonId) {
 
     }
   }
+*/
 
+
+
+function getEditTaskPrio(button, priority) {
+  const buttons = document.querySelectorAll(".prioBtn");
+  let images = {
+    low: document.getElementById("edit-low-img"),
+    medium: document.getElementById("edit-medium-img"),
+    urgent: document.getElementById("edit-urgent-img"),
+  };
+  buttons.forEach(function (btn) {
+    if (btn.classList.contains(priority + "-active")) {
+      btn.classList.remove(priority + "-active");
+      currentPrio;
+    } else if (btn !== button) {
+      btn.classList.remove("low-active", "medium-active", "urgent-active");
+      images.low.src = "./img/prio_low_color.png";
+      images.medium.src = "./img/prio_medium_color.png";
+      images.urgent.src = "./img/prio_urgent_color.png";
+    }
+  });
+  button.classList.add(priority + "-active");
+  images[priority].src = `./img/prio_${priority}.png`;
+  currentPrio = priority;
+  console.log(currentPrio)
+}
