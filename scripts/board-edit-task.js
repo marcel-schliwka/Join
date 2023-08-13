@@ -4,7 +4,6 @@ function saveEditTask(taskIndex, e) {
   const id = userObj['tasks'][taskIndex]['id'];
   const variable = getEditedVaraible(status, id, taskIndex);
   resetPrioButtons();
-  console.log(variable);
 }
 
 function resetPrioButtons() {
@@ -128,8 +127,8 @@ function getEditedVaraible(status, id, taskIndex) {
 //   }
 
 function editTask(i) {
+  renderUserContacts();
   let currentTask = userObj.tasks[i];
-  // console.log(currentTask);
   openEditModal(document.getElementById('openEditModal'))
   document.getElementById('editOkBtn').classList.remove('display-none');
   document.getElementById('editTitle').value = currentTask['titel'];
@@ -137,7 +136,6 @@ function editTask(i) {
   document.getElementById('editDate').value = currentTask['date'];
   let currentButton = document.getElementById(`${'edit-' + currentTask['prio'] + '-btn'}`);
   let currentButtonImage = document.getElementById(`${'edit-' + currentTask['prio'] + '-img'}`);
-  console.log(currentButton, currentButtonImage);
   currentButton.classList.add(`${currentTask['prio'] + '-active'}`);
   currentButtonImage.src = `./img/prio_${currentTask['prio']}.png`;
   renderBoardSubtasks(currentTask);
@@ -149,7 +147,6 @@ function editTask(i) {
     document.getElementById('editContactContainerList').innerHTML +=
       htmlTemplateEditContactIcon(contact);
   }
-  // console.log(currentTask['subtasks']);
   renderSubtasksEditDialog(currentTask['subtasks'], i);
 
   for (let i = 0; i < checkboxImages.length; i++) {
@@ -203,7 +200,6 @@ function editChangeToInput(inputId, buttonId) {
       for (let j = 0; j < subtasks.length; j++) {
         const st = subtasks[j];
         content.innerHTML += generateTemplateSubtasks(st, j);
-        console.log(currentTask, st, j);
       }
     }
   }
@@ -259,5 +255,58 @@ function getEditTaskPrio(button, priority) {
   button.classList.add(priority + "-active");
   images[priority].src = `./img/prio_${priority}.png`;
   currentPrio = priority;
-  console.log(currentPrio)
+}
+
+
+
+function renderUserContacts() {
+  let contacts = document.getElementById('editRenderContacts');
+  contacts.innerHTML = "";
+  contacts.innerHTML += generateUserAssignedHTML();
+  for (let i = 0; i < userObj.contacts.length; i++) {
+    const contact = userObj.contacts[i];
+    contacts.innerHTML += renderContactsHTML(contact, i);
+  }
+  contacts.innerHTML += generateAddNewContact();
+}
+
+
+
+function toggleAssigndMenu() {
+  const contacts = document.getElementById("contact-container");
+  const contactContainer = document.getElementById("assigned-container");
+  const input = document.querySelector(".assigned-input input");
+  contacts.classList.toggle("display-none");
+  contactContainer.classList.toggle("remove-border");
+  if (!input) {
+    document.addEventListener("click", (event) => {
+      if (!contactContainer.contains(event.target)) {
+        contacts.classList.add("display-none");
+        contactContainer.classList.remove("remove-border");
+      }
+    });
+    contacts.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+  }
+}
+
+
+function toggleEditAssignedMenu() {
+  const contacts = document.getElementById('edit-contact-container');
+  const contactContainer = document.getElementById('edit-assigned-container');
+  const input = document.querySelector('.assigned-input input');
+  contacts.classList.toggle('display-none');
+  contactContainer.classList.toggle('remove-border');
+  if (!input) {
+    document.addEventListener('click', (event) => {
+      if(!contactContainer.contains(event.target)) {
+        contacts.classList.add('display-none');
+        contactContainer.classList.remove('remove-border');
+      }
+    });
+    contacts.addEventListener('click', (event) => {
+      event.stopPropagation();
+    })
+  }
 }
