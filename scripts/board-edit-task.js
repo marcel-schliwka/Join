@@ -166,8 +166,8 @@ function pushSubtasks(currentTask) {
 }
 
 
-function addNewEditSubtask() {
-  let input = document.getElementById('Container einsetzen').value;
+function addEditedSubtask() {
+  let input = document.getElementById('generatedSubtaskInput').value;
   if (input !== '') {
     newSubtasks.push({
       title: input,
@@ -175,13 +175,74 @@ function addNewEditSubtask() {
     });
   }
   renderEditSubtasks();
+  console.log(newSubtasks);
 }
 
 
 function deleteEditSubtask(index) {
-  newSubtasks.splice(i, 1);
+  newSubtasks.splice(index, 1);
   renderEditSubtasks();
 }
+
+
+function changeToEditInput() {
+  let input = document.getElementById('subtask-edit-input');
+  let button = document.getElementById('subtasks-edit-button');
+  input.innerHTML = generateEditInputHTML();
+  button.innerHTML = generateEditButtonHTML();
+  let generatedInput = document.getElementById("generatedSubtaskInput");
+  if (generatedInput) {
+    generatedInput.focus();
+  }
+}
+
+function changeToEditSubtask() {
+  let input = document.getElementById('subtask-edit-input');
+  let button = document.getElementById('subtasks-edit-button');
+  input.innerHTML = generateBasicEditSubtaskInputHTML();
+  button.innerHTML = generateBasicEditSubtaskButtonHTML();
+}
+
+
+function generateBasicEditSubtaskInputHTML() {
+  return `
+  <input onclick="changeToEditInput()" class="subtask-input  ol-none"
+              type="text" placeholder="Add new subtask">
+  `;
+}
+
+
+function generateBasicEditSubtaskButtonHTML() {
+  return `          
+    <button type="button"><img src="./img/plus_icon.png"></button>
+    `;
+}
+
+
+
+function generateEditInputHTML() {
+  return `
+      <div>
+        <input onkeydown="handleKeyPress(event, addSubtask, changeToSubtask)" id="generatedSubtaskInput" placeholder="Enter a new subtask" class="ol-none b-none">
+      </div>
+      `;
+}
+
+function generateEditButtonHTML() {
+  return `
+  <div class="generated-Btn-Container">
+  <button onclick="changeToEditSubtask()" type="button"><img src="./img/cancel_icon.png"></button>
+  <svg class="btn-seperator" xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
+  <path d="M1 0V31" stroke="#D1D1D1"/>
+  </svg>
+  <button onclick="addEditedSubtask()" type="button"><img src="./img/check_black_icon.png"></button>
+  </div>`;
+}
+
+
+
+
+
 
 
 function generateEditSubtaskHTML(i, subtask) {
@@ -207,7 +268,7 @@ function generateEditSubtaskHTML(i, subtask) {
           <svg class="btn-seperator" xmlns="http://www.w3.org/2000/svg" width="2" height="22" viewBox="0 0 2 31" fill="none">
           <path d="M1 0V31" stroke="#D1D1D1"></path>
           </svg>
-          <svg onclick="deleteSubtask(${i})" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <svg onclick="deleteEditSubtask(${i})" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none">
               <mask id="mask0_71421_4770" style="mask-type: alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
                 <rect width="24" height="24" fill="#D9D9D9"></rect>
               </mask>

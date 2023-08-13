@@ -47,10 +47,10 @@
         <label class="font20 label" for="subtasks">Subtasks</label>
         <div class="subtasks-container font20 w-422 h-51 custom-border pad-18-21">
           <div class="subtasks-input" id="subtask-edit-input">
-            <input onclick="changeToEditInput('subtask-edit-input', 'subtasks-edit-button')" class="subtask-input  ol-none"
+            <input onclick="changeToEditInput()" class="subtask-input  ol-none"
               type="text" placeholder="Add new subtask">
           </div>
-          <div class="subtasks-button-container" id="subtasks-edit-button">
+          <div onclick="changeToEditInput()" class="subtasks-button-container" id="subtasks-edit-button">
             <button type="button"><img src="./img/plus_icon.png"></button>
           </div>
         </div>
