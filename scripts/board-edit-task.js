@@ -310,3 +310,12 @@ function toggleEditAssignedMenu() {
     })
   }
 }
+
+
+
+function changeToSubtask() {
+  let subtasksInput = document.getElementById("editSubtasksInput");
+  let subtasksBtn = document.getElementById("editSubtasksButton");
+  subtasksInput.innerHTML = generateBasicSubtaskInputHTML();
+  subtasksBtn.innerHTML = generateBasicSubtaskButtonHTML();
+}
