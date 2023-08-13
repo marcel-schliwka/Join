@@ -72,7 +72,7 @@
       <form class="dialog__editRightForm" onsubmit="return false;">
         <input type="text" placeholder="Name" class="dialog__editInput" id="dialog__editNameInput" />
         <input type="email" placeholder="Email" class="dialog__editInput" id="dialog__editEmailInput" />
-        <input type="tel" placeholder="Phone" class="dialog__editInput" id="dialog__editPhoneInput" />
+        <input type="number" placeholder="Phone" class="dialog__editInput" id="dialog__editPhoneInput" />
         <div class="dialog__editRightBtn">
           <button class="custom-btn-white btn-hover" id="dialog__editDeleteBtn">
             Delete
@@ -105,7 +105,7 @@
       <form id="createContactForm" class="dialog__createRightForm" onsubmit="addNewContact(); return false;">
         <input required minlength="1" type="text" placeholder="Name" class="dialog__createInput" id="dialog__createNameInput" />
         <input required type="email" placeholder="Email" class="dialog__createInput" id="dialog__createEmailInput" />
-        <input type="number" placeholder="Phone" class="dialog__createInput" id="dialog__createPhoneInput" />
+        <input type="number"  placeholder="Phone" class="dialog__createInput" id="dialog__createPhoneInput" />
         <div class="dialog__createRightBtn">
           <button type="button" class="custom-btn-white btn-hover" id="dialog__createDeleteBtn" onclick="cancelCreateContact()">
             Cancel X
