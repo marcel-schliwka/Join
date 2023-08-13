@@ -2,14 +2,17 @@ let newSubtasks = [];
 let editedAssigned = [];
 let taskIndex;
 
-function saveEditTask(taskIndex) {
-  try {
-    let variable = getEditedVaraible(taskIndex);
-    console.log(variable);
+function saveEditTask() {
+    let updatedTask = getEditedVaraible();
+    userObj['tasks'][taskIndex] = updatedTask;
+
+    console.log(userObj['tasks'][taskIndex]);
+    setItem(userObj.email, JSON.stringify(userObj))
     resetPrioButtons();
-  } catch (error) {
-    console.error(error);
-  }
+
+   
+    //Nach Speichern müsste entweder die Karte auch neu geladen werden oder
+    //auch geschlossen und das Board neu geladen werden.
 }
 
 
@@ -40,7 +43,6 @@ function getEditedVaraible() {
   };
   const id = currentTask['id'];
   getEditAssignedContacts();
-  console.log(editedAssigned);
   let newTask = {
     titel: title.value,
     description: description.value,
@@ -53,8 +55,7 @@ function getEditedVaraible() {
     subtasks: newSubtasks,
     id: id,
   };
-  console.log(newTask);
-  return newTask;
+  return newTask
 }
 
 
@@ -155,9 +156,7 @@ function editGeneratedSubtask(index) {
 
 function acceptEditEditedSubtask(index) {
   let input = document.getElementById(`editedSubtask-input${index}`);
-  console.log(input);
   newSubtasks[index] = input.value;
-  console.log(newSubtasks);
   renderEditSubtasks();
 }
 
@@ -230,7 +229,6 @@ function addEditedSubtask() {
     });
   }
   renderEditSubtasks();
-  console.log(newSubtasks);
 }
 
 
