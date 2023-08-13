@@ -1,11 +1,10 @@
-
 let newSubtasks = [];
+let editedAssigned = [];
 
 function saveEditTask(taskIndex, e) {
   e.preventDefault();
-  const status = userObj['tasks'][taskIndex]['status'];
-  const id = userObj['tasks'][taskIndex]['id'];
-  const variable = getEditedVaraible(status, id, taskIndex);
+  const variable = getEditedVaraible(taskIndex);
+  console.log(variable.newTask);
   resetPrioButtons();
 }
 
@@ -23,26 +22,27 @@ function resetPrioButtons() {
 }
 
 
-
-
-function getEditedVaraible(status, id, taskIndex) {
-  let titel = document.getElementById("title-input");
-  let description = document.getElementById("description-input");
-  let date = document.getElementById("task-date");
-  let category = userObj['tasks'][taskIndex]['category'];
-  let assignedTo = assigned;
-  let prio = currentPrio;
-  let color = userObj['tasks'][taskIndex]['categoryColor'];
+function getEditedVaraible(taskIndex) {
+  const currentTask = userObj['tasks'][taskIndex];
+  const title = document.getElementById('editTitle');
+  const description = document.getElementById('editDescription');
+  const status = currentTask['status'];
+  const category = currentTask['category'];
+  const categoryColor = currentTask['color'];
+  const date = document.getElementById('editDate');
+  const prio = currentPrio;
   if (prio == undefined) {
-    prio = "low";
-  }
+    prio = currentTask['prio']
+  };
+  const id = currentTask['id'];
+  getEditAssignedContacts();
   let newTask = {
-    titel: titel.value,
+    titel: title.value,
     description: description.value,
     status: status,
     category: category,
-    categoryColor: color,
-    assigned: assignedTo,
+    categoryColor: categoryColor,
+    assigned: editedAssigned,
     date: date.value,
     prio: prio,
     subtasks: newSubtasks,
@@ -87,7 +87,6 @@ function editTask(i) {
 }
 
 
-
 function getEditTaskPrio(button, priority) {
   const buttons = document.querySelectorAll(".prioBtn");
   let images = {
@@ -112,7 +111,6 @@ function getEditTaskPrio(button, priority) {
 }
 
 
-
 function renderUserContacts() {
   let contacts = document.getElementById('editRenderContacts');
   contacts.innerHTML = "";
@@ -134,6 +132,7 @@ function changeEditCheckbox(i) {
   }
 }
 
+
 function editGeneratedSubtask(index) {
   let subtask = document.getElementById(`subtask-text${index}`);
   let btnContainer = document.getElementById(`subtaskButtonsContainer${index}`);
@@ -147,18 +146,31 @@ function editGeneratedSubtask(index) {
 }
 
 
-
 function acceptEditEditedSubtask(index) {
   let input = document.getElementById(`editedSubtask-input${index}`);
+  console.log(input);
   newSubtasks[index] = input.value;
+  console.log(newSubtasks);
   renderEditSubtasks();
 }
 
 
 
-
-
-
+function getEditAssignedContacts() {
+  let test = document.querySelectorAll(".checkboxImg");
+  for (let i = 0; i < test.length; i++) {
+    const t = test[i];
+    const source = t["currentSrc"];
+    if (source.includes("/img/checkbox_checked.png")) {
+      let index = i - 1;
+      if (index == -1) {
+        editedAssigned.push(userObj.name);
+      } else {
+        editedAssigned.push(userObj["contacts"][index]["name"]);
+      }
+    }
+  }
+}
 
 
 function toggleEditAssignedMenu() {
@@ -169,7 +181,7 @@ function toggleEditAssignedMenu() {
   contactContainer.classList.toggle('remove-border');
   if (!input) {
     document.addEventListener('click', (event) => {
-      if(!contactContainer.contains(event.target)) {
+      if (!contactContainer.contains(event.target)) {
         contacts.classList.add('display-none');
         contactContainer.classList.remove('remove-border');
       }
@@ -216,7 +228,7 @@ function addEditedSubtask() {
 }
 
 
-function deleteEditSubtask(index) {
+function deleteGeneratedEditSubtask(index) {
   newSubtasks.splice(index, 1);
   renderEditSubtasks();
 }
