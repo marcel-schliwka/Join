@@ -1,11 +1,15 @@
 let newSubtasks = [];
 let editedAssigned = [];
+let taskIndex;
 
-function saveEditTask(taskIndex, e) {
-  e.preventDefault();
-  const variable = getEditedVaraible(taskIndex);
-  console.log(variable.newTask);
-  resetPrioButtons();
+function saveEditTask(taskIndex) {
+  try {
+    let variable = getEditedVaraible(taskIndex);
+    console.log(variable);
+    resetPrioButtons();
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 
@@ -22,20 +26,21 @@ function resetPrioButtons() {
 }
 
 
-function getEditedVaraible(taskIndex) {
-  const currentTask = userObj['tasks'][taskIndex];
-  const title = document.getElementById('editTitle');
-  const description = document.getElementById('editDescription');
-  const status = currentTask['status'];
-  const category = currentTask['category'];
-  const categoryColor = currentTask['color'];
-  const date = document.getElementById('editDate');
-  const prio = currentPrio;
+function getEditedVaraible() {
+  let currentTask = userObj['tasks'][taskIndex];
+  let title = document.getElementById('editTitle');
+  let description = document.getElementById('editDescription');
+  let status = currentTask['status'];
+  let category = currentTask['category'];
+  let categoryColor = currentTask['categoryColor'];
+  let date = document.getElementById('editDate');
+  let prio = currentPrio;
   if (prio == undefined) {
     prio = currentTask['prio']
   };
   const id = currentTask['id'];
   getEditAssignedContacts();
+  console.log(editedAssigned);
   let newTask = {
     titel: title.value,
     description: description.value,
@@ -48,11 +53,13 @@ function getEditedVaraible(taskIndex) {
     subtasks: newSubtasks,
     id: id,
   };
+  console.log(newTask);
   return newTask;
 }
 
 
 function editTask(i) {
+  taskIndex = i;
   renderUserContacts();
   let currentTask = userObj.tasks[i];
   pushSubtasks(currentTask);
@@ -155,18 +162,17 @@ function acceptEditEditedSubtask(index) {
 }
 
 
-
 function getEditAssignedContacts() {
-  let test = document.querySelectorAll(".checkboxImg");
-  for (let i = 0; i < test.length; i++) {
-    const t = test[i];
-    const source = t["currentSrc"];
-    if (source.includes("/img/checkbox_checked.png")) {
+  let checkboxImages = document.querySelectorAll('.checkboxEditImg');
+  for (let i = 0; i < checkboxImages.length; i++) {
+    const checkbox = checkboxImages[i];
+    const source = checkbox['currentSrc'];
+    if (source.includes('/img/checkbox_checked.png')) {
       let index = i - 1;
       if (index == -1) {
-        editedAssigned.push(userObj.name);
+        editedAssigned.push(userObj['name']);
       } else {
-        editedAssigned.push(userObj["contacts"][index]["name"]);
+        editedAssigned.push(userObj['contacs'][index]['name']);
       }
     }
   }
