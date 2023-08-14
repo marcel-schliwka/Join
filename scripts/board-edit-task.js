@@ -10,12 +10,8 @@ function saveEditTask() {
   resetPrioButtons();
   closeEditModal(document.getElementById("openEditModal"));
   document.getElementById("templateEditTask").innerHTML = "";
-  // updateHTML();
   boardClosePopUpTask();
   boardOpenPopUpTask(taskIndex, taskCard);
-
-  //Nach Speichern müsste entweder die Karte auch neu geladen werden oder
-  //auch geschlossen und das Board neu geladen werden.
 }
 
 function resetPrioButtons() {
@@ -60,11 +56,9 @@ function getEditedVaraible() {
 }
 
 function editTask(i) {
-  document.getElementById("templateEditTask").innerHTML =
-    generateEditTaskDialog();
+  document.getElementById("templateEditTask").innerHTML = generateEditTaskDialog();
   openEditModal(document.getElementById("openEditModal"));
   taskIndex = i;
-  editedAssigned;
   renderUserContacts();
   let currentTask = userObj.tasks[i];
   pushSubtasks(currentTask);
@@ -73,16 +67,22 @@ function editTask(i) {
   document.getElementById("editTitle").value = currentTask["titel"];
   document.getElementById("editDescription").value = currentTask["description"];
   document.getElementById("editDate").value = currentTask["date"];
-  let currentButton = document.getElementById(
-    `${"edit-" + currentTask["prio"] + "-btn"}`
-  );
-  let currentButtonImage = document.getElementById(
-    `${"edit-" + currentTask["prio"] + "-img"}`
-  );
+  setEditButtons(currentTask);
+  renderEditAssignedContacts(currentTask);
+}
+
+
+
+
+
+function setEditButtons(currentTask) {
+  let currentButton = document.getElementById(`${"edit-" + currentTask["prio"] + "-btn"}`);
+  let currentButtonImage = document.getElementById(`${"edit-" + currentTask["prio"] + "-img"}`);
   currentButton.classList.add(`${currentTask["prio"] + "-active"}`);
   currentButtonImage.src = `./img/prio_${currentTask["prio"]}.png`;
+}
 
-  const checkboxImages = document.querySelectorAll(".checkboxEditImg");
+function renderEditAssignedContacts(currentTask) {
   const assignedContacts = currentTask["assigned"];
   document.getElementById("editContactContainerList").innerHTML = "";
   for (let c = 0; c < assignedContacts.length; c++) {
@@ -90,6 +90,11 @@ function editTask(i) {
     document.getElementById("editContactContainerList").innerHTML +=
       htmlTemplateEditContactIcon(contact);
   }
+  renderEditCheckboxes(assignedContacts)
+}
+
+function renderEditCheckboxes(assignedContacts) {
+  const checkboxImages = document.querySelectorAll(".checkboxEditImg");
   for (let j = 0; j < checkboxImages.length; j++) {
     const checkboxImg = checkboxImages[j];
     const listItem = checkboxImg.closest(".contact-item-container");
@@ -106,6 +111,7 @@ function editTask(i) {
     }
   }
 }
+
 
 function getEditTaskPrio(button, priority) {
   const buttons = document.querySelectorAll(".prioBtn");
@@ -153,9 +159,7 @@ function changeEditCheckbox(i) {
 function editGeneratedSubtask(index) {
   let subtask = document.getElementById(`subtask-text${index}`);
   let btnContainer = document.getElementById(`subtaskButtonsContainer${index}`);
-  let container = document.getElementById(`listItem${index}`);
   let subtaskCircle = document.getElementById(`subtaskCircle${index}`);
-  // container.classList.toggle("no-hover");
   subtaskCircle.classList.add("display-none");
   btnContainer.style.display =
     btnContainer.style.display === "none" ? "flex" : "none";
@@ -208,15 +212,21 @@ function toggleEditAssignedMenu() {
   }
 }
 
+
+
+
 function renderEditSubtasks() {
   let content = document.getElementById("subtask-edit-content");
   content.innerHTML = "";
-
   for (let i = 0; i < newSubtasks.length; i++) {
     const subtask = newSubtasks[i]["title"];
     content.innerHTML += generateEditSubtaskHTML(i, subtask);
   }
 }
+
+
+
+
 
 function pushSubtasks(currentTask) {
   newSubtasks = [];
@@ -229,6 +239,10 @@ function pushSubtasks(currentTask) {
   }
 }
 
+
+
+
+
 function addEditedSubtask() {
   let input = document.getElementById("generatedSubtaskInput").value;
   if (input !== "") {
@@ -240,10 +254,17 @@ function addEditedSubtask() {
   renderEditSubtasks();
 }
 
+
+
+
 function deleteGeneratedEditSubtask(index) {
   newSubtasks.splice(index, 1);
   renderEditSubtasks();
 }
+
+
+
+
 
 function changeToEditInput() {
   let input = document.getElementById("subtask-edit-input");
@@ -255,6 +276,8 @@ function changeToEditInput() {
     generatedInput.focus();
   }
 }
+
+
 
 function changeToEditSubtask() {
   let input = document.getElementById("subtask-edit-input");
