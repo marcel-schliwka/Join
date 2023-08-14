@@ -41,14 +41,13 @@ function redirectTo(url) {
   window.location.href = url;
 }
 
-
 function editSubtask(index) {
   let subtask = document.getElementById(`subtask-text${index}`);
   let btnContainer = document.getElementById(`subtaskButtonsContainer${index}`);
   let container = document.getElementById(`listItem${index}`);
   let subtaskCircle = document.getElementById(`subtaskCircle${index}`);
   container.classList.toggle("no-hover");
-  subtaskCircle.classList.add('display-none')
+  subtaskCircle.classList.add("display-none");
   btnContainer.style.display =
     btnContainer.style.display === "none" ? "flex" : "none";
   subtask.innerHTML = generateEditSubtaskInput(subtask.innerText, index);
@@ -229,28 +228,6 @@ function clearCategory() {
 }
 
 /**
- * Event listener that updates the background color of the color picker element
- * when a color is picked.
- *
- * @param {Event} event The color pick event.
- */
-document.addEventListener("coloris:pick", (event) => {
-  document.querySelector(".colorpicker").style.backgroundColor =
-    event.detail.color;
-});
-
-/**
- * Event listener that updates the background color of the color picker element
- * when the color changes.
- *
- * @param {Event} event The color change event.
- */
-document.addEventListener("coloris:change", (event) => {
-  document.querySelector(".colorpicker").style.backgroundColor =
-    event.detail.color;
-});
-
-/**
  * Checks if the category input element exists in the DOM.
  *
  * @returns {HTMLElement|null} Returns the category input element if found, otherwise returns null.
@@ -302,7 +279,7 @@ function addNewCategory() {
  */
 function getCategoryVaraible() {
   const input = document.getElementById("generatedInput").value;
-  const color = document.querySelector(".colorpicker").value;
+  const color = document.querySelector(".circle-picker").value;
   const category = document.getElementById("category-input");
   const categoryBtn = document.getElementById("category-button");
   const hiddenError = document.getElementById("hidden-error");
@@ -518,7 +495,6 @@ function changeToInput(containerId, buttonId) {
   if (cId.id.includes("category-input")) {
     cId.innerHTML += generateCategoryInputHTML();
     bId.innerHTML += generateCategoryButtonHTML();
-    document.querySelector(".colorpicker").click();
   } else if (cId.id.includes("assigned-input")) {
     cId.innerHTML += generateAssignedInputHTML();
     bId.innerHTML += generateAssigendButtonHTML();
@@ -583,7 +559,7 @@ function clearAll() {
   );
   const categoryInput = document.getElementById("category-input");
   const categoryButton = document.getElementById("category-button");
-  
+
   if (categoryInput && categoryButton) {
     categoryInput.innerHTML = generateBasicCategoryInputHTML();
     categoryButton.innerHTML = generateBasicCategoryButtonHTML();
