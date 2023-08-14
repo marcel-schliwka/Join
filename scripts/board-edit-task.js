@@ -173,6 +173,7 @@ function acceptEditEditedSubtask(index) {
 
 function getEditAssignedContacts() {
   let checkboxImages = document.querySelectorAll(".checkboxEditImg");
+  editedAssigned;
   for (let i = 0; i < checkboxImages.length; i++) {
     const checkbox = checkboxImages[i];
     const source = checkbox["currentSrc"];
