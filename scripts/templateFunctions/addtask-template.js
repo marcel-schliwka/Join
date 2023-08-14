@@ -7,7 +7,7 @@
 function generateCategoryInputHTML() {
   return `
     <div>
-      <input onkeydown="handleKeyPress(event, clearCategory, addNewCategory) id="generatedInput" placeholder="Enter new category" class="ol-none b-none">
+      <input onkeydown="handleKeyPress(event, clearCategory, addNewCategory)" id="generatedInput" placeholder="Enter new category" class="ol-none b-none">
     </div>
     `;
 }
@@ -19,7 +19,7 @@ function generateCategoryInputHTML() {
 function generateCategoryButtonHTML() {
   return `
     <div class="generated-Btn-Container">
-    <input required class="coloris instance2 colorpicker" type="text" data-coloris>
+    <input type="color" class="circle-picker" id="color-picker">
     <button onclick="clearInput(this), clearCategory()" type="button"><img  src="./img/cancel_icon.png"></button>
     <svg class="btn-seperator" xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
     <path d="M1 0V31" stroke="#D1D1D1"/>
@@ -176,10 +176,13 @@ function generateUserAssignedHTML() {
 function renderContactsHTML(contact, i) {
   return `
       <div class="contact-item-container" onclick="changeCheckbox(${i + 1})">
-        <li class="contact-item">${contact["name"]
-    } <a onclick="changeCheckbox(${i + 1
-    })"><img class="checkboxImg cursor-p" onclick="changeCheckbox(${i + 1
-    })" id="checkboxImg${i + 1}" src="./img/checkbox.png"></a></li>
+        <li class="contact-item">${
+          contact["name"]
+        } <a onclick="changeCheckbox(${
+    i + 1
+  })"><img class="checkboxImg cursor-p" onclick="changeCheckbox(${
+    i + 1
+  })" id="checkboxImg${i + 1}" src="./img/checkbox.png"></a></li>
       </div>
       `;
 }
@@ -190,7 +193,6 @@ function renderContactsHTML(contact, i) {
  *
  * @returns {string} The generated HTML markup for the new contact item.
  */
-
 
 function generateAddNewContact() {
   return `
@@ -313,7 +315,6 @@ function generateNewSubtaskHTML(i, subt) {
   </li>`;
 }
 
-
 function generateEditSubtaskInput(placeholder, index) {
   return `
   <div class="d-flex">
@@ -342,4 +343,3 @@ function generateEditSubtaskInput(placeholder, index) {
   </div>
   `;
 }
-

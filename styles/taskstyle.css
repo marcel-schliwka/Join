@@ -233,8 +233,6 @@ body {
   margin-right: 59px;
 }
 
-
-
 #description-input {
   height: 119px;
 }
@@ -426,15 +424,37 @@ body {
   overflow-x: hidden;
 }
 
-.colorpicker {
+input[type="color"].circle-picker {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
   border: none;
-  width: 18px;
-  height: 18px;
+  border-radius: 50%; /* Makes it a circle */
+  cursor: pointer;
+  background: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  overflow: hidden; /* To ensure no part of the default input is shown */
+}
+
+input[type="color"].circle-picker::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"].circle-picker::-webkit-color-swatch {
+  border: none;
   border-radius: 50%;
+}
+
+input[type="color"].circle-picker::-moz-color-swatch-wrapper {
+  padding: 0;
+}
+
+input[type="color"].circle-picker::-moz-color-swatch {
+  border: none;
   border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.1);
-  font-size: 0px;
-  margin-right: 8px;
 }
 
 .generated-Btn-Container {
@@ -588,13 +608,11 @@ li {
 
 .edit-contact-item {
   padding-right: 13px;
-
 }
 
 .edit-contacts {
   padding-top: 10px;
 }
-
 
 .color-container button {
   border-radius: 50% !important;
@@ -660,7 +678,7 @@ li {
 }
 
 .w-230 {
-  width: 230px
+  width: 230px;
 }
 
 #dialog__createContact {
@@ -819,9 +837,7 @@ li {
   }
 }
 
-
 @media (max-width: 330px) {
-
   .categorys,
   #render-categorys,
   #title-input,
@@ -882,8 +898,6 @@ li {
   color: white;
 }
 
-
-
 .subtask-item {
   padding: 5px;
   transition: background-color 0.3s ease;
@@ -909,7 +923,6 @@ li {
   display: none;
 }
 
-
 .subtask-buttons {
   display: none;
   align-items: center;
@@ -934,19 +947,16 @@ li {
   margin-left: 3px;
 }
 
-
 .subtask-edit-input {
   height: 32px;
   width: auto;
   padding: 4px 16px;
-  border-bottom: 1px solid #005DFF;
-  background: #FFF;
+  border-bottom: 1px solid #005dff;
+  background: #fff;
   outline: none;
 }
 
-
 @media (max-width: 370px) {
-
   .categorys,
   #render-categorys,
   #title-input,
@@ -974,11 +984,9 @@ li {
   .add-to-board-btn {
     width: 250px;
   }
-
 }
 
-@media(max-width: 340px) {
-
+@media (max-width: 340px) {
   .categorys,
   #render-categorys,
   #title-input,
@@ -1006,60 +1014,58 @@ li {
 }
 
 @media (max-width: 310px) {
-    .categorys,
-    #render-categorys,
-    #title-input,
-    #description-input,
-    #category-container,
-    #assigned-container,
-    #task-date,
-    .subtasks-container,
-    .contact-item,
-    #contact-container,
-    .prio-btn {
-      width: 260px;
-    }
-
-    #generatedSubtaskInput {
-      width: 150px;
-      font-size: 12px;
-    }
-
-    #generatedInput {
-      width: 125px;
-      font-size: 12px;
-    }
-
-    #subtasks-input {
-      width: 150px;
-    }
-
-    #assigned-input,
-    #tasl-date,
-    textarea,
-    #title-input,
-    #category-input {
-      font-size: 14px;
-    }
-
-    #urgentBtn,
-    #mediumBtn,
-    #lowBtn {
-      height: 35px;
-      width: 83px;
-      padding: 18px 21px;
-      align-items: center;
-      font-size: 12px;
-    }
-    .create-btn-responsive {
-      right: 0px;
-      top: 9.8px;
-      width: 100px;
-      height: 62px;
-    }
+  .categorys,
+  #render-categorys,
+  #title-input,
+  #description-input,
+  #category-container,
+  #assigned-container,
+  #task-date,
+  .subtasks-container,
+  .contact-item,
+  #contact-container,
+  .prio-btn {
+    width: 260px;
   }
 
+  #generatedSubtaskInput {
+    width: 150px;
+    font-size: 12px;
+  }
 
+  #generatedInput {
+    width: 125px;
+    font-size: 12px;
+  }
+
+  #subtasks-input {
+    width: 150px;
+  }
+
+  #assigned-input,
+  #tasl-date,
+  textarea,
+  #title-input,
+  #category-input {
+    font-size: 14px;
+  }
+
+  #urgentBtn,
+  #mediumBtn,
+  #lowBtn {
+    height: 35px;
+    width: 83px;
+    padding: 18px 21px;
+    align-items: center;
+    font-size: 12px;
+  }
+  .create-btn-responsive {
+    right: 0px;
+    top: 9.8px;
+    width: 100px;
+    height: 62px;
+  }
+}
 
 @media only screen and (max-width: 760px) and (min-width: 429px) {
   .add-task-section {
@@ -1272,7 +1278,6 @@ li {
 }
 
 @media only screen and (max-width: 1000px) and (min-width: 950px) {
-
   .add-task-section form,
   .add-task-section h1 {
     margin-left: 255px;
@@ -1435,7 +1440,6 @@ li {
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 1101px) {
-
   .categorys,
   #render-categorys,
   #title-input,
@@ -1543,7 +1547,6 @@ li {
 }
 
 @media (min-width: 1380px) {
-
   .category-input,
   #category-input {
     width: 300px;
@@ -1581,7 +1584,7 @@ li {
   }
 }
 
-@media(max-width: 310px) {
+@media (max-width: 310px) {
   .create-btn-responsive {
     right: 10px;
     top: 17.8px;
@@ -1589,4 +1592,3 @@ li {
     height: 50px;
   }
 }
-
