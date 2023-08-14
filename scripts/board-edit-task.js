@@ -301,10 +301,9 @@ function pushSubtasks(currentTask) {
   }
 }
 
-
-
-
-
+/**
+ * Adds a new edited subtask to the list and renders the updated subtask content.
+ */
 function addEditedSubtask() {
   let input = document.getElementById("generatedSubtaskInput").value;
   if (input !== "") {
@@ -316,18 +315,20 @@ function addEditedSubtask() {
   renderEditSubtasks();
 }
 
-
-
-
+/**
+ * Deletes an edited subtask from the list and renders the updated subtask content.
+ *
+ * @param {number} index - The index of the subtask to be deleted.
+ */
 function deleteGeneratedEditSubtask(index) {
   newSubtasks.splice(index, 1);
   renderEditSubtasks();
 }
 
-
-
-
-
+/**
+ * Changes the subtask section to display an edit input field and button.
+ * Focuses on the generated subtask input field if available.
+ */
 function changeToEditInput() {
   let input = document.getElementById("subtask-edit-input");
   let button = document.getElementById("subtasks-edit-button");
@@ -339,8 +340,9 @@ function changeToEditInput() {
   }
 }
 
-
-
+/**
+ * Changes the subtask section to display a basic edit subtask input and button.
+ */
 function changeToEditSubtask() {
   let input = document.getElementById("subtask-edit-input");
   let button = document.getElementById("subtasks-edit-button");
