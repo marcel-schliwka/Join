@@ -244,6 +244,7 @@ function moveTo(status, element) {
  * @requires userObj: An object containing user tasks.
  */
 function boardOpenPopUpTask(i, card) {
+  taskCard = card;
   let taskForm = document.querySelector(".popUpBoardTask");
   currentStatus = card.getAttribute("status");
   currentTitel = card.getAttribute("titel");
@@ -313,8 +314,7 @@ function emptyTaskText(element) {
  */
 function boardClosePopUpTask() {
   document.getElementById("popUpBoard").classList.add("dNone");
-  clearAllTasks();
-  renderTasks();
+  updateHTML();
 }
 
 async function changeToCheckbox(k) {
