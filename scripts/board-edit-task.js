@@ -1,12 +1,19 @@
 let newSubtasks = [];
 let editedAssigned = [];
 let taskIndex;
+let taskCard;
 
 function saveEditTask() {
     let updatedTask = getEditedVaraible();
     userObj['tasks'][taskIndex] = updatedTask;
     setItem(userObj.email, JSON.stringify(userObj))
     resetPrioButtons();
+    closeEditModal(document.getElementById('openEditModal'));
+    document.getElementById('templateEditTask').innerHTML = '';
+    // updateHTML();
+    boardClosePopUpTask();
+    boardOpenPopUpTask(taskIndex, taskCard);
+
 
    
     //Nach Speichern müsste entweder die Karte auch neu geladen werden oder
@@ -58,12 +65,13 @@ function getEditedVaraible() {
 
 
 function editTask(i) {
+  document.getElementById('templateEditTask').innerHTML = generateEditTaskDialog();
+  openEditModal(document.getElementById('openEditModal'));
   taskIndex = i;
   renderUserContacts();
   let currentTask = userObj.tasks[i];
   pushSubtasks(currentTask);
   renderEditSubtasks();
-  openEditModal(document.getElementById('openEditModal'))
   document.getElementById('editOkBtn').classList.remove('display-none');
   document.getElementById('editTitle').value = currentTask['titel'];
   document.getElementById('editDescription').value = currentTask['description'];

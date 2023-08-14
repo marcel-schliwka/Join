@@ -1,3 +1,79 @@
+function generateEditTaskDialog() {
+  return /*html*/`
+    <div id="openEditModal" class="modal-backdrop modal dNone">
+    <div>
+      <form onsubmit="saveEditTask(taskIndex); return false;" class="edit-task-form-board popUpBoardEditTask">
+        <img src="./img/close.svg" alt="Close Add Task Form" class="boardTaskClose"
+          onclick="closeEditModal(document.getElementById('openEditModal')); resetPrioButtons();">
+        <label for="edit-title" class="font20 label">Title</label>
+        <input id="editTitle" name="edit-title" type="text"
+          class="w-422 h-51 font20 pad-13-21 custom-border ol-none cursor-p">
+        <label for="edit-description" class="font20 label">Description</label>
+        <input id="editDescription" name="edit-description" type="text" cols="30" rows="10"
+          class="w-422 font20 pad-18-21 custom-border ol-none cursor-p">
+        <label for="edit-date" class="font20 label">Due date</label>
+        <input id="editDate" name="edit-date" type="date"
+          class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p">
+        <label for="edit-priority" class="font20 label"><b>Priority</b></label>
+        <div class="prio-btn">
+          <button id="edit-urgent-btn" onclick="getEditTaskPrio(this, 'urgent')"
+            class="font20 pad-18-10 urgent-btn custom-border shadow prioBtn" type="button">
+            Urgent
+            <img id="edit-urgent-img" src="./img/prio_urgent_color.png">
+          </button>
+          <button id="edit-medium-btn" onclick="getEditTaskPrio(this, 'medium')"
+            class="font20 pad-18-10 medium-btn custom-border shadow prioBtn" type="button">
+            Medium
+            <img id="edit-medium-img" src="./img/prio_medium_color.png">
+          </button>
+          <button id="edit-low-btn" onclick="getEditTaskPrio(this, 'low')"
+            class="font20 pad-18-10 low-btn custom-border shadow prioBtn" type="button">Low
+            <img id="edit-low-img" src="./img/prio_low_color.png">
+          </button>
+        </div>
+        <label for="edit-assigned" class="font20 label">Assigned To</label>
+        <div onclick="toggleEditAssignedMenu()" class="assigned-container font20 cursor-p" id="edit-assigned-container">
+          <div class="assigned-input" id="editAssignedInput">
+            <span>Select contacts to assign</span>
+          </div>
+          <div class="assigned-button-container" id="editAssignedBtn">
+            <button type="button"><img src="./img/arrow_down.png"></button>
+          </div>
+        </div>
+        <div class="edit-contacts font20 display-none" id="edit-contact-container">
+          <ul id="editRenderContacts">
+          </ul>
+        </div>
+        <div id="editContactContainerList" class="d-flex flex-row justify-start"> </div>
+
+        <label class="font20 label" for="subtasks">Subtasks</label>
+        <div class="edit-subtasks-container font20 w-422 h-51 custom-border pad-18-21">
+          <div class="subtasks-input" id="subtask-edit-input">
+            <input onclick="changeToEditInput()" class="subtask-input  ol-none"
+              type="text" placeholder="Add new subtask">
+          </div>
+          <div onclick="changeToEditInput()" class="subtasks-button-container" id="subtasks-edit-button">
+            <button type="button"><img src="./img/plus_icon.png"></button>
+          </div>
+        </div>
+        <ul class="generatedSubtasks cursor-p font20 ml-10" id="subtask-edit-content">
+        </ul>
+
+        <div class="edit-ok-btn">
+          <button id="editOkBtn" type="submit" class="display-none editTaskBoardBtn">
+            Ok
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+              <path d="M4.0166 12.1704L10.0166 18.1704L20.0166 6.17041" stroke="white" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  `;
+}
+
 function generateBasicEditSubtaskInputHTML() {
   return `
     <input onclick="changeToEditInput()" class="subtask-input  ol-none" type="text" placeholder="Add new subtask">
