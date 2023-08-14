@@ -5,8 +5,6 @@ let taskIndex;
 function saveEditTask() {
     let updatedTask = getEditedVaraible();
     userObj['tasks'][taskIndex] = updatedTask;
-
-    console.log(userObj['tasks'][taskIndex]);
     setItem(userObj.email, JSON.stringify(userObj))
     resetPrioButtons();
 
@@ -74,7 +72,10 @@ function editTask(i) {
   let currentButtonImage = document.getElementById(`${'edit-' + currentTask['prio'] + '-img'}`);
   currentButton.classList.add(`${currentTask['prio'] + '-active'}`);
   currentButtonImage.src = `./img/prio_${currentTask['prio']}.png`;
-  const checkboxImages = document.querySelectorAll('.checkboxImg');
+  
+  
+  
+  const checkboxImages = document.querySelectorAll('.checkboxEditImg');
   const assignedContacts = currentTask['assigned'];
   document.getElementById('editContactContainerList').innerHTML = '';
   for (let c = 0; c < assignedContacts.length; c++) {
@@ -82,13 +83,16 @@ function editTask(i) {
     document.getElementById('editContactContainerList').innerHTML +=
       htmlTemplateEditContactIcon(contact);
   }
-  for (let i = 0; i < checkboxImages.length; i++) {
-    const checkboxImg = checkboxImages[i];
+  for (let j = 0; j < checkboxImages.length; j++) {
+    const checkboxImg = checkboxImages[j];
     const listItem = checkboxImg.closest(".contact-item-container");
     if (listItem) {
-      const contactName = listItem.querySelector(".contact-item").textContent.trim();
+      const contactName = listItem.querySelector(".edit-contact-item").textContent.trim();
       if (assignedContacts.includes(contactName)) {
         checkboxImg.src = "./img/checkbox_checked.png";
+      }
+      if(assignedContacts.includes(userObj['name'])) {
+        checkboxImg.src = './img/checkbox_checked.png';
       }
     }
   }
@@ -175,7 +179,7 @@ function getEditAssignedContacts() {
       if (index == -1) {
         editedAssigned.push(userObj['name']);
       } else {
-        editedAssigned.push(userObj['contacs'][index]['name']);
+        editedAssigned.push(userObj['contacts'][index]['name']);
       }
     }
   }
