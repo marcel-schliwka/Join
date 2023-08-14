@@ -175,7 +175,7 @@ function getEditAssignedContacts() {
       if (index == -1) {
         editedAssigned.push(userObj['name']);
       } else {
-        editedAssigned.push(userObj['contacs'][index]['name']);
+        editedAssigned.push(userObj['contacts'][index]['name']);
       }
     }
   }
