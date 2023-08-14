@@ -3,6 +3,9 @@ let editedAssigned = [];
 let taskIndex;
 let taskCard;
 
+/**
+ * Saves the edited task by updating the user's tasks, storing the data, and performing UI updates.
+ */
 function saveEditTask() {
   let updatedTask = getEditedVaraible();
   userObj["tasks"][taskIndex] = updatedTask;
@@ -14,6 +17,9 @@ function saveEditTask() {
   boardOpenPopUpTask(taskIndex, taskCard);
 }
 
+/**
+ * Resets the priority buttons to their default state by updating images and classes.
+ */
 function resetPrioButtons() {
   const priorities = ["low", "medium", "urgent"];
   const images = {};
@@ -26,6 +32,11 @@ function resetPrioButtons() {
   });
 }
 
+/**
+ * Collects and returns the edited task data as an object with updated values.
+ *
+ * @returns {Object} The edited task object with updated values.
+ */
 function getEditedVaraible() {
   let currentTask = userObj["tasks"][taskIndex];
   let title = document.getElementById("editTitle");
@@ -55,6 +66,12 @@ function getEditedVaraible() {
   return newTask;
 }
 
+/**
+ * Initiates the editing of a task by populating the edit task dialog with task data.
+ * Updates various elements and components within the dialog.
+ *
+ * @param {number} i - The index of the task to be edited.
+ */
 function editTask(i) {
   document.getElementById("templateEditTask").innerHTML = generateEditTaskDialog();
   openEditModal(document.getElementById("openEditModal"));
@@ -71,10 +88,11 @@ function editTask(i) {
   renderEditAssignedContacts(currentTask);
 }
 
-
-
-
-
+/**
+ * Sets the active state and updates the image of the priority button in the edit view.
+ *
+ * @param {Object} currentTask - The task object containing priority information.
+ */
 function setEditButtons(currentTask) {
   let currentButton = document.getElementById(`${"edit-" + currentTask["prio"] + "-btn"}`);
   let currentButtonImage = document.getElementById(`${"edit-" + currentTask["prio"] + "-img"}`);
@@ -82,6 +100,11 @@ function setEditButtons(currentTask) {
   currentButtonImage.src = `./img/prio_${currentTask["prio"]}.png`;
 }
 
+/**
+ * Renders the assigned contacts for the edit view of a task.
+ *
+ * @param {Object} currentTask - The task object containing assigned contacts.
+ */
 function renderEditAssignedContacts(currentTask) {
   const assignedContacts = currentTask["assigned"];
   document.getElementById("editContactContainerList").innerHTML = "";
@@ -93,6 +116,11 @@ function renderEditAssignedContacts(currentTask) {
   renderEditCheckboxes(assignedContacts)
 }
 
+/**
+ * Renders the edit checkboxes based on assigned contacts, marking them as checked if needed.
+ *
+ * @param {string[]} assignedContacts - An array of contact names that are assigned.
+ */
 function renderEditCheckboxes(assignedContacts) {
   const checkboxImages = document.querySelectorAll(".checkboxEditImg");
   for (let j = 0; j < checkboxImages.length; j++) {
@@ -112,7 +140,13 @@ function renderEditCheckboxes(assignedContacts) {
   }
 }
 
-
+/**
+ * Updates the task priority selection in the edit view based on the selected button.
+ * Adjusts the active classes and image sources accordingly.
+ *
+ * @param {HTMLElement} button - The priority button that was clicked.
+ * @param {string} priority - The priority level associated with the button.
+ */
 function getEditTaskPrio(button, priority) {
   const buttons = document.querySelectorAll(".prioBtn");
   let images = {
@@ -136,6 +170,9 @@ function getEditTaskPrio(button, priority) {
   currentPrio = priority;
 }
 
+/**
+ * Renders the user's contacts in the edit view by populating the HTML content.
+ */
 function renderUserContacts() {
   let contacts = document.getElementById("editRenderContacts");
   contacts.innerHTML = "";
@@ -147,6 +184,11 @@ function renderUserContacts() {
   contacts.innerHTML += generateAddNewEditContact();
 }
 
+/**
+ * Toggles the state of an edit checkbox image between checked and unchecked.
+ *
+ * @param {number} i - The index of the checkbox to be toggled.
+ */
 function changeEditCheckbox(i) {
   let checkboxImg = document.getElementById(`checkboxEditImg${i}`);
   if (checkboxImg.getAttribute("src") === "./img/checkbox.png") {
@@ -156,6 +198,11 @@ function changeEditCheckbox(i) {
   }
 }
 
+/**
+ * Initiates the editing of a generated subtask by replacing its content with an edit input.
+ *
+ * @param {number} index - The index of the subtask to be edited.
+ */
 function editGeneratedSubtask(index) {
   let subtask = document.getElementById(`subtask-text${index}`);
   let btnContainer = document.getElementById(`subtaskButtonsContainer${index}`);
@@ -166,6 +213,12 @@ function editGeneratedSubtask(index) {
   subtask.innerHTML = generateEditSubtaskEditInput(subtask.innerText, index);
 }
 
+/**
+ * Accepts the edited subtask input and updates the subtask at the specified index.
+ * Renders the updated subtask content.
+ *
+ * @param {number} index - The index of the subtask to be updated.
+ */
 function acceptEditEditedSubtask(index) {
   let input = document.getElementById(`editedSubtask-input${index}`).value;
   console.log(input);
@@ -176,6 +229,10 @@ function acceptEditEditedSubtask(index) {
     renderEditSubtasks();
 }
 
+/**
+ * Retrieves the list of edited assigned contacts based on checked checkboxes.
+ * Populates the 'editedAssigned' array with the names of selected contacts.
+ */
 function getEditAssignedContacts() {
   editedAssigned = [];
   let checkboxImages = document.querySelectorAll(".checkboxEditImg");
@@ -193,6 +250,9 @@ function getEditAssignedContacts() {
   }
 }
 
+/**
+ * Toggles the visibility and styling of the assigned menu and handles outside click events.
+ */
 function toggleEditAssignedMenu() {
   const contacts = document.getElementById("edit-contact-container");
   const contactContainer = document.getElementById("edit-assigned-container");
@@ -212,9 +272,9 @@ function toggleEditAssignedMenu() {
   }
 }
 
-
-
-
+/**
+ * Renders the edit subtasks by populating the HTML content with subtask data.
+ */
 function renderEditSubtasks() {
   let content = document.getElementById("subtask-edit-content");
   content.innerHTML = "";
@@ -224,10 +284,12 @@ function renderEditSubtasks() {
   }
 }
 
-
-
-
-
+/**
+ * Copies subtasks from the given current task and returns a new array of subtasks.
+ *
+ * @param {Object} currentTask - The current task containing subtasks.
+ * @returns {Array} An array of new subtasks copied from the current task.
+ */
 function pushSubtasks(currentTask) {
   newSubtasks = [];
   for (let i = 0; i < currentTask["subtasks"].length; i++) {
