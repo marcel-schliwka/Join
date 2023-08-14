@@ -73,9 +73,11 @@ function getEditedVaraible() {
  * @param {number} i - The index of the task to be edited.
  */
 function editTask(i) {
-  document.getElementById("templateEditTask").innerHTML = generateEditTaskDialog();
+  document.getElementById("templateEditTask").innerHTML =
+    generateEditTaskDialog();
   openEditModal(document.getElementById("openEditModal"));
   taskIndex = i;
+  editedAssigned;
   renderUserContacts();
   let currentTask = userObj.tasks[i];
   pushSubtasks(currentTask);
@@ -84,28 +86,15 @@ function editTask(i) {
   document.getElementById("editTitle").value = currentTask["titel"];
   document.getElementById("editDescription").value = currentTask["description"];
   document.getElementById("editDate").value = currentTask["date"];
-  setEditButtons(currentTask);
-  renderEditAssignedContacts(currentTask);
-}
-
-/**
- * Sets the active state and updates the image of the priority button in the edit view.
- *
- * @param {Object} currentTask - The task object containing priority information.
- */
-function setEditButtons(currentTask) {
-  let currentButton = document.getElementById(`${"edit-" + currentTask["prio"] + "-btn"}`);
-  let currentButtonImage = document.getElementById(`${"edit-" + currentTask["prio"] + "-img"}`);
+  let currentButton = document.getElementById(
+    `${"edit-" + currentTask["prio"] + "-btn"}`
+  );
+  let currentButtonImage = document.getElementById(
+    `${"edit-" + currentTask["prio"] + "-img"}`
+  );
   currentButton.classList.add(`${currentTask["prio"] + "-active"}`);
   currentButtonImage.src = `./img/prio_${currentTask["prio"]}.png`;
-}
-
-/**
- * Renders the assigned contacts for the edit view of a task.
- *
- * @param {Object} currentTask - The task object containing assigned contacts.
- */
-function renderEditAssignedContacts(currentTask) {
+  const checkboxImages = document.querySelectorAll(".checkboxEditImg");
   const assignedContacts = currentTask["assigned"];
   document.getElementById("editContactContainerList").innerHTML = "";
   for (let c = 0; c < assignedContacts.length; c++) {
@@ -113,16 +102,6 @@ function renderEditAssignedContacts(currentTask) {
     document.getElementById("editContactContainerList").innerHTML +=
       htmlTemplateEditContactIcon(contact);
   }
-  renderEditCheckboxes(assignedContacts)
-}
-
-/**
- * Renders the edit checkboxes based on assigned contacts, marking them as checked if needed.
- *
- * @param {string[]} assignedContacts - An array of contact names that are assigned.
- */
-function renderEditCheckboxes(assignedContacts) {
-  const checkboxImages = document.querySelectorAll(".checkboxEditImg");
   for (let j = 0; j < checkboxImages.length; j++) {
     const checkboxImg = checkboxImages[j];
     const listItem = checkboxImg.closest(".contact-item-container");
@@ -138,7 +117,20 @@ function renderEditCheckboxes(assignedContacts) {
       }
     }
   }
+} 
+
+/**
+ * Sets the active state and updates the image of the priority button in the edit view.
+ *
+ * @param {Object} currentTask - The task object containing priority information.
+ */
+function setEditButtons(currentTask) {
+  let currentButton = document.getElementById(`${"edit-" + currentTask["prio"] + "-btn"}`);
+  let currentButtonImage = document.getElementById(`${"edit-" + currentTask["prio"] + "-img"}`);
+  currentButton.classList.add(`${currentTask["prio"] + "-active"}`);
+  currentButtonImage.src = `./img/prio_${currentTask["prio"]}.png`;
 }
+
 
 /**
  * Updates the task priority selection in the edit view based on the selected button.
