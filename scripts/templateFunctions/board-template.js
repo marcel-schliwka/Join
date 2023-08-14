@@ -6,9 +6,10 @@ function htmlTemplateProgressBar(percentage) {
 
 function htmlTemplateProgressCount(element) {
   return `
-    <div class="d-flex">${element["checked"]}/${
-    element["unchecked"] + element["checked"]
-  } Subtasks</div>
+    <div class="d-flex">
+      ${element["checked"]}/${element["unchecked"] + element["checked"]} 
+        <span id="subtasksText">Subtasks</span>
+    </div>
     `;
 }
 
