@@ -56,7 +56,7 @@ function generateEditTaskDialog() {
             <button type="button"><img src="./img/plus_icon.png"></button>
           </div>
         </div>
-        <ul class="generatedSubtasks cursor-p font20 ml-10" id="subtask-edit-content">
+        <ul class="generatedSubtasks cursor-p font20" id="subtask-edit-content">
         </ul>
 
         <div class="edit-ok-btn">
