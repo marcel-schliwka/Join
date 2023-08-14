@@ -237,6 +237,7 @@ function addEditedSubtask() {
     });
   }
   renderEditSubtasks();
+  resetEditInput();
 }
 
 function deleteGeneratedEditSubtask(index) {
@@ -253,6 +254,15 @@ function changeToEditInput() {
   if (generatedInput) {
     generatedInput.focus();
   }
+}
+
+function resetEditInput() {
+  debugger;
+  let input = document.getElementById("subtask-edit-input");
+  let button = document.getElementById('subtasks-edit-button');
+
+  input.innerHTML = generateBasicEditSubtaskInputHTML();
+  button.innerHTML = generateBasicEditSubtaskButtonHTML();
 }
 
 function changeToEditSubtask() {
