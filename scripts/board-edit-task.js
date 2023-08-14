@@ -146,7 +146,7 @@ function editGeneratedSubtask(index) {
   let btnContainer = document.getElementById(`subtaskButtonsContainer${index}`);
   let container = document.getElementById(`listItem${index}`);
   let subtaskCircle = document.getElementById(`subtaskCircle${index}`);
-  container.classList.toggle("no-hover");
+  // container.classList.toggle("no-hover");
   subtaskCircle.classList.add('display-none')
   btnContainer.style.display =
     btnContainer.style.display === "none" ? "flex" : "none";
@@ -155,8 +155,12 @@ function editGeneratedSubtask(index) {
 
 
 function acceptEditEditedSubtask(index) {
-  let input = document.getElementById(`editedSubtask-input${index}`);
-  newSubtasks[index] = input.value;
+  let input = document.getElementById(`editedSubtask-input${index}`).value;
+  console.log(input);
+  newSubtasks[index] = {
+    title: input,
+    property: 'unchecked'
+  },
   renderEditSubtasks();
 }
 
@@ -236,15 +240,7 @@ function deleteGeneratedEditSubtask(index) {
   newSubtasks.splice(index, 1);
   renderEditSubtasks();
 }
-
-
-function acceptEditEditedSubtask(index) {
-  let input = document.getElementById(`editedSubtask-input${index}`);
-  subtasks[index] = input.value;
-  renderSubtasks();
-}
-
-
+  
 function changeToEditInput() {
   let input = document.getElementById('subtask-edit-input');
   let button = document.getElementById('subtasks-edit-button');
