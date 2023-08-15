@@ -1,7 +1,7 @@
 function openModal(modal) {
   let w = window.innerWidth;
   if (w < 950) {
-    redirect('addTask.html')
+    redirect('https://gruppe-622.developerakademie.net/Join/addtask.html')
   } else {
     modal.classList.remove("dNone");
     modal.classList.remove("out");
