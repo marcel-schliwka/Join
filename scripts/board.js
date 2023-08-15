@@ -245,7 +245,6 @@ function moveTo(status, element) {
  */
 function boardOpenPopUpTask(i, card) {
   taskCard = card;
-  let taskForm = document.querySelector(".popUpBoardTask");
   currentStatus = card.getAttribute("status");
   currentTitel = card.getAttribute("titel");
   let index = userObj.tasks.findIndex(
@@ -265,7 +264,6 @@ function boardOpenPopUpTask(i, card) {
     document.getElementById("boardTasksMembers").innerHTML +=
       htmlTemplatePopUpMembers(element2);
   }
-  taskForm.setAttribute("onsubmit", `saveEditTask(${index}, event)`);
   let subtaskContainer = document.getElementById("boardTasksSubtasks");
   if (element["subtasks"].length > 0) {
     subtaskContainer.innerHTML += generateSubtaskHeader();
