@@ -3,27 +3,42 @@ let users = [];
 let loginForm = document.getElementById("loginForm");
 let loginBox = document.querySelector(".login-box");
 
+/**
+ * Clears the content of the login box and displays the 'Forgot Password' template.
+ */
 function forgotMyPassword() {
   let loginBox = document.querySelector(".login-box");
   loginBox.innerHTML = "";
   loginBox.innerHTML = templateForgotPassword();
 }
 
+/**
+ * Clears the content of the login box and displays the login template.
+ */
 function showLogin() {
   loginBox.innerHTML = "";
   loginBox.innerHTML = templateLogin();
 }
 
+/**
+ * Clears the content of the login box and displays the signup template.
+ */
 function showSignup() {
   loginBox.innerHTML = "";
   loginBox.innerHTML = templateSignUp();
 }
 
+/**
+ * Initializes the application by loading users and checking if a user is logged in.
+ */
 async function init() {
   loadUsers();
   checkIfUserIsLoggedIn();
 }
 
+/**
+ * Loads users from storage.
+ */
 async function loadUsers() {
   try {
     users = await getItem("users");
@@ -32,6 +47,12 @@ async function loadUsers() {
   }
 }
 
+/**
+ * Checks if the confirmed password matches the original password.
+ * @param {string} password - The original password.
+ * @param {string} confirmedPassword - The confirmed password to check against.
+ * @returns {boolean} Returns true if the passwords match, otherwise false.
+ */
 function confirmPasswordIsSame(password, confirmedPassword) {
   if (password == confirmedPassword) {
     return true;
