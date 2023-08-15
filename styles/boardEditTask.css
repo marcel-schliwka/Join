@@ -107,33 +107,47 @@
     }
 }
 
-@media (max-width: 500px) {
-    #editTitle,
-    #editDescription,
-    #editDate,
-    .edit-prio-btn,
-    #editAssignedInput,
-    #edit-assigned-container,
-    .edit-subtasks-container,
-    #subtask-edit-content,
-    #editRenderContacts,
-    .edit-contact-item,
-    .edit-contacts,
-    #subtask-edit-content {
-        width: 320px;
+.modal-edit-backdrop {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5) !important;
+    z-index: 999;
+}
+
+@media screen and (min-width: 871px) and (max-width: 1200px) {
+    .edit-task-form-board {
+        height: 49em;
+
     }
-    #subtask-edit-input {
-        width: 210px;
-    }
-    #subtask-edit-input input {
-        width: 190px;
+}
+
+@media screen and (max-width: 580px) {
+    .edit-task-form-board {
+        max-width: 350px;
+        height: 700px;
     }
 
-    .edit-prio-btn,
-    .edit-prio-btn button {
-        height: 51px;
+    .assignedContainer {
+        width: unset !important;
     }
-    .edit-prio-btn button {
-       width: 100px; 
+
+    .prio-btn-edit {
+        order: 0 !important
+    }
+
+    .prio-btn {
+        width: unset;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .prio-btn-edit {
+        order: 0 !important
     }
 }
