@@ -2,8 +2,8 @@ function generateEditTaskDialog() {
   return /*html*/`
     <div id="openEditModal" class="edit-modal-backdrop modal dNone">
     <div class="edit-task-section">
-      <div class="edit-task-section-wo-btn">
       <form onsubmit="saveEditTask(taskIndex); return false;" class="edit-task-form-board popUpBoardEditTask">
+      <div class="edit-task-section-wo-btn">
         <img src="./img/close.svg" alt="Close Add Task Form" class="boardTaskClose"
           onclick="closeEditModal(document.getElementById('openEditModal')); resetPrioButtons();">
         <label id="edit-title-label" for="edit-title" class="font20 label">Title</label>
@@ -69,8 +69,9 @@ function generateEditTaskDialog() {
             </svg>
           </button>
         </div>
+        </div>
       </form>
-    </div>
+    
   </div>
   `;
 }

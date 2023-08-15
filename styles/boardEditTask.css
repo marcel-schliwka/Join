@@ -1,4 +1,10 @@
-.edit-task-section {
+
+::-webkit-scrollbar {
+    width: 0px !important;
+}
+
+
+.edit-task-form-board {
     position: fixed;
     top: 50px;
     bottom: 50px;
@@ -13,18 +19,10 @@
     justify-content: space-evenly;
 }
 
-::-webkit-scrollbar {
-    width: 0px !important;
-}
-
-
-.edit-task-form-board {
-    display: flex;
-    flex-direction: column;
-}
-
 .edit-task-section-wo-btn {
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
 }
 
 .editTaskBoardBtn {
