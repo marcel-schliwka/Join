@@ -1,14 +1,9 @@
 .edit-task-section {
-    position: absolute;
+    position: fixed;
     top: 50px;
     bottom: 50px;
-}
-
-
-.edit-task-form-board {
     display: flex;
     flex-direction: column;
-    position: relative;
     min-height: 100px;
     min-width: 400px;
     overflow: hidden;
@@ -16,6 +11,20 @@
     padding: 4em 2em;
     border-radius: 20px;
     justify-content: space-evenly;
+}
+
+::-webkit-scrollbar {
+    width: 0px !important;
+}
+
+
+.edit-task-form-board {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-task-section-wo-btn {
+    overflow-y: scroll;
 }
 
 .editTaskBoardBtn {
@@ -78,6 +87,7 @@
 }
 
 @media (max-width: 800px) {
+
     #editTitle,
     #editDescription,
     #editDate,
