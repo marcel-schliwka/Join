@@ -60,6 +60,7 @@
     margin-top: 8px;
     margin-bottom: 8px;
 }
+
 #edit-subtasks-label {
     margin-top: 24px;
 }
@@ -72,8 +73,12 @@
     margin-bottom: 8px;
 }
 
+#editContactContainerList {
+    margin-top: 8px;
+}
+
 @media (max-width: 800px) {
-  #editTitle,
+    #editTitle,
     #editDescription,
     #editDate,
     .edit-prio-btn,
@@ -83,14 +88,52 @@
     #subtask-edit-content,
     #editRenderContacts,
     .edit-contact-item,
-    .edit-contacts {
+    .edit-contacts,
+    #subtask-edit-content {
         width: 363px;
     }
+
+    #subtask-edit-input {
+        width: 250px;
+    }
+
     .edit-prio-btn,
     .edit-prio-btn button {
         height: 55px;
     }
+
     #edit-assigned-container {
         margin-bottom: 0px;
+    }
+}
+
+@media (max-width: 500px) {
+    #editTitle,
+    #editDescription,
+    #editDate,
+    .edit-prio-btn,
+    #editAssignedInput,
+    #edit-assigned-container,
+    .edit-subtasks-container,
+    #subtask-edit-content,
+    #editRenderContacts,
+    .edit-contact-item,
+    .edit-contacts,
+    #subtask-edit-content {
+        width: 320px;
+    }
+    #subtask-edit-input {
+        width: 210px;
+    }
+    #subtask-edit-input input {
+        width: 190px;
+    }
+
+    .edit-prio-btn,
+    .edit-prio-btn button {
+        height: 51px;
+    }
+    .edit-prio-btn button {
+       width: 100px; 
     }
 }

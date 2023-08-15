@@ -6,16 +6,16 @@ function generateEditTaskDialog() {
       <form onsubmit="saveEditTask(taskIndex); return false;" class="edit-task-form-board popUpBoardEditTask">
         <img src="./img/close.svg" alt="Close Add Task Form" class="boardTaskClose"
           onclick="closeEditModal(document.getElementById('openEditModal')); resetPrioButtons();">
-        <label for="edit-title" class="font20 label">Title</label>
+        <label id="edit-title-label" for="edit-title" class="font20 label">Title</label>
         <input id="editTitle" name="edit-title" type="text"
           class="w-422 h-51 font20 pad-13-21 custom-border ol-none cursor-p">
-        <label for="edit-description" class="font20 label">Description</label>
+        <label id="edit-description-label" for="edit-description" class="font20 label">Description</label>
         <input id="editDescription" name="edit-description" type="text" cols="30" rows="10"
           class="w-422 font20 pad-18-21 custom-border ol-none cursor-p">
-        <label for="edit-date" class="font20 label">Due date</label>
+        <label id="edit-date-label" for="edit-date" class="font20 label">Due date</label>
         <input id="editDate" name="edit-date" type="date"
           class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p">
-        <label for="edit-priority" class="font20 label"><b>Priority</b></label>
+        <label id="edit-priority-label" for="edit-priority" class="font20 label">Priority</label>
         <div class="edit-prio-btn">
           <button id="edit-urgent-btn" onclick="getEditTaskPrio(this, 'urgent')"
             class="font20 pad-18-10 urgent-btn custom-border shadow prioBtn" type="button">
