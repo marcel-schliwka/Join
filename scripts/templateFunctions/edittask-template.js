@@ -1,6 +1,6 @@
 function generateEditTaskDialog() {
   return /*html*/`
-    <div id="openEditModal" class="modal-backdrop modal dNone">
+    <div id="openEditModal" class="edit-modal-backdrop modal dNone">
     <div>
       <form onsubmit="saveEditTask(taskIndex); return false;" class="edit-task-form-board popUpBoardEditTask">
         <img src="./img/close.svg" alt="Close Add Task Form" class="boardTaskClose"
