@@ -66,8 +66,8 @@ function htmlTemplateToDo(element, i, priority) {
                       element
                     )}
                 </div>
-              <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
-                  <div class="d-flex textWhite" id="assignedToDo${i}"></div>
+              <div class="assignedPrioContainer d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
+                  <div class="assignedCardContainer d-flex textWhite" id="assignedToDo${i}"></div>
                   <div>${priority}</div>
               </div>
           </div>`;
@@ -109,8 +109,8 @@ function htmlTemplateInProgress(element, i, priority) {
                 )}
             </div>
 
-            <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
-                <div class="d-flex textWhite" id="assignedInProgress${i}"></div>
+            <div class="assignedPrioContainer d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
+                <div class="assignedCardContainer d-flex textWhite" id="assignedInProgress${i}"></div>
                 <div>${priority}</div>
             </div>
 
@@ -167,8 +167,8 @@ function htmlTemplateAwaitingFeedback(element, i, priority) {
         <div class="progress-section">
             ${htmlTemplateProgressSection(checkSubtasks(element), i, element)}
         </div>
-        <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
-            <div class="d-flex textWhite" id="assignedAwaitingFeedback${i}"></div>
+        <div class="assignedPrioContainer d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
+            <div class="assignedCardContainer d-flex textWhite" id="assignedAwaitingFeedback${i}"></div>
             <div>${priority}</div>
         </div>
     </div>
@@ -207,8 +207,8 @@ function htmlTemplateDone(element, i, priority) {
           <div class="progress-section">
             ${htmlTemplateProgressSection(checkSubtasks(element), i, element)}
         </div>
-          <div class="d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
-              <div class="d-flex textWhite" id="assignedDone${i}"></div>
+          <div class="assignedPrioContainer d-flex justify-content-between mx-2 my-1 w-100 pe-4 align-items-center">
+              <div class="assignedCardContainer d-flex textWhite"  id="assignedDone${i}"></div>
               <div>${priority}</div>
           </div>
       </div>`;
