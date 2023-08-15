@@ -97,7 +97,7 @@ function initiateLongPress(e) {
       selectedElement = null;
     }
     boardOpenPopUpTask(currentTouchId, startTouchElement);
-  }, 1000);
+  }, 400);
 }
 
 /**
