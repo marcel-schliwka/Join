@@ -15,16 +15,8 @@ function generateEditTaskDialog() {
         <label id="edit-date-label" for="edit-date" class="font20 label">Due date</label>
         <input id="editDate" name="edit-date" type="date"
           class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p">
-<<<<<<< HEAD
-        <label id="edit-priority-label" for="edit-priority" class="font20 label">Priority</label>
-=======
         <label for="edit-priority" class="font20 label"><b>Priority</b></label>
-<<<<<<< HEAD
         <div class="prio-btn prio-btn-edit">
-=======
->>>>>>> 249dd3de1ddfebe5960efc92dbb1d395af2eec5c
-        <div class="edit-prio-btn">
->>>>>>> bd40d1c136a19473913c37dd149a16e8fd543291
           <button id="edit-urgent-btn" onclick="getEditTaskPrio(this, 'urgent')"
             class="font20 pad-18-10 urgent-btn custom-border shadow prioBtn" type="button">
             Urgent
