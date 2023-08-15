@@ -1,9 +1,15 @@
+.edit-task-section {
+    position: absolute;
+    top: 50px;
+    bottom: 50px;
+}
+
+
 .edit-task-form-board {
     display: flex;
     flex-direction: column;
     position: relative;
     min-height: 100px;
-    height: 57em;
     min-width: 400px;
     overflow: hidden;
     background-color: white;
@@ -31,4 +37,27 @@
 .edit-ok-btn {
     display: flex;
     justify-content: flex-end;
+}
+
+.edit-prio-btn {
+    display: flex;
+    height: 61px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+#editTitle,
+#editDescription,
+#editDate,
+#edit-assigned-container,
+.edit-prio-btn {
+    margin-bottom: 24px;
+    margin-top: 8px;
+}
+
+.edit-subtasks-container {
+    margin-top: 8px;
+    margin-bottom: 8px;
 }

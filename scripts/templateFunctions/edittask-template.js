@@ -1,7 +1,8 @@
 function generateEditTaskDialog() {
   return /*html*/`
     <div id="openEditModal" class="edit-modal-backdrop modal dNone">
-    <div>
+    <div class="edit-task-section">
+      <div class="edit-task-section-wo-btn">
       <form onsubmit="saveEditTask(taskIndex); return false;" class="edit-task-form-board popUpBoardEditTask">
         <img src="./img/close.svg" alt="Close Add Task Form" class="boardTaskClose"
           onclick="closeEditModal(document.getElementById('openEditModal')); resetPrioButtons();">
@@ -15,7 +16,7 @@ function generateEditTaskDialog() {
         <input id="editDate" name="edit-date" type="date"
           class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p">
         <label for="edit-priority" class="font20 label"><b>Priority</b></label>
-        <div class="prio-btn">
+        <div class="edit-prio-btn">
           <button id="edit-urgent-btn" onclick="getEditTaskPrio(this, 'urgent')"
             class="font20 pad-18-10 urgent-btn custom-border shadow prioBtn" type="button">
             Urgent
@@ -58,7 +59,7 @@ function generateEditTaskDialog() {
         </div>
         <ul class="generatedSubtasks cursor-p font20" id="subtask-edit-content">
         </ul>
-
+        </div>
         <div class="edit-ok-btn">
           <button id="editOkBtn" type="submit" class="display-none editTaskBoardBtn">
             Ok
