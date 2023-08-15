@@ -52,8 +52,8 @@ function generateEditTaskDialog() {
             <input onclick="changeToEditInput()" class="subtask-input  ol-none"
               type="text" placeholder="Add new subtask">
           </div>
-          <div onclick="changeToEditInput()" class="subtasks-button-container" id="subtasks-edit-button">
-            <button type="button"><img src="./img/plus_icon.png"></button>
+          <div class="subtasks-button-container" id="subtasks-edit-button">
+            <button onclick="changeToEditInput()" type="button"><img src="./img/plus_icon.png"></button>
           </div>
         </div>
         <ul class="generatedSubtasks cursor-p font20" id="subtask-edit-content">
@@ -83,16 +83,15 @@ function generateBasicEditSubtaskInputHTML() {
 
 function generateBasicEditSubtaskButtonHTML() {
   return `          
-    <button type="button"><img src="./img/plus_icon.png"></button>
+    <button onclick="changeToEditInput()" type="button"><img src="./img/plus_icon.png"></button>
       `;
 }
-
 
 
 function generateEditInputHTML() {
   return `
         <div>
-          <input onkeydown="handleKeyPress(event, addSubtask, changeToSubtask)" id="generatedSubtaskInput" placeholder="Enter a new subtask" class="ol-none b-none">
+          <input onkeydown="handleKeyPress(event, addEditedSubtask(), resetEditInput()" id="generatedSubtaskInput" placeholder="Enter a new subtask" class="ol-none b-none">
         </div>
         `;
 }
@@ -101,7 +100,7 @@ function generateEditInputHTML() {
 function generateEditButtonHTML() {
   return `
     <div class="generated-Btn-Container">
-    <button onclick="changeToEditSubtask()" type="button"><img src="./img/cancel_icon.png"></button>
+    <button onclick="resetEditInput()" type="button"><img src="./img/cancel_icon.png"></button>
     <svg class="btn-seperator" xmlns="http://www.w3.org/2000/svg" width="2" height="31" viewBox="0 0 2 31" fill="none">
     <path d="M1 0V31" stroke="#D1D1D1"/>
     </svg>
