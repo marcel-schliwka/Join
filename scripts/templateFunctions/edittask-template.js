@@ -91,7 +91,7 @@ function generateBasicEditSubtaskButtonHTML() {
 function generateEditInputHTML() {
   return `
         <div>
-          <input onkeydown="handleKeyPress(event, addEditedSubtask(), resetEditInput()" id="generatedSubtaskInput" placeholder="Enter a new subtask" class="ol-none b-none">
+          <input onkeydown="handleKeyPress(event, addEditedSubtask, resetEditInput)" id="generatedSubtaskInput" placeholder="Enter a new subtask" class="ol-none b-none">
         </div>
         `;
 }
