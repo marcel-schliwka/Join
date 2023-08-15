@@ -1,6 +1,6 @@
 function generateEditTaskDialog() {
   return /*html*/`
-    <div id="openEditModal" class="edit-modal-backdrop modal dNone">
+  <div id="openEditModal" class="edit-modal-backdrop modal dNone">
     <div class="edit-task-section">
       <form onsubmit="saveEditTask(taskIndex); return false;" class="edit-task-form-board popUpBoardEditTask">
       <div class="edit-task-section-wo-btn">
@@ -71,8 +71,8 @@ function generateEditTaskDialog() {
         </div>
         </div>
       </form>
-    
-  </div>
+    </div>
+</div>
   `;
 }
 
