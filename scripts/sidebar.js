@@ -3,8 +3,6 @@
  * Elements that are meant to include external HTML content should have the attribute "w3-include-html" set to the path of the external file.
  * If the file is found and loaded successfully, the content will replace the innerHTML of the element.
  * If the file is not found, "Page not found" will be set as the innerHTML of the element.
- * @async
- * @function
  */
 async function includeHTML() {
   let includeElements = document.querySelectorAll("[w3-include-html]");
@@ -42,6 +40,10 @@ function markSiteAsActive() {
   }
 }
 
+/**
+ * Retrieves the site name from the current window's URL.
+ * @returns {string} The site name extracted from the URL.
+ */
 function getSiteName() {
   let url = window.location.href;
   return url.split("/")[3].split(".")[0];

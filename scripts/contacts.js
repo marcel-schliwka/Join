@@ -272,6 +272,12 @@ function openContact(card) {
   dialogContact.show();
 }
 
+/**
+ * Displays the new contact's details in a dialog.
+ * Sets the profile picture initials, background color, and updates the dialog's content.
+ *
+ * @param {string} name - The name of the contact to be displayed.
+ */
 function showNewContact(name) {
   let newContact = getContact(name);
   dialogContact.show();
@@ -285,6 +291,12 @@ function showNewContact(name) {
   dialogElements.phone.href = `tel:${newContact.number}`;
 }
 
+/**
+ * Retrieves a contact from the contacts list based on the provided name.
+ *
+ * @param {string} searchedName - The name of the contact to search for.
+ * @returns {Object} The contact object corresponding to the searched name.
+ */
 function getContact(searchedName) {
   let filteredContact = contacts.filter(
     (contact) => contact.name === searchedName

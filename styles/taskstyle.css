@@ -642,8 +642,8 @@ li {
 }
 
 .btn-seperator {
-  margin-left: 8px;
-  margin-right: 8px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .cancel-btn {
@@ -747,7 +747,8 @@ li {
   .subtasks-container,
   .contacts,
   .contact-item,
-  .prio-btn {
+  .prio-btn,
+  .generatedSubtasks {
     width: 363px;
     font-size: 16px;
   }
@@ -816,6 +817,8 @@ li {
     bottom: 25% !important;
     left: 50% !important;
   }
+
+
 }
 
 @media (max-width: 400px) {
@@ -935,9 +938,6 @@ li {
   height: 48px !important;
 }
 
-.ml-10 {
-  margin-left: 10px;
-}
 
 .ov-scroll {
   overflow-x: scroll;
@@ -959,6 +959,11 @@ li {
   outline: none;
 }
 
+.circle-picker {
+  margin-left: -10px;
+  margin-right: 5px;
+}
+
 @media (max-width: 370px) {
 
   .categorys,
@@ -970,7 +975,8 @@ li {
   #task-date,
   .subtasks-container,
   .contact-item,
-  .prio-btn {
+  .prio-btn,
+  .generatedSubtasks {
     width: 320px;
   }
 
@@ -1003,7 +1009,8 @@ li {
   .contact-item,
   .contacts,
   #contact-container,
-  .prio-btn {
+  .prio-btn,
+  .generatedSubtasks {
     width: 280px;
   }
 
@@ -1016,6 +1023,15 @@ li {
     align-items: center;
     font-size: 14px;
   }
+
+  .btn-seperator {
+    margin-left: 2px;
+    margin-right: 2px;;
+  }
+  .generated-Btn-Container input {
+    margin-right: 5px;;
+  }
+
 }
 
 @media (max-width: 310px) {
@@ -1030,7 +1046,8 @@ li {
   .subtasks-container,
   .contact-item,
   #contact-container,
-  .prio-btn {
+  .prio-btn,
+  .generatedSubtasks {
     width: 260px;
   }
 
@@ -1219,7 +1236,8 @@ li {
   .subtasks-container,
   .contacts,
   .contact-item,
-  .prio-btn {
+  .prio-btn,
+  .generatedSubtasks {
     width: 422px;
     font-size: 20px;
   }
@@ -1311,7 +1329,8 @@ li {
   .subtasks-container,
   .contacts,
   .contact-item,
-  .prio-btn {
+  .prio-btn,
+  .generatedSubtasks {
     width: 320px;
     font-size: 16px;
   }
@@ -1386,6 +1405,12 @@ li {
     margin-left: 275px;
   }
 
+  .subtask-edit-input {
+    width: 230px;
+  }
+
+
+
   .add-task-section form {
     margin-left: 270px;
   }
@@ -1400,7 +1425,8 @@ li {
   .subtasks-container,
   .contacts,
   .contact-item,
-  .prio-btn {
+  .prio-btn,
+  .generatedSubtasks {
     width: 320px;
     font-size: 18px;
   }
@@ -1465,7 +1491,8 @@ li {
   .subtasks-container,
   .contacts,
   .contact-item,
-  .prio-btn {
+  .prio-btn,
+  .generatedSubtasks {
     width: 363px;
   }
 
@@ -1534,7 +1561,8 @@ li {
   .subtasks-container,
   .contacts,
   .contact-item,
-  .prio-btn {
+  .prio-btn,
+  .generatedSubtasks {
     width: 380px;
   }
 

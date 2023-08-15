@@ -52,6 +52,16 @@ body {
   outline: none;
 }
 
+.assignedCardContainer > * {
+  display: none !important;
+}
+
+.assignedCardContainer > :nth-child(1),
+.assignedCardContainer > :nth-child(2),
+.assignedCardContainer > :nth-child(3) {
+  display: flex !important;
+}
+
 ::placeholder {
   color: #d1d1d1;
 }
@@ -253,7 +263,6 @@ body {
   .contact-icon {
     height: 30px;
     width: 30px;
-    margin-right: 4px;
   }
 
   .prio-icon {
@@ -262,6 +271,19 @@ body {
 
   .cardText {
     font-size: small;
+  }
+
+  .progress-section {
+    flex-direction: column;
+  }
+
+  .sub-headline {
+    word-wrap: break-word;
+    max-width: 95%;
+  }
+  .assignedPrioContainer {
+    flex-direction: column;
+    gap: 10px;
   }
 }
 

@@ -1,6 +1,13 @@
 const STORAGE_TOKEN = "YA5AI1KSZUL2OELGAKVPWF5KK7DZGD3EG6IRP7VM";
 const STORAGE_URL = "https://remote-storage.developerakademie.org/item";
 
+/**
+ * Stores a key-value pair to a remote storage using a POST request.
+ *
+ * @param {string} key - The key under which the value should be stored.
+ * @param {*} value - The value to be stored.
+ * @returns {Promise<Object>} A promise that resolves with the JSON response from the storage service.
+ */
 async function setItem(key, value) {
   const PAYLOAD = { key, value, token: STORAGE_TOKEN };
   return fetch(STORAGE_URL, {
@@ -9,6 +16,12 @@ async function setItem(key, value) {
   }).then((res) => res.json());
 }
 
+/**
+ * Retrieves a value from remote storage using the provided key.
+ *
+ * @param {string} key - The key for which to retrieve the value.
+ * @returns {Promise<*>} A promise that resolves with the value associated with the given key, or rejects with an error message.
+ */
 async function getItem(key) {
   const url = `${STORAGE_URL}?key=${key}&token=${STORAGE_TOKEN}`;
   return fetch(url)
@@ -22,16 +35,10 @@ async function getItem(key) {
     });
 }
 
-function handleKeyPress(event, f1, f2) {
-  if (event.key === "Enter") {
-    f1()
-    event.preventDefault();
-  } else if (event.key === "Escape") {
-    f2();
-    event.target.value = "";
-  }
-}
-
+/**
+ * Retrieves the logged-in user's data. If no user is logged in, redirects to the index page.
+ * @returns {Promise<Object|number>} A promise that resolves with the user object or 1 if no active user is found.
+ */
 async function getLoggedInUser() {
   const activeUser = localStorage.getItem("activeUser");
   if (!activeUser) {
@@ -42,6 +49,15 @@ async function getLoggedInUser() {
   return userObj;
 }
 
+function isUserLoggedIn() {
+  return localStorage.getItem("activeUser");
+}
+
+/**
+ * Extracts initials from a given name.
+ * @param {string} name - The full name from which to extract initials.
+ * @returns {string} The extracted initials from the name.
+ */
 function getInitials(name) {
   const nameParts = name.trim().split(" ");
   if (nameParts.length === 1) {
@@ -51,63 +67,28 @@ function getInitials(name) {
   }
 }
 
-function getColorSign(name) {
-  const colorSign = name.split(" ").pop().charAt(0).toUpperCase();
-  return colorSign;
-}
-
-function redirect(url) {
-  spliceStatusLocalStorage();
-  window.location.href = url;
-}
-
+/**
+ * Saves a status to local storage.
+ * @param {*} value - The status value to be saved.
+ */
 function saveStatusLocalstorage(value) {
   let statusAsText = JSON.stringify(value);
   localStorage.setItem("status", statusAsText);
 }
 
+/**
+ * Removes the status from local storage.
+ */
 function spliceStatusLocalStorage() {
   localStorage.removeItem("status");
 }
 
+/**
+ * Retrieves a status from local storage and logs it to the console.
+ * @returns {*} The status retrieved from local storage.
+ */
 function getStatusLocalStorage() {
   let statusAsText = JSON.parse(localStorage.getItem("status"));
   console.log(statusAsText);
   return statusAsText;
 }
-
-window.addEventListener("load", function () {
-  if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-    spliceStatusLocalStorage();
-  }
-});
-
-/** @type {Object} colors*/
-let MemberColors = {
-  A: "rgba(104, 166, 148, 1)", // Light Pinkconst
-  B: "rgba(166, 145, 104, 1)", // Gold
-  C: "rgba(104, 120, 166, 1)", // Blue
-  D: "rgba(222, 111, 13, 1)", // Light Brown
-  E: "rgba(140, 166, 104, 1)", // Olive Green
-  F: "rgba(140, 104, 166, 1)", // Purple
-  G: "rgba(130, 166, 104, 1)", // Green
-  H: "rgba(166, 113, 104, 1)", // Salmon
-  I: "rgba(166, 158, 104, 1)", // Pale Yellow
-  J: "rgba(148, 104, 166, 1)", // Lavender
-  K: "rgba(104, 166, 132, 1)", // Mint Green
-  L: "rgba(166, 105, 123, 1)", // Reddish Pink
-  M: "rgba(166, 133, 104, 1)", // Peach
-  N: "rgba(104, 135, 166, 1)", // Dark Blue
-  O: "rgba(166, 123, 104, 1)", // Burnt Orange
-  P: "rgba(104, 161, 166, 1)", // Light Blue
-  Q: "rgba(166, 104, 154, 1)", // Magenta
-  R: "rgba(255, 166, 104, 1)", // Orange
-  S: "rgba(115, 115, 166, 1)", // Dark Purple
-  T: "rgba(104, 166, 166, 1)", // Türkis
-  U: "rgba(166, 166, 104, 1)", // Yellow
-  V: "rgba(104, 113, 166, 1)", // Dark Blue
-  W: "rgba(104, 160, 166, 1)", // Aqua
-  X: "rgba(166, 115, 115, 1)", // Dark Salmon
-  Y: "rgba(166, 140, 104, 1)", // Light Brown
-  Z: "rgba(166, 115, 115, 1)", // Dark Salmon
-};

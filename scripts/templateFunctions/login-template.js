@@ -159,6 +159,18 @@ function templateSignUp() {
           class="input-icons"
         />
       </div>
+      <div class="checkbox-container">
+      <div class="remember-me-container">
+        <input
+          class="remember-checkbox"
+          required
+          type="checkbox"
+          name="remember"
+          id="remember"
+        />
+        <span>I accept the <a href="privacy.html">Privacy Policy</a></span>
+      </div>
+    </div>
       <div class="signup-btn-container">
         <button id="signupBtn" type="submit" class="signup-btn">Sign up</button>
       </div>
