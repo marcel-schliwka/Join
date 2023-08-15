@@ -1,6 +1,6 @@
 function generateEditTaskDialog() {
   return /*html*/`
-    <div id="openEditModal" class="modal-backdrop modal dNone">
+    <div id="openEditModal" class="modal-edit-backdrop modal dNone">
     <div>
       <form onsubmit="saveEditTask(taskIndex); return false;" class="edit-task-form-board popUpBoardEditTask">
         <img src="./img/close.svg" alt="Close Add Task Form" class="boardTaskClose"
@@ -15,7 +15,7 @@ function generateEditTaskDialog() {
         <input id="editDate" name="edit-date" type="date"
           class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p">
         <label for="edit-priority" class="font20 label"><b>Priority</b></label>
-        <div class="prio-btn">
+        <div class="prio-btn prio-btn-edit">
           <button id="edit-urgent-btn" onclick="getEditTaskPrio(this, 'urgent')"
             class="font20 pad-18-10 urgent-btn custom-border shadow prioBtn" type="button">
             Urgent
