@@ -49,6 +49,10 @@ async function getLoggedInUser() {
   return userObj;
 }
 
+function isUserLoggedIn() {
+  return localStorage.getItem("activeUser");
+}
+
 /**
  * Extracts initials from a given name.
  * @param {string} name - The full name from which to extract initials.

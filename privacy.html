@@ -19,21 +19,13 @@
   <link rel="stylesheet" href="styles/privacy.css" />
   <link rel="stylesheet" href="styles/fonts.css" />
   <link rel="stylesheet" href="styles/bootstrap.css">
-  <script defer src="scripts/sidebar.js"></script>
+  <script defer src="./scripts/privacy.js"></script>
+  <script defer src="./scripts/sidebar.js"></script>
   <script defer src="./scripts/utils.js"></script>
-  <script defer src="scripts/storage.js"></script>
-  <script>
-    function goBack() {
-      window.history.back();
-    }
-    async function initPrivacy() {
-      userObj = await getLoggedInUser();
-      renderTopLogo(userObj);
-    }
-  </script>
+  <script defer src="./scripts/storage.js"></script>
 </head>
 
-<body onload="includeHTML(); initPrivacy()">
+<body onload="initPrivacy()">
   <div w3-include-html="./templates/sidebar.html"></div>
   <div class="privacy-section">
     <div class="privacy-head">

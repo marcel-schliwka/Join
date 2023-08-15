@@ -204,6 +204,12 @@ form {
 
 .footer-container a {
   cursor: pointer;
+  text-decoration: none;
+  color: #a8a8a8;
+}
+
+.footer-container a:hover {
+  color: #2a3647;
 }
 
 @keyframes logoSlideIn {

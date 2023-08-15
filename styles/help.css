@@ -1,97 +1,101 @@
 body {
-    margin: 0;
-    background: #F6F7F8;
+  margin: 0;
+  background: #f6f7f8;
 }
 
 h1,
 h2,
 h3,
 h4 {
-    margin: 0
+  margin: 0;
 }
 
 h2,
 h3,
 h4 {
-    font-weight: 700 !important;
+  font-weight: 700 !important;
 }
 
 p {
-    margin: 0;
+  margin: 0;
 }
 
 main {
-    margin-top: 32px;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .help-section {
-    margin: 110px 98px 50px 328px;
-    display: flex;
-    flex-direction: column;
+  margin: 110px 98px 50px 328px;
+  display: flex;
+  flex-direction: column;
 }
 
 .top-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .join-link {
-    text-decoration: none;
-    color: #29ABE2;
+  text-decoration: none;
+  color: #29abe2;
 }
 
 .what-is-join {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .explanation-section {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .explanation-div {
-    display: flex;
-    gap: 35px;
+  display: flex;
+  gap: 35px;
+}
+
+.back-svg {
+  cursor: pointer;
 }
 
 @media (max-width: 760px) {
-    h1 {
-        font-size: 47px;
-    }
-    h2 {
-        font-size: 27px;
-        font-weight: 700 !important;
-    }
+  h1 {
+    font-size: 47px;
+  }
+  h2 {
+    font-size: 27px;
+    font-weight: 700 !important;
+  }
 
-    .help-section {
-        margin: 48px 16px 100px 16px;
-        max-width: 100%;
-    }
-    p  {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        white-space: normal;
-    }
+  .help-section {
+    margin: 48px 16px 100px 16px;
+    max-width: 100%;
+  }
+  p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+  }
 }
 
-@media(max-width: 400px) {
-    .back-svg {
-        margin-top: -35px;
-    }
-    .explanation-div {
-        gap: 20px;
-    }
+@media (max-width: 400px) {
+  .back-svg {
+    margin-top: -35px;
+  }
+  .explanation-div {
+    gap: 20px;
+  }
 }
 
-@media(max-width: 340px) {
-    .help-section {
-        margin: 48px 8px 100px 8px;
-    }
+@media (max-width: 340px) {
+  .help-section {
+    margin: 48px 8px 100px 8px;
+  }
 }
