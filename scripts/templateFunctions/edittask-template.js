@@ -32,7 +32,7 @@ function generateEditTaskDialog() {
             <img id="edit-low-img" src="./img/prio_low_color.png">
           </button>
         </div>
-        <label for="edit-assigned" class="font20 label">Assigned To</label>
+        <label for="edit-assigned" id="edit-assigned-label" class="font20 label">Assigned To</label>
         <div onclick="toggleEditAssignedMenu()" class="assigned-container font20 cursor-p" id="edit-assigned-container">
           <div class="assigned-input" id="editAssignedInput">
             <span>Select contacts to assign</span>
@@ -47,7 +47,7 @@ function generateEditTaskDialog() {
         </div>
         <div id="editContactContainerList" class="d-flex flex-row justify-start"> </div>
 
-        <label class="font20 label" for="subtasks">Subtasks</label>
+        <label class="font20 label" for="subtasks" id="edit-subtasks-label">Subtasks</label>
         <div class="edit-subtasks-container font20 w-422 h-51 custom-border pad-18-21">
           <div class="subtasks-input" id="subtask-edit-input">
             <input onclick="changeToEditInput()" class="subtask-input  ol-none"

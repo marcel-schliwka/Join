@@ -51,7 +51,6 @@
 #editTitle,
 #editDescription,
 #editDate,
-#edit-assigned-container,
 .edit-prio-btn {
     margin-bottom: 24px;
     margin-top: 8px;
@@ -60,4 +59,38 @@
 .edit-subtasks-container {
     margin-top: 8px;
     margin-bottom: 8px;
+}
+#edit-subtasks-label {
+    margin-top: 24px;
+}
+
+#subtask-edit-content {
+    width: 422px;
+}
+
+#edit-assigned-label {
+    margin-bottom: 8px;
+}
+
+@media (max-width: 800px) {
+  #editTitle,
+    #editDescription,
+    #editDate,
+    .edit-prio-btn,
+    #editAssignedInput,
+    #edit-assigned-container,
+    .edit-subtasks-container,
+    #subtask-edit-content,
+    #editRenderContacts,
+    .edit-contact-item,
+    .edit-contacts {
+        width: 363px;
+    }
+    .edit-prio-btn,
+    .edit-prio-btn button {
+        height: 55px;
+    }
+    #edit-assigned-container {
+        margin-bottom: 0px;
+    }
 }
