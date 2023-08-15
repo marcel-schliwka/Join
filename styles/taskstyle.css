@@ -745,7 +745,8 @@ li {
   .subtasks-container,
   .contacts,
   .contact-item,
-  .prio-btn {
+  .prio-btn,
+  .generatedSubtasks {
     width: 363px;
     font-size: 16px;
   }

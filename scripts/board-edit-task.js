@@ -337,10 +337,8 @@ function changeToEditInput() {
  * Changes the subtask section to display a basic edit subtask input and button.
  */
 function resetEditInput() {
-  debugger;
   let input = document.getElementById("subtask-edit-input");
   let button = document.getElementById('subtasks-edit-button');
-
   input.innerHTML = generateBasicEditSubtaskInputHTML();
   button.innerHTML = generateBasicEditSubtaskButtonHTML();
 }
