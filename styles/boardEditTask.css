@@ -32,3 +32,48 @@
     display: flex;
     justify-content: flex-end;
 }
+
+.modal-edit-backdrop {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5) !important;
+    z-index: 999;
+}
+
+@media screen and (min-width: 871px) and (max-width: 1200px) {
+    .edit-task-form-board {
+        height: 49em;
+
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .edit-task-form-board {
+        max-width: 350px;
+        height: 700px;
+    }
+
+    .assignedContainer {
+        width: unset !important;
+    }
+
+    .prio-btn-edit {
+        order: 0 !important
+    }
+
+    .prio-btn {
+        width: unset;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .prio-btn-edit {
+        order: 0 !important
+    }
+}

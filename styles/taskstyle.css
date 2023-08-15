@@ -430,13 +430,15 @@ input[type="color"].circle-picker {
   width: 20px;
   height: 20px;
   border: none;
-  border-radius: 50%; /* Makes it a circle */
+  border-radius: 50%;
+  /* Makes it a circle */
   cursor: pointer;
   background: none;
   outline: none;
   padding: 0;
   margin: 0;
-  overflow: hidden; /* To ensure no part of the default input is shown */
+  overflow: hidden;
+  /* To ensure no part of the default input is shown */
 }
 
 input[type="color"].circle-picker::-webkit-color-swatch-wrapper {
@@ -838,6 +840,7 @@ li {
 }
 
 @media (max-width: 330px) {
+
   .categorys,
   #render-categorys,
   #title-input,
@@ -957,6 +960,7 @@ li {
 }
 
 @media (max-width: 370px) {
+
   .categorys,
   #render-categorys,
   #title-input,
@@ -987,6 +991,7 @@ li {
 }
 
 @media (max-width: 340px) {
+
   .categorys,
   #render-categorys,
   #title-input,
@@ -1014,6 +1019,7 @@ li {
 }
 
 @media (max-width: 310px) {
+
   .categorys,
   #render-categorys,
   #title-input,
@@ -1059,11 +1065,18 @@ li {
     align-items: center;
     font-size: 12px;
   }
+
   .create-btn-responsive {
     right: 0px;
     top: 9.8px;
     width: 100px;
     height: 62px;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .edit-subtasks-container {
+    width: unset !important
   }
 }
 
@@ -1278,6 +1291,7 @@ li {
 }
 
 @media only screen and (max-width: 1000px) and (min-width: 950px) {
+
   .add-task-section form,
   .add-task-section h1 {
     margin-left: 255px;
@@ -1440,6 +1454,7 @@ li {
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 1101px) {
+
   .categorys,
   #render-categorys,
   #title-input,
@@ -1547,6 +1562,7 @@ li {
 }
 
 @media (min-width: 1380px) {
+
   .category-input,
   #category-input {
     width: 300px;
