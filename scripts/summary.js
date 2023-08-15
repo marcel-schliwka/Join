@@ -3,7 +3,6 @@ let userObj;
 let taskcount;
 let deadlines = [];
 
-
 /**
  * gets the logged-in user and gets the user object
  * then it updates the html accordingly
@@ -17,7 +16,7 @@ async function initSummary() {
  * Updates various HTML elements on the page with the latest information.
  * Calls functions to set the time-based greeting, render task count,
  * render deadline, and render the top logo using user information.
- * 
+ *
  * @returns {void} This function does not return a value.
  */
 function updateHTML() {
@@ -28,19 +27,9 @@ function updateHTML() {
 }
 
 /**
- * Redirects the user to a specified URL.
- * 
- * @param {string} url - The URL to which the user should be redirected.
- * @returns {void} This function does not return a value.
- */
-function redirect(url) {
-  window.location.href = url;
-}
-
-/**
  * Renders the upcoming deadline information on the board.
  * Updates the urgent task count and displays the next deadline date.
- * 
+ *
  * @returns {void} This function does not return a value.
  */
 function renderDeadline() {
@@ -55,7 +44,7 @@ function renderDeadline() {
 /**
  * Finds and prepares the next upcoming deadline date.
  * Retrieves and processes deadline dates using related functions.
- * 
+ *
  * @returns {void} This function does not return a value.
  */
 function findNextDeadline() {
@@ -66,7 +55,7 @@ function findNextDeadline() {
 /**
  * Returns the formatted next upcoming deadline date.
  * If there are no deadline dates, it returns a message indicating no deadline set.
- * 
+ *
  * @returns {string} The formatted next upcoming deadline date or a "No deadline set" message.
  */
 function returnNextDeadline() {
@@ -84,7 +73,7 @@ function returnNextDeadline() {
 
 /**
  * Formats a date string into a more human-readable format.
- * 
+ *
  * @param {string} dateToFormat - The date string to be formatted (YYYY-MM-DD).
  * @returns {string} The formatted date in the format: Month Day, Year (e.g., "January 01, 2023").
  */
@@ -116,7 +105,7 @@ function formateDate(dateToFormat) {
 
 /**
  * Retrieves valid deadline dates from user tasks and populates the 'deadlines' array.
- * 
+ *
  * @returns {void} This function does not return a value.
  */
 function getDeadlineDates() {
@@ -130,7 +119,7 @@ function getDeadlineDates() {
 
 /**
  * Checks if a given date string is in the valid "YYYY-MM-DD" format.
- * 
+ *
  * @param {string} date - The date string to be validated.
  * @returns {boolean} Returns true if the date is in valid format, otherwise false.
  */
@@ -142,7 +131,7 @@ function checkIfDateIsValid(date) {
 /**
  * Updates the task count displayed on the board for different status categories.
  * Retrieves task counts and board variables to update the UI elements.
- * 
+ *
  * @returns {void} This function does not return a value.
  */
 function renderTaskCount() {
@@ -156,10 +145,9 @@ function renderTaskCount() {
   boardVariables.user.innerText = userObj.name;
 }
 
-
 /**
  * Retrieves references to various board-related HTML elements.
- * 
+ *
  * @returns {Object} An object containing references to different board-related HTML elements.
  * @property {HTMLElement} tasks - The element displaying the total task count.
  * @property {HTMLElement} progress - The element displaying the "In Progress" task count.
@@ -185,7 +173,7 @@ function getBoardVariable() {
 /**
  * Counts the number of tasks in different status categories.
  * Iterates through user tasks and tallies the tasks for each status.
- * 
+ *
  * @returns {Object} An object containing the count of tasks for each status category.
  * @property {number} to do - The count of tasks marked as "To Do".
  * @property {number} in progress - The count of tasks marked as "In Progress".
@@ -212,7 +200,7 @@ function countStatus() {
 /**
  * Counts the number of tasks with urgent priority.
  * Iterates through user tasks and tallies tasks with "urgent" priority.
- * 
+ *
  * @returns {Object} An object containing the count of tasks with "urgent" priority.
  * @property {number} urgent - The count of tasks marked with "urgent" priority.
  */
@@ -233,7 +221,7 @@ function countUrgentPrio() {
 /**
  * Sets a time-based greeting on the page based on the current hour.
  * Uses the current hour to display a suitable greeting message.
- * 
+ *
  * @returns {void} This function does not return a value.
  */
 function setTime() {
@@ -250,7 +238,7 @@ function setTime() {
 
 /**
  * Retrieves the current hour of the day.
- * 
+ *
  * @returns {number} The current hour of the day (0-23).
  */
 function currentHour() {
@@ -261,7 +249,7 @@ function currentHour() {
 /**
  * Changes the source of an image to display a white pencil icon.
  * Updates the source of an image element to display a white pencil icon image.
- * 
+ *
  * @returns {void} This function does not return a value.
  */
 function whitePencil() {
@@ -271,7 +259,7 @@ function whitePencil() {
 /**
  * Changes the source of an image to display a dark pencil icon.
  * Updates the source of an image element to display a dark pencil icon image.
- * 
+ *
  * @returns {void} This function does not return a value.
  */
 function darkPencil() {
@@ -281,7 +269,7 @@ function darkPencil() {
 /**
  * Changes the source of an image to display a white checkmark icon.
  * Updates the source of an image element to display a white checkmark icon image.
- * 
+ *
  * @returns {void} This function does not return a value.
  */
 function whiteOk() {
@@ -291,7 +279,7 @@ function whiteOk() {
 /**
  * Changes the source of an image to display a dark checkmark icon.
  * Updates the source of an image element to display a dark checkmark icon image.
- * 
+ *
  * @returns {void} This function does not return a value.
  */
 function darkOk() {
