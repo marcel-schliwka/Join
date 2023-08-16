@@ -23,7 +23,7 @@ nav a {
 }
 
 .activeSite {
-  background-color: rgba(9, 25, 49, 255);
+  background-color: rgba(9, 25, 49, 255) !important;
 }
 
 header {
@@ -112,7 +112,7 @@ header {
 }
 
 .navChild > a:hover {
-  background-color: rgba(9, 25, 49, 255);
+  background-color: #2a3d59;
   cursor: pointer;
 }
 
