@@ -256,6 +256,8 @@ let startEventListener = () => {
  * @param {Object} card
  */
 function openContact(card) {
+  deleteActiveClass();
+  card.classList.add("single-contact-card-active");
   contactsMain.classList.remove("contacts-none");
   contactsMain.classList.add("contacts-main");
   document.getElementById("buttonRespBack").classList.remove("d-none");
@@ -272,6 +274,11 @@ function openContact(card) {
   dialogContact.show();
 }
 
+function deleteActiveClass() {
+  document.querySelectorAll(".single-contact-card-active").forEach((card) => {
+    card.classList.remove("single-contact-card-active");
+  });
+}
 /**
  * Displays the new contact's details in a dialog.
  * Sets the profile picture initials, background color, and updates the dialog's content.

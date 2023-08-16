@@ -204,8 +204,15 @@ body {
   gap: 10px;
   color: var(--white, #fff);
   border-radius: 10px;
-  border: 1px solid #2a3647;
+  border: unset;
   background-color: #2a3647;
+  transition: 75ms ease-in-out;
+}
+
+.custom-btn:hover {
+  background-color: #29abe2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: 75ms ease-in-out;
 }
 
 .custom-style-contacts {
@@ -283,8 +290,17 @@ body {
 
 .single-contact-card:hover {
   cursor: pointer;
-  background-color: #2a3647;
-  color: white;
+  background: linear-gradient(180deg, #f9f9f9 0%, #f0f0f0 100%);
+}
+
+.single-contact-card-active {
+  pointer-events: none;
+  background-color: #2a3647 !important;
+  color: white !important;
+}
+
+.single-contact-card-active p {
+  color: #29abe2 !important;
 }
 
 .info {
