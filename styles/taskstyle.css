@@ -459,6 +459,11 @@ input[type="color"].circle-picker::-moz-color-swatch {
   border-radius: 50%;
 }
 
+input:focus,
+textarea:focus {
+  border: 1px solid #29abe2;
+}
+
 .generated-Btn-Container {
   display: flex;
   align-items: center;
@@ -499,8 +504,13 @@ ul {
   padding: 0;
 }
 
-.category-generated-list:hover {
+.category-generated-list:hover,
+.category-dropdown-items:hover,
+.contact-item:hover {
   background-color: lightgray;
+  border-radius: 20px;
+  transition: 75ms ease-in-out;
+  cursor: pointer;
 }
 
 .category-dropdown-items:hover {
@@ -514,7 +524,7 @@ ul {
 .category-generated-list {
   display: flex;
   align-items: center;
-  width: 420px;
+  width: 100%;
 }
 
 .category-li-item {
@@ -566,9 +576,8 @@ ul {
 }
 
 .remove-border {
-  border-bottom-left-radius: 0px !important;
-  border-bottom-right-radius: 0px !important;
-  border-bottom: none !important;
+  border: 1px solid #29abe2;
+  z-index: 100;
 }
 
 li {
@@ -817,8 +826,6 @@ li {
     bottom: 25% !important;
     left: 50% !important;
   }
-
-
 }
 
 @media (max-width: 400px) {
@@ -843,7 +850,6 @@ li {
 }
 
 @media (max-width: 330px) {
-
   .categorys,
   #render-categorys,
   #title-input,
@@ -938,7 +944,6 @@ li {
   height: 48px !important;
 }
 
-
 .ov-scroll {
   overflow-x: scroll;
 }
@@ -965,7 +970,6 @@ li {
 }
 
 @media (max-width: 370px) {
-
   .categorys,
   #render-categorys,
   #title-input,
@@ -997,7 +1001,6 @@ li {
 }
 
 @media (max-width: 340px) {
-
   .categorys,
   #render-categorys,
   #title-input,
@@ -1026,16 +1029,14 @@ li {
 
   .btn-seperator {
     margin-left: 2px;
-    margin-right: 2px;;
+    margin-right: 2px;
   }
   .generated-Btn-Container input {
-    margin-right: 5px;;
+    margin-right: 5px;
   }
-
 }
 
 @media (max-width: 310px) {
-
   .categorys,
   #render-categorys,
   #title-input,
@@ -1093,7 +1094,7 @@ li {
 
 @media screen and (max-width: 580px) {
   .edit-subtasks-container {
-    width: unset !important
+    width: unset !important;
   }
 }
 
@@ -1309,7 +1310,6 @@ li {
 }
 
 @media only screen and (max-width: 1000px) and (min-width: 950px) {
-
   .add-task-section form,
   .add-task-section h1 {
     margin-left: 255px;
@@ -1409,8 +1409,6 @@ li {
     width: 230px;
   }
 
-
-
   .add-task-section form {
     margin-left: 270px;
   }
@@ -1480,7 +1478,6 @@ li {
 }
 
 @media only screen and (max-width: 1200px) and (min-width: 1101px) {
-
   .categorys,
   #render-categorys,
   #title-input,
@@ -1590,7 +1587,6 @@ li {
 }
 
 @media (min-width: 1380px) {
-
   .category-input,
   #category-input {
     width: 300px;
