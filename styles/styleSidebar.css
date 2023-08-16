@@ -94,6 +94,7 @@ header {
   object-fit: cover;
   width: 32px;
   height: 32px;
+  transition: 75ms ease-in-out;
 }
 
 #logo-text-initials {
@@ -179,7 +180,7 @@ header {
   color: #cdcdcd;
 }
 
-.hiddenDropdown a {
+#sidebarDropdown a {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -193,10 +194,17 @@ header {
   font-weight: 400;
   line-height: 120%;
   padding: 8px;
+  transition: 75ms ease-in-out;
 }
 
-.hiddenDropdown a:hover {
-  color: white;
+.icon-question:hover path {
+  fill: rgb(110, 110, 110);
+  transition: 75ms ease-in-out;
+}
+
+#sidebarDropdown a:hover {
+  color: white !important;
+  transition: 75ms ease-in-out;
 }
 
 .padleft-3rem {
