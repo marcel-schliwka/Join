@@ -381,7 +381,11 @@ body {
     height: 3px;
   }
   .gridContainerChildBoard {
-    width: 95%;
+    width: 100%;
+  }
+  .emptyDropArea {
+    width: 100%;
+    height: fit-content;
   }
 }
 
