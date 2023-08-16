@@ -245,6 +245,14 @@ body {
   }
 }
 
+@media screen and (max-width: 955px) {
+  .headline-container-board {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
 @media screen and (min-width: 871px) and (max-width: 1200px) {
   .grid-items {
     min-width: 0;
@@ -308,12 +316,6 @@ body {
 
   .addTaskBoardBtn {
     display: none;
-  }
-
-  .headline-container-board {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
   }
 
   .moveableCard {

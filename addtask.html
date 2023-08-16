@@ -49,11 +49,11 @@
         <div class="top-left">
           <label class="font20 label" for="title">Title</label>
           <input id="title-input" required class="w-422 h-51 font20 pad-13-21 custom-border ol-none cursor-p"
-            type="text" placeholder="Enter a title">
+            type="text" placeholder="Enter a title" maxlength="25">
 
           <label class="font20 label" for="description">Description</label>
           <textarea required class="w-422 font20 pad-18-21 custom-border ol-none cursor-p" name="description"
-            id="description-input" cols="30" rows="10" placeholder="Enter a Description"></textarea>
+            id="description-input" cols="30" rows="10" placeholder="Enter a Description" maxlength="300"></textarea>
         </div>
 
         <div class="top-seperator">
@@ -66,7 +66,7 @@
 
         <div class="top-right">
           <label required class="font20 date-label label" for="date">Due date</label>
-          <input id="task-date" class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p" type="date" min=""
+          <input id="task-date" class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p" type="date"
             placeholder="dd/mm/yyyy">
 
           <label class="font20 label prio-label" for="prio">Prio</label>

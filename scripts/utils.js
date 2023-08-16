@@ -19,6 +19,7 @@ function showTopDown(message) {
     left: "35%",
     top: "100px",
     opacity: "0",
+    zindex: "2000",
   });
 
   // Nachricht setzen

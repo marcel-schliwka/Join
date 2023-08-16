@@ -29,7 +29,14 @@ h1 {
   background: #2a3647;
   border: none;
   color: white;
+  transition: 75ms ease-out;
 }
+
+.signup-btn:hover {
+  transform: scale(1.02);
+  transition: transform 75ms ease-in-out;
+}
+
 .nav {
   display: flex;
   justify-content: flex-end;
@@ -153,6 +160,32 @@ form {
 .remember-me-container {
   display: flex;
   align-items: center;
+}
+
+.remember-me-container a,
+.checkbox-container a {
+  text-decoration: none;
+  color: #29abe2;
+}
+
+.remember-me-container a:hover,
+.checkbox-container a:hover {
+  text-decoration: underline;
+  transition: all 75ms ease-in-out;
+}
+
+.input-container:focus-within {
+  border: 1px solid #29abe2;
+}
+
+.forgotText {
+  max-width: 90%;
+}
+
+.remember-checkbox:hover {
+  transform: scale(1.1);
+  -webkit-box-shadow: 0px 0px 1px 1px rgba(42, 54, 71, 0.2);
+  box-shadow: 0px 0px 1px 1px rgba(42, 54, 71, 0.2);
 }
 
 .forgot-link {

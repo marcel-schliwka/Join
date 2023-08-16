@@ -3,7 +3,7 @@ function templateForgotPassword() {
           <img onclick="showLogin();" src="./img/arrow-left-line.svg" class="arrow-back" />
           <h1>I forgot my password</h1>
           <span class="login-line"></span>
-          <p class="mt-5">Don't worry! We will send you an email with the instructions to reset your password.</p>
+          <p class="forgotText mt-5">Don't worry! We will send you an email with the instructions to reset your password.</p>
       
           <form onsubmit="sendPasswordMail(event);">
               <div class="input-container reset-password-input">

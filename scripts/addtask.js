@@ -134,10 +134,11 @@ function addTask(e) {
   if (getSiteName() == "addtask") {
     showBoardButton();
   }
+  showTopDown("Task created");
 
   setTimeout(function () {
     redirectTo("board.html");
-  }, 1000);
+  }, 2000);
 }
 
 /**
