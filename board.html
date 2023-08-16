@@ -179,7 +179,7 @@
       </div>
 
       <div class="d-flex align-items-center boardSearchBox paddingRight50Px">
-        <div class="border ps-3 py-1 findTaskBtn d-flex justify-content-between align-items-center">
+        <div class=" searchTaskContainer border ps-3 py-1 findTaskBtn d-flex justify-content-between align-items-center">
           <input onkeyup="searchTask()" id="boardInput" data-search placeholder="Find task"
             class="inputfindTask border-end" type="text" />
           <div class="d-flex justify-content-center align-items-center px-3 cursorPointer">
@@ -198,7 +198,11 @@
         <div class="d-flex justify-content-between">
           <div class="bold boardCategoryHeadline">To do</div>
           <div class="cursorPointer">
-            <img src="./img/plusButton.svg" alt="plus" onclick="addTaskByStatus('to do')" />
+            <svg class="plusButton" onclick="addTaskByStatus('to do')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16 12.5757L8 12.5757" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+              <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+            </svg>
           </div>
         </div>
         <div ondrop="moveTo('to do', this)" ondragover="allowDrop(event, this)" ondragleave="leaveDropArea(this)"
@@ -208,7 +212,11 @@
         <div class="d-flex justify-content-between">
           <div class="bold boardCategoryHeadline">In Progress</div>
           <div class="cursorPointer">
-            <img src="./img/plusButton.svg" alt="plus" onclick="addTaskByStatus('in progress')" />
+            <svg class="plusButton" onclick="addTaskByStatus('in progress')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16 12.5757L8 12.5757" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+              <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+            </svg>
           </div>
         </div>
         <div ondrop="moveTo('in progress', this)" ondragover="allowDrop(event, this)" ondragleave="leaveDropArea(this)"
@@ -218,7 +226,11 @@
         <div class="d-flex justify-content-between">
           <div class="bold boardCategoryHeadline">Awaiting Feedback</div>
           <div class="cursorPointer">
-            <img src="./img/plusButton.svg" alt="plus" onclick="addTaskByStatus('awaiting feedback')" />
+            <svg class="plusButton" onclick="addTaskByStatus('awaiting feedback')" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 8.5V16.5" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16 12.5757L8 12.5757" stroke="#2A3647" stroke-width="2" stroke-linecap="round"/>
+              <rect x="1" y="1.5" width="22" height="22" rx="7" stroke="#2A3647" stroke-width="2"/>
+            </svg>
           </div>
         </div>
         <div ondrop="moveTo('awaiting feedback', this)" ondragover="allowDrop(event, this)"
