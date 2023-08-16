@@ -73,6 +73,8 @@ function clearAssigned() {
  * Adds a new task to the user's tasks list and redirects to the board page.
  */
 async function addTask() {
+  document.getElementById('submit-btn-web').disabled = true;
+  document.getElementById('submit-btn-responsive').disabled = true;
   const status = getStatusLocalStorage() || "to do";
   const task = await createTask(status);
   userObj.tasks.push(task);
