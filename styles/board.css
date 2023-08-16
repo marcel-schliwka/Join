@@ -370,6 +370,16 @@ body {
   .boardCategoryHeadline {
     font-size: 1.25rem;
   }
+
+  .dropArea {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    gap: 20px;
+  }
+  ::-webkit-scrollbar {
+    height: 3px;
+  }
 }
 
 @media screen and (max-width: 760px) {
