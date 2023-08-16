@@ -133,6 +133,7 @@ function getAddTaskVariables(status) {
   let description = document.getElementById("description-input");
   let date = document.getElementById("task-date");
   let category = document.querySelector(".category-input");
+  getAssignedContacts();
   let assignedTo = assigned;
   let subtaskTexts = getSubtasks();
   let newSubtasks = subtaskTexts.map((subtaskTitle) => ({
