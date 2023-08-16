@@ -7,7 +7,7 @@
 function generateCategoryInputHTML() {
   return `
     <div>
-      <input onkeydown="handleKeyPress(event, clearCategory, addNewCategory)" id="generatedInput" placeholder="Enter new category" class="ol-none b-none">
+      <input onkeydown="handleKeyPress(event, clearCategory, addNewCategory)" maxlength="9" id="generatedInput" placeholder="Enter new category" class="ol-none b-none">
     </div>
     `;
 }

@@ -71,7 +71,7 @@ body {
 
 .dialog__blue-line {
   width: 5rem;
-  border: 1px solid #29ABE2;
+  border: 1px solid #29abe2;
   margin-top: -1em;
 }
 
@@ -233,7 +233,6 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #2a3647;
 }
-
 
 .contacts-header {
   display: inline-flex;
@@ -463,6 +462,10 @@ body {
   display: none;
 }
 
+.button-resp-back {
+  background-color: transparent;
+}
+
 .custom-lh-120 {
   line-height: 120%;
 }
@@ -528,7 +531,6 @@ body {
 }
 
 @media only screen and (max-width: 760px) {
-
   .add-to-contacts-btn {
     left: 50%;
   }
@@ -592,13 +594,13 @@ body {
     border-radius: 50%;
     height: 100px;
     width: 100px;
-    background-color: #fff;
     position: absolute;
     right: 0;
   }
 
   .btn-resp-menu-contacts {
     position: absolute;
+    z-index: 200;
     bottom: 166px;
     bottom: 160px;
     right: 30px;
@@ -801,7 +803,6 @@ body {
     display: block !important;
     border: unset;
     border-radius: 50%;
-    background-color: #f6f7f8;
     z-index: 2;
     position: absolute;
     right: 8px;
@@ -819,7 +820,6 @@ body {
     background-color: #2a3647;
     z-index: 10;
   }
-
 
   .btn-resp-options {
     width: 100%;
@@ -894,7 +894,6 @@ body {
     display: none !important;
   }
 
-
   .dialog__editRightBtn,
   .dialog__createRightBtn {
     justify-content: center;
@@ -933,7 +932,7 @@ body {
 
   .contacts-header {
     gap: 16px;
-    margin-top: 30px;    
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -959,18 +958,18 @@ body {
     width: 383px;
   }
 
-  #dialog__editContact, 
+  #dialog__editContact,
   #dialog__createContact {
     left: 20%;
   }
-  
+
   #dialogContact {
     padding: 0;
   }
 }
 
 @media only screen and (min-width: 1251px) {
-  #dialog__editContact, 
+  #dialog__editContact,
   #dialog__createContact {
     left: 20%;
   }
