@@ -130,7 +130,7 @@ function clearCategory() {
 function clearPriorityButtons() {
   const priorityButtons = ["urgentBtn", "mediumBtn", "lowBtn"];
   priorityButtons.forEach((button) =>
-    document.getElementById(button).classList.remove(`${button}-active`)
+    document.getElementById(button).classList.remove(`${button.replace("Btn", "")}-active`)
   );
   const priorityImages = ["lowImg", "mediumImg", "urgentImg"];
   priorityImages.forEach(
