@@ -93,10 +93,6 @@ body {
   height: 40px;
 }
 
-.dropArea {
-  min-height: 90vh;
-}
-
 .bgWhite2 {
   background-color: white;
 }
@@ -331,7 +327,7 @@ body {
   }
 
   .gridContainerChildBoard .dropArea {
-    min-height: 300px;
+    min-height: auto;
   }
 
   .addTaskBoardBtn {
@@ -339,7 +335,9 @@ body {
   }
 
   .moveableCard {
+    min-width: 200px;
     max-width: 300px;
+    height: auto;
   }
 
   .cardText {
@@ -403,7 +401,6 @@ body {
     padding-right: 16px;
     padding-left: 16px;
   }
-
 
   .dropArea {
     min-height: 100px !important;
