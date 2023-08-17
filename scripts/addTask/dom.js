@@ -89,26 +89,12 @@ function clearAll() {
   clearCategory();
   clearPriorityButtons();
   clearInputFields();
-  clearCheckboxes();
   currentPrio = undefined;
   subtasks = [];
   currentCategory = undefined;
   renderCategorys();
   renderSubtasks();
 }
-
-
-/**
- * Iterates through the list of checkbox images and resets their sources to the default checkbox image.
- */
-function clearCheckboxes() {
-  let checkboxImg = document.querySelectorAll('.checkboxImg');
-  for (let i = 0; i < checkboxImg.length; i++) {
-    const checkbox = checkboxImg[i];
-    document.getElementById(`checkboxImg${i}`).src = './img/checkbox.png';
-  }
-}
-
 
 /**
  * Clears the selected category input and button content.
@@ -130,14 +116,17 @@ function clearCategory() {
 function clearPriorityButtons() {
   const priorityButtons = ["urgentBtn", "mediumBtn", "lowBtn"];
   priorityButtons.forEach((button) =>
+    document
+      .getElementById(button)
+      .classList.remove(`${button.slice(0, -3)}-active`)
     document.getElementById(button).classList.remove(`${button.replace("Btn", "")}-active`)
   );
   const priorityImages = ["lowImg", "mediumImg", "urgentImg"];
   priorityImages.forEach(
     (image) =>
-    (document.getElementById(image).src = `./img/prio_${image
-      .replace("Img", "")
-      .toLowerCase()}_color.png`)
+      (document.getElementById(image).src = `./img/prio_${image
+        .replace("Img", "")
+        .toLowerCase()}_color.png`)
   );
 }
 
