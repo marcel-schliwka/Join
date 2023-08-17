@@ -73,18 +73,33 @@ function clearAssigned() {
  * Adds a new task to the user's tasks list and redirects to the board page.
  */
 async function addTask() {
-  document.getElementById('submit-btn-web').disabled = true;
-  document.getElementById('submit-btn-responsive').disabled = true;
-  const status = getStatusLocalStorage() || "to do";
-  const task = await createTask(status);
-  userObj.tasks.push(task);
-  setItem(userObj.email, JSON.stringify(userObj))
-  spliceStatusLocalStorage();
-  clearAll();
-  showBoardButtonIfNeeded();
-  showTopDown("Task created");
-  redirectToBoardAfterDelay();
+  if (checkIfCategoryIsSelected()) {
+    document.getElementById('submit-btn-web').disabled = true;
+    document.getElementById('submit-btn-responsive').disabled = true;
+    const status = getStatusLocalStorage() || "to do";
+    const task = await createTask(status);
+    userObj.tasks.push(task);
+    setItem(userObj.email, JSON.stringify(userObj))
+    spliceStatusLocalStorage();
+    clearAll();
+    showBoardButtonIfNeeded();
+    showTopDown("Task created");
+    redirectToBoardAfterDelay();
+  } else {
+    alert('Please select a category');
+  }
+
 }
+
+function checkIfCategoryIsSelected() {
+  const categoryCircle = document.querySelector(".category-input circle");
+  if (!categoryCircle || categoryCircle.getAttribute("fill") === null) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 
 
 /**
@@ -140,11 +155,10 @@ function getAddTaskVariables(status) {
     title: subtaskTitle,
     property: "unchecked",
   }));
-
   let prio = currentPrio;
   let color = document
-    .querySelector(".category-input circle")
-    .getAttribute("fill");
+  .querySelector(".category-input circle")
+  .getAttribute("fill");
   if (prio == undefined) {
     prio = "low";
   }
