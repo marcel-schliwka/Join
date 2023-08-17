@@ -49,13 +49,17 @@ function getSiteName() {
   return url.split("/")[3].split(".")[0];
 }
 
-/**
- * Displays the hidden dropdown menu by removing the "display-none" class from the "sidebarDropdown" element.
- * @function
- */
+let isDropdownOpen = false;
+
 function toggleHiddenDropdown() {
   let menu = document.getElementById("sidebarDropdown");
   menu.classList.remove("display-none");
+
+  if (!isDropdownOpen) {
+    // Fügen Sie den Event-Listener hinzu, wenn das Dropdown zum ersten Mal geöffnet wird
+    document.addEventListener("click", closeHiddenDropdown);
+    isDropdownOpen = true;
+  }
 }
 
 /**
@@ -67,9 +71,11 @@ function toggleHiddenDropdown() {
 function closeHiddenDropdown(event) {
   let dropdown = document.getElementById("sidebarDropdown");
   let menu = document.getElementById("hiddenSidebarMenu");
-  dropdown.classList.add("display-none");
+
   if (!dropdown.contains(event.target) && !menu.contains(event.target)) {
     dropdown.classList.add("display-none");
+    document.removeEventListener("click", closeHiddenDropdown); // Entfernen Sie den Event-Listener
+    isDropdownOpen = false;
   }
 }
 
