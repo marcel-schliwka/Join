@@ -92,6 +92,13 @@ async function addTask() {
 
 }
 
+
+/**
+ * Checks if a category is selected based on the presence and color of a category circle element.
+ *
+ * @function
+ * @returns {boolean} Returns `true` if a category is selected, `false` otherwise.
+ */
 function checkIfCategoryIsSelected() {
   const categoryCircle = document.querySelector(".category-input circle");
   if (!categoryCircle || categoryCircle.getAttribute("fill") === null) {
@@ -99,22 +106,6 @@ function checkIfCategoryIsSelected() {
   } else {
     return true;
   }
-}
-
-
-
-
-  document.getElementById("submit-btn-web").disabled = true;
-  document.getElementById("submit-btn-responsive").disabled = true;
-  const status = getStatusLocalStorage() || "to do";
-  const task = await createTask(status);
-  userObj.tasks.push(task);
-  setItem(userObj.email, JSON.stringify(userObj));
-  spliceStatusLocalStorage();
-  clearAll();
-  showBoardButtonIfNeeded();
-  showTopDown("Task created");
-  redirectToBoardAfterDelay();
 }
 
 
