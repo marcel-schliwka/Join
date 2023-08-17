@@ -86,7 +86,9 @@ async function addTask() {
     showTopDown("Task created");
     redirectToBoardAfterDelay();
   } else {
-    alert('Please select a category');
+    error = document.getElementById('hidden-error');
+    error.classList.remove('display-none');
+    error.innerText = 'Please select a category'
   }
 
 }
