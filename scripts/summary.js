@@ -247,26 +247,6 @@ function currentHour() {
 }
 
 /**
- * Changes the source of an image to display a white pencil icon.
- * Updates the source of an image element to display a white pencil icon image.
- *
- * @returns {void} This function does not return a value.
- */
-function whitePencil() {
-  document.getElementById("pencil").src = "./img/whitePencil.svg";
-}
-
-/**
- * Changes the source of an image to display a dark pencil icon.
- * Updates the source of an image element to display a dark pencil icon image.
- *
- * @returns {void} This function does not return a value.
- */
-function darkPencil() {
-  document.getElementById("pencil").src = "./img/icon_pencil.svg";
-}
-
-/**
  * Changes the source of an image to display a white checkmark icon.
  * Updates the source of an image element to display a white checkmark icon image.
  *

@@ -138,6 +138,7 @@ async function handlePasswordMatch(elements) {
  */
 function handlePasswordMismatch(signupBtn) {
   showTopDown("Your passwords are not similar!");
+
   signupBtn.disabled = false;
   return 0;
 }
@@ -180,6 +181,7 @@ function getLoginFormInput() {
  * @returns {Promise<void>}
  */
 async function login() {
+  document.getElementById("loginForm").classList.add("was-validated");
   const formInput = getLoginFormInput();
   const user = findUserByEmail(formInput.email);
   const isValidLogin = await validateLogin(user, formInput.password);
@@ -298,3 +300,12 @@ function sendPasswordMail(e) {
   }
   showLogin();
 }
+document.getElementById("email").addEventListener("input", function () {
+  let container = this.parentElement;
+
+  if (this.validity.valid) {
+    container.style.borderColor = "rgba(0, 0, 0, 0.2)"; // oder Ihre Standardfarbe
+  } else {
+    container.style.borderColor = "red";
+  }
+});

@@ -277,6 +277,10 @@ body {
   font-size: 21px;
 }
 
+.info p {
+  color: #007cee;
+}
+
 .single-contact-card {
   display: flex;
   align-items: center;
@@ -331,9 +335,8 @@ body {
 }
 
 .pos-btn {
-  position: absolute;
-  right: 16px;
-  bottom: 20px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .add-to-contacts-btn {
