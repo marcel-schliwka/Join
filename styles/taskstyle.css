@@ -142,14 +142,15 @@ body {
 }
 
 .add-task-section h1 {
-  margin-left: 328px;
-  margin-top: 50px;
+  margin-left: 296px;
+  margin-top: 80px;
+  margin-bottom: 48px;
 }
 
 .add-task-section form {
   display: flex;
   flex-direction: column;
-  margin-left: 355px;
+  margin-left: 296px;
 }
 
 #add-task-form {
@@ -160,6 +161,10 @@ body {
   padding: 40px;
   z-index: 25;
   width: fit-content;
+}
+
+#generatedSubtaskInput {
+  border: unset;
 }
 
 .add-task-container {
@@ -392,9 +397,12 @@ body {
 
 .subtasks-container input,
 .edit-subtasks-container input {
-  border: none;
+  border: unset;
 }
 
+.subtasks-container:focus-within {
+  border: 1px solid #29abe2;
+}
 .category-button-container button {
   background: white;
   border: none;
@@ -471,6 +479,10 @@ textarea:focus {
 .generated-Btn-Container {
   display: flex;
   align-items: center;
+}
+
+#title-input:focus {
+  border: 1px solid #29abe2;
 }
 
 .generated-Btn-Container button {
@@ -674,8 +686,8 @@ li {
   height: 21px;
 }
 
-#hidden-error p {
-  color: red;
+#hidden-error {
+  color: red !important;
   padding-left: 15px;
 }
 

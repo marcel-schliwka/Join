@@ -20,6 +20,11 @@ body {
   font-size: 4rem;
 }
 
+.boardCategoryHeadline {
+  font-size: 1.25rem;
+  color: #42526e;
+}
+
 .paddingRight50Px {
   padding-right: 50px;
 }
@@ -61,6 +66,10 @@ body {
 .inputfindTask {
   border: none;
   outline: none;
+}
+
+#boardInput:focus {
+  border: none;
 }
 
 .assignedCardContainer > * {
@@ -363,10 +372,6 @@ body {
   .findTaskBtn,
   .findTaskBtn input {
     width: 100%;
-  }
-
-  .boardCategoryHeadline {
-    font-size: 1.25rem;
   }
 
   .dropArea {
