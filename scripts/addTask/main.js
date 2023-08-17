@@ -71,6 +71,39 @@ function clearAssigned() {
  * Adds a new task to the user's tasks list and redirects to the board page.
  */
 async function addTask() {
+
+  if (checkIfCategoryIsSelected()) {
+    document.getElementById('submit-btn-web').disabled = true;
+    document.getElementById('submit-btn-responsive').disabled = true;
+    const status = getStatusLocalStorage() || "to do";
+    const task = await createTask(status);
+    userObj.tasks.push(task);
+    setItem(userObj.email, JSON.stringify(userObj))
+    spliceStatusLocalStorage();
+    clearAll();
+    showBoardButtonIfNeeded();
+    showTopDown("Task created");
+    redirectToBoardAfterDelay();
+  } else {
+    error = document.getElementById('hidden-error');
+    error.classList.remove('display-none');
+    error.innerText = 'Please select a category'
+  }
+
+}
+
+function checkIfCategoryIsSelected() {
+  const categoryCircle = document.querySelector(".category-input circle");
+  if (!categoryCircle || categoryCircle.getAttribute("fill") === null) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+
+
+
   document.getElementById("submit-btn-web").disabled = true;
   document.getElementById("submit-btn-responsive").disabled = true;
   const status = getStatusLocalStorage() || "to do";
@@ -83,6 +116,7 @@ async function addTask() {
   showTopDown("Task created");
   redirectToBoardAfterDelay();
 }
+
 
 /**
  * Creates a new task object based on the provided status.
@@ -134,11 +168,10 @@ function getAddTaskVariables(status) {
     title: subtaskTitle,
     property: "unchecked",
   }));
-
   let prio = currentPrio;
   let color = document
-    .querySelector(".category-input circle")
-    .getAttribute("fill");
+  .querySelector(".category-input circle")
+  .getAttribute("fill");
   if (prio == undefined) {
     prio = "low";
   }

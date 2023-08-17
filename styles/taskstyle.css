@@ -686,8 +686,8 @@ li {
   height: 21px;
 }
 
-#hidden-error p {
-  color: red;
+#hidden-error {
+  color: red !important;
   padding-left: 15px;
 }
 
