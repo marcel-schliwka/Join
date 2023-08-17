@@ -103,6 +103,15 @@ header {
   font-weight: 700;
 }
 
+#hiddenSidebarMenu:hover {
+  background: linear-gradient(
+      0deg,
+      rgba(12, 46, 98, 0.12) 0%,
+      rgba(12, 46, 98, 0.12) 100%
+    ),
+    #fff;
+  transition: 75ms ease-in-out;
+}
 .navChild > a {
   display: flex;
   padding-top: 8px;
@@ -199,6 +208,11 @@ header {
 
 .icon-question:hover path {
   fill: rgb(110, 110, 110);
+  transition: 75ms ease-in-out;
+}
+
+.icon-question:hover {
+  transform: scale(1.1);
   transition: 75ms ease-in-out;
 }
 

@@ -23,6 +23,7 @@
   <script defer src="./scripts/sidebar.js"></script>
   <script defer src="./scripts/bootstrap.js"></script>
   <script defer src="./scripts/utils.js"></script>
+  <script defer src="./scripts/addTask/edit-task.js"></script>
   <script defer src="./scripts/addTask/main.js"></script>
   <script defer src="./scripts/addTask/contacts.js"></script>
   <script defer src="./scripts/addTask/dom.js"></script>
@@ -36,7 +37,7 @@
 <body onload="includeHTML(); init()">
   <div w3-include-html="./templates/sidebar.html"></div>
   <div class="add-task-section">
-    <h1 class="font61">Add Task</h1>
+    <h1 id="addTaskHeadline" class="font61">Add Task</h1>
 
     <form onsubmit="addTask(); return false">
 
@@ -90,7 +91,7 @@
       <div class="bottom-section">
 
         <div class="bottom-left">
-          <label class="font20 label" for="category">Category</label>
+          <label id="" class="font20 label" for="category">Category</label>
           <div onclick="toggleCategoryMenu()" class="category-container font20" id="category-container">
             <div class="category-input cursor-p" id="category-input">
               <span>Select task category</span>

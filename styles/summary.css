@@ -1,7 +1,7 @@
 /*Basic*/
 body {
   margin: 0;
-  background: #F6F7F8;
+  background: #f6f7f8;
   color: #000;
 }
 
@@ -58,7 +58,7 @@ h3 {
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  line-height: 120%
+  line-height: 120%;
 }
 
 .font-16 {
@@ -70,8 +70,8 @@ h3 {
 }
 
 .custom-border {
-  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.10);
-  background: var(--white, #FFF);
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
+  background: var(--white, #fff);
   border-radius: 30px;
   transition: all 0.2s ease-in-out;
 }
@@ -87,14 +87,13 @@ h3 {
 /*Main*/
 
 h3 {
-  color: #2A3647;
+  color: #2a3647;
 }
-
 
 .summary {
   display: flex;
   flex-direction: column;
-  margin-left: 328px;
+  margin-left: 296px;
   margin-top: 110px;
 }
 
@@ -139,7 +138,6 @@ h3 {
   align-items: center;
   flex-shrink: 0;
 }
-
 
 .task-boad:hover,
 .task-progress:hover,
@@ -200,12 +198,12 @@ h3 {
 }
 
 .greeting-name {
-  color: var(--ligth-blue, #29ABE2);
+  color: var(--ligth-blue, #29abe2);
   font-family: Inter;
   font-size: 64px;
   font-style: normal;
   font-weight: 700;
-  line-height: 120%
+  line-height: 120%;
 }
 
 /*Media Queries*/
@@ -259,8 +257,7 @@ h3 {
   }
 }
 
-@media(max-width: 1140px) {
-
+@media (max-width: 1140px) {
   .summary-header h1,
   #task-count,
   #progress-count,
@@ -294,8 +291,7 @@ h3 {
   }
 }
 
-
-@media(max-width: 1080px) {
+@media (max-width: 1080px) {
   .summary {
     margin-left: 260px;
   }
@@ -306,8 +302,6 @@ h3 {
     display: none;
   }
 }
-
-
 
 @media (max-width: 760px) {
   .summary-header h1 {
@@ -346,7 +340,6 @@ h3 {
     width: 40px;
   }
 
-
   .summary {
     padding-left: 16px;
     padding-right: 16px;
@@ -365,7 +358,6 @@ h3 {
   .summary-content {
     margin-top: -20px;
   }
-
 
   .summary-header svg {
     order: 1;
@@ -389,10 +381,7 @@ h3 {
   .summary-content {
     justify-content: center;
   }
-
-
 }
-
 
 @media (max-width: 600px) {
   .summary-header svg {
@@ -413,7 +402,7 @@ h3 {
   .main-middle {
     margin-top: 10px;
     width: 512px;
-    height: 140px
+    height: 140px;
   }
 
   .main-bottom {
@@ -435,9 +424,7 @@ h3 {
   }
 }
 
-
 @media (max-width: 530px) {
-
   .task-board,
   .task-progress,
   .task-feedback {
@@ -451,13 +438,12 @@ h3 {
     height: 110px;
   }
 
-
   main {
     gap: 24px;
   }
 
   .main-top {
-    height: 116px
+    height: 116px;
   }
 
   .main-middle {
@@ -471,7 +457,6 @@ h3 {
     height: 68px;
   }
 
-
   .main-bottom {
     margin-top: 0;
     height: 110px;
@@ -479,7 +464,6 @@ h3 {
 }
 
 @media (max-width: 410px) {
-
   #task-count,
   #progress-count,
   #feedback-count,
@@ -489,9 +473,8 @@ h3 {
     font-size: 36px;
   }
 
-
   .urgent-left {
-    gap: 8px
+    gap: 8px;
   }
 
   .task-board,
@@ -508,7 +491,7 @@ h3 {
   }
 
   .main-top {
-    height: 100px
+    height: 100px;
   }
 
   .main-middle {
@@ -567,7 +550,7 @@ h3 {
   }
 
   .main-top {
-    height: 90px
+    height: 90px;
   }
 
   .main-middle {

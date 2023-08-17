@@ -119,6 +119,13 @@ function hideDialogElements() {
   });
 }
 
+function addNewContactButton() {
+  return `<button class="fw-bold custom-lh-120 custom-btn pos-btn" onclick="openCreateContact()">
+  <span class="custom-fs-21">Add new contact</span>
+  <img src="./img/icon_add_contact.png" alt="" />
+</button>`;
+}
+
 /**
  * getting first letters of name and surname of contacts +
  * creating new object element for them to be available
@@ -135,7 +142,7 @@ function hideDialogElements() {
  */
 function renderInitials() {
   let container = document.getElementById("contactsListContainer");
-
+  container.innerHTML = addNewContactButton();
   for (const [key, value] of contactsSorted.entries()) {
     container.innerHTML += generateInitialsContainer(key);
     renderContactsInContainer(key, value);

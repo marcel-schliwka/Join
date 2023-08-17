@@ -6,19 +6,18 @@ let currentCategory;
 let currentPrio;
 let tasks = [];
 
-
 /**
  * Initialization function. Gets the logged-in user object and renders the contacts, categories, subtasks, and the initials.
  * @function
  */
 async function init() {
   userObj = await getLoggedInUser();
+  checkIfEditTask();
   renderContacts();
   renderCategorys();
   renderSubtasks();
   renderTopLogo(userObj);
 }
-
 
 /**
  * Edits a subtask's content and toggles its editing interface.
@@ -26,16 +25,18 @@ async function init() {
  */
 function editSubtask(index) {
   const subtask = document.getElementById(`subtask-text${index}`);
-  const btnContainer = document.getElementById(`subtaskButtonsContainer${index}`);
+  const btnContainer = document.getElementById(
+    `subtaskButtonsContainer${index}`
+  );
   const container = document.getElementById(`listItem${index}`);
   const subtaskCircle = document.getElementById(`subtaskCircle${index}`);
   container.classList.toggle("no-hover");
   subtaskCircle.classList.add("display-none");
-  btnContainer.style.display = btnContainer.style.display === "none" ? "flex" : "none";
+  btnContainer.style.display =
+    btnContainer.style.display === "none" ? "flex" : "none";
   const editedSubtaskInput = generateEditSubtaskInput(subtask.innerText, index);
   subtask.innerHTML = editedSubtaskInput;
 }
-
 
 /**
  * Deletes a subtask at the specified index and updates the subtasks list.
@@ -45,7 +46,6 @@ function deleteSubtask(index) {
   subtasks.splice(index, 1);
   renderSubtasks();
 }
-
 
 /**
  * Accepts the edited content of a subtask and updates the subtasks list.
@@ -57,7 +57,6 @@ function acceptEditedSubtask(index) {
   renderSubtasks();
 }
 
-
 /**
  * Clears the assigned contacts input and resets the assigned contacts button.
  */
@@ -68,11 +67,11 @@ function clearAssigned() {
   assignedBtn.innerHTML = generateBasicAssignedButtonHTML();
 }
 
-
 /**
  * Adds a new task to the user's tasks list and redirects to the board page.
  */
 async function addTask() {
+
   if (checkIfCategoryIsSelected()) {
     document.getElementById('submit-btn-web').disabled = true;
     document.getElementById('submit-btn-responsive').disabled = true;
@@ -104,6 +103,21 @@ function checkIfCategoryIsSelected() {
 
 
 
+
+  document.getElementById("submit-btn-web").disabled = true;
+  document.getElementById("submit-btn-responsive").disabled = true;
+  const status = getStatusLocalStorage() || "to do";
+  const task = await createTask(status);
+  userObj.tasks.push(task);
+  setItem(userObj.email, JSON.stringify(userObj));
+  spliceStatusLocalStorage();
+  clearAll();
+  showBoardButtonIfNeeded();
+  showTopDown("Task created");
+  redirectToBoardAfterDelay();
+}
+
+
 /**
  * Creates a new task object based on the provided status.
  * Retrieves subtasks and task variables using helper functions to construct the new task object.
@@ -117,7 +131,6 @@ async function createTask(status) {
   return taskVariables;
 }
 
-
 /**
  * Shows the "Board" button if the current page is the "addtask" page.
  * Checks if the current page's site name is "addtask" and then calls the function to show the "Board" button.
@@ -128,7 +141,6 @@ function showBoardButtonIfNeeded() {
   }
 }
 
-
 /**
  * Redirects to the "board.html" page after a specified delay.
  * Uses a setTimeout function to delay the redirection to the "board.html" page by 2000 milliseconds (2 seconds).
@@ -138,7 +150,6 @@ function redirectToBoardAfterDelay() {
     redirectTo("board.html");
   }, 2000);
 }
-
 
 /**
  * Retrieves task-related variables to create a new task object.
@@ -179,7 +190,6 @@ function getAddTaskVariables(status) {
   return newTask;
 }
 
-
 /**
  * Updates the task priority and visuals based on the provided button and priority.
  * @param {HTMLElement} button - The button element representing the selected priority.
@@ -209,7 +219,6 @@ function getTaskPrio(button, priority) {
   currentPrio = priority;
 }
 
-
 /**
  * Clears the selected category input and button content.
  */
@@ -220,7 +229,6 @@ function clearCategory() {
   categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
 }
 
-
 /**
  * Checks if the category input element exists in the DOM.
  *
@@ -230,7 +238,6 @@ function clearCategory() {
 function checkIfCategoryInputExists() {
   return document.getElementById("generatedInput");
 }
-
 
 /**
  * Adds a new category to the list of categories.
@@ -247,8 +254,8 @@ function addNewCategory() {
         !input && !color
           ? "Oops.. something went wrong"
           : !input
-            ? "You need to type a new category"
-            : "You need to pick a color";
+          ? "You need to type a new category"
+          : "You need to pick a color";
       hiddenError.classList.remove("display-none");
     } else {
       hiddenError.innerText = "";
@@ -267,7 +274,6 @@ function addNewCategory() {
   }
 }
 
-
 /**
  * Retrieves various category-related variables from the DOM.
  *
@@ -281,7 +287,6 @@ function getCategoryVaraible() {
   const hiddenError = document.getElementById("hidden-error");
   return { input, color, category, categoryBtn, hiddenError };
 }
-
 
 /**
  * Collects assigned contacts based on checked checkboxes.
@@ -303,7 +308,6 @@ function getAssignedContacts() {
   }
 }
 
-
 /**
  * Adds a new subtask to the subtasks array and re-renders the subtask list.
  * Retrieves the input value, adds it to the subtasks array, and updates the rendered subtask list.
@@ -321,7 +325,6 @@ function addSubtask() {
   subtasksBtn.innerHTML = generateBasicSubtaskButtonHTML();
 }
 
-
 /**
  * Switches subtask container and button to basic subtask input and button.
  * Clears and replaces the content of subtask input container and button with basic elements.
@@ -332,7 +335,6 @@ function changeToSubtask() {
   subtasksInput.innerHTML = generateBasicSubtaskInputHTML();
   subtasksBtn.innerHTML = generateBasicSubtaskButtonHTML();
 }
-
 
 /**
  * Collects selected subtask values from checkboxes.
@@ -348,11 +350,3 @@ function getSubtasks() {
   });
   return subtaskTexts;
 }
-
-
-
-
-
-
-
-

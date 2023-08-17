@@ -73,51 +73,60 @@ function getEditedVaraible() {
  *
  * @param {number} i - The index of the task to be edited.
  */
+// function editTask(i) {
+//   document.getElementById("templateEditTask").innerHTML =
+//     generateEditTaskDialog();
+//   openEditModal(document.getElementById("openEditModal"));
+//   taskIndex = i;
+//   editedAssigned;
+//   renderUserContacts();
+//   let currentTask = userObj.tasks[i];
+//   pushSubtasks(currentTask);
+//   renderEditSubtasks();
+//   document.getElementById("editOkBtn").classList.remove("display-none");
+//   document.getElementById("editTitle").value = currentTask["titel"];
+//   document.getElementById("editDescription").value = currentTask["description"];
+//   document.getElementById("editDate").value = currentTask["date"];
+//   let currentButton = document.getElementById(
+//     `${"edit-" + currentTask["prio"] + "-btn"}`
+//   );
+//   let currentButtonImage = document.getElementById(
+//     `${"edit-" + currentTask["prio"] + "-img"}`
+//   );
+//   currentButton.classList.add(`${currentTask["prio"] + "-active"}`);
+//   currentButtonImage.src = `./img/prio_${currentTask["prio"]}.png`;
+//   const checkboxImages = document.querySelectorAll(".checkboxEditImg");
+//   const assignedContacts = currentTask["assigned"];
+//   document.getElementById("editContactContainerList").innerHTML = "";
+//   for (let c = 0; c < assignedContacts.length; c++) {
+//     const contact = assignedContacts[c];
+//     document.getElementById("editContactContainerList").innerHTML +=
+//       htmlTemplateEditContactIcon(contact);
+//   }
+//   for (let j = 0; j < checkboxImages.length; j++) {
+//     const checkboxImg = checkboxImages[j];
+//     const listItem = checkboxImg.closest(".contact-item-container");
+//     if (listItem) {
+//       const contactName = listItem
+//         .querySelector(".edit-contact-item")
+//         .textContent.trim();
+//       if (assignedContacts.includes(contactName)) {
+//         checkboxImg.src = "./img/checkbox_checked.png";
+//       }
+//       if (assignedContacts.includes(userObj["name"])) {
+//         checkboxImg.src = "./img/checkbox_checked.png";
+//       }
+//     }
+//   }
+// }
+
 function editTask(i) {
-  document.getElementById("templateEditTask").innerHTML =
-    generateEditTaskDialog();
-  openEditModal(document.getElementById("openEditModal"));
-  taskIndex = i;
-  editedAssigned;
-  renderUserContacts();
-  let currentTask = userObj.tasks[i];
-  pushSubtasks(currentTask);
-  renderEditSubtasks();
-  document.getElementById("editOkBtn").classList.remove("display-none");
-  document.getElementById("editTitle").value = currentTask["titel"];
-  document.getElementById("editDescription").value = currentTask["description"];
-  document.getElementById("editDate").value = currentTask["date"];
-  let currentButton = document.getElementById(
-    `${"edit-" + currentTask["prio"] + "-btn"}`
-  );
-  let currentButtonImage = document.getElementById(
-    `${"edit-" + currentTask["prio"] + "-img"}`
-  );
-  currentButton.classList.add(`${currentTask["prio"] + "-active"}`);
-  currentButtonImage.src = `./img/prio_${currentTask["prio"]}.png`;
-  const checkboxImages = document.querySelectorAll(".checkboxEditImg");
-  const assignedContacts = currentTask["assigned"];
-  document.getElementById("editContactContainerList").innerHTML = "";
-  for (let c = 0; c < assignedContacts.length; c++) {
-    const contact = assignedContacts[c];
-    document.getElementById("editContactContainerList").innerHTML +=
-      htmlTemplateEditContactIcon(contact);
-  }
-  for (let j = 0; j < checkboxImages.length; j++) {
-    const checkboxImg = checkboxImages[j];
-    const listItem = checkboxImg.closest(".contact-item-container");
-    if (listItem) {
-      const contactName = listItem
-        .querySelector(".edit-contact-item")
-        .textContent.trim();
-      if (assignedContacts.includes(contactName)) {
-        checkboxImg.src = "./img/checkbox_checked.png";
-      }
-      if (assignedContacts.includes(userObj["name"])) {
-        checkboxImg.src = "./img/checkbox_checked.png";
-      }
-    }
-  }
+  const task = userObj["tasks"][i];
+  console.log(task);
+  const taskString = JSON.stringify(task);
+  const base64String = btoa(taskString);
+  console.log(base64String);
+  window.location.href = `addtask.html?data=${base64String}`;
 }
 
 /**

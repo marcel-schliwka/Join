@@ -142,14 +142,15 @@ body {
 }
 
 .add-task-section h1 {
-  margin-left: 328px;
-  margin-top: 50px;
+  margin-left: 296px;
+  margin-top: 80px;
+  margin-bottom: 48px;
 }
 
 .add-task-section form {
   display: flex;
   flex-direction: column;
-  margin-left: 355px;
+  margin-left: 296px;
 }
 
 #add-task-form {
@@ -160,6 +161,10 @@ body {
   padding: 40px;
   z-index: 25;
   width: fit-content;
+}
+
+#generatedSubtaskInput {
+  border: unset;
 }
 
 .add-task-container {
@@ -294,7 +299,9 @@ body {
 }
 
 .clear-btn:hover {
-  border-color: #29abe2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border: 2px solid #29abe2;
+  background-color: transparent;
   color: #29abe2;
 }
 
@@ -324,11 +331,13 @@ body {
   border-radius: 10px;
   background: #2a3647;
   color: white;
+  border: unset;
 }
 
 .create-btn:hover {
-  background-color: #29abe2;
-  border: #29abe2;
+  background: #29abe2;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: transform 75ms ease-in-out;
 }
 
 .form-btn {
@@ -388,9 +397,12 @@ body {
 
 .subtasks-container input,
 .edit-subtasks-container input {
-  border: none;
+  border: unset;
 }
 
+.subtasks-container:focus-within {
+  border: 1px solid #29abe2;
+}
 .category-button-container button {
   background: white;
   border: none;
@@ -467,6 +479,10 @@ textarea:focus {
 .generated-Btn-Container {
   display: flex;
   align-items: center;
+}
+
+#title-input:focus {
+  border: 1px solid #29abe2;
 }
 
 .generated-Btn-Container button {

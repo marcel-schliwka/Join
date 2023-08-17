@@ -277,6 +277,10 @@ body {
   font-size: 21px;
 }
 
+.info p {
+  color: #007cee;
+}
+
 .single-contact-card {
   display: flex;
   align-items: center;
@@ -331,9 +335,8 @@ body {
 }
 
 .pos-btn {
-  position: absolute;
-  right: 16px;
-  bottom: 20px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .add-to-contacts-btn {
@@ -625,11 +628,11 @@ body {
     height: 50px;
     width: 50px;
     background-color: #2a3647;
-    z-index: 999;
+    z-index: 12;
   }
 
   .btn-resp-menu-contacts:hover {
-    background-color: #007cee;
+    background-color: #29abe2;
   }
 
   .btn-resp-options {
@@ -678,7 +681,7 @@ body {
     border-radius: 10px;
     position: absolute;
     right: 4px;
-    bottom: 4px;
+    bottom: 36px;
     background-color: white;
     width: 133px;
     height: 55%;
@@ -688,6 +691,7 @@ body {
     justify-content: space-evenly;
     gap: 8px;
     box-shadow: 0px 3px 15px -2px rgba(0, 0, 0, 0.14);
+    z-index: 500;
   }
 
   #dialogContact {
