@@ -1,3 +1,7 @@
+.pageContent {
+  display: none;
+}
+
 /*Basic Styles*/
 .font61 {
   color: #000;

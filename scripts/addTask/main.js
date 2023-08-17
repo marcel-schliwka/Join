@@ -11,12 +11,14 @@ let tasks = [];
  * @function
  */
 async function init() {
+  showLoadingScreen();
   userObj = await getLoggedInUser();
   checkIfEditTask();
   renderContacts();
   renderCategorys();
   renderSubtasks();
   renderTopLogo(userObj);
+  deleteLoadingScreen();
 }
 
 /**
@@ -71,27 +73,24 @@ function clearAssigned() {
  * Adds a new task to the user's tasks list and redirects to the board page.
  */
 async function addTask() {
-
   if (checkIfCategoryIsSelected()) {
-    document.getElementById('submit-btn-web').disabled = true;
-    document.getElementById('submit-btn-responsive').disabled = true;
+    document.getElementById("submit-btn-web").disabled = true;
+    document.getElementById("submit-btn-responsive").disabled = true;
     const status = getStatusLocalStorage() || "to do";
     const task = await createTask(status);
     userObj.tasks.push(task);
-    setItem(userObj.email, JSON.stringify(userObj))
+    setItem(userObj.email, JSON.stringify(userObj));
     spliceStatusLocalStorage();
     clearAll();
     showBoardButtonIfNeeded();
     showTopDown("Task created");
     redirectToBoardAfterDelay();
   } else {
-    error = document.getElementById('hidden-error');
-    error.classList.remove('display-none');
-    error.innerText = 'Please select a category'
+    error = document.getElementById("hidden-error");
+    error.classList.remove("display-none");
+    error.innerText = "Please select a category";
   }
-
 }
-
 
 /**
  * Checks if a category is selected based on the presence and color of a category circle element.
@@ -107,7 +106,6 @@ function checkIfCategoryIsSelected() {
     return true;
   }
 }
-
 
 /**
  * Creates a new task object based on the provided status.
@@ -161,8 +159,8 @@ function getAddTaskVariables(status) {
   }));
   let prio = currentPrio;
   let color = document
-  .querySelector(".category-input circle")
-  .getAttribute("fill");
+    .querySelector(".category-input circle")
+    .getAttribute("fill");
   if (prio == undefined) {
     prio = "low";
   }
