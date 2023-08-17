@@ -63,6 +63,10 @@ body {
   outline: none;
 }
 
+#boardInput:focus {
+  border: none;
+}
+
 .assignedCardContainer > * {
   display: none !important;
 }
