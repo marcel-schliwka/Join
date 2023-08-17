@@ -27,7 +27,6 @@ function handleTouchStart(e) {
  */
 function handleTouchMove(e) {
   e.preventDefault();
-  clearPressTimer();
   adjustCardOnMove(e);
 }
 
@@ -38,7 +37,6 @@ function handleTouchMove(e) {
  */
 function handleTouchEnd(e) {
   e.preventDefault();
-  clearPressTimer();
   finalizeCardMove(e);
 }
 
@@ -78,40 +76,6 @@ function initializeTouchAttributes(e) {
 }
 
 /**
- * Initiates a long press timer to detect if the user is holding down on a card.
- * @param {TouchEvent} e - The touch event.
- * @returns {number} The timer ID.
- */
-function initiateLongPress(e) {
-  return window.setTimeout(function () {
-    if (selectedElement && selectedElement.getAttribute("status")) {
-      selectedElement.style.left = `${
-        initialTouchOffsetX - initialScrollLeft
-      }px`;
-      selectedElement.style.top = `${initialTouchOffsetY - initialScrollTop}px`;
-      selectedElement.style.width = "auto";
-      selectedElement.style.height = "auto";
-      selectedElement.style.position = "static";
-      selectedElement.style.transform = "none";
-      selectedElement.style.pointerEvents = "auto";
-      selectedElement = null;
-    }
-    boardOpenPopUpTask(currentTouchId, startTouchElement);
-  }, 600);
-}
-
-/**
- * Adjusts the position of the card being dragged based on the user's touch movement.
- * @param {TouchEvent} e - The touch event.
- */
-function clearPressTimer() {
-  if (pressTimer !== null) {
-    window.clearTimeout(pressTimer);
-    pressTimer = null;
-  }
-}
-
-/**
  * Finalizes the position of the card after being dragged and dropped.
  * @param {TouchEvent} e - The touch event.
  */
@@ -124,9 +88,7 @@ function adjustCardOnMove(e) {
   }
   let touch = e.touches[0];
   let touchY = touch.clientY;
-  if (touchY > window.innerHeight - 500) {
-    window.scrollBy(0, 20);
-  }
+
   moveTouchElement = document.elementFromPoint(touch.clientX, touch.clientY);
 
   if (selectedElement) {
@@ -156,7 +118,7 @@ function finalizeCardMove(e) {
 }
 
 function startTouchEventListener() {
-  document.querySelectorAll(".moveableCard").forEach((card) => {
+  document.querySelectorAll(".prio-icon").forEach((card) => {
     card.addEventListener("touchstart", handleTouchStart, false);
     card.addEventListener("touchmove", handleTouchMove);
     card.addEventListener("touchend", handleTouchEnd, false);
