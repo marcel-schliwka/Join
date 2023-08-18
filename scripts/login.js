@@ -187,6 +187,10 @@ async function login() {
   const isValidLogin = await validateLogin(user, formInput.password);
 
   if (!isValidLogin) {
+    document
+      .getElementById("passwordContainer")
+      .classList.add("wrong-password");
+
     showTopDown("Your email or password is wrong!");
     return;
   }

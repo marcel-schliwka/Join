@@ -209,6 +209,9 @@ form {
   background-color: transparent;
   color: #29abe2;
 }
+.wrong-password {
+  border: 1px solid red;
+}
 .checkbox-container {
   margin: 10px 10px;
 }
