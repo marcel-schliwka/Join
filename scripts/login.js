@@ -192,6 +192,7 @@ async function login() {
       .classList.add("wrong-password");
 
     showTopDown("Your email or password is wrong!");
+    document.querySelector(".error-message").classList.remove("d-none");
     return;
   }
   localStorage.setItem("activeUser", formInput.email);

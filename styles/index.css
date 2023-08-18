@@ -212,6 +212,13 @@ form {
 .wrong-password {
   border: 1px solid red;
 }
+.error-message {
+  color: red;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+  text-align: left;
+}
 .checkbox-container {
   margin: 10px 10px;
 }
