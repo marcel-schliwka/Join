@@ -121,13 +121,7 @@ function getEditedVaraible() {
 // }
 
 function editTask(i) {
-  currentTask = userObj['tasks'][taskIndex];
-  console.log(currentTask);
-  pushSubtasks(currentTask);
-  const task = userObj["tasks"][i];
-  const taskString = JSON.stringify(task);
-  const base64String = btoa(taskString);
-  window.location.href = `addtask.html?data=${base64String}`;
+  window.location.href = `addtask.html?index=${i}`;
 }
 
 /**

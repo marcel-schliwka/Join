@@ -13,11 +13,11 @@ let tasks = [];
 async function init() {
   showLoadingScreen();
   userObj = await getLoggedInUser();
-  checkIfEditTask();
   renderContacts();
   renderCategorys();
   renderSubtasks();
   renderTopLogo(userObj);
+  checkIfEditTask();
   deleteLoadingScreen();
 }
 

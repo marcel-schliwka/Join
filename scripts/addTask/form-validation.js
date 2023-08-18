@@ -2,11 +2,25 @@ const taskForm = document.getElementById("task-form");
 const titleInput = document.getElementById("title-input");
 const descriptionInput = document.getElementById("description-input");
 const taskDateInput = document.getElementById("task-date");
-
-taskForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  validateInputs();
-});
+let successFull;
+function startEventListenerAddTask() {
+  taskForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    validateInputs();
+    if (successFull) {
+      addTask();
+    }
+  });
+}
+function startEventListenerEditTask() {
+  taskForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    validateInputs();
+    if (successFull) {
+      saveEditedTask();
+    }
+  });
+}
 
 function validateInputs() {
   const titelValue = titleInput.value.trim();
@@ -40,7 +54,8 @@ function setSuccess(element) {
 
 function allValidated(title, description, date) {
   if (title && description && date) {
-    addTask();
+    successFull = true;
+    return successFull;
   } else {
     return false;
   }
