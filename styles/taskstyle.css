@@ -1110,11 +1110,6 @@ li {
   }
 }
 
-@media screen and (max-width: 580px) {
-  .edit-subtasks-container {
-    width: unset !important;
-  }
-}
 
 @media only screen and (max-width: 760px) and (min-width: 429px) {
   .add-task-section {

@@ -245,6 +245,7 @@ function moveTo(status, element) {
  */
 function boardOpenPopUpTask(i, card) {
   taskCard = card;
+  taskIndex = i;
   currentStatus = card.getAttribute("status");
   currentTitel = card.getAttribute("titel");
   let index = userObj.tasks.findIndex(

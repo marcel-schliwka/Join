@@ -115,19 +115,20 @@ function clearCategory() {
  */
 function clearPriorityButtons() {
   const priorityButtons = ["urgentBtn", "mediumBtn", "lowBtn"];
-  priorityButtons.forEach((button) =>
+  priorityButtons.forEach((button) => {
     document
       .getElementById(button)
-      .classList.remove(`${button.slice(0, -3)}-active`)
-    document.getElementById(button).classList.remove(`${button.replace("Btn", "")}-active`)
-  );
+      .classList.remove(`${button.slice(0, -3)}-active`);
+    document
+      .getElementById(button)
+      .classList.remove(`${button.replace("Btn", "")}-active`);
+  });
   const priorityImages = ["lowImg", "mediumImg", "urgentImg"];
-  priorityImages.forEach(
-    (image) =>
-      (document.getElementById(image).src = `./img/prio_${image
-        .replace("Img", "")
-        .toLowerCase()}_color.png`)
-  );
+  priorityImages.forEach((image) => {
+    document.getElementById(image).src = `./img/prio_${image
+      .replace("Img", "")
+      .toLowerCase()}_color.png`;
+  });
 }
 
 /**

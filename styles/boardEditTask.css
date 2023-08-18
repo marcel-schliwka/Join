@@ -8,6 +8,7 @@
     position: fixed;
     top: 50px;
     bottom: 50px;
+    left: 39%;
     display: flex;
     flex-direction: column;
     min-height: 100px;
@@ -21,6 +22,7 @@
 
 .edit-task-section-wo-btn {
     overflow-y: scroll;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
 }
@@ -44,15 +46,17 @@
 .edit-ok-btn {
     display: flex;
     justify-content: flex-end;
+    margin-top: 30px;
 }
 
-.edit-prio-btn {
+.prio-btn-edit {
     display: flex;
     height: 61px;
     justify-content: center;
     align-items: center;
     gap: 10px;
     flex-shrink: 0;
+    width: 422px;
 }
 
 #editTitle,
@@ -63,6 +67,15 @@
     margin-top: 8px;
 }
 
+#editDescription {
+    height: 110px;
+    flex-shrink: 0;
+}
+
+#editDate {
+    flex-shrink: 0;
+}
+
 .edit-subtasks-container {
     margin-top: 8px;
     margin-bottom: 8px;
@@ -71,6 +84,7 @@
 #edit-subtasks-label {
     margin-top: 24px;
 }
+
 
 #subtask-edit-content {
     width: 422px;
@@ -84,8 +98,60 @@
     margin-top: 8px;
 }
 
-@media (max-width: 800px) {
+.prio-btn-edit {
+    margin-bottom: 24px;
+}
 
+#edit-priority-label {
+    margin-bottom: 8px;
+}
+
+.generated-Edit-Subtasks {
+    max-height: 139px;
+    scrollbar-width: none;
+}
+
+  .generated-Edit-Subtasks  li:hover,
+.generated-Edit-Subtasks  li:hover .subtask-buttons {
+  background: #d1d1d3;
+  border-radius: 10px;
+  display: flex;
+}
+
+.generated-Edit-Subtasks .no-hover li,
+.generated-Edit-Subtasks .no-hover li .subtask-buttons {
+  background: none;
+  border-radius: 0;
+}
+
+.generated-Edit-Subtasks .no-hover li .subtask-buttons {
+  display: none;
+}
+
+.modal-edit-backdrop {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5) !important;
+    z-index: 999;
+}
+
+p {
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .edit-task-form-board {
+        left: 30%;
+    }
+}
+
+@media (max-width: 800px) {
     #editTitle,
     #editDescription,
     #editDate,
@@ -97,6 +163,7 @@
     #editRenderContacts,
     .edit-contact-item,
     .edit-contacts,
+    .prio-btn-edit,
     #subtask-edit-content {
         width: 363px;
     }
@@ -115,17 +182,12 @@
     }
 }
 
-.modal-edit-backdrop {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.5) !important;
-    z-index: 999;
+
+
+@media (max-width: 760px) {
+    .edit-task-form-board {
+        left: 16%;
+    }
 }
 
 @media screen and (min-width: 871px) and (max-width: 1200px) {
@@ -135,27 +197,174 @@
     }
 }
 
-@media screen and (max-width: 580px) {
+@media (max-width: 580px) {
     .edit-task-form-board {
         max-width: 350px;
         height: 700px;
     }
 
-    .assignedContainer {
-        width: unset !important;
-    }
-
     .prio-btn-edit {
         order: 0 !important
     }
 
-    .prio-btn {
-        width: unset;
+    #editTitle,
+    #editDescription,
+    #editDate,
+    .prio-btn-edit,
+    #edit-assigned-container,
+    #generated-Edit-Subtasks,
+    #subtask-edit-content,
+    .edit-subtasks-container {
+        width: 320px;
     }
+    #edit-urgent-btn,
+    #edit-medium-btn,
+    #edit-low-btn {
+        width: 100px;
+        height: 50px;
+        font-size: 18px;
+    }
+    #editTitle,
+    #editDescription,
+    #editDate,
+    #editAssignedInput,
+    #subtask-edit-input {
+        font-size: 18px;
+    }
+
+    #generatedSubtaskInput {
+       width: 210px; 
+    }
+
 }
 
 @media screen and (max-width: 1200px) {
     .prio-btn-edit {
         order: 0 !important
+    }
+}
+
+@media(max-width: 660px) {
+    .edit-task-form-board {
+        left: 12%;
+        height: 90vh;
+        overflow-y: scroll;
+    }
+}
+
+@media (max-width: 510px) {
+    .edit-task-form-board {
+        left: 9%;
+    }
+} 
+
+@media (max-width: 460px) {
+    .edit-task-form-board {
+        left: 5%;
+    }
+}
+
+@media(max-width: 428px) {
+    .edit-task-form-board {
+        min-width: 360px;
+        padding: 4em 1em;
+    }
+
+    #edit-title-label,
+    #editTitle,
+    #edit-description-label,
+    #editDescription,
+    #edit-date-label,
+    #editDate,
+    #edit-priority-label,
+    .prio-btn-edit,
+    #edit-assigned-label,
+    #edit-assigned-container,
+    #edit-subtasks-label,
+    .edit-subtasks-container,
+    .assigned-container,
+    #editAssignedInput,
+    #subtask-edit-content {
+        font-size: 16px;
+    }
+
+    #edit-urgent-btn,
+    #edit-medium-btn,
+    #edit-low-btn {
+        height: 40px;
+        font-size: 16px;
+    }
+    
+    #editTitle,
+    #editDate,
+    .prio-btn-edit,
+    #edit-assigned-container,
+    .edit-subtasks-container {
+        height: 40px;
+    }
+    #editDescription {
+        height: 88px;
+    }
+    #edit-assigned-container {
+        padding: 12px 16px;
+    }
+
+    .contact-icon {
+        height: 35px;
+        width: 35px;
+    }
+    #editTitle,
+    #editDescription,
+    #editDate,
+    .prio-btn-edit {
+        margin-bottom: 16px;
+    }
+
+    #edit-subtasks-label {
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 390px){
+    .edit-task-form-board {
+        left: 4%;
+        right: 2%;
+        padding: 4em 0em;
+        min-width: 330px;
+    }
+    .edit-task-section-wo-btn {
+        margin-left: 16px;
+    }
+
+    #editTitle,
+    #editDescription,
+    #editDate,
+    .prio-btn-edit,
+    #edit-assigned-container,
+    #generated-Edit-Subtasks,
+    #subtask-edit-content,
+    .edit-subtasks-container {
+        width: 300px;
+    }
+
+    #editOkBtn {
+        margin-right: 20px;
+        font-size: 16px;
+        display: flex;
+        gap: 6px;
+    }
+
+    #editOkBtn svg {
+        height: 20px;
+        width: 20px;
+    }
+    #subtask-edit-input {
+        width: 170px;
+    }
+}
+
+@media (max-width: 350px) {
+    .edit-task-form-board {
+        left: 1.2%;
     }
 }

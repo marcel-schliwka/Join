@@ -15,7 +15,6 @@ function saveEditTask() {
   document.getElementById("templateEditTask").innerHTML = "";
   boardClosePopUpTask();
   boardOpenPopUpTask(taskIndex, taskCard);
-  showTopDown("Task edited!");
 }
 
 /**
@@ -73,69 +72,20 @@ function getEditedVaraible() {
  *
  * @param {number} i - The index of the task to be edited.
  */
-// function editTask(i) {
-//   document.getElementById("templateEditTask").innerHTML =
-//     generateEditTaskDialog();
-//   openEditModal(document.getElementById("openEditModal"));
-//   taskIndex = i;
-//   editedAssigned;
-//   renderUserContacts();
-//   let currentTask = userObj.tasks[i];
-//   pushSubtasks(currentTask);
-//   renderEditSubtasks();
-//   document.getElementById("editOkBtn").classList.remove("display-none");
-//   document.getElementById("editTitle").value = currentTask["titel"];
-//   document.getElementById("editDescription").value = currentTask["description"];
-//   document.getElementById("editDate").value = currentTask["date"];
-//   let currentButton = document.getElementById(
-//     `${"edit-" + currentTask["prio"] + "-btn"}`
-//   );
-//   let currentButtonImage = document.getElementById(
-//     `${"edit-" + currentTask["prio"] + "-img"}`
-//   );
-//   currentButton.classList.add(`${currentTask["prio"] + "-active"}`);
-//   currentButtonImage.src = `./img/prio_${currentTask["prio"]}.png`;
-//   const checkboxImages = document.querySelectorAll(".checkboxEditImg");
-//   const assignedContacts = currentTask["assigned"];
-//   document.getElementById("editContactContainerList").innerHTML = "";
-//   for (let c = 0; c < assignedContacts.length; c++) {
-//     const contact = assignedContacts[c];
-//     document.getElementById("editContactContainerList").innerHTML +=
-//       htmlTemplateEditContactIcon(contact);
-//   }
-//   for (let j = 0; j < checkboxImages.length; j++) {
-//     const checkboxImg = checkboxImages[j];
-//     const listItem = checkboxImg.closest(".contact-item-container");
-//     if (listItem) {
-//       const contactName = listItem
-//         .querySelector(".edit-contact-item")
-//         .textContent.trim();
-//       if (assignedContacts.includes(contactName)) {
-//         checkboxImg.src = "./img/checkbox_checked.png";
-//       }
-//       if (assignedContacts.includes(userObj["name"])) {
-//         checkboxImg.src = "./img/checkbox_checked.png";
-//       }
-//     }
-//   }
-// }
-
 function editTask(i) {
-  currentTask = userObj['tasks'][taskIndex];
-  console.log(currentTask);
+  document.getElementById("templateEditTask").innerHTML =
+    generateEditTaskDialog();
+  openEditModal(document.getElementById("openEditModal"));
+  taskIndex = i;
+  editedAssigned;
+  renderUserContacts();
+  let currentTask = userObj.tasks[i];
   pushSubtasks(currentTask);
-  const task = userObj["tasks"][i];
-  const taskString = JSON.stringify(task);
-  const base64String = btoa(taskString);
-  window.location.href = `addtask.html?data=${base64String}`;
-}
-
-/**
- * Sets the active state and updates the image of the priority button in the edit view.
- *
- * @param {Object} currentTask - The task object containing priority information.
- */
-function setEditButtons(currentTask) {
+  renderEditSubtasks();
+  document.getElementById("editOkBtn").classList.remove("display-none");
+  document.getElementById("editTitle").value = currentTask["titel"];
+  document.getElementById("editDescription").value = currentTask["description"];
+  document.getElementById("editDate").value = currentTask["date"];
   let currentButton = document.getElementById(
     `${"edit-" + currentTask["prio"] + "-btn"}`
   );
@@ -144,7 +94,43 @@ function setEditButtons(currentTask) {
   );
   currentButton.classList.add(`${currentTask["prio"] + "-active"}`);
   currentButtonImage.src = `./img/prio_${currentTask["prio"]}.png`;
+  const checkboxImages = document.querySelectorAll(".checkboxEditImg");
+  const assignedContacts = currentTask["assigned"];
+  document.getElementById("editContactContainerList").innerHTML = "";
+  for (let c = 0; c < assignedContacts.length; c++) {
+    const contact = assignedContacts[c];
+    document.getElementById("editContactContainerList").innerHTML +=
+      htmlTemplateEditContactIcon(contact);
+  }
+  for (let j = 0; j < checkboxImages.length; j++) {
+    const checkboxImg = checkboxImages[j];
+    const listItem = checkboxImg.closest(".contact-item-container");
+    if (listItem) {
+      const contactName = listItem
+        .querySelector(".edit-contact-item")
+        .textContent.trim();
+      if (assignedContacts.includes(contactName)) {
+        checkboxImg.src = "./img/checkbox_checked.png";
+      }
+      if (assignedContacts.includes(userObj["name"])) {
+        checkboxImg.src = "./img/checkbox_checked.png";
+      }
+    }
+  }
+} 
+
+/**
+ * Sets the active state and updates the image of the priority button in the edit view.
+ *
+ * @param {Object} currentTask - The task object containing priority information.
+ */
+function setEditButtons(currentTask) {
+  let currentButton = document.getElementById(`${"edit-" + currentTask["prio"] + "-btn"}`);
+  let currentButtonImage = document.getElementById(`${"edit-" + currentTask["prio"] + "-img"}`);
+  currentButton.classList.add(`${currentTask["prio"] + "-active"}`);
+  currentButtonImage.src = `./img/prio_${currentTask["prio"]}.png`;
 }
+
 
 /**
  * Updates the task priority selection in the edit view based on the selected button.
@@ -282,7 +268,7 @@ function toggleEditAssignedMenu() {
  * Renders the edit subtasks by populating the HTML content with subtask data.
  */
 function renderEditSubtasks() {
-  let content = document.getElementById("subtask-content");
+  let content = document.getElementById("subtask-edit-content");
   content.innerHTML = "";
   for (let i = 0; i < newSubtasks.length; i++) {
     const subtask = newSubtasks[i]["title"];
@@ -352,7 +338,7 @@ function changeToEditInput() {
  */
 function resetEditInput() {
   let input = document.getElementById("subtask-edit-input");
-  let button = document.getElementById("subtasks-edit-button");
+  let button = document.getElementById('subtasks-edit-button');
   input.innerHTML = generateBasicEditSubtaskInputHTML();
   button.innerHTML = generateBasicEditSubtaskButtonHTML();
 }

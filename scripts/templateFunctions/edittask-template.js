@@ -6,16 +6,16 @@ function generateEditTaskDialog() {
       <div class="edit-task-section-wo-btn">
         <img src="./img/close.svg" alt="Close Add Task Form" class="boardTaskClose"
           onclick="closeEditModal(document.getElementById('openEditModal')); resetPrioButtons();">
-        <label id="edit-title-label" for="edit-title" class="font20 label">Title</label>
+        <p id="edit-title-label" class="font20 label">Title</p>
         <input id="editTitle" name="edit-title" type="text"
           class="w-422 h-51 font20 pad-13-21 custom-border ol-none cursor-p">
-        <label id="edit-description-label" for="edit-description" class="font20 label">Description</label>
-        <input id="editDescription" name="edit-description" type="text" cols="30" rows="10"
-          class="w-422 font20 pad-18-21 custom-border ol-none cursor-p">
-        <label id="edit-date-label" for="edit-date" class="font20 label">Due date</label>
+        <p id="edit-description-label" class="font20 label">Description</p>
+        <textarea id="editDescription" name="edit-description" type="text" cols="30" rows="10"
+          class="w-422 font20 pad-18-21 custom-border ol-none cursor-p"></textarea>
+        <p id="edit-date-label" class="font20 label">Due date</p>
         <input id="editDate" name="edit-date" type="date"
           class="w-422 h-51 font20 pad-18-21 custom-border ol-none cursor-p">
-        <label for="edit-priority" class="font20 label"><b>Priority</b></label>
+        <p id="edit-priority-label" class="font20 label">Priority</p>
         <div class="prio-btn prio-btn-edit">
           <button id="edit-urgent-btn" onclick="getEditTaskPrio(this, 'urgent')"
             class="font20 pad-18-10 urgent-btn custom-border shadow prioBtn" type="button">
@@ -32,7 +32,7 @@ function generateEditTaskDialog() {
             <img id="edit-low-img" src="./img/prio_low_color.png">
           </button>
         </div>
-        <label for="edit-assigned" id="edit-assigned-label" class="font20 label">Assigned To</label>
+        <p id="edit-assigned-label" class="font20 label">Assigned To</p>
         <div onclick="toggleEditAssignedMenu()" class="assigned-container font20 cursor-p" id="edit-assigned-container">
           <div class="assigned-input" id="editAssignedInput">
             <span>Select contacts to assign</span>
@@ -47,7 +47,7 @@ function generateEditTaskDialog() {
         </div>
         <div id="editContactContainerList" class="d-flex flex-row justify-start"> </div>
 
-        <label class="font20 label" for="subtasks" id="edit-subtasks-label">Subtasks</label>
+        <p class="font20 label" id="edit-subtasks-label">Subtasks</p>
         <div class="edit-subtasks-container font20 w-422 h-51 custom-border pad-18-21">
           <div class="subtasks-input" id="subtask-edit-input">
             <input onclick="changeToEditInput()" class="subtask-input  ol-none"
@@ -57,7 +57,7 @@ function generateEditTaskDialog() {
             <button onclick="changeToEditInput()" type="button"><img src="./img/plus_icon.png"></button>
           </div>
         </div>
-        <ul class="generatedSubtasks cursor-p font20" id="subtask-edit-content">
+        <ul class="generated-Edit-Subtasks cursor-p font20" id="subtask-edit-content">
         </ul>
         </div>
         <div class="edit-ok-btn">
