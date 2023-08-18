@@ -187,7 +187,12 @@ async function login() {
   const isValidLogin = await validateLogin(user, formInput.password);
 
   if (!isValidLogin) {
+    document
+      .getElementById("passwordContainer")
+      .classList.add("wrong-password");
+
     showTopDown("Your email or password is wrong!");
+    document.querySelector(".error-message").classList.remove("d-none");
     return;
   }
   localStorage.setItem("activeUser", formInput.email);

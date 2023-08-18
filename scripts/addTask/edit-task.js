@@ -28,6 +28,7 @@ function changeInputs(taskToEdit) {
   changePriority(taskToEdit);
   changeCategoryOnEdit(taskToEdit);
   inputs.submitBtn.innerHTML = changeSubmitBtn();
+  inputs.submitBtnResp.innerHTML = changeSubmitBtn();
 }
 
 function getInputs() {
@@ -36,7 +37,8 @@ function getInputs() {
     headline: document.getElementById("addTaskHeadline"),
     description: document.getElementById("description-input"),
     date: document.getElementById("task-date"),
-    submitBtn: document.getElementById("submit-btn-responsive"),
+    submitBtnResp: document.getElementById("submit-btn-responsive"),
+    submitBtn: document.getElementById("submit-btn-web"),
   };
   return addTaskInputs;
 }

@@ -93,7 +93,7 @@ h3 {
 .summary {
   display: flex;
   flex-direction: column;
-  margin-left: 296px;
+  margin-left: 328px;
   margin-top: 110px;
 }
 
@@ -211,7 +211,7 @@ h3 {
 @media (max-width: 1320px) {
   .summary {
     margin-left: 300px;
-    margin-top: 60px;
+    margin-top: 110px;
   }
 
   .sumamry-content {
@@ -222,7 +222,7 @@ h3 {
 @media (max-width: 1200px) {
   .summary {
     margin-left: 280px;
-    margin-top: 50px;
+    margin-top: 110px;
   }
 
   .main-top {
@@ -265,7 +265,7 @@ h3 {
   #urgent-count,
   #todo-count,
   #done-count {
-    font-size: 50px;
+    font-size: 61px;
   }
 
   .summary-header h3 {
@@ -293,7 +293,7 @@ h3 {
 
 @media (max-width: 1080px) {
   .summary {
-    margin-left: 260px;
+    margin-left: 328px;
   }
 }
 

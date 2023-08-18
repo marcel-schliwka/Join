@@ -218,7 +218,7 @@ body {
 .custom-style-contacts {
   height: 100vh;
   display: flex;
-  margin-left: 232px;
+  margin-left: 284px;
   padding-bottom: 50px;
   background-color: rgba(246, 247, 248, 255);
 }
@@ -264,11 +264,11 @@ body {
 
 #contactsListContainer {
   max-height: 100%;
+  margin-top: 2px;
   width: 450px;
   padding: 32px 16px 32px 16px;
   flex-shrink: 0;
   background: var(--white, #fff);
-  box-shadow: 4px 0px 6px 0px rgba(0, 0, 0, 0.08);
   overflow: auto !important;
 }
 
