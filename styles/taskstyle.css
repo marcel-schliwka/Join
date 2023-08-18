@@ -151,6 +151,16 @@ body {
   margin-bottom: 48px;
 }
 
+.error-message {
+  color: red;
+  margin-top: -10px;
+  margin-bottom: 10px;
+  font-size: 0.75rem;
+}
+
+.is-invalid {
+  border: 1px solid red;
+}
 .add-task-section form {
   display: flex;
   flex-direction: column;
