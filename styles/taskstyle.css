@@ -125,6 +125,14 @@ body {
   background: #fff;
 }
 
+#addTaskHeadline {
+  font-size: 61px;
+  font-family: "Inter";
+  font-weight: 700;
+  margin-top: 110px;
+  margin-left: 328px;
+}
+
 .category-custom-border {
   border-top: none !important;
   border: 1px solid #d1d1d1;
@@ -145,12 +153,6 @@ body {
   box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
-.add-task-section h1 {
-  margin-left: 296px;
-  margin-top: 80px;
-  margin-bottom: 48px;
-}
-
 .error-message {
   color: red;
   margin-top: -10px;
@@ -164,7 +166,7 @@ body {
 .add-task-section form {
   display: flex;
   flex-direction: column;
-  margin-left: 296px;
+  margin-left: 328px;
 }
 
 #add-task-form {
@@ -736,12 +738,6 @@ li {
 }
 
 @media (max-width: 428px) {
-  .add-task-section h1 {
-    margin-left: 33px;
-    margin-top: 41px;
-    font-size: 47px;
-  }
-
   .add-task-section form {
     margin-left: 31px;
   }
@@ -905,10 +901,6 @@ li {
     height: 42px;
     width: 93.3px;
   }
-
-  .add-task-section h1 {
-    margin-left: 10px;
-  }
 }
 
 #generatedInput,
@@ -1021,10 +1013,6 @@ li {
     width: 100px;
   }
 
-  .add-task-section h1 {
-    margin-left: 20px;
-  }
-
   .add-to-board-btn {
     width: 250px;
   }
@@ -1135,10 +1123,6 @@ li {
     align-items: center;
   }
 
-  .add-task-section h1 {
-    margin-left: 0;
-  }
-
   .add-task-section form {
     align-items: center;
     margin-left: 0;
@@ -1219,12 +1203,6 @@ li {
     flex-direction: column;
     align-items: center;
     margin-left: -50px;
-  }
-
-  .add-task-section h1 {
-    margin-top: 41px;
-    margin-bottom: 20px;
-    font-size: 61px;
   }
 
   .seperator {
@@ -1340,13 +1318,12 @@ li {
 }
 
 @media only screen and (max-width: 1000px) and (min-width: 950px) {
-  .add-task-section form,
-  .add-task-section h1 {
-    margin-left: 255px;
+  .add-task-section form {
+    margin-left: 328px;
   }
 
-  .add-task-section h1 {
-    font-size: 47px;
+  #addTaskHeadline {
+    margin-left: 176px;
   }
 
   .categorys,
@@ -1431,16 +1408,12 @@ li {
 }
 
 @media only screen and (max-width: 1100px) and (min-width: 1001px) {
-  .add-task-section h1 {
-    margin-left: 275px;
-  }
-
   .subtask-edit-input {
     width: 230px;
   }
 
   .add-task-section form {
-    margin-left: 270px;
+    margin-left: 328px;
   }
 
   .categorys,
@@ -1552,10 +1525,6 @@ li {
     margin-left: 300px;
   }
 
-  .add-task-section h1 {
-    margin-left: 305px;
-  }
-
   #contact-img {
     margin-right: 3px;
   }
@@ -1571,11 +1540,7 @@ li {
 
 @media only screen and (max-width: 1380px) and (min-width: 1201px) {
   .add-task-section form {
-    margin-left: 290px;
-  }
-
-  .add-task-section h1 {
-    margin-left: 298px;
+    margin-left: 328px;
   }
 
   .categorys,
@@ -1651,6 +1616,11 @@ li {
 @media (max-width: 760px) {
   .create-btn-responsive {
     display: flex !important;
+  }
+  #addTaskHeadline {
+    font-size: 47px;
+    margin-left: 16px;
+    margin-top: 25px;
   }
 }
 

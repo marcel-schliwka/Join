@@ -11,13 +11,13 @@ body {
 }
 
 .parentDiv {
-  padding-left: 296px;
+  padding-left: 328px;
   padding-right: 50px;
-  padding-top: 80px;
+  padding-top: 110px;
 }
 
 .headlineBoard {
-  font-size: 4rem;
+  font-size: 61px;
 }
 
 .boardCategoryHeadline {
@@ -226,6 +226,7 @@ body {
   /* Begrenzt den Text auf 5 Zeilen */
   -webkit-box-orient: vertical;
   overflow: hidden;
+  overflow-wrap: anywhere;
 }
 
 .max-size {
