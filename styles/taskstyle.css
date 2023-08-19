@@ -940,6 +940,10 @@ li {
   justify-content: space-between;
 }
 
+.generatedSubtasks li {
+  border-radius: 10px;
+}
+
 .generatedSubtasks li:hover,
 .generatedSubtasks li:hover .subtask-buttons {
   background: #d1d1d3;
@@ -975,6 +979,10 @@ li {
   align-items: center;
   gap: 5px;
   margin-left: 3px;
+}
+
+.subtask-buttons svg {
+  height: 17px;
 }
 
 .subtask-edit-input {
@@ -1109,7 +1117,6 @@ li {
     height: 62px;
   }
 }
-
 
 @media only screen and (max-width: 760px) and (min-width: 429px) {
   .add-task-section {

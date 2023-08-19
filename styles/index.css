@@ -33,10 +33,9 @@ h1 {
 }
 
 .signup-btn:hover {
-  transform: scale(1.02);
   background: #29abe2;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  transition: transform 75ms ease-in-out;
+  transition: all 75ms ease-in-out;
 }
 
 .nav {
@@ -185,7 +184,6 @@ form {
 }
 
 .remember-checkbox:hover {
-  transform: scale(1.1);
   -webkit-box-shadow: 0px 0px 1px 1px rgba(42, 54, 71, 0.2);
   box-shadow: 0px 0px 1px 1px rgba(42, 54, 71, 0.2);
 }
@@ -205,10 +203,11 @@ form {
 
 .guest-login-btn:hover {
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  border: 2px solid #29abe2;
+  border: 1px solid #29abe2;
   background-color: transparent;
   color: #29abe2;
 }
+
 .wrong-password {
   border: 1px solid red;
 }
