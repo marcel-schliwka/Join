@@ -14,7 +14,6 @@ function goBack() {
 function checkIfFromSignUp() {
   const queryString = window.location.search;
   const urlParam = new URLSearchParams(queryString);
-  console.log(urlParam.get("signUp"));
   if (urlParam.get("signup") == "showPolicy") {
     return false;
   }

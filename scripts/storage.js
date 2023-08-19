@@ -90,6 +90,5 @@ function spliceStatusLocalStorage() {
  */
 function getStatusLocalStorage() {
   let statusAsText = JSON.parse(localStorage.getItem("status"));
-  console.log(statusAsText);
   return statusAsText;
 }

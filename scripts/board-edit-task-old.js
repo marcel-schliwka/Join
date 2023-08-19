@@ -117,7 +117,7 @@ function editTask(i) {
       }
     }
   }
-} 
+}
 
 /**
  * Sets the active state and updates the image of the priority button in the edit view.
@@ -125,12 +125,15 @@ function editTask(i) {
  * @param {Object} currentTask - The task object containing priority information.
  */
 function setEditButtons(currentTask) {
-  let currentButton = document.getElementById(`${"edit-" + currentTask["prio"] + "-btn"}`);
-  let currentButtonImage = document.getElementById(`${"edit-" + currentTask["prio"] + "-img"}`);
+  let currentButton = document.getElementById(
+    `${"edit-" + currentTask["prio"] + "-btn"}`
+  );
+  let currentButtonImage = document.getElementById(
+    `${"edit-" + currentTask["prio"] + "-img"}`
+  );
   currentButton.classList.add(`${currentTask["prio"] + "-active"}`);
   currentButtonImage.src = `./img/prio_${currentTask["prio"]}.png`;
 }
-
 
 /**
  * Updates the task priority selection in the edit view based on the selected button.
@@ -213,7 +216,6 @@ function editGeneratedSubtask(index) {
  */
 function acceptEditEditedSubtask(index) {
   let input = document.getElementById(`editedSubtask-input${index}`).value;
-  console.log(input);
   (newSubtasks[index] = {
     title: input,
     property: "unchecked",
@@ -338,7 +340,7 @@ function changeToEditInput() {
  */
 function resetEditInput() {
   let input = document.getElementById("subtask-edit-input");
-  let button = document.getElementById('subtasks-edit-button');
+  let button = document.getElementById("subtasks-edit-button");
   input.innerHTML = generateBasicEditSubtaskInputHTML();
   button.innerHTML = generateBasicEditSubtaskButtonHTML();
 }
