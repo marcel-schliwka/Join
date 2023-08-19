@@ -221,7 +221,6 @@ function editGeneratedSubtask(index) {
  */
 function acceptEditEditedSubtask(index) {
   let input = document.getElementById(`editedSubtask-input${index}`).value;
-  console.log(input);
   (newSubtasks[index] = {
     title: input,
     property: "unchecked",

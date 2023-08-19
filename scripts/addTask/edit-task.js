@@ -134,7 +134,6 @@ function saveEditedContacts() {
   userObj.tasks[editedTaskIndex].assigned = [];
   document.querySelectorAll(".contact-item").forEach((item) => {
     let itemText = item.innerText.trim();
-    console.log(itemText);
     let checkboxImg = item.querySelector(".checkboxImg");
     if (checkboxImg.getAttribute("src") == "./img/checkbox_checked.png") {
       userObj.tasks[editedTaskIndex].assigned.push(itemText);
