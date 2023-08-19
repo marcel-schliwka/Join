@@ -15,7 +15,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: gruppe-622.developerakademie.net
+          server: ${{ secrets.FTP_SERVER }}
           server-dir: Join/
-          username: f015d8e1
+          username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
