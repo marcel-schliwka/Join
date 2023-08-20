@@ -40,6 +40,7 @@ function changeInputs(taskToEdit) {
   inputs.submitBtnResp.innerHTML = changeSubmitBtn();
   inputs.categoryContainer.remove();
   inputs.categoryLabel.remove();
+  inputs.backButton.classList.remove("d-none");
   loadSubtasks();
   loadAssignedContacts();
 }
@@ -55,6 +56,7 @@ function getInputs() {
     taskForm: document.getElementById("task-form"),
     categoryLabel: document.getElementById("category-label"),
     categoryContainer: document.getElementById("category-container"),
+    backButton: document.querySelector(".back-button"),
   };
   return addTaskInputs;
 }

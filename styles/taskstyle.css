@@ -742,6 +742,11 @@ li {
     margin-left: 31px;
   }
 
+  .back-button {
+    right: 10px !important;
+    top: 120px !important;
+  }
+
   .seperator {
     display: none;
   }
@@ -940,6 +945,14 @@ li {
   justify-content: space-between;
 }
 
+.back-button {
+  cursor: pointer;
+  width: 33px;
+  height: 33px;
+  position: absolute;
+  right: 70px;
+  top: 200px;
+}
 .generatedSubtasks li {
   border-radius: 10px;
 }
@@ -1043,6 +1056,10 @@ li {
     width: 280px;
   }
 
+  .back-button {
+    top: 120px;
+    right: 10px;
+  }
   #urgentBtn,
   #mediumBtn,
   #lowBtn {
@@ -1123,6 +1140,10 @@ li {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .back-button {
+    top: 120px;
+    right: 10px;
   }
 
   .add-task-section form {
@@ -1326,6 +1347,7 @@ li {
 
   #addTaskHeadline {
     margin-left: 176px;
+    position: relative;
   }
 
   .categorys,
