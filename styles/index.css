@@ -9,8 +9,8 @@ h1 {
 }
 .logo-img {
   position: absolute;
-  top: calc(100vh - 50% - 100px);
-  left: calc(100vw - 50% - 100px);
+  top: calc(100vh - 50% - 50px);
+  left: calc(100vw - 50% - 50px);
   width: 200px;
   height: 200px;
   z-index: 10;
@@ -72,7 +72,7 @@ h1 {
   padding: 32px 0;
   width: 50%;
   min-height: 500px;
-  margin: 10vh 100px 0 100px;
+  margin: 30px 100px 0 100px;
   display: flex;
   flex-direction: column;
   border-radius: 30px;
@@ -248,9 +248,9 @@ form {
 
 .footer-container {
   display: flex;
+  margin-top: 50px;
   gap: 16px;
   color: #a8a8a8;
-  margin-top: 180px;
 }
 
 .footer-container a {
@@ -330,7 +330,7 @@ form {
 @media only screen and (max-width: 750px) {
   .login-box {
     width: 70%;
-    margin: 15vh 20px 50px 20px;
+    margin: 30px 20px 50px 20px;
   }
   .login-line {
     margin-bottom: 40px;
@@ -347,6 +347,8 @@ form {
   .logo-img {
     background-image: url(../img/logo_white.svg);
     animation: logoSlideInMobile 2s forwards 1s;
+    width: 100px;
+    height: 100px;
   }
   .login-box {
     width: 90%;
@@ -366,7 +368,7 @@ form {
   }
   .nav-join-user-mobile {
     display: flex;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
   }
   .input-container {
     margin-right: 20px;
@@ -386,5 +388,14 @@ form {
   }
 }
 
-@media only screen and (max-width: 390px) {
+@media only screen and (max-width: 350px) {
+  .input-container {
+    width: 70%;
+  }
+  .input-container input {
+    width: 80%;
+  }
+  .checkbox-container {
+    margin-left: 20px;
+  }
 }

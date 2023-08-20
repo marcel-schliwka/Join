@@ -236,7 +236,7 @@ async function validateLogin(user, password) {
 
 async function createUserObject(username, email, hashedPassword) {
   let userObj = {
-    name: username,
+    name: capitalizeFirstLetterOfEveryWord(username),
     email: email,
     password: hashedPassword,
     tasks: [],
