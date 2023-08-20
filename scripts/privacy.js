@@ -8,7 +8,7 @@ async function initPrivacy() {
   }
 }
 function goBack() {
-  window.history.back();
+  window.location.href = "summary.html";
 }
 
 function renderWithoutLogin() {

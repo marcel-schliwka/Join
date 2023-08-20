@@ -240,7 +240,7 @@ header {
 @media (max-width: 760px) {
   nav {
     position: fixed;
-    width: 100vw;
+    width: 100%;
     bottom: 0;
     left: 0;
     right: 0;
@@ -421,9 +421,12 @@ header {
   }
 }
 
-@media (max-width: 350px) {
+@media (max-width: 355px) {
   header {
     padding: 0;
+  }
+  .sidebar {
+    overflow-x: hidden;
   }
   #hiddenSidebarMenu {
     margin-right: 20px;

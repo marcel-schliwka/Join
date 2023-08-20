@@ -25,18 +25,24 @@ async function includeHTML() {
  * @function
  */
 function markSiteAsActive() {
-  let siteName = getSiteName();
-  if (siteName == "summary") {
-    document.querySelector(".summary-site").classList.add("activeSite");
-  }
-  if (siteName == "board") {
-    document.querySelector(".board-site").classList.add("activeSite");
-  }
-  if (siteName == "addtask") {
-    document.querySelector(".addtask-site").classList.add("activeSite");
-  }
-  if (siteName == "contacts") {
-    document.querySelector(".contact-site").classList.add("activeSite");
+  try {
+    let siteName = getSiteName();
+    if (siteName == "summary") {
+      document.querySelector(".summary-site").classList.add("activeSite");
+    }
+    if (siteName == "board") {
+      document.querySelector(".board-site").classList.add("activeSite");
+    }
+    if (siteName == "addtask") {
+      document.querySelector(".addtask-site").classList.add("activeSite");
+    }
+    if (siteName == "contacts") {
+      document.querySelector(".contact-site").classList.add("activeSite");
+    }
+  } catch (e) {
+    console.info(
+      "Sidebar: Site could not set as active! Only in testing eviroment."
+    );
   }
 }
 
