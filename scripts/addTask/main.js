@@ -73,6 +73,7 @@ function clearAssigned() {
  * Adds a new task to the user's tasks list and redirects to the board page.
  */
 async function addTask() {
+  let activeSite = getSiteName();
   if (checkIfCategoryIsSelected()) {
     document.getElementById("submit-btn-web").disabled = true;
     document.getElementById("submit-btn-responsive").disabled = true;
@@ -84,7 +85,12 @@ async function addTask() {
     clearAll();
     showBoardButtonIfNeeded();
     showTopDown("Task created");
-    redirectToBoardAfterDelay();
+    if (activeSite == "addtask") {
+      redirectToBoardAfterDelay();
+    }
+    if (activeSite == "board") {
+      closeAddTaskModal();
+    }
   } else {
     error = document.getElementById("hidden-error");
     error.classList.remove("display-none");

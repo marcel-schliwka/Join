@@ -26,8 +26,18 @@ function resetPrioButtons() {
   const images = {};
   const buttons = {};
   priorities.forEach((priority) => {
-    images[priority] = document.getElementById(`edit-${priority}-img`);
-    buttons[priority] = document.getElementById(`edit-${priority}-btn`);
+    if (priority == "urgent") {
+      images[priority] = document.getElementById(`urgentImg`);
+      buttons[priority] = document.getElementById(`urgentBtn`);
+    }
+    if (priority == "medium") {
+      images[priority] = document.getElementById(`mediumImg`);
+      buttons[priority] = document.getElementById(`mediumBtn`);
+    }
+    if (priority == "low") {
+      images[priority] = document.getElementById(`lowImg`);
+      buttons[priority] = document.getElementById(`lowBtn`);
+    }
     images[priority].src = `./img/prio_${priority}_color.png`;
     buttons[priority].classList.remove(`${priority}-active`);
   });
@@ -66,59 +76,6 @@ function getEditedVaraible() {
   };
   return newTask;
 }
-
-/**
- * Initiates the editing of a task by populating the edit task dialog with task data.
- * Updates various elements and components within the dialog.
- *
- * @param {number} i - The index of the task to be edited.
- */
-// function editTask(i) {
-//   document.getElementById("templateEditTask").innerHTML =
-//     generateEditTaskDialog();
-//   openEditModal(document.getElementById("openEditModal"));
-//   taskIndex = i;
-//   editedAssigned;
-//   renderUserContacts();
-//   let currentTask = userObj.tasks[i];
-//   pushSubtasks(currentTask);
-//   renderEditSubtasks();
-//   document.getElementById("editOkBtn").classList.remove("display-none");
-//   document.getElementById("editTitle").value = currentTask["titel"];
-//   document.getElementById("editDescription").value = currentTask["description"];
-//   document.getElementById("editDate").value = currentTask["date"];
-//   let currentButton = document.getElementById(
-//     `${"edit-" + currentTask["prio"] + "-btn"}`
-//   );
-//   let currentButtonImage = document.getElementById(
-//     `${"edit-" + currentTask["prio"] + "-img"}`
-//   );
-//   currentButton.classList.add(`${currentTask["prio"] + "-active"}`);
-//   currentButtonImage.src = `./img/prio_${currentTask["prio"]}.png`;
-//   const checkboxImages = document.querySelectorAll(".checkboxEditImg");
-//   const assignedContacts = currentTask["assigned"];
-//   document.getElementById("editContactContainerList").innerHTML = "";
-//   for (let c = 0; c < assignedContacts.length; c++) {
-//     const contact = assignedContacts[c];
-//     document.getElementById("editContactContainerList").innerHTML +=
-//       htmlTemplateEditContactIcon(contact);
-//   }
-//   for (let j = 0; j < checkboxImages.length; j++) {
-//     const checkboxImg = checkboxImages[j];
-//     const listItem = checkboxImg.closest(".contact-item-container");
-//     if (listItem) {
-//       const contactName = listItem
-//         .querySelector(".edit-contact-item")
-//         .textContent.trim();
-//       if (assignedContacts.includes(contactName)) {
-//         checkboxImg.src = "./img/checkbox_checked.png";
-//       }
-//       if (assignedContacts.includes(userObj["name"])) {
-//         checkboxImg.src = "./img/checkbox_checked.png";
-//       }
-//     }
-//   }
-// }
 
 function editTask(i) {
   window.location.href = `addtask.html?index=${i}`;

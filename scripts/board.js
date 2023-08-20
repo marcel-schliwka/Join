@@ -280,6 +280,13 @@ function boardOpenPopUpTask(i, card) {
   }
 }
 
+function closeAddTaskModal() {
+  let modal = document.querySelector(".modal");
+  resetPrioButtons();
+  closeModal(modal);
+  updateHTML();
+}
+
 function checkIfDropAreaEmpty() {
   document.querySelectorAll(".dropArea").forEach((area) => {
     if (!area.hasChildNodes()) {
