@@ -428,6 +428,7 @@ function searchTask() {
     "assignedAwaitingFeedback"
   );
   renderSearchTasksByStatus(search, "done", "done", "assignedDone");
+  checkIfDropAreaEmpty();
 }
 
 function renderSearchTasksByStatus(
