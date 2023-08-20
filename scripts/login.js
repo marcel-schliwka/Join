@@ -241,6 +241,20 @@ async function createUserObject(username, email, hashedPassword) {
     password: hashedPassword,
     tasks: [],
     contacts: [],
+    categorys: [
+      {
+        name: "Sales",
+        color: "#FC71FF",
+      },
+      {
+        name: "Backoffice",
+        color: "#38EAFF",
+      },
+      {
+        name: "Design",
+        color: "#FFC701",
+      },
+    ],
   };
   await setItem(email, JSON.stringify(userObj));
 }

@@ -41,7 +41,7 @@ function useCategory(i) {
   let selection = document.querySelector(".category-input");
   let category = document.getElementById("renderCategorys");
   let categoryContainer = document.getElementById("category-container");
-  selection.innerHTML = generateSelectedCategoryHTML(categorys, i);
+  selection.innerHTML = generateSelectedCategoryHTML(userObj.categorys, i);
   currentCategory = selection.innerText;
   category.classList.add("display-none");
   categoryContainer.classList.remove("remove-border");

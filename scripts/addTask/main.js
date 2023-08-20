@@ -255,7 +255,7 @@ function addNewCategory() {
     } else {
       hiddenError.innerText = "";
       hiddenError.classList.add("display-none");
-      categorys.push({ name: input, color });
+      userObj.categorys.push({ name: input, color });
       renderCategorys();
       category.innerHTML = generateBasicCategoryInputHTML();
       categoryBtn.innerHTML = generateBasicCategoryButtonHTML();
