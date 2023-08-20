@@ -291,15 +291,15 @@ h3 {
   }
 }
 
-@media (max-width: 1080px) {
-  .summary {
-    margin-left: 328px;
+@media (max-width: 1060px) {
+  .greeting {
+    display: none;
   }
 }
 
-@media (max-width: 1050px) {
-  .greeting {
-    display: none;
+@media (max-width: 770px) {
+  .summary {
+    margin-left: 270px;
   }
 }
 
