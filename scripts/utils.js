@@ -1,13 +1,13 @@
-// This file contains universal Javascript funktion which can be used in different places
-// utils.js
-
+/**
+ * Displays a top-down message on the screen with a fade-in and fade-out effect.
+ *
+ * @param {string} message - The message to be displayed in the popup.
+ */
 function showTopDown(message) {
-  // Erstellen Sie das popup-Element
   const popup = document.createElement("div");
   popup.id = "topdownMessages";
   document.body.appendChild(popup);
 
-  // Stil für das popup-Element
   Object.assign(popup.style, {
     padding: "10px",
     backgroundColor: "#2a3647",
@@ -22,10 +22,8 @@ function showTopDown(message) {
     zindex: "2000",
   });
 
-  // Nachricht setzen
   popup.innerHTML = message;
 
-  // Animation hinzufügen
   let startTime;
   function animate(time) {
     if (!startTime) startTime = time;
@@ -47,6 +45,13 @@ function showTopDown(message) {
 
   requestAnimationFrame(animate);
 }
+
+/**
+ * Renders the top logo with the initials of the user's name.
+ *
+ * @param {Object} userObj - The user object containing the user's details.
+ * @returns {string} - Returns the initials of the user's name.
+ */
 function renderTopLogo(userObj) {
   setTimeout(() => {
     let initials = capitalizeFirstLetterOfEveryWord(getInitials(userObj.name));
@@ -55,6 +60,12 @@ function renderTopLogo(userObj) {
   }, 10);
 }
 
+/**
+ * Capitalizes the first letter of every word in the given string.
+ *
+ * @param {string} input - The string to be transformed.
+ * @returns {string} - Returns the transformed string with capitalized first letters.
+ */
 function capitalizeFirstLetterOfEveryWord(input) {
   return input
     .split(" ")

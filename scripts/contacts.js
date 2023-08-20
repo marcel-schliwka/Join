@@ -112,6 +112,9 @@ function renderContactList() {
   setItem(userObj.email, JSON.stringify(userObj));
 }
 
+/**
+ * Closes all dialog elements on the page.
+ */
 function hideDialogElements() {
   let dialogs = document.querySelectorAll("dialog");
   dialogs.forEach(function (dialog) {
@@ -119,6 +122,11 @@ function hideDialogElements() {
   });
 }
 
+/**
+ * Generates the HTML for the "Add new contact" button.
+ *
+ * @returns {string} - Returns the HTML string for the "Add new contact" button.
+ */
 function addNewContactButton() {
   return `<button class="fw-bold custom-lh-120 custom-btn pos-btn" onclick="openCreateContact()">
   <span class="custom-fs-21">Add new contact</span>
@@ -257,6 +265,9 @@ let startEventListener = () => {
   );
 };
 
+/**
+ * Removes the "single-contact-card-active" class from all elements that have it.
+ */
 function handleClickOnActiveCard() {
   document.querySelectorAll(".single-contact-card-active").forEach((card) => {
     card.classList.remove("single-contact-card-active");
@@ -289,6 +300,9 @@ function openContact(card) {
   dialogContact.show();
 }
 
+/**
+ * Removes the "single-contact-card-active" class from all elements that have it.
+ */
 function deleteActiveClass() {
   document.querySelectorAll(".single-contact-card-active").forEach((card) => {
     card.classList.remove("single-contact-card-active");
@@ -368,6 +382,11 @@ function deleteContact() {
   deleteInitial(dialogElements.name.innerText);
 }
 
+/**
+ * Removes the initial container if it's empty after a contact deletion.
+ *
+ * @param {string} name - The name of the contact.
+ */
 function deleteInitial(name) {
   let initial = name.trim().charAt(0).toUpperCase();
   let initialDiv = document.getElementById(`containerLetter${initial}`);
@@ -509,10 +528,16 @@ function showResponsiveOptions() {
     .classList.remove("d-none");
 }
 
+/**
+ * Closes the responsive options by adding the "d-none" class to the element with the ID "responsiveOptionsContacts".
+ */
 function closeResponsiveOptions() {
   document.getElementById("responsiveOptionsContacts").classList.add("d-none");
 }
 
+/**
+ * Handles the window closing process by deactivating the active card, hiding the main contacts, and hiding the back button.
+ */
 function closeWindow() {
   handleClickOnActiveCard();
   contactsMain.classList.add("contacts-none");

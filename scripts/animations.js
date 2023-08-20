@@ -1,3 +1,8 @@
+/**
+ * Opens a modal. If the window width is less than 950, redirects to the "addtask.html" page.
+ *
+ * @param {HTMLElement} modal - The modal element to be opened.
+ */
 function openModal(modal) {
   let w = window.innerWidth;
   if (w < 950) {
@@ -11,6 +16,11 @@ function openModal(modal) {
   }
 }
 
+/**
+ * Opens an edit modal.
+ *
+ * @param {HTMLElement} modal - The edit modal element to be opened.
+ */
 function openEditModal(modal) {
   modal.classList.remove("dNone");
   modal.classList.remove("out");
@@ -19,10 +29,20 @@ function openEditModal(modal) {
   clearAll();
 }
 
+/**
+ * Redirects the user to the specified URL.
+ *
+ * @param {string} url - The URL to redirect to.
+ */
 function redirect(url) {
   window.location.href = url;
 }
 
+/**
+ * Closes the provided modal with an animation.
+ *
+ * @param {HTMLElement} modal - The modal element to be closed.
+ */
 function closeModal(modal) {
   spliceStatusLocalStorage();
   modal.addEventListener("animationend", () => {
@@ -35,8 +55,12 @@ function closeModal(modal) {
   document.querySelector(".modal-backdrop").style.display = "none";
 }
 
+/**
+ * Closes the edit modal with an animation.
+ *
+ * @param {HTMLElement} modal - The edit modal element to be closed.
+ */
 function closeEditModal(modal) {
-  // spliceStatusLocalStorage();
   modal.addEventListener("animationend", () => {
     if (modal.classList.contains("out")) {
       modal.style.display = "none";
@@ -46,8 +70,12 @@ function closeEditModal(modal) {
   modal.classList.add("out");
   document.getElementById("openEditModal").style.display = "none";
 }
+
+/**
+ * Displays a loading spinner on the screen.
+ */
+
 function showLoadingScreen() {
-  // Create the spinner container
   let spinnerContainer = document.createElement("div");
   spinnerContainer.id = "loading-spinner";
   spinnerContainer.style.position = "fixed";
@@ -62,7 +90,6 @@ function showLoadingScreen() {
   spinnerContainer.style.justifyContent = "center";
   spinnerContainer.style.alignItems = "center";
 
-  // Create the actual spinner
   let spinnerInner = document.createElement("div");
   spinnerInner.style.border = "16px solid #f3f3f3";
   spinnerInner.style.borderTop = "16px solid #3498db";
@@ -73,10 +100,12 @@ function showLoadingScreen() {
 
   spinnerContainer.appendChild(spinnerInner);
 
-  // Append the spinner container to the body
   document.body.insertBefore(spinnerContainer, document.body.firstChild);
 }
 
+/**
+ * Removes the loading spinner from the screen and displays the page content.
+ */
 function deleteLoadingScreen() {
   let spinner = document.getElementById("loading-spinner");
   if (spinner) {

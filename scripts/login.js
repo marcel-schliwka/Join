@@ -239,8 +239,47 @@ async function createUserObject(username, email, hashedPassword) {
     name: capitalizeFirstLetterOfEveryWord(username),
     email: email,
     password: hashedPassword,
-    tasks: [],
-    contacts: [],
+    tasks: [
+      {
+        titel: "HTML Template",
+        description: "Create basic HTML template to show tasks.",
+        status: "to do",
+        category: "Develop ",
+        categoryColor: "#ffea00",
+        assigned: [],
+        date: "2023-08-25",
+        prio: "medium",
+        subtasks: [
+          { title: "Create file", property: "unchecked" },
+          { title: "Add template function", property: "unchecked" },
+        ],
+        id: 0,
+      },
+      {
+        titel: "Publish App",
+        description: "Publish our App on the Web",
+        status: "in progress",
+        category: "Sales ",
+        categoryColor: "#FC71FF",
+        assigned: ["Laura Miller"],
+        date: "2023-09-09",
+        prio: "low",
+        subtasks: [],
+        id: 1,
+      },
+    ],
+    contacts: [
+      {
+        name: "Laura Miller",
+        email: "laura-miller@protonmail.com",
+        number: "0178654825",
+      },
+      {
+        name: "Peter Lustig",
+        email: "peter-lustig@gmail.com",
+        number: "0179554321",
+      },
+    ],
     categorys: [
       {
         name: "Sales",

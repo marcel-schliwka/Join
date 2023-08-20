@@ -31,6 +31,9 @@ function updateHTML() {
   setTimeout(startTouchEventListener, 500);
 }
 
+/**
+ * Renders tasks by their status.
+ */
 function renderTasks() {
   renderTasksByStatus("to do", "todo", "assignedToDo");
   renderTasksByStatus("in progress", "inProgress", "assignedInProgress");
@@ -42,6 +45,13 @@ function renderTasks() {
   renderTasksByStatus("done", "done", "assignedDone");
 }
 
+/**
+ * Renders tasks filtered by a specific status.
+ *
+ * @param {string} status - The status of tasks to be rendered.
+ * @param {string} containerId - The ID of the container where the tasks should be rendered.
+ * @param {string} assignmentIdPrefix - The prefix of the ID for the assignment container.
+ */
 function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
   const filteredTasks = userObj["tasks"].filter(
     (task) => task.status === status
@@ -64,6 +74,12 @@ function renderTasksByStatus(status, containerId, assignmentIdPrefix) {
   });
 }
 
+/**
+ * Checks the subtasks of a task.
+ *
+ * @param {Object} task - The task object containing subtasks.
+ * @returns {number} - Returns -1 if there are no subtasks, or the percentage of completed subtasks.
+ */
 function checkSubtasks(task) {
   let subtasks = task["subtasks"].length;
   if (subtasks === 0) {
@@ -74,6 +90,12 @@ function checkSubtasks(task) {
   }
 }
 
+/**
+ * Counts the properties of checked and unchecked subtasks.
+ *
+ * @param {Object} task - The task object containing subtasks.
+ * @returns {Object} - Returns an object containing the count of checked and unchecked subtasks.
+ */
 function countProperty(task) {
   let checkedCount = 0;
   let uncheckedCount = 0;
@@ -88,6 +110,12 @@ function countProperty(task) {
   return { checked: checkedCount, unchecked: uncheckedCount };
 }
 
+/**
+ * Calculates the progress bar percentage based on the count of checked and unchecked properties.
+ *
+ * @param {Object} count - An object containing the count of checked and unchecked properties.
+ * @returns {number} - Returns the percentage of progress.
+ */
 function calculateProgressBar(count) {
   let propertyLength = count["checked"] + count["unchecked"];
   let percentage = (count["checked"] * 100) / propertyLength;
@@ -234,45 +262,70 @@ function moveTo(status, element) {
 }
 
 /**
- * Opens a popup with details of a task on the board.
+ * Initializes the task card and its index.
  *
- * @function
- * @param {number} i - The index or ID of the task.
- * @param {HTMLElement} card - The HTML element representing the task card.
- * @global
- * @requires currentStatus: A global variable holding the current status of the task.
- * @requires currentTitel: A global variable holding the title of the task.
- * @requires userObj: An object containing user tasks.
+ * @param {number} i - The index of the task card.
+ * @param {HTMLElement} card - The task card element.
  */
-function boardOpenPopUpTask(i, card) {
+function initializeTaskCardAndIndex(i, card) {
   taskCard = card;
   taskIndex = i;
   currentStatus = card.getAttribute("status");
   currentTitel = card.getAttribute("titel");
-  let index = userObj.tasks.findIndex(
+}
+
+/**
+ * Finds the index of a task based on its status and title.
+ *
+ * @returns {number} - The index of the task.
+ */
+function findTaskIndex() {
+  return userObj.tasks.findIndex(
     (task) => task.status == currentStatus && task.titel == currentTitel
   );
+}
 
-  let element = userObj.tasks[index];
-  document.getElementById("popUpBoard").classList.remove("dNone");
-  document.getElementById("popUpBoard").innerHTML = "";
-  document.getElementById("popUpBoard").innerHTML = htmlTemplatePopUpTask(
-    index,
-    getThePriority(element)
-  );
-  document.getElementById("boardTasksMembers").innerHTML = "";
+/**
+ * Updates the pop-up board with the provided task details.
+ *
+ * @param {number} index - The index of the task.
+ * @param {Object} element - The task object.
+ */
+function updatePopUpBoard(index, element) {
+  let popUpBoard = document.getElementById("popUpBoard");
+  popUpBoard.classList.remove("dNone");
+  popUpBoard.innerHTML = "";
+  popUpBoard.innerHTML = htmlTemplatePopUpTask(index, getThePriority(element));
+}
+
+/**
+ * Adds assigned members to the pop-up board.
+ *
+ * @param {Object} element - The task object containing assigned members.
+ */
+function addAssignedMembers(element) {
+  let membersContainer = document.getElementById("boardTasksMembers");
+  membersContainer.innerHTML = "";
   for (let j = 0; j < element["assigned"].length; j++) {
-    const element2 = element["assigned"][j];
-    document.getElementById("boardTasksMembers").innerHTML +=
-      htmlTemplatePopUpMembers(element2);
+    const member = element["assigned"][j];
+    membersContainer.innerHTML += htmlTemplatePopUpMembers(member);
   }
+}
+
+/**
+ * Handles the subtasks for a specific task.
+ *
+ * @param {Object} element - The task object containing subtasks.
+ * @param {number} i - The index of the task.
+ */
+function handleSubtasks(element, i) {
   let subtaskContainer = document.getElementById("boardTasksSubtasks");
   if (element["subtasks"].length > 0) {
     subtaskContainer.innerHTML += generateSubtaskHeader();
     for (let k = 0; k < element["subtasks"].length; k++) {
-      const element3 = element["subtasks"][k]["title"];
+      const subtaskTitle = element["subtasks"][k]["title"];
       subtaskContainer.innerHTML += generateBordSubtaskHTML(
-        element3,
+        subtaskTitle,
         k,
         element
       );
@@ -281,6 +334,24 @@ function boardOpenPopUpTask(i, card) {
   }
 }
 
+/**
+ * Opens the task pop-up board with details of the selected task.
+ *
+ * @param {number} i - The index of the task card.
+ * @param {HTMLElement} card - The task card element.
+ */
+function boardOpenPopUpTask(i, card) {
+  initializeTaskCardAndIndex(i, card);
+  let index = findTaskIndex();
+  let element = userObj.tasks[index];
+  updatePopUpBoard(index, element);
+  addAssignedMembers(element);
+  handleSubtasks(element, i);
+}
+
+/**
+ * Closes the 'Add Task' modal and updates the HTML.
+ */
 function closeAddTaskModal() {
   let modal = document.querySelector(".modal");
   resetPrioButtons();
@@ -288,6 +359,9 @@ function closeAddTaskModal() {
   updateHTML();
 }
 
+/**
+ * Checks if any drop area is empty and updates it with a placeholder message.
+ */
 function checkIfDropAreaEmpty() {
   document.querySelectorAll(".dropArea").forEach((area) => {
     if (!area.hasChildNodes()) {
@@ -307,6 +381,12 @@ function checkIfDropAreaEmpty() {
   });
 }
 
+/**
+ * Returns the empty task text based on the parent container's ID.
+ *
+ * @param {HTMLElement} element - The element for which the empty task text is needed.
+ * @returns {string} - The empty task message.
+ */
 function emptyTaskText(element) {
   let parentId = element.parentNode.id;
   if (parentId == "todo") {
@@ -324,6 +404,13 @@ function boardClosePopUpTask() {
   updateHTML();
 }
 
+/**
+ * Changes the visual representation of a subtask to a checkbox and updates the userObj.
+ *
+ * @async
+ * @param {number} k - The index of the subtask.
+ * @returns {Promise<void>} - A promise that resolves when the operation is complete.
+ */
 async function changeToCheckbox(k) {
   const checkbox = document.getElementById(`subtask-checkbox${k}`);
   const index = userObj.tasks.findIndex(
@@ -339,6 +426,13 @@ async function changeToCheckbox(k) {
   await setItem(userObj.email, JSON.stringify(userObj));
 }
 
+/**
+ * Toggles the property of a subtask between "checked" and "unchecked".
+ *
+ * @param {HTMLElement} checkbox - The checkbox element.
+ * @param {string} newProperty - The new property value ("checked" or "unchecked").
+ * @param {number} taskIndex - The index of the task.
+ */
 function toggleSubtaskProperty(checkbox, newProperty, taskIndex) {
   const subtaskIndex = parseInt(checkbox.id.match(/\d+$/)[0]);
   if (subtaskIndex >= 0 && taskIndex >= 0) {
@@ -346,6 +440,12 @@ function toggleSubtaskProperty(checkbox, newProperty, taskIndex) {
   }
 }
 
+/**
+ * Sets the property of subtasks using images based on their checked status.
+ *
+ * @param {Object} element - The task object containing subtasks.
+ * @param {number} index - The index of the task.
+ */
 function getProperty(element, index) {
   let properties = element["subtasks"];
   const images = [
@@ -370,6 +470,11 @@ function getProperty(element, index) {
   }
 }
 
+/**
+ * Generates the HTML header for subtasks.
+ *
+ * @returns {string} - The HTML string for the subtask header.
+ */
 function generateSubtaskHeader() {
   return `
   <div class="pb-3 bold">Subtasks:</div>
@@ -412,6 +517,10 @@ function getThePriority(element) {
   return priority;
 }
 
+/**
+ * Initiates the task search based on the input from the "boardInput" element and renders
+ * the search results.
+ */
 function searchTask() {
   let search = document.getElementById("boardInput").value;
   search = search.toLowerCase();
@@ -432,6 +541,14 @@ function searchTask() {
   checkIfDropAreaEmpty();
 }
 
+/**
+ * Renders tasks based on the search term and their status.
+ *
+ * @param {string} search - The search term to filter tasks by.
+ * @param {string} status - The status of the tasks to be rendered.
+ * @param {string} containerId - The ID of the container where the tasks should be rendered.
+ * @param {string} assignmentIdPrefix - The prefix of the ID for the assignment container.
+ */
 function renderSearchTasksByStatus(
   search,
   status,
@@ -462,6 +579,15 @@ function renderSearchTasksByStatus(
   }
 }
 
+/**
+ * Generates the HTML template for a task based on its status.
+ *
+ * @param {Object} task - The task object.
+ * @param {number} index - The index of the task.
+ * @param {string} priority - The priority of the task.
+ * @param {string} status - The status of the task.
+ * @returns {string} - Returns the HTML string for the task based on its status.
+ */
 function htmlTemplateByStatus(task, index, priority, status) {
   switch (status) {
     case "to do":
