@@ -36,7 +36,6 @@ function changeInputs(taskToEdit) {
   inputs.date.value = taskToEdit.date;
   inputs.headline.innerText = "Edit Task";
   changePriority(taskToEdit);
-  changeCategoryOnEdit(taskToEdit);
   inputs.submitBtn.innerHTML = changeSubmitBtn();
   inputs.submitBtnResp.innerHTML = changeSubmitBtn();
   inputs.categoryContainer.remove();

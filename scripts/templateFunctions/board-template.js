@@ -8,7 +8,7 @@ function htmlTemplateProgressCount(element) {
   return `
     <div class="d-flex">
       ${element["checked"]}/${element["unchecked"] + element["checked"]} 
-        <span id="subtasksText">Subtasks</span>
+        <span id="subtasksText"></span>
     </div>
     `;
 }

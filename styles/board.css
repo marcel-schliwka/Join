@@ -264,7 +264,7 @@ body {
 }
 
 .progress-count {
-  font-size: 9px;
+  font-size: 0.7rem;
   font-weight: bold;
   font-family: Inter;
 }
