@@ -16,6 +16,21 @@ body {
   padding-top: 110px;
 }
 
+.touchDot {
+  width: 150px;
+  height: 100px;
+  bottom: 0px;
+  right: 0;
+  opacity: 0;
+  position: absolute;
+  background-color: #29abe2;
+}
+
+.moveableCard {
+  position: relative;
+  overflow: hidden;
+}
+
 .headlineBoard {
   font-size: 61px;
 }
@@ -293,6 +308,9 @@ body {
     flex-direction: column;
     gap: 15px;
   }
+  .dropArea {
+    min-height: 200px;
+  }
 }
 
 @media screen and (min-width: 871px) and (max-width: 1200px) {
@@ -361,7 +379,7 @@ body {
   }
 
   .gridContainerChildBoard .dropArea {
-    min-height: auto;
+    min-height: 200px;
   }
 
   .addTaskBoardBtn {
@@ -432,9 +450,6 @@ body {
     padding-top: 25px;
   }
 
-  .dropArea {
-    min-height: 100px !important;
-  }
 
   .headline-container-board {
     align-self: flex-start;
