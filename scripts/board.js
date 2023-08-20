@@ -27,8 +27,8 @@ function updateHTML() {
   checkIfDropAreaEmpty();
   renderContacts();
   renderCategorys();
-  startTouchEventListener();
   searchTask();
+  setTimeout(startTouchEventListener, 500);
 }
 
 function renderTasks() {
