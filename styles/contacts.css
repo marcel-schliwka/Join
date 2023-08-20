@@ -1,5 +1,5 @@
 body {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 #dialogContact {
@@ -31,6 +31,7 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   top: 0;
+  overflow: hidden;
   left: 0;
   z-index: 999;
 }
@@ -218,7 +219,7 @@ body {
 .custom-style-contacts {
   height: 100vh;
   display: flex;
-  margin-left: 284px;
+  margin-left: 232px;
   padding-bottom: 50px;
   background-color: rgba(246, 247, 248, 255);
 }
@@ -297,9 +298,9 @@ body {
   background: linear-gradient(180deg, #f9f9f9 0%, #f0f0f0 100%);
 }
 
-.single-contact-card-active {
-  pointer-events: none;
-  background-color: #2a3647 !important;
+.single-contact-card-active,
+.single-contact-card-active:hover {
+  background: #2a3647 !important;
   color: white !important;
 }
 
@@ -496,7 +497,7 @@ body {
 /* ANIMATIONS */
 @keyframes showEditDialog {
   from {
-    transform: translateX(300%);
+    transform: translateX(0);
   }
 
   to {
@@ -587,7 +588,7 @@ body {
     background-color: transparent;
     right: 0;
     border: unset;
-    margin: 16px;
+    margin: 5px;
   }
 
   .btn-resp-create {
@@ -713,7 +714,7 @@ body {
   .dialog__editLeftSide,
   .dialog__createLeftSide {
     background-color: #2a3647;
-    height: 50%;
+    height: 40%;
     width: 100%;
     justify-content: center;
   }
@@ -727,8 +728,9 @@ body {
   .dialog__editRightImg,
   .dialog__createRightImg {
     position: absolute;
-    top: calc(50px - 50%);
+    top: calc(80px - 50%);
     margin-top: 10px;
+    display: none;
   }
 
   .contacts-header {
@@ -746,6 +748,9 @@ body {
   .dialog__blue-line {
     order: +1;
   }
+  .button-resp-back {
+    right: 0 !important;
+  }
 
   .dialog__editRightBtn,
   .dialog__createRightBtn {
@@ -755,8 +760,8 @@ body {
   .dialog__editRightForm,
   .dialog__createRightForm {
     width: 80%;
-    margin-top: 10px;
-    gap: 1.5em;
+    margin-top: -70px;
+    gap: 10px;
   }
 }
 
@@ -765,6 +770,7 @@ body {
     z-index: 1;
     background-color: #f6f7f8;
     padding-top: 40px;
+    margin-top: 2px;
   }
 
   .custom-style-contacts {
@@ -831,7 +837,7 @@ body {
   .btn-resp-menu-contacts {
     position: absolute;
     bottom: 90px;
-    right: 30px;
+    right: 60px;
     display: block;
     border: unset;
     border-radius: 50%;
@@ -867,8 +873,8 @@ body {
   .resp-show-options-container {
     border-radius: 10px;
     position: absolute;
-    right: 4px;
-    bottom: 4px;
+    right: 15px;
+    bottom: 40px;
     background-color: white;
     width: 24%;
     height: 55%;
@@ -930,13 +936,13 @@ body {
   .dialog__editRightSide,
   .dialog__createRightSide {
     width: 100%;
-    height: 50%;
   }
 
   .dialog__editRightImg,
   .dialog__createRightImg {
     position: absolute;
-    top: calc(50px - 50%);
+    width: 70px;
+    top: calc(-30px - 50%);
   }
 
   .dialog__editRightForm,
@@ -971,6 +977,10 @@ body {
   #dialogContact {
     margin: 24px 0px 0px 0px;
   }
+  .button-resp-back {
+    display: block;
+    right: 60px;
+  }
 }
 
 @media only screen and (min-width: 1001px) and (max-width: 1250px) {
@@ -978,6 +988,14 @@ body {
     width: 383px;
   }
 
+  .single-contact-card {
+    width: 90%;
+  }
+
+  .circle {
+    width: 40px;
+    height: 40px;
+  }
   #dialog__editContact,
   #dialog__createContact {
     left: 20%;

@@ -257,13 +257,21 @@ let startEventListener = () => {
   );
 };
 
+function handleClickOnActiveCard() {
+  document.querySelectorAll(".single-contact-card-active").forEach((card) => {
+    card.classList.remove("single-contact-card-active");
+  });
+}
+
 /**
  * opening dialog-window to show contact information
  *
  * @param {Object} card
  */
 function openContact(card) {
+  handleClickOnActiveCard();
   deleteActiveClass();
+
   card.classList.add("single-contact-card-active");
   contactsMain.classList.remove("contacts-none");
   contactsMain.classList.add("contacts-main");
@@ -335,13 +343,15 @@ function getContactIndex(searchedName) {
  * @param {Object} contact
  */
 function changeDialogInfo(contact) {
-  dialogElements.profilePic.innerHTML = dialogElements.initials;
-  dialogElements.profilePic.style = dialogElements.circleColor;
-  dialogElements.name.innerText = contact.name;
-  dialogElements.email.innerText = contact.email;
-  dialogElements.email.href = `mailto:${contact.email}`;
-  dialogElements.phone.innerText = contact.number;
-  dialogElements.phone.href = `tel:${contact.number}`;
+  try {
+    dialogElements.profilePic.innerHTML = dialogElements.initials;
+    dialogElements.profilePic.style = dialogElements.circleColor;
+    dialogElements.name.innerText = contact.name;
+    dialogElements.email.innerText = contact.email;
+    dialogElements.email.href = `mailto:${contact.email}`;
+    dialogElements.phone.innerText = contact.number;
+    dialogElements.phone.href = `tel:${contact.number}`;
+  } catch (e) {}
 }
 
 /**
@@ -504,6 +514,7 @@ function closeResponsiveOptions() {
 }
 
 function closeWindow() {
+  handleClickOnActiveCard();
   contactsMain.classList.add("contacts-none");
   contactsMain.classList.remove("contacts-main");
   document.getElementById("buttonRespBack").classList.add("d-none");
