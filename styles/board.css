@@ -405,9 +405,7 @@ body {
     overflow-x: scroll;
     gap: 20px;
   }
-  ::-webkit-scrollbar {
-    height: 3px;
-  }
+
   .gridContainerChildBoard {
     width: 100%;
   }
