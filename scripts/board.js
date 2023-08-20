@@ -28,6 +28,7 @@ function updateHTML() {
   renderContacts();
   renderCategorys();
   startTouchEventListener();
+  searchTask();
 }
 
 function renderTasks() {

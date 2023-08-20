@@ -115,6 +115,10 @@ body {
   z-index: 99;
 }
 
+.dropArea {
+  min-height: 300px;
+}
+
 .popUpBoardBackground {
   position: fixed;
   top: 0;
