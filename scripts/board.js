@@ -11,6 +11,7 @@ async function initBoard() {
   userObj = await getLoggedInUser();
   updateHTML();
   await renderTopLogo(userObj);
+  addTouchAnimationDotOnLoad();
 }
 
 /**
@@ -44,6 +45,18 @@ function renderTasks() {
   );
   renderTasksByStatus("done", "done", "assignedDone");
 }
+
+/**
+ * Adds the 'dot-animation' class to all elements with the class 'blue-dot'.
+ * This is typically used to apply a touch animation effect to the blue dots on page load.
+ */
+function addTouchAnimationDotOnLoad() {
+  let allBlueDots = document.querySelectorAll(".blue-dot");
+  allBlueDots.forEach((dot) => {
+    dot.classList.add("dot-animation")
+  })
+}
+
 
 /**
  * Renders tasks filtered by a specific status.

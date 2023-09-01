@@ -16,14 +16,8 @@ body {
   padding-top: 110px;
 }
 
-.touchDot {
-  width: 150px;
-  height: 100px;
-  bottom: 0px;
-  right: 0;
-  opacity: 0;
-  position: absolute;
-  background-color: #29abe2;
+.blue-dot {
+  display: none;
 }
 
 .moveableCard {
@@ -366,7 +360,8 @@ body {
     display: flex;
     flex-direction: column;
   }
-  .blue-dot {
+  .dot-animation {
+    display: block;
     position: absolute;
     width: 40px;
     height: 40px;
