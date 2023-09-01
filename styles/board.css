@@ -366,6 +366,19 @@ body {
     display: flex;
     flex-direction: column;
   }
+  .blue-dot {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #29abe2;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    animation: touchMovement 2s forwards;
+    animation-iteration-count: 2;
+    right: 20px;
+  }
+  
   #popUpBoard {
     left: 15%;
   }

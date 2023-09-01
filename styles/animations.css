@@ -29,6 +29,23 @@
   }
 }
 
+@keyframes touchMovement {
+  0% {
+    filter: blur(20px);
+  }
+  50% {
+    background-color: #3498db;
+    opacity: .75;
+  }
+
+  100% {
+    opacity: 0;
+    filter: blur(20px);
+  }
+
+
+}
+
 #loading-spinner {
   position: fixed;
   top: 50%;
