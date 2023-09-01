@@ -21,10 +21,15 @@ function renderCategorys() {
   let category = document.getElementById("renderCategorys");
   category.innerHTML = "";
   category.innerHTML = generateAddNewCategoryHTML();
-  for (let i = 0; i < userObj.categorys.length; i++) {
+  try {
+      for (let i = 0; i < userObj.categorys.length; i++) {
     const cat = userObj.categorys[i];
     category.innerHTML += renderCategorysHTML(i, cat);
+    }
+  } catch(e) {
+    console.log("No category")
   }
+
 }
 
 /**

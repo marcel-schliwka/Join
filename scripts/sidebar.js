@@ -52,7 +52,7 @@ function markSiteAsActive() {
  */
 function getSiteName() {
   let url = window.location.href;
-  return url.split("/")[4].split(".")[0];
+  return url.split("/")[3].split(".")[0];
 }
 
 let isDropdownOpen = false;
