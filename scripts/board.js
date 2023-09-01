@@ -277,6 +277,7 @@ function initializeTaskCardAndIndex(i, card) {
 /**
  * Finds the index of a task based on its status and title.
  *
+ * 
  * @returns {number} - The index of the task.
  */
 function findTaskIndex() {
