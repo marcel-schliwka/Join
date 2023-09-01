@@ -63,6 +63,7 @@ function returnNextDeadline() {
   if (deadlineDates.length !== 0) {
     const sortedDeadline = deadlineDates.sort();
     const closestDate = new Date(sortedDeadline[0]);
+    checkIfDeadlineExpired(closestDate);
     let dateToFormat = closestDate.toISOString();
     let date = formateDate(dateToFormat);
     return date;
@@ -78,7 +79,7 @@ function returnNextDeadline() {
  * @returns {string} The formatted date in the format: Month Day, Year (e.g., "January 01, 2023").
  */
 function formateDate(dateToFormat) {
-  const date = dateToFormat;
+  const date = new Date(dateToFormat);
   const months = [
     "January",
     "February",
@@ -93,14 +94,19 @@ function formateDate(dateToFormat) {
     "November",
     "December",
   ];
-  const year = date.substring(0, 4);
-  const month = date.substring(6, 7);
-  const day = date.substring(9, 10);
+  const year = date.getFullYear();
+  let month = months[date.getMonth()];
+  const day = date.getDate();
 
-  let formatedMonth = months[month - 1];
-  let formatedDay = day.toString().padStart(2, "0");
-  let formatedDate = formatedMonth + " " + formatedDay + ", " + year;
+  let formatedDate = month + " " + day + ", " + year;
   return formatedDate;
+}
+
+function checkIfDeadlineExpired(date) {
+  const today = new Date();
+  if(today > date) {
+    document.querySelector(".deadline-expired").innerText = "(Your last deadline is expired!)"
+  }
 }
 
 /**

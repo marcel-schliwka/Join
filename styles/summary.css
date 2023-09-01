@@ -163,6 +163,11 @@ h3 {
   gap: 18px;
 }
 
+.deadline-expired {
+  font-size: 10px;
+  color: red;
+}
+
 .main-bottom {
   margin-top: 28.5px;
   display: flex;
@@ -282,6 +287,8 @@ h3 {
     font-size: 16px;
   }
 
+
+
   #urgent-deadline {
     font-size: 18px;
   }
@@ -330,6 +337,8 @@ h3 {
   .deadline-text {
     font-size: 14px;
   }
+
+
 
   #urgent-deadline {
     font-size: 16px;
