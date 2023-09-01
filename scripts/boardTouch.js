@@ -17,7 +17,6 @@ let initialScrollLeft, initialScrollTop;
 function handleTouchStart(e) {
   e.preventDefault();
   initializeTouchAttributes(e);
-  pressTimer = initiateLongPress(e);
 }
 
 /**
