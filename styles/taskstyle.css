@@ -204,6 +204,11 @@ body {
   gap: 14px;
 }
 
+div > input:focus {
+  border: none;
+}
+
+
 .top-right {
   display: flex;
   flex-direction: column;
@@ -1329,6 +1334,7 @@ li {
   .create-btn-responsive {
     display: none;
   }
+
 
   #subtask-content {
     padding-bottom: 40px;
